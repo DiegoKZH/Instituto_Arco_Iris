@@ -1,0 +1,1382 @@
+import React, { useState, useEffect } from "react";
+import {
+  Box,
+  Container,
+  Typography,
+  Grid,
+  Paper,
+  Tabs,
+  Tab,
+  Button,
+  List,
+  ListItem,
+  ListItemIcon,
+  ListItemText,
+  Chip,
+  Divider,
+} from "@mui/material";
+import AOS from "aos";
+import "aos/dist/aos.css";
+
+// Íconos
+import UploadFileIcon from "@mui/icons-material/UploadFile";
+import QuizIcon from "@mui/icons-material/Quiz";
+import FactCheckIcon from "@mui/icons-material/FactCheck";
+import CheckCircleIcon from "@mui/icons-material/CheckCircle";
+import EmojiEventsIcon from "@mui/icons-material/EmojiEvents";
+import SchoolIcon from "@mui/icons-material/School";
+import BadgeIcon from "@mui/icons-material/Badge";
+import HistoryEduIcon from "@mui/icons-material/HistoryEdu";
+import DescriptionIcon from "@mui/icons-material/Description";
+import PortraitIcon from "@mui/icons-material/Portrait";
+import GavelIcon from "@mui/icons-material/Gavel";
+import ReceiptLongIcon from "@mui/icons-material/ReceiptLong";
+import MenuBookIcon from "@mui/icons-material/MenuBook";
+import PsychologyIcon from "@mui/icons-material/Psychology";
+import ChildCareIcon from "@mui/icons-material/ChildCare";
+import SportsIcon from "@mui/icons-material/Sports";
+import LightbulbIcon from "@mui/icons-material/Lightbulb";
+import PeopleAltIcon from "@mui/icons-material/PeopleAlt";
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import LocationCityIcon from "@mui/icons-material/LocationCity";
+import HandshakeIcon from "@mui/icons-material/Handshake";
+import PublicIcon from "@mui/icons-material/Public";
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import { Link } from "react-router-dom";
+
+// Componente para el panel de Pestañas (Tabs)
+function CustomTabPanel(props) {
+  const { children, value, index, ...other } = props;
+  return (
+    <div
+      role="tabpanel"
+      hidden={value !== index}
+      id={`admision-tabpanel-${index}`}
+      aria-labelledby={`admision-tab-${index}`}
+      {...other}
+    >
+      {value === index && <Box sx={{ pt: 4 }}>{children}</Box>}
+    </div>
+  );
+}
+
+export default function Admision() {
+  const [tabValue, setTabValue] = useState(0);
+
+  useEffect(() => {
+    AOS.init({
+      duration: 800,
+      once: false,
+      mirror: true,
+      easing: "ease-out-cubic",
+    });
+  }, []);
+
+  const handleTabChange = (event, newValue) => {
+    setTabValue(newValue);
+  };
+
+  return (
+    <Box sx={{ bgcolor: "#F0F2F5", overflow: "hidden" }}>
+      {/* 1. PORTADA HERO */}
+      <Box
+        sx={{
+          position: "relative",
+          height: { xs: "55vh", md: "65vh" },
+          display: "flex",
+          alignItems: "center",
+          bgcolor: "#003366",
+          "&::before": {
+            content: '""',
+            position: "absolute",
+            inset: 0,
+            backgroundImage:
+              "url('https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=2070&auto=format&fit=crop')",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            opacity: 0.3,
+            mixBlendMode: "overlay",
+          },
+        }}
+      >
+        <Container maxWidth="lg" sx={{ position: "relative", zIndex: 2 }}>
+          <Box data-aos="fade-right">
+            <Typography
+              variant="overline"
+              sx={{
+                color: "#007BFF",
+                fontWeight: 900,
+                letterSpacing: 3,
+                fontSize: "1.2rem",
+              }}
+            >
+              ADMisión 2025-II
+            </Typography>
+            <Typography
+              variant="h1"
+              fontWeight="900"
+              sx={{
+                color: "#ffffff",
+                textTransform: "uppercase",
+                fontSize: { xs: "3rem", md: "5rem" },
+                lineHeight: 1.1,
+                mb: 2,
+              }}
+            >
+              Tu Futuro Docente <br /> Comienza Aquí
+            </Typography>
+            <Typography
+              variant="h6"
+              sx={{
+                color: "#F0F2F5",
+                maxWidth: "600px",
+                fontWeight: 400,
+                borderLeft: "4px solid #C59B27",
+                pl: 3,
+              }}
+            >
+              Descubre el camino para formarte como un educador de excelencia en
+              el Instituto Arcoíris.
+            </Typography>
+          </Box>
+        </Container>
+      </Box>
+
+      {/* 2. PROCESO PASO A PASO */}
+      <Container maxWidth="lg" sx={{ py: 10 }}>
+        <Box data-aos="fade-up" sx={{ textAlign: "center", mb: 8 }}>
+          <Typography
+            variant="h2"
+            fontWeight="900"
+            color="#003366"
+            textTransform="uppercase"
+          >
+            Nuestro Sencillo Proceso de Admisión
+          </Typography>
+          <Typography variant="h6" color="#666" mt={2}>
+            Te guiamos paso a paso para que tu ingreso sea lo más fácil y
+            transparente posible.
+          </Typography>
+        </Box>
+
+        <Grid container spacing={4} position="relative">
+          {/* Línea conectora de fondo (solo desktop) */}
+          <Box
+            sx={{
+              display: { xs: "none", md: "block" },
+              position: "absolute",
+              top: "50%",
+              left: "10%",
+              right: "10%",
+              height: "4px",
+              bgcolor: "rgba(0, 123, 255, 0.2)",
+              zIndex: 0,
+              transform: "translateY(-50%)",
+            }}
+          />
+
+          {[
+            {
+              step: "01",
+              title: "Presentación de Requisitos",
+              desc: "Adjunta toda la documentación solicitada de manera digital. Verifica la lista detallada para evitar inconvenientes.",
+              icon: <UploadFileIcon sx={{ fontSize: 50 }} />,
+            },
+            {
+              step: "02",
+              title: "Evaluación de Postulantes",
+              desc: "Participa en nuestra evaluación integral que mide tus conocimientos y habilidades básicas. Ofrecemos material de apoyo para tu preparación.",
+              icon: <QuizIcon sx={{ fontSize: 50 }} />,
+            },
+            {
+              step: "03",
+              title: "Resultados y Matrícula",
+              desc: "Consulta los resultados en las fechas establecidas. Si eres admitido, completa tu matrícula para formalizar tu ingreso.",
+              icon: <FactCheckIcon sx={{ fontSize: 50 }} />,
+            },
+          ].map((item, idx) => (
+            <Grid
+              size={{ xs: 12, md: 4 }}
+              key={idx}
+              data-aos="zoom-in"
+              data-aos-delay={idx * 150}
+              sx={{ position: "relative", zIndex: 1 }}
+            >
+              <Paper
+                sx={{
+                  p: 4,
+                  borderRadius: "24px",
+                  textAlign: "center",
+                  height: "100%",
+                  borderTop: "8px solid #007BFF",
+                  transition: "transform 0.3s",
+                  "&:hover": {
+                    transform: "translateY(-10px)",
+                    boxShadow: "0 20px 40px rgba(0,0,0,0.1)",
+                  },
+                }}
+              >
+                <Box
+                  sx={{
+                    width: 80,
+                    height: 80,
+                    mx: "auto",
+                    bgcolor: "#003366",
+                    color: "#fff",
+                    borderRadius: "50%",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    mb: 3,
+                    boxShadow: "0 10px 20px rgba(0,51,102,0.3)",
+                  }}
+                >
+                  {item.icon}
+                </Box>
+                <Typography
+                  variant="h5"
+                  fontWeight="bold"
+                  color="#003366"
+                  mb={2}
+                >
+                  {item.step}. {item.title}
+                </Typography>
+                <Typography variant="body1" color="#555">
+                  {item.desc}
+                </Typography>
+              </Paper>
+            </Grid>
+          ))}
+        </Grid>
+      </Container>
+
+      {/* 3. MODALIDADES DE ADMISIÓN (TABS UX) */}
+      <Box
+        sx={{
+          bgcolor: "#ffffff",
+          py: 10,
+          borderTop: "1px solid #e0e0e0",
+          borderBottom: "1px solid #e0e0e0",
+        }}
+      >
+        <Container maxWidth="lg">
+          <Box data-aos="fade-right" sx={{ mb: 6 }}>
+            <Typography
+              variant="h2"
+              fontWeight="900"
+              color="#003366"
+              textTransform="uppercase"
+              textAlign="center"
+            >
+              Modalidades de Admisión Periodo 2026-II
+            </Typography>
+            <Typography variant="h6" color="#666" mt={1} textAlign="center">
+              Elige la modalidad que mejor se adapte a tu perfil y trayectoria
+              académica.
+            </Typography>
+          </Box>
+
+          <Paper
+            elevation={0}
+            sx={{
+              borderRadius: "24px",
+              border: "1px solid #eee",
+              overflow: "hidden",
+            }}
+          >
+            <Tabs
+              value={tabValue}
+              onChange={handleTabChange}
+              variant="fullWidth"
+              sx={{
+                bgcolor: "#f8f9fa",
+                borderBottom: "1px solid #eee",
+                "& .MuiTab-root": {
+                  py: 3,
+                  fontSize: "1.1rem",
+                  fontWeight: "bold",
+                  color: "#666",
+                },
+                "& .Mui-selected": {
+                  color: "#003366 !important",
+                  bgcolor: "#fff",
+                },
+                "& .MuiTabs-indicator": { height: 4, bgcolor: "#C59B27" },
+              }}
+            >
+              <Tab
+                icon={<EmojiEventsIcon />}
+                iconPosition="start"
+                label="Por Exoneración"
+              />
+              <Tab
+                icon={<SchoolIcon />}
+                iconPosition="start"
+                label="Admisión Ordinaria"
+              />
+            </Tabs>
+
+            <Box sx={{ p: { xs: 3, md: 6 } }}>
+              {/* Contenido Exoneración */}
+              <CustomTabPanel value={tabValue} index={0}>
+                <Grid container spacing={4}>
+                  <Grid size={{ xs: 12, md: 7 }} data-aos="fade-in">
+                    <Typography
+                      variant="body1"
+                      paragraph
+                      fontSize="1.1rem"
+                      color="#444"
+                    >
+                      Esta modalidad se realiza de manera anticipada a la
+                      admisión ordinaria. Si no alcanzas vacante por esta vía,
+                      podrás inscribirte en la modalidad ordinaria.
+                    </Typography>
+                    <Box
+                      sx={{
+                        bgcolor: "rgba(197, 155, 39, 0.1)",
+                        p: 3,
+                        borderRadius: "16px",
+                        mb: 4,
+                        borderLeft: "4px solid #C59B27",
+                      }}
+                    >
+                      <Typography
+                        variant="subtitle1"
+                        fontWeight="bold"
+                        color="#003366"
+                      >
+                        Requisitos clave: Haber concluido la educación básica y
+                        contar con DNI.
+                      </Typography>
+                      <Typography variant="body2" color="#555" mt={1}>
+                        Se reserva el 20% de las vacantes por programa de
+                        estudios para esta modalidad. Los postulantes por
+                        exoneración{" "}
+                        <strong>
+                          solo rinden la fase de Evaluación Diagnóstica
+                          Vocacional.
+                        </strong>
+                      </Typography>
+                    </Box>
+                  </Grid>
+                  <Grid size={{ xs: 12, md: 5 }} data-aos="fade-left">
+                    <Typography
+                      variant="h6"
+                      fontWeight="bold"
+                      color="#003366"
+                      mb={2}
+                    >
+                      ¿Quiénes pueden postular?
+                    </Typography>
+                    <List dense sx={{ "& .MuiListItem-root": { px: 0 } }}>
+                      {[
+                        "Egresados del Colegio Mayor Secundario Presidente del Perú o COAR.",
+                        "Primer y segundo puesto de la Educación Básica (certificado).",
+                        "Deportistas calificados (constancia IPD/Federación).",
+                        "Artistas calificados que hayan representado al país o región.",
+                        "Beneficiarios del Programa de Reparaciones (PIR) - Ley N° 28592.",
+                        "Quienes se encuentren cumpliendo Servicio Militar.",
+                      ].map((text, i) => (
+                        <ListItem key={i}>
+                          <ListItemIcon sx={{ minWidth: 36 }}>
+                            <CheckCircleIcon color="primary" fontSize="small" />
+                          </ListItemIcon>
+                          <ListItemText primary={text} />
+                        </ListItem>
+                      ))}
+                    </List>
+                    <Typography
+                      variant="caption"
+                      color="text.secondary"
+                      display="block"
+                      mt={2}
+                    >
+                      *De no cubrirse el 20% asignado, el instituto dispone de
+                      dichas vacantes para la modalidad ordinaria.
+                    </Typography>
+                  </Grid>
+                </Grid>
+              </CustomTabPanel>
+
+              {/* Contenido Ordinaria */}
+              <CustomTabPanel value={tabValue} index={1}>
+                <Grid container spacing={4}>
+                  <Grid size={{ xs: 12, md: 6 }} data-aos="fade-in">
+                    <Typography
+                      variant="body1"
+                      paragraph
+                      fontSize="1.1rem"
+                      color="#444"
+                    >
+                      Participan en esta modalidad todos los estudiantes que han
+                      culminado la Educación Básica en cualquiera de sus
+                      modalidades, acreditándolo con su certificado de estudios
+                      y DNI (o carné de extranjería).
+                    </Typography>
+                    <Typography
+                      variant="body2"
+                      color="#666"
+                      fontStyle="italic"
+                      mb={4}
+                    >
+                      *Si realizaste estudios secundarios en el extranjero,
+                      deberás convalidar o revalidar tus estudios previamente
+                      según la normativa.
+                    </Typography>
+                    <Box
+                      sx={{
+                        bgcolor: "rgba(0, 123, 255, 0.05)",
+                        p: 3,
+                        borderRadius: "16px",
+                        borderLeft: "4px solid #007BFF",
+                      }}
+                    >
+                      <Typography
+                        variant="body2"
+                        color="#003366"
+                        fontWeight="bold"
+                      >
+                        Se reserva el 5% de las vacantes por programa de
+                        estudios en la modalidad Ordinaria para postulantes con
+                        discapacidad, con los ajustes razonables para la
+                        atención en el proceso de admisión.
+                      </Typography>
+                    </Box>
+                  </Grid>
+                  <Grid size={{ xs: 12, md: 6 }} data-aos="fade-left">
+                    <Typography
+                      variant="h6"
+                      fontWeight="bold"
+                      color="#003366"
+                      mb={3}
+                    >
+                      Fases del Proceso Ordinario:
+                    </Typography>
+                    <Box
+                      sx={{ display: "flex", flexDirection: "column", gap: 3 }}
+                    >
+                      <Paper
+                        elevation={0}
+                        sx={{
+                          p: 3,
+                          bgcolor: "#f8f9fa",
+                          border: "1px solid #e0e0e0",
+                          borderRadius: "16px",
+                        }}
+                      >
+                        <Typography
+                          variant="subtitle1"
+                          fontWeight="bold"
+                          color="#C59B27"
+                          mb={1}
+                        >
+                          1. Prueba Escrita de Competencias
+                        </Typography>
+                        <Typography variant="body2" color="#555">
+                          Evalúa competencias fundamentales para la Formación
+                          Inicial Docente.
+                        </Typography>
+                      </Paper>
+                      <Paper
+                        elevation={0}
+                        sx={{
+                          p: 3,
+                          bgcolor: "#f8f9fa",
+                          border: "1px solid #e0e0e0",
+                          borderRadius: "16px",
+                        }}
+                      >
+                        <Typography
+                          variant="subtitle1"
+                          fontWeight="bold"
+                          color="#C59B27"
+                          mb={1}
+                        >
+                          2. Evaluación Diagnóstica Vocacional
+                        </Typography>
+                        <Typography variant="body2" color="#555">
+                          A través de entrevista y dinámica grupal, se evalúan
+                          capacidades de disposición y buen desempeño para el
+                          ejercicio docente.
+                        </Typography>
+                      </Paper>
+                    </Box>
+                  </Grid>
+                </Grid>
+              </CustomTabPanel>
+            </Box>
+          </Paper>
+        </Container>
+      </Box>
+
+      {/* 4. DOCUMENTOS NECESARIOS (GRID DE ICONOS) */}
+      <Container maxWidth="lg" sx={{ py: 10 }}>
+        <Box data-aos="zoom-in" sx={{ textAlign: "center", mb: 8 }}>
+          <Typography
+            variant="h2"
+            fontWeight="900"
+            color="#003366"
+            textTransform="uppercase"
+          >
+            Documentos Necesarios para tu Postulación
+          </Typography>
+          <Typography variant="h6" color="#666" mt={2}>
+            Asegúrate de tener la siguiente documentación completa y
+            digitalizada para tu proceso de admisión.
+          </Typography>
+        </Box>
+
+        <Grid container spacing={3}>
+          {[
+            {
+              icon: <BadgeIcon />,
+              title: "Copia de DNI",
+              desc: "Fotocopia a color y ampliada de tu Documento Nacional de Identidad.",
+            },
+            {
+              icon: <HistoryEduIcon />,
+              title: "Certificado de Estudios",
+              desc: "Certificado de Educación Secundaria (1° a 5° EBR o 1° a 4° EBA), electrónico emitido por SIAGIE, con código QR.",
+            },
+            {
+              icon: <DescriptionIcon />,
+              title: "Partida de Nacimiento Original",
+              desc: "Partida de Nacimiento original expedida por el registro civil.",
+            },
+            {
+              icon: <PortraitIcon />,
+              title: "Fotos Tamaño Pasaporte",
+              desc: "Dos (02) fotografías recientes tamaño pasaporte, a color, con fondo blanco y terno.",
+            },
+            {
+              icon: <GavelIcon />,
+              title: "Declaración Jurada",
+              desc: "Declaración Jurada suscrita por el postulante (formato IESPP “AI”).",
+            },
+            {
+              icon: <ReceiptLongIcon />,
+              title: "Recibo de Pago",
+              desc: "Comprobante de pago por Derecho de Admisión (S/ 120.00).",
+            },
+          ].map((doc, idx) => (
+            <Grid
+              size={{ xs: 12, sm: 6, md: 4 }}
+              key={idx}
+              data-aos="fade-up"
+              data-aos-delay={idx * 100}
+            >
+              <Paper
+                sx={{
+                  p: 4,
+                  borderRadius: "16px",
+                  height: "100%",
+                  display: "flex",
+                  gap: 2,
+                  border: "1px solid #eaeaea",
+                  "&:hover": {
+                    borderColor: "#007BFF",
+                    boxShadow: "0 10px 30px rgba(0,123,255,0.08)",
+                  },
+                }}
+              >
+                <Box sx={{ color: "#C59B27", "& svg": { fontSize: 40 } }}>
+                  {doc.icon}
+                </Box>
+                <Box>
+                  <Typography
+                    variant="h6"
+                    fontWeight="bold"
+                    color="#003366"
+                    mb={1}
+                    lineHeight={1.2}
+                  >
+                    {doc.title}
+                  </Typography>
+                  <Typography variant="body2" color="#666">
+                    {doc.desc}
+                  </Typography>
+                </Box>
+              </Paper>
+            </Grid>
+          ))}
+        </Grid>
+      </Container>
+
+      {/* 5. DETALLES DE LA EVALUACIÓN (FONDO OSCURO ELEGANTE) */}
+      <Box
+        sx={{ bgcolor: "#003366", py: 12, color: "#fff", position: "relative" }}
+      >
+        {/* Decoración CSS */}
+        <Box
+          sx={{
+            position: "absolute",
+            top: 0,
+            right: 0,
+            width: "30%",
+            height: "100%",
+            bgcolor: "#002244",
+            clipPath: "polygon(100% 0, 100% 100%, 0 100%, 30% 0)",
+            zIndex: 0,
+          }}
+        />
+
+        <Container maxWidth="lg" sx={{ position: "relative", zIndex: 1 }}>
+          <Box data-aos="fade-right" sx={{ mb: 8 }}>
+            <Typography variant="h2" fontWeight="900" textTransform="uppercase">
+              Detalles de la Evaluación de Admisión
+            </Typography>
+            <Typography variant="h6" color="#a0aec0" mt={1}>
+              Nuestra evaluación busca identificar tu potencial y vocación
+              docente.
+            </Typography>
+          </Box>
+
+          <Grid container spacing={6}>
+            {/* FASE 1 */}
+            <Grid size={{ xs: 12, md: 6 }} data-aos="fade-up">
+              <Paper
+                sx={{
+                  p: 5,
+                  borderRadius: "24px",
+                  bgcolor: "rgba(255,255,255,0.05)",
+                  border: "1px solid rgba(255,255,255,0.1)",
+                  backdropFilter: "blur(10px)",
+                  height: "100%",
+                }}
+              >
+                <Box
+                  sx={{ display: "flex", alignItems: "center", gap: 2, mb: 3 }}
+                >
+                  <MenuBookIcon sx={{ fontSize: 40, color: "#007BFF" }} />
+                  <Typography variant="h4" fontWeight="bold" color="#fff">
+                    Primera Fase
+                  </Typography>
+                </Box>
+                <Typography
+                  variant="subtitle1"
+                  color="#C59B27"
+                  fontWeight="bold"
+                  mb={2}
+                >
+                  Prueba Escrita de Competencias
+                </Typography>
+                <Typography variant="body2" color="#e2e8f0" mb={3}>
+                  <strong>Duración:</strong> 2 horas (09:00 a.m. - 11:00 a.m.)
+                  <br />
+                  Evaluación de aptitudes en áreas clave con un total de 50
+                  preguntas de alternativa múltiple (puntaje máximo de 50
+                  puntos):
+                </Typography>
+                <List sx={{ pt: 0 }}>
+                  <ListItem sx={{ py: 0.5, px: 0 }}>
+                    <ListItemIcon sx={{ minWidth: 30 }}>
+                      <ArrowForwardIcon
+                        sx={{ color: "#007BFF", fontSize: 16 }}
+                      />
+                    </ListItemIcon>
+                    <ListItemText
+                      primary="Comunicación en su Lengua Materna: 20 preguntas (20 ptos)"
+                      primaryTypographyProps={{
+                        color: "#e2e8f0",
+                        fontSize: "0.9rem",
+                      }}
+                    />
+                  </ListItem>
+                  <ListItem sx={{ py: 0.5, px: 0 }}>
+                    <ListItemIcon sx={{ minWidth: 30 }}>
+                      <ArrowForwardIcon
+                        sx={{ color: "#007BFF", fontSize: 16 }}
+                      />
+                    </ListItemIcon>
+                    <ListItemText
+                      primary="Resolución de Problemas Matemáticos: 20 preguntas (20 ptos)"
+                      primaryTypographyProps={{
+                        color: "#e2e8f0",
+                        fontSize: "0.9rem",
+                      }}
+                    />
+                  </ListItem>
+                  <ListItem sx={{ py: 0.5, px: 0 }}>
+                    <ListItemIcon sx={{ minWidth: 30 }}>
+                      <ArrowForwardIcon
+                        sx={{ color: "#007BFF", fontSize: 16 }}
+                      />
+                    </ListItemIcon>
+                    <ListItemText
+                      primary="Convivencia y Participación Democrática: 10 preguntas (10 ptos)"
+                      primaryTypographyProps={{
+                        color: "#e2e8f0",
+                        fontSize: "0.9rem",
+                      }}
+                    />
+                  </ListItem>
+                </List>
+              </Paper>
+            </Grid>
+
+            {/* FASE 2 */}
+            <Grid
+              size={{ xs: 12, md: 6 }}
+              data-aos="fade-up"
+              data-aos-delay="200"
+            >
+              <Paper
+                sx={{
+                  p: 5,
+                  borderRadius: "24px",
+                  bgcolor: "rgba(255,255,255,0.05)",
+                  border: "1px solid rgba(255,255,255,0.1)",
+                  backdropFilter: "blur(10px)",
+                  height: "100%",
+                }}
+              >
+                <Box
+                  sx={{ display: "flex", alignItems: "center", gap: 2, mb: 3 }}
+                >
+                  <PsychologyIcon sx={{ fontSize: 40, color: "#C59B27" }} />
+                  <Typography variant="h4" fontWeight="bold" color="#fff">
+                    Segunda Fase
+                  </Typography>
+                </Box>
+                <Typography
+                  variant="subtitle1"
+                  color="#C59B27"
+                  fontWeight="bold"
+                  mb={2}
+                >
+                  Evaluación Diagnóstica Vocacional
+                </Typography>
+                <Typography variant="body2" color="#e2e8f0" mb={3}>
+                  <strong>Modalidad:</strong> Entrevista y Dinámica Grupal
+                  <br />
+                  <strong>Duración:</strong> 3 minutos por postulante (a partir
+                  de las 09:00 a.m.)
+                  <br />
+                  Evalúa capacidades para el ejercicio docente (máximo 50
+                  puntos):
+                </Typography>
+                <List sx={{ pt: 0 }}>
+                  <ListItem sx={{ py: 0.5, px: 0 }}>
+                    <ListItemIcon sx={{ minWidth: 30 }}>
+                      <ArrowForwardIcon
+                        sx={{ color: "#C59B27", fontSize: 16 }}
+                      />
+                    </ListItemIcon>
+                    <ListItemText
+                      primary="Pensamiento Crítico y Creativo: 20 puntos"
+                      primaryTypographyProps={{
+                        color: "#e2e8f0",
+                        fontSize: "0.9rem",
+                      }}
+                    />
+                  </ListItem>
+                  <ListItem sx={{ py: 0.5, px: 0 }}>
+                    <ListItemIcon sx={{ minWidth: 30 }}>
+                      <ArrowForwardIcon
+                        sx={{ color: "#C59B27", fontSize: 16 }}
+                      />
+                    </ListItemIcon>
+                    <ListItemText
+                      primary="Trabajo Colaborativo: 20 puntos"
+                      primaryTypographyProps={{
+                        color: "#e2e8f0",
+                        fontSize: "0.9rem",
+                      }}
+                    />
+                  </ListItem>
+                  <ListItem sx={{ py: 0.5, px: 0 }}>
+                    <ListItemIcon sx={{ minWidth: 30 }}>
+                      <ArrowForwardIcon
+                        sx={{ color: "#C59B27", fontSize: 16 }}
+                      />
+                    </ListItemIcon>
+                    <ListItemText
+                      primary="TICs: 10 puntos"
+                      primaryTypographyProps={{
+                        color: "#e2e8f0",
+                        fontSize: "0.9rem",
+                      }}
+                    />
+                  </ListItem>
+                </List>
+                <Typography
+                  variant="caption"
+                  color="rgba(255,255,255,0.5)"
+                  display="block"
+                  mt={2}
+                >
+                  *Contendrá pruebas de ejecución y prueba oral, elaboradas por
+                  docentes de especialidad.
+                </Typography>
+              </Paper>
+            </Grid>
+          </Grid>
+
+          <Box mt={6} textAlign="center" data-aos="zoom-in">
+            <Chip
+              label="Nota mínima de aprobación: 12"
+              color="primary"
+              sx={{
+                fontSize: "1.1rem",
+                py: 2.5,
+                px: 2,
+                fontWeight: "bold",
+                bgcolor: "#C59B27",
+                color: "#003366",
+              }}
+            />
+            <Typography variant="body2" color="#a0aec0" mt={2}>
+              Los resultados serán publicados en la página web del IESPP “Arco
+              Iris” y el SIA del MINEDU.
+            </Typography>
+          </Box>
+        </Container>
+      </Box>
+
+      {/* 6. INVERSIÓN Y COSTOS (PRICING CARDS) */}
+      <Container maxWidth="lg" sx={{ py: 12 }}>
+        <Box data-aos="fade-up" sx={{ textAlign: "center", mb: 8 }}>
+          <Typography
+            variant="h2"
+            fontWeight="900"
+            color="#003366"
+            textTransform="uppercase"
+          >
+            Inversión y Costos
+          </Typography>
+          <Typography variant="h6" color="#666" mt={2}>
+            Conoce las tarifas de inscripción y matrícula para el ciclo 2025-II.
+          </Typography>
+        </Box>
+
+        {/* Fila 1: Procesos de Admisión */}
+        <Grid container spacing={4} mb={6} justifyContent="center">
+          <Grid size={{ xs: 12, md: 4 }} data-aos="fade-up" data-aos-delay="0">
+            <Paper
+              sx={{
+                p: 4,
+                borderRadius: "24px",
+                border: "1px solid #eee",
+                textAlign: "center",
+                height: "100%",
+                display: "flex",
+                flexDirection: "column",
+              }}
+            >
+              <Typography
+                variant="subtitle1"
+                color="#666"
+                fontWeight="bold"
+                textTransform="uppercase"
+              >
+                Examen de Admisión
+              </Typography>
+              <Typography variant="h3" fontWeight="900" color="#003366" my={2}>
+                S/ 120.00
+              </Typography>
+              <Typography variant="body2" color="#555" mb={3} flexGrow={1}>
+                Costo único por el derecho a rendir el examen de admisión.
+              </Typography>
+            </Paper>
+          </Grid>
+          <Grid
+            size={{ xs: 12, md: 4 }}
+            data-aos="fade-up"
+            data-aos-delay="150"
+          >
+            <Paper
+              sx={{
+                p: 4,
+                borderRadius: "24px",
+                border: "2px solid #007BFF",
+                textAlign: "center",
+                height: "100%",
+                display: "flex",
+                flexDirection: "column",
+                position: "relative",
+              }}
+            >
+              <Chip
+                label="RECOMENDADO"
+                size="small"
+                sx={{
+                  position: "absolute",
+                  top: -12,
+                  left: "50%",
+                  transform: "translateX(-50%)",
+                  bgcolor: "#007BFF",
+                  color: "#fff",
+                  fontWeight: "bold",
+                }}
+              />
+              <Typography
+                variant="subtitle1"
+                color="#007BFF"
+                fontWeight="bold"
+                textTransform="uppercase"
+              >
+                Paquetes PRE-ARCO IRIS
+              </Typography>
+              <Box my={2}>
+                <Typography variant="h5" fontWeight="900" color="#003366">
+                  Enero: S/ 270.00
+                </Typography>
+                <Typography variant="h5" fontWeight="900" color="#003366">
+                  Ene y Feb: S/ 370.00
+                </Typography>
+              </Box>
+              <Typography variant="body2" color="#555" mb={3} flexGrow={1}>
+                Incluyen clases de preparación y el derecho al examen de
+                admisión.
+              </Typography>
+            </Paper>
+          </Grid>
+          <Grid
+            size={{ xs: 12, md: 4 }}
+            data-aos="fade-up"
+            data-aos-delay="300"
+          >
+            <Paper
+              sx={{
+                p: 4,
+                borderRadius: "24px",
+                border: "1px solid #eee",
+                textAlign: "center",
+                height: "100%",
+                display: "flex",
+                flexDirection: "column",
+              }}
+            >
+              <Typography
+                variant="subtitle1"
+                color="#666"
+                fontWeight="bold"
+                textTransform="uppercase"
+              >
+                Examen Simulacro
+              </Typography>
+              <Typography variant="h3" fontWeight="900" color="#003366" my={2}>
+                S/ 5.00
+              </Typography>
+              <Typography variant="body2" color="#555" mb={3} flexGrow={1}>
+                Costo por participar en el examen simulacro (miércoles 25 de
+                marzo).
+              </Typography>
+            </Paper>
+          </Grid>
+        </Grid>
+
+        {/* Fila 2: Mensualidades y Matrícula por Carrera */}
+        <Box data-aos="zoom-in">
+          <Paper
+            sx={{
+              borderRadius: "24px",
+              overflow: "hidden",
+              border: "1px solid #e0e0e0",
+              boxShadow: "0 20px 40px rgba(0,0,0,0.05)",
+            }}
+          >
+            <Box
+              sx={{
+                bgcolor: "#003366",
+                py: 2,
+                textAlign: "center",
+                color: "#fff",
+              }}
+            >
+              <Typography variant="h5" fontWeight="bold">
+                Costos de Matrícula y Cuotas Mensuales
+              </Typography>
+            </Box>
+            <Grid container>
+              <Grid
+                size={{ xs: 12, md: 6 }}
+                sx={{
+                  p: { xs: 3, md: 5 },
+                  borderRight: { md: "1px solid #e0e0e0" },
+                  borderBottom: { xs: "1px solid #e0e0e0", md: "none" },
+                }}
+              >
+                <Box
+                  sx={{ display: "flex", alignItems: "center", gap: 2, mb: 3 }}
+                >
+                  <ChildCareIcon sx={{ fontSize: 40, color: "#D81B60" }} />
+                  <Typography variant="h5" fontWeight="bold" color="#003366">
+                    Educación Inicial
+                  </Typography>
+                </Box>
+                <Box
+                  sx={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    mb: 2,
+                    pb: 2,
+                    borderBottom: "1px dashed #ccc",
+                  }}
+                >
+                  <Typography variant="body1" color="#555">
+                    Matrícula
+                  </Typography>
+                  <Typography variant="h6" fontWeight="bold" color="#333">
+                    S/ 240.00
+                  </Typography>
+                </Box>
+                <Box sx={{ display: "flex", justifyContent: "space-between" }}>
+                  <Typography variant="body1" color="#555">
+                    Cuotas Mensuales
+                  </Typography>
+                  <Typography variant="h6" fontWeight="bold" color="#333">
+                    S/ 280.00
+                  </Typography>
+                </Box>
+              </Grid>
+              <Grid
+                size={{ xs: 12, md: 6 }}
+                sx={{ p: { xs: 3, md: 5 }, bgcolor: "#fafafa" }}
+              >
+                <Box
+                  sx={{ display: "flex", alignItems: "center", gap: 2, mb: 3 }}
+                >
+                  <SportsIcon sx={{ fontSize: 40, color: "#E65100" }} />
+                  <Typography variant="h5" fontWeight="bold" color="#003366">
+                    Educación Física
+                  </Typography>
+                </Box>
+                <Box
+                  sx={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    mb: 2,
+                    pb: 2,
+                    borderBottom: "1px dashed #ccc",
+                  }}
+                >
+                  <Typography variant="body1" color="#555">
+                    Matrícula
+                  </Typography>
+                  <Typography variant="h6" fontWeight="bold" color="#333">
+                    S/ 280.00
+                  </Typography>
+                </Box>
+                <Box sx={{ display: "flex", justifyContent: "space-between" }}>
+                  <Typography variant="body1" color="#555">
+                    Cuotas Mensuales
+                  </Typography>
+                  <Typography variant="h6" fontWeight="bold" color="#333">
+                    S/ 320.00
+                  </Typography>
+                </Box>
+              </Grid>
+            </Grid>
+            <Box sx={{ bgcolor: "#F0F2F5", py: 1.5, textAlign: "center" }}>
+              <Typography variant="subtitle2" color="#003366" fontWeight="bold">
+                INICIO DE CLASES: LUNES 06 DE ABRIL
+              </Typography>
+            </Box>
+          </Paper>
+        </Box>
+      </Container>
+
+      {/* 7. OFERTA FORMATIVA (PROGRAMAS) */}
+      <Box sx={{ bgcolor: "#ffffff", py: 12, borderTop: "1px solid #e0e0e0" }}>
+        <Container maxWidth="lg">
+          <Box data-aos="fade-right" sx={{ mb: 8 }}>
+            <Typography
+              variant="h2"
+              fontWeight="900"
+              color="#003366"
+              textTransform="uppercase"
+            >
+              Nuestra Oferta Formativa
+            </Typography>
+            <Typography variant="h6" color="#666" mt={1}>
+              Formamos profesionales de la educación con excelencia y visión
+              humanista.
+            </Typography>
+          </Box>
+
+          <Grid container spacing={6}>
+            {/* INICIAL */}
+            <Grid size={{ xs: 12, md: 6 }} data-aos="fade-up">
+              <Paper
+                sx={{
+                  borderRadius: "24px",
+                  overflow: "hidden",
+                  border: "1px solid #eaeaea",
+                  height: "100%",
+                  display: "flex",
+                  flexDirection: "column",
+                  transition: "transform 0.3s",
+                  "&:hover": {
+                    transform: "translateY(-10px)",
+                    boxShadow: "0 20px 40px rgba(0,0,0,0.08)",
+                  },
+                }}
+              >
+                <Box
+                  sx={{
+                    height: 200,
+                    bgcolor: "#f0f0f0",
+                    backgroundImage:
+                      "url('https://plus.unsplash.com/premium_photo-1663047589329-e340c9234b61?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nzd8fGRvY2VudGUlMjBlZHVjYWNpb24lMjBpbmljaWFsfGVufDB8fDB8fHww')",
+                    backgroundSize: "cover",
+                    backgroundPosition: "center",
+                  }}
+                />
+                <Box
+                  sx={{
+                    p: 4,
+                    flexGrow: 1,
+                    display: "flex",
+                    flexDirection: "column",
+                  }}
+                >
+                  <Typography
+                    variant="h4"
+                    fontWeight="900"
+                    color="#003366"
+                    mb={2}
+                  >
+                    Educación Inicial
+                  </Typography>
+                  <Typography
+                    variant="body1"
+                    color="#555"
+                    mb={3}
+                    textAlign="justify"
+                  >
+                    Formamos profesionales capacitados para enseñar y cuidar a
+                    niños durante su primera infancia (0-6 años), con un enfoque
+                    integral en su desarrollo motriz e intelectual.
+                  </Typography>
+                  <Box sx={{ mt: "auto", mb: 3 }}>
+                    <Typography variant="body2" color="#333">
+                      <strong>Duración:</strong> 5 años (10 ciclos académicos)
+                    </Typography>
+                    <Typography variant="body2" color="#333" mt={1}>
+                      <strong>Campo Laboral:</strong> Docencia en I.E.
+                      públicas/privadas, guarderías, cunas, jardines de
+                      infancia, especialista pedagógico, consultor en ONG,
+                      investigación, formador MINEDU, entre otros.
+                    </Typography>
+                  </Box>
+                  <Button
+                    component={Link}
+                    to="/Inicial"
+                    onClick={() => window.scrollTo(0, 0)}
+                    variant="outlined"
+                    sx={{
+                      color: "#ffffff",
+                      borderColor: "#ffffff",
+                      backgroundColor: "#003366",
+                      borderRadius: "35px",
+                      p: 2,
+                      alignSelf: "flex-start",
+                      "&:hover": { bgcolor: "#045bb3" },
+                    }}
+                  >
+                    Ver Detalles del Programa
+                  </Button>
+                </Box>
+              </Paper>
+            </Grid>
+
+            {/* FÍSICA */}
+            <Grid
+              size={{ xs: 12, md: 6 }}
+              data-aos="fade-up"
+              data-aos-delay="150"
+            >
+              <Paper
+                sx={{
+                  borderRadius: "24px",
+                  overflow: "hidden",
+                  border: "1px solid #eaeaea",
+                  height: "100%",
+                  display: "flex",
+                  flexDirection: "column",
+                  transition: "transform 0.3s",
+                  "&:hover": {
+                    transform: "translateY(-10px)",
+                    boxShadow: "0 20px 40px rgba(0,0,0,0.08)",
+                  },
+                }}
+              >
+                <Box
+                  sx={{
+                    height: 200,
+                    bgcolor: "#f0f0f0",
+                    backgroundImage:
+                      "url('https://images.unsplash.com/photo-1717689410645-62564f0a9acd?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MzF8fGRvY2VudGUlMjBlZHVjYWNpb24lMjBmaXNpY2F8ZW58MHx8MHx8fDA%3D')",
+                    backgroundSize: "cover",
+                    backgroundPosition: "center",
+                  }}
+                />
+                <Box
+                  sx={{
+                    p: 4,
+                    flexGrow: 1,
+                    display: "flex",
+                    flexDirection: "column",
+                  }}
+                >
+                  <Typography
+                    variant="h4"
+                    fontWeight="900"
+                    color="#003366"
+                    mb={2}
+                  >
+                    Educación Física
+                  </Typography>
+                  <Typography
+                    variant="body1"
+                    color="#555"
+                    mb={3}
+                    textAlign="justify"
+                  >
+                    Formamos profesionales dedicados a la docencia de la
+                    educación física en todos los niveles, promoviendo la
+                    actividad física, el deporte y valores como la honestidad y
+                    el respeto.
+                  </Typography>
+                  <Box sx={{ mt: "auto", mb: 3 }}>
+                    <Typography variant="body2" color="#333">
+                      <strong>Duración:</strong> 5 años (10 ciclos académicos)
+                    </Typography>
+                    <Typography variant="body2" color="#333" mt={1}>
+                      <strong>Campo Laboral:</strong> Profesor de Educación
+                      Física (EBR), preparador físico, investigador, entrenador
+                      deportivo, instructor de actividad física, director
+                      técnico de clubes, especialista pedagógico, formador
+                      MINEDU, entre otros.
+                    </Typography>
+                  </Box>
+                  <Button
+                    component={Link}
+                    to="/Fisica"
+                    onClick={() => window.scrollTo(0, 0)}
+                    sx={{
+                      color: "#ffffff",
+                      borderColor: "#ffffff",
+                      backgroundColor: "#003366",
+                      borderRadius: "35px",
+                      p: 2,
+                      alignSelf: "flex-start",
+                      "&:hover": { bgcolor: "#044d96" },
+                    }}
+                  >
+                    Ver Detalles del Programa
+                  </Button>
+                </Box>
+              </Paper>
+            </Grid>
+          </Grid>
+        </Container>
+      </Box>
+
+      {/* 8. ¿POR QUÉ ELEGIRNOS? */}
+      <Container maxWidth="lg" sx={{ py: 12 }}>
+        <Box data-aos="zoom-in" sx={{ textAlign: "center", mb: 8 }}>
+          <Typography
+            variant="h2"
+            fontWeight="900"
+            color="#003366"
+            textTransform="uppercase"
+          >
+            ¿Por Qué Elegir el Instituto Arcoíris?
+          </Typography>
+          <Typography variant="h6" color="#666" mt={2}>
+            Más de dos décadas formando los mejores docentes del país con
+            excelencia y compromiso.
+          </Typography>
+        </Box>
+
+        <Grid container spacing={4}>
+          {[
+            {
+              icon: <LightbulbIcon />,
+              title: "Innovación Pedagógica",
+              desc: "Adoptamos las últimas metodologías y tecnologías educativas para una enseñanza dinámica y efectiva, preparándote para los desafíos del futuro.",
+            },
+            {
+              icon: <PeopleAltIcon />,
+              title: "Docentes Altamente Calificados",
+              desc: "Contamos con un equipo de profesionales apasionados, con amplia experiencia académica y práctica, dedicados a tu formación integral.",
+            },
+            {
+              icon: <FavoriteIcon />,
+              title: "Formación Integral y Humanista",
+              desc: "Nuestro enfoque va más allá de lo académico, desarrollando tus habilidades personales, éticas y sociales para que seas un educador completo.",
+            },
+            {
+              icon: <LocationCityIcon />,
+              title: "Infraestructura Moderna",
+              desc: "Disfruta de aulas cómodas, laboratorios especializados, biblioteca actualizada y áreas verdes que propician un ambiente óptimo.",
+            },
+            {
+              icon: <HandshakeIcon />,
+              title: "Convenios y Oportunidades",
+              desc: "Accede a una red de convenios con instituciones educativas y organizaciones que te brindarán valiosas oportunidades de prácticas.",
+            },
+            {
+              icon: <PublicIcon />,
+              title: "Compromiso Social y Comunitario",
+              desc: "Formamos docentes con una sólida conciencia social, capaces de impulsar proyectos de impacto y contribuir activamente a su entorno.",
+            },
+          ].map((item, idx) => (
+            <Grid
+              size={{ xs: 12, sm: 6, md: 4 }}
+              key={idx}
+              data-aos="fade-up"
+              data-aos-delay={idx * 100}
+            >
+              <Paper
+                sx={{
+                  p: 4,
+                  borderRadius: "24px",
+                  height: "100%",
+                  textAlign: "center",
+                  border: "1px solid transparent",
+                  transition: "all 0.3s",
+                  "&:hover": {
+                    borderColor: "#007BFF",
+                    transform: "translateY(-5px)",
+                    boxShadow: "0 15px 30px rgba(0,51,102,0.08)",
+                  },
+                }}
+              >
+                <Box
+                  sx={{
+                    width: 60,
+                    height: 60,
+                    mx: "auto",
+                    bgcolor: "rgba(0, 123, 255, 0.1)",
+                    color: "#007BFF",
+                    borderRadius: "50%",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    mb: 3,
+                  }}
+                >
+                  {React.cloneElement(item.icon, { fontSize: "large" })}
+                </Box>
+                <Typography
+                  variant="h6"
+                  fontWeight="bold"
+                  color="#003366"
+                  mb={2}
+                >
+                  {item.title}
+                </Typography>
+                <Typography variant="body2" color="#666">
+                  {item.desc}
+                </Typography>
+              </Paper>
+            </Grid>
+          ))}
+        </Grid>
+      </Container>
+    </Box>
+  );
+}

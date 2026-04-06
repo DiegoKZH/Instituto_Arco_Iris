@@ -790,6 +790,7 @@ export default function Inicio() {
                     <Button
                       component={Link}
                       to="/Inicial"
+                      onClick={() => window.scrollTo(0, 0)}
                       variant="contained"
                       sx={{
                         bgcolor: "#42A5F5",
@@ -930,6 +931,7 @@ export default function Inicio() {
                       variant="contained"
                       component={Link}
                       to="/Fisica"
+                      onClick={() => window.scrollTo(0, 0)}
                       sx={{
                         bgcolor: "#26A69A",
                         color: "#fff",
@@ -981,6 +983,7 @@ export default function Inicio() {
               title: "Psicopedagógico",
               desc: "Orientación profesional integral para potenciar el desarrollo cognitivo y emocional de nuestros estudiantes. Un acompañamiento continuo hacia tu éxito.",
               color: "#FF7043",
+              colorD: "#ff6f430c",
             },
             {
               size: 4,
@@ -988,6 +991,7 @@ export default function Inicio() {
               title: "Administrativo",
               desc: "Gestión eficiente, transparente y ágil de todos los trámites documentarios y académicos.",
               color: "#42A5F5",
+              colorD: "#42a4f51c",
             },
             {
               size: 4,
@@ -995,6 +999,7 @@ export default function Inicio() {
               title: "Soporte Médico",
               desc: "Atención primaria, primeros auxilios y campañas de prevención.",
               color: "#EF5350",
+              colorD: "#ef53500c",
             },
             {
               size: 8,
@@ -1002,6 +1007,7 @@ export default function Inicio() {
               title: "Tecnología (TI)",
               desc: "Soporte continuo en el manejo de plataformas, aulas virtuales y herramientas digitales de vanguardia. Equipamiento moderno para tu aprendizaje.",
               color: "#26C6DA",
+              colorD: "#26c5da1c",
             },
             {
               size: 6,
@@ -1009,6 +1015,7 @@ export default function Inicio() {
               title: "Servicio Social",
               desc: "Acompañamiento y apoyo constante a estudiantes que enfrentan situaciones de vulnerabilidad.",
               color: "#26A69A",
+              colorD: "#26a6991c",
             },
             {
               size: 6,
@@ -1016,6 +1023,7 @@ export default function Inicio() {
               title: "Investigación",
               desc: "Asesoría metodológica especializada para la elaboración y ejecución de proyectos académicos.",
               color: "#AB47BC",
+              colorD: "#aa47bc1c",
             },
           ].map((servicio, index) => (
             <Grid
@@ -1034,31 +1042,32 @@ export default function Inicio() {
                   minHeight: "280px",
                   p: 5,
                   borderRadius: "24px",
-                  bgcolor: servicio.color,
+                  bgcolor: "#fff",
                   overflow: "hidden",
                   display: "flex",
                   flexDirection: "column",
                   justifyContent: "flex-end",
                   cursor: "pointer",
-                  transition: "all 0.5s cubic-bezier(0.4, 0, 0.2, 1)",
+                  transition: "all 0.6s cubic-bezier(0.4, 0, 0.2, 1)",
                   border: `1px solid ${servicio.color}`,
+                  boxShadow: "0 10px 25px rgba(37, 37, 37, 0.35)",
                   "&:hover": {
-                    bgcolor: "rgba(255, 255, 255, 0.95)",
+                    bgcolor: servicio.color,
                     boxShadow: `0 20px 40px ${servicio.color}30`,
                     transform: "translateY(-5px)",
                     justifyContent: "center",
                   },
                   "&:hover .bento-icon": {
                     transform: "scale(1.1) rotate(-3deg)",
-                    color: servicio.color,
+                    color: "#fff",
                     top: 24,
                     right: 24,
                   },
-                  "&:hover .bento-title": { color: servicio.color },
+                  "&:hover .bento-title": { color: "#fff" },
                   "&:hover .bento-desc": {
                     opacity: 1,
                     maxHeight: "150px",
-                    color: servicio.color,
+                    color: "#fff",
                     mt: 2,
                   },
                 }}
@@ -1069,7 +1078,7 @@ export default function Inicio() {
                     position: "absolute",
                     top: 32,
                     right: 32,
-                    color: "#fff",
+                    color: servicio.color,
                     transition: "all 0.4s ease",
                     zIndex: 1,
                     display: "flex",
@@ -1087,7 +1096,7 @@ export default function Inicio() {
                     fontWeight="900"
                     className="bento-title"
                     sx={{
-                      color: "#fff",
+                      color: servicio.color,
                       transition: "color 0.4s ease",
                       lineHeight: 1.2,
                     }}
@@ -1099,12 +1108,13 @@ export default function Inicio() {
                     className="bento-desc"
                     sx={{
                       lineHeight: 1.6,
-                      color: "rgba(255,255,255,0.9)",
-                      opacity: 0,
-                      maxHeight: 0,
+                      color: servicio.color,
+                      opacity: 1,
+                      maxHeight: "200px",
                       overflow: "hidden",
                       transition: "all 0.5s ease-in-out",
                       fontWeight: 500,
+                      mt: 2,
                     }}
                   >
                     {servicio.desc}
@@ -2083,6 +2093,9 @@ export default function Inicio() {
                     </Box>
                   </Box>
                   <Button
+                    component={Link}
+                    to="/Transparencia"
+                    onClick={() => window.scrollTo(0, 0)}
                     variant="contained"
                     disableElevation
                     sx={{

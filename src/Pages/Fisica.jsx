@@ -10,9 +10,7 @@ import {
   DialogContent,
   IconButton,
   Divider,
-  AppBar,
   useScrollTrigger,
-  Toolbar,
 } from "@mui/material";
 import { motion } from "framer-motion";
 import CloseIcon from "@mui/icons-material/Close";

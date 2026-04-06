@@ -6,11 +6,6 @@ import {
   Grid,
   Button,
   Paper,
-  IconButton,
-  Divider,
-  AppBar,
-  useScrollTrigger,
-  Toolbar,
   List,
   ListItem,
   ListItemIcon,
@@ -22,10 +17,6 @@ import { motion } from "framer-motion";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import PhoneIcon from "@mui/icons-material/Phone";
 import EmailIcon from "@mui/icons-material/Email";
-import FacebookIcon from "@mui/icons-material/Facebook";
-import InstagramIcon from "@mui/icons-material/Instagram";
-import LinkedInIcon from "@mui/icons-material/LinkedIn";
-import MenuIcon from "@mui/icons-material/Menu";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 
 // Iconos Transparencia
@@ -38,18 +29,6 @@ import FoundationIcon from "@mui/icons-material/Foundation";
 import PictureAsPdfIcon from "@mui/icons-material/PictureAsPdf";
 import OpenInNewIcon from "@mui/icons-material/OpenInNew";
 import VerifiedIcon from "@mui/icons-material/Verified";
-const navItems = [
-  "Inicio",
-  "Institucional",
-  "Programas",
-  "Admisión",
-  "Estudiantes",
-  "Egresados",
-  "Unidades",
-  "Plataformas",
-  "Servicios",
-  "Contacto",
-];
 
 // Animaciones
 const fadeUp = {
@@ -67,111 +46,36 @@ const DocumentLink = ({ title, icon }) => (
       gap: 2,
       p: 2,
       mb: 1.5,
-      bgcolor: "#f8f9fa",
+      bgcolor: "#F0F2F5",
       borderRadius: "12px",
-      border: "1px solid #eee",
+      border: "1px solid rgba(0, 123, 255, 0.1)",
       transition: "all 0.3s",
       cursor: "pointer",
       "&:hover": {
-        borderColor: "#1976d2",
-        bgcolor: "#eff6ff",
+        borderColor: "#007BFF",
+        bgcolor: "rgba(0, 123, 255, 0.05)",
         transform: "translateX(5px)",
       },
     }}
   >
-    <Box sx={{ color: "#d32f2f", display: "flex" }}>
+    <Box sx={{ color: "#007BFF", display: "flex" }}>
       {icon || <PictureAsPdfIcon />}
     </Box>
     <Typography
       variant="body2"
       fontWeight="600"
-      color="#0A192F"
+      color="#003366"
       sx={{ flexGrow: 1 }}
     >
       {title}
     </Typography>
-    <OpenInNewIcon sx={{ fontSize: 18, color: "#999" }} />
+    <OpenInNewIcon sx={{ fontSize: 18, color: "#0056B3" }} />
   </Box>
 );
 
 export default function Transparencia() {
-  const trigger = useScrollTrigger({ disableHysteresis: true, threshold: 50 });
-
   return (
-    <Box sx={{ bgcolor: "#f4f7fb", minHeight: "100vh" }}>
-      {/* NavBar */}
-      <AppBar
-        position="fixed"
-        elevation={trigger ? 2 : 0}
-        sx={{
-          bgcolor: trigger ? "rgba(255, 255, 255, 0.95)" : "transparent",
-          backdropFilter: trigger ? "blur(10px)" : "none",
-          color: trigger ? "#0A192F" : "#ffffff",
-          transition: "all 0.5s ease",
-          pt: trigger ? 0 : 2,
-          borderBottom: trigger ? "1px solid rgba(0,0,0,0.05)" : "none",
-          zIndex: 1000,
-        }}
-      >
-        <Container maxWidth="xl">
-          <Toolbar
-            disableGutters
-            sx={{
-              justifyContent: "space-between",
-              minHeight: trigger ? "70px" : "90px",
-              transition: "min-height 0.4s ease",
-            }}
-          >
-            <Box sx={{ display: "flex", alignItems: "center" }}>
-              <Box
-                component="img"
-                src={
-                  trigger
-                    ? "https://arcoiris.edu.pe/assets/Img/LOGO%20INSTITUTO%20ARCO%20IRIS%20CUSCO%20(5).png"
-                    : "https://arcoiris.edu.pe/assets/Img/LOGO%20INSTI%20BLANCO.png"
-                }
-                alt="Logo Arco Iris"
-                sx={{
-                  height: 60,
-                  width: "auto",
-                  transition: "all 0.3s ease",
-                }}
-              />
-            </Box>
-            <Box sx={{ display: { xs: "none", lg: "flex" }, gap: 0.5 }}>
-              {navItems.map((item) => (
-                <Button
-                  key={item}
-                  sx={{
-                    color: trigger ? "#0A192F" : "#ffffff",
-                    fontWeight: 600,
-                    fontSize: "0.85rem",
-                    textTransform: "none",
-                    px: 1.5,
-                    "&:hover": {
-                      color: "#1976d2",
-                      bgcolor: "transparent",
-                      transform: "translateY(-2px)",
-                    },
-                    transition: "all 0.3s ease",
-                  }}
-                >
-                  {item}
-                </Button>
-              ))}
-            </Box>
-            <IconButton
-              sx={{
-                display: { lg: "none" },
-                color: trigger ? "#0A192F" : "#ffffff",
-              }}
-            >
-              <MenuIcon />
-            </IconButton>
-          </Toolbar>
-        </Container>
-      </AppBar>
-
+    <Box sx={{ bgcolor: "#F0F2F5", minHeight: "100vh" }}>
       {/* PORTADA (HERO) */}
       <Box
         sx={{
@@ -179,7 +83,7 @@ export default function Transparencia() {
           height: { xs: "50vh", md: "60vh" },
           display: "flex",
           alignItems: "center",
-          bgcolor: "#0A192F",
+          bgcolor: "#003366",
           "&::before": {
             content: '""',
             position: "absolute",
@@ -199,7 +103,7 @@ export default function Transparencia() {
           <motion.div initial="hidden" animate="visible" variants={fadeUp}>
             <Typography
               variant="overline"
-              sx={{ color: "#42A5F5", fontWeight: 800, letterSpacing: 2 }}
+              sx={{ color: "#007BFF", fontWeight: 800, letterSpacing: 2 }}
             >
               COMPROMISO INSTITUCIONAL
             </Typography>
@@ -213,7 +117,7 @@ export default function Transparencia() {
             <Typography
               variant="h6"
               sx={{
-                color: "#e0e0e0",
+                color: "#F0F2F5",
                 maxWidth: "700px",
                 mx: "auto",
                 fontWeight: 400,
@@ -239,8 +143,7 @@ export default function Transparencia() {
           {/* 1. Datos Generales*/}
           <Grid
             container
-            item
-            xs={12}
+            size={{ xs: 12 }}
             spacing={3}
             component={motion.div}
             variants={stagger}
@@ -248,25 +151,25 @@ export default function Transparencia() {
             animate="visible"
           >
             {/* 1.A Tarjeta de Texto (Full Width) */}
-            <Grid item xs={12} component={motion.div} variants={fadeUp}>
+            <Grid size={{ xs: 12 }} component={motion.div} variants={fadeUp}>
               <Paper
                 elevation={0}
                 sx={{
                   p: { xs: 3, md: 5 },
                   borderRadius: "24px",
-                  border: "1px solid #eee",
+                  border: "1px solid rgba(0, 123, 255, 0.1)",
                   bgcolor: "#fff",
                 }}
               >
                 <Typography
                   variant="h4"
                   fontWeight="800"
-                  color="#0A192F"
+                  color="#003366"
                   mb={1}
                 >
                   1. Datos Generales de la Institución
                 </Typography>
-                <Typography variant="body1" color="#666" mb={4}>
+                <Typography variant="body1" color="#333333" mb={4}>
                   Información clave y oficial de nuestro Instituto.
                 </Typography>
 
@@ -303,14 +206,14 @@ export default function Transparencia() {
                     },
                   ].map((info, idx) => (
                     <ListItem key={idx} sx={{ px: 0, py: 1.2 }}>
-                      <ListItemIcon sx={{ minWidth: 40, color: "#1976d2" }}>
+                      <ListItemIcon sx={{ minWidth: 40, color: "#007BFF" }}>
                         {info.icon}
                       </ListItemIcon>
                       <ListItemText
                         primary={
                           <Typography
                             variant="body2"
-                            color="#888"
+                            color="#0056B3"
                             fontWeight="600"
                           >
                             {info.label}
@@ -319,7 +222,7 @@ export default function Transparencia() {
                         secondary={
                           <Typography
                             variant="body1"
-                            color="#0A192F"
+                            color="#333333"
                             fontWeight="500"
                           >
                             {info.value}
@@ -333,21 +236,21 @@ export default function Transparencia() {
             </Grid>
 
             {/* 1.B Tarjeta de Imagen */}
-            <Grid item xs={12} component={motion.div} variants={fadeUp}>
+            <Grid size={{ xs: 12 }} component={motion.div} variants={fadeUp}>
               <Paper
                 elevation={0}
                 sx={{
                   p: 1.5,
                   borderRadius: "24px",
-                  border: "1px solid #e0e6ed",
+                  border: "1px solid rgba(0, 123, 255, 0.1)",
                   bgcolor: "#fff",
-                  boxShadow: "0 15px 35px rgba(10,25,47,0.04)",
+                  boxShadow: "0 15px 35px rgba(0, 51, 102, 0.04)",
                   overflow: "hidden",
                   cursor: "pointer",
                   transition: "all 0.4s ease",
                   "&:hover": {
-                    boxShadow: "0 20px 45px rgba(10,25,47,0.1)",
-                    borderColor: "rgba(25,118,210,0.3)",
+                    boxShadow: "0 20px 45px rgba(0, 51, 102, 0.1)",
+                    borderColor: "rgba(0, 123, 255, 0.3)",
                   },
                   "&:hover .facade-img": {
                     transform: "scale(1.04)",
@@ -366,7 +269,7 @@ export default function Transparencia() {
                     aspectRatio: { xs: "16/9", md: "21/9" },
                   }}
                 >
-                  {/* Imagen Base con Corrección de Color */}
+                  {/* Imagen Base */}
                   <Box
                     className="facade-img"
                     component="img"
@@ -386,7 +289,7 @@ export default function Transparencia() {
                       position: "absolute",
                       inset: 0,
                       background:
-                        "linear-gradient(to top, rgba(10,25,47,0.8) 0%, rgba(10,25,47,0.2) 40%, transparent 100%)",
+                        "linear-gradient(to top, rgba(0, 51, 102, 0.8) 0%, rgba(0, 51, 102, 0.2) 40%, transparent 100%)",
                       transition: "opacity 0.4s ease",
                       zIndex: 1,
                     }}
@@ -399,7 +302,7 @@ export default function Transparencia() {
                       top: 20,
                       right: 20,
                       zIndex: 2,
-                      bgcolor: "rgba(25, 118, 210, 0.9)",
+                      bgcolor: "rgba(0, 123, 255, 0.9)",
                       backdropFilter: "blur(4px)",
                       px: 2,
                       py: 0.8,
@@ -475,37 +378,41 @@ export default function Transparencia() {
           </Grid>
 
           {/* 2. Marco Legal & 3. Económica */}
-          <Grid item xs={12} md={6} component={motion.div} variants={fadeUp}>
+          <Grid
+            size={{ xs: 12, md: 6 }}
+            component={motion.div}
+            variants={fadeUp}
+          >
             <Paper
               elevation={0}
               sx={{
                 p: 4,
                 borderRadius: "24px",
-                border: "1px solid #eee",
+                border: "1px solid rgba(0, 123, 255, 0.1)",
                 height: "100%",
               }}
             >
               <Box sx={{ display: "flex", gap: 2, mb: 3 }}>
                 <Box
                   sx={{
-                    bgcolor: "rgba(25,118,210,0.1)",
+                    bgcolor: "rgba(0, 123, 255, 0.1)",
                     p: 1.5,
                     borderRadius: "12px",
-                    color: "#1976d2",
+                    color: "#007BFF",
                   }}
                 >
                   <GavelIcon />
                 </Box>
                 <Box>
-                  <Typography variant="h5" fontWeight="800" color="#0A192F">
+                  <Typography variant="h5" fontWeight="800" color="#003366">
                     2. Marco Legal
                   </Typography>
-                  <Typography variant="body2" color="#666">
+                  <Typography variant="body2" color="#333333">
                     Documentos normativos que nos rigen.
                   </Typography>
                 </Box>
               </Box>
-              <Typography variant="subtitle2" color="#888" mb={2}>
+              <Typography variant="subtitle2" color="#0056B3" mb={2}>
                 Documentos de Gestión Institucional
               </Typography>
               <DocumentLink title="Proyecto Educativo Institucional (PEI)" />
@@ -514,7 +421,7 @@ export default function Transparencia() {
               <DocumentLink title="Proyecto Curricular Institucional (PCI)" />
               <DocumentLink title="Cuadro de Horas Pedagógicas" />
               <DocumentLink title="Manual de Procesos Institucionales (MPI)" />
-              <Typography variant="subtitle2" color="#888" mb={2} mt={3}>
+              <Typography variant="subtitle2" color="#0056B3" mb={2} mt={3}>
                 Políticas y Reglamentos Legales
               </Typography>
               <DocumentLink title="Reglamento de Investigación" />
@@ -522,15 +429,19 @@ export default function Transparencia() {
             </Paper>
           </Grid>
 
-          <Grid item xs={12} md={6} component={motion.div} variants={fadeUp}>
+          <Grid
+            size={{ xs: 12, md: 6 }}
+            component={motion.div}
+            variants={fadeUp}
+          >
             <Paper
               elevation={0}
               sx={{
                 p: 4,
                 borderRadius: "24px",
-                border: "1px solid #eee",
+                border: "1px solid rgba(0, 123, 255, 0.1)",
                 height: "100%",
-                display: "flex", // Flex vertical para apilar elementos
+                display: "flex",
                 flexDirection: "column",
                 position: "relative",
                 overflow: "hidden",
@@ -539,40 +450,39 @@ export default function Transparencia() {
               <Box sx={{ display: "flex", gap: 2, mb: 3 }}>
                 <Box
                   sx={{
-                    bgcolor: "rgba(76,175,80,0.1)",
+                    bgcolor: "rgba(0, 86, 179, 0.1)",
                     p: 1.5,
                     borderRadius: "12px",
-                    color: "#4CAF50",
+                    color: "#0056B3",
                   }}
                 >
                   <AccountBalanceWalletIcon />
                 </Box>
                 <Box>
-                  <Typography variant="h5" fontWeight="800" color="#0A192F">
+                  <Typography variant="h5" fontWeight="800" color="#003366">
                     3. Económica y Financiera
                   </Typography>
-                  <Typography variant="body2" color="#666">
+                  <Typography variant="body2" color="#333333">
                     Gestión de recursos y apoyos.
                   </Typography>
                 </Box>
               </Box>
 
-              <Typography variant="subtitle2" color="#888" mb={2}>
+              <Typography variant="subtitle2" color="#0056B3" mb={2}>
                 Presupuesto y Tasas
               </Typography>
               <DocumentLink title="Proyectos de Investigación" />
               <DocumentLink title="Derechos, Tasas y Pensiones Vigentes (Tarifario)" />
 
-              <Typography variant="subtitle2" color="#888" mb={2} mt={4}>
+              <Typography variant="subtitle2" color="#0056B3" mb={2} mt={4}>
                 Becas y Créditos Educativos
               </Typography>
               <DocumentLink title="Bases y Requisitos para Becas 2025" />
               <DocumentLink title="Resultados de Convocatorias de Becas" />
 
-              {/* Espaciador flexible que empuja el diseño decorativo al fondo */}
               <Box sx={{ flexGrow: 1 }} />
 
-              {/* --- BLOQUE DE DISEÑO PROFESIONAL REPETIDO --- */}
+              {/* BLOQUE DE DISEÑO PROFESIONAL REPETIDO */}
               <Box
                 sx={{
                   display: "flex",
@@ -581,13 +491,13 @@ export default function Transparencia() {
                   mt: 5,
                 }}
               >
-                {/* Elemento Geométrico 1 (Parecido al anterior) */}
+                {/* Elemento Geométrico 1 */}
                 <Box
                   sx={{
                     p: 3,
                     borderRadius: "16px",
-                    bgcolor: "rgba(76,175,80,0.04)", // Verde muy sutil
-                    border: "1px dashed rgba(76,175,80,0.2)",
+                    bgcolor: "rgba(0, 123, 255, 0.04)",
+                    border: "1px dashed rgba(0, 123, 255, 0.2)",
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "space-between",
@@ -595,7 +505,6 @@ export default function Transparencia() {
                     overflow: "hidden",
                   }}
                 >
-                  {/* Figuras geométricas */}
                   <Box
                     sx={{
                       position: "absolute",
@@ -604,7 +513,7 @@ export default function Transparencia() {
                       width: 80,
                       height: 80,
                       borderRadius: "50%",
-                      bgcolor: "rgba(76,175,80,0.08)",
+                      bgcolor: "rgba(0, 123, 255, 0.08)",
                       zIndex: 0,
                     }}
                   />
@@ -616,7 +525,7 @@ export default function Transparencia() {
                       width: 60,
                       height: 60,
                       borderRadius: "50%",
-                      bgcolor: "rgba(76,175,80,0.08)",
+                      bgcolor: "rgba(0, 123, 255, 0.08)",
                       zIndex: 0,
                     }}
                   />
@@ -624,22 +533,25 @@ export default function Transparencia() {
                   <Box sx={{ position: "relative", zIndex: 1 }}>
                     <Typography
                       variant="subtitle2"
-                      color="#4CAF50"
+                      color="#007BFF"
                       fontWeight="800"
                       mb={0.5}
                     >
                       Gestión Transparente
                     </Typography>
-                    <Typography variant="body2" color="#888" fontSize="0.8rem">
+                    <Typography
+                      variant="body2"
+                      color="#333333"
+                      fontSize="0.8rem"
+                    >
                       Administración eficiente para el desarrollo institucional.
                     </Typography>
                   </Box>
 
-                  {/* Ícono translúcido */}
                   <TrendingUpIcon
                     sx={{
                       fontSize: 60,
-                      color: "rgba(76,175,80,0.2)",
+                      color: "rgba(0, 123, 255, 0.2)",
                       position: "relative",
                       zIndex: 1,
                       ml: 2,
@@ -647,13 +559,13 @@ export default function Transparencia() {
                   />
                 </Box>
 
-                {/* Elemento Geométrico 2 (Parecido pero diferente) */}
+                {/* Elemento Geométrico 2 */}
                 <Box
                   sx={{
                     p: 3,
                     borderRadius: "16px",
-                    bgcolor: "rgba(76,175,80,0.04)",
-                    border: "1px dashed rgba(76,175,80,0.2)",
+                    bgcolor: "rgba(0, 86, 179, 0.04)",
+                    border: "1px dashed rgba(0, 86, 179, 0.2)",
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "space-between",
@@ -661,7 +573,6 @@ export default function Transparencia() {
                     overflow: "hidden",
                   }}
                 >
-                  {/* Figuras geométricas en otras posiciones */}
                   <Box
                     sx={{
                       position: "absolute",
@@ -670,7 +581,7 @@ export default function Transparencia() {
                       width: 80,
                       height: 80,
                       borderRadius: "50%",
-                      bgcolor: "rgba(76,175,80,0.08)",
+                      bgcolor: "rgba(0, 86, 179, 0.08)",
                       zIndex: 0,
                     }}
                   />
@@ -682,7 +593,7 @@ export default function Transparencia() {
                       width: 60,
                       height: 60,
                       borderRadius: "50%",
-                      bgcolor: "rgba(76,175,80,0.08)",
+                      bgcolor: "rgba(0, 86, 179, 0.08)",
                       zIndex: 0,
                     }}
                   />
@@ -690,22 +601,25 @@ export default function Transparencia() {
                   <Box sx={{ position: "relative", zIndex: 1 }}>
                     <Typography
                       variant="subtitle2"
-                      color="#4CAF50"
+                      color="#0056B3"
                       fontWeight="800"
                       mb={0.5}
                     >
                       Compromiso Institucional
                     </Typography>
-                    <Typography variant="body2" color="#888" fontSize="0.8rem">
+                    <Typography
+                      variant="body2"
+                      color="#333333"
+                      fontSize="0.8rem"
+                    >
                       Fomentando la integridad y la calidad educativa.
                     </Typography>
                   </Box>
 
-                  {/* Otro Ícono translúcido complementario */}
                   <FoundationIcon
                     sx={{
                       fontSize: 60,
-                      color: "rgba(76,175,80,0.2)",
+                      color: "rgba(0, 86, 179, 0.2)",
                       position: "relative",
                       zIndex: 1,
                       ml: 2,
@@ -717,32 +631,36 @@ export default function Transparencia() {
           </Grid>
 
           {/* 4. Información Académica & 5. Recursos Humanos */}
-          <Grid item xs={12} md={6} component={motion.div} variants={fadeUp}>
+          <Grid
+            size={{ xs: 12, md: 6 }}
+            component={motion.div}
+            variants={fadeUp}
+          >
             <Paper
               elevation={0}
               sx={{
                 p: 4,
                 borderRadius: "24px",
-                border: "1px solid #eee",
+                border: "1px solid rgba(0, 123, 255, 0.1)",
                 height: "100%",
               }}
             >
               <Box sx={{ display: "flex", gap: 2, mb: 3 }}>
                 <Box
                   sx={{
-                    bgcolor: "rgba(255,152,0,0.1)",
+                    bgcolor: "rgba(0, 123, 255, 0.1)",
                     p: 1.5,
                     borderRadius: "12px",
-                    color: "#FF9800",
+                    color: "#007BFF",
                   }}
                 >
                   <SchoolIcon />
                 </Box>
                 <Box>
-                  <Typography variant="h5" fontWeight="800" color="#0A192F">
+                  <Typography variant="h5" fontWeight="800" color="#003366">
                     4. Información Académica
                   </Typography>
-                  <Typography variant="body2" color="#666">
+                  <Typography variant="body2" color="#333333">
                     Programas, horarios y matrículas.
                   </Typography>
                 </Box>
@@ -758,7 +676,7 @@ export default function Transparencia() {
               <DocumentLink title="Horarios de Clases 2025-I" />
               <DocumentLink title="Calendario Académico 2025" />
 
-              <Typography variant="subtitle2" color="#888" mb={2} mt={3}>
+              <Typography variant="subtitle2" color="#0056B3" mb={2} mt={3}>
                 Procesos de Matrícula
               </Typography>
               <DocumentLink
@@ -769,44 +687,48 @@ export default function Transparencia() {
             </Paper>
           </Grid>
 
-          <Grid item xs={12} md={6} component={motion.div} variants={fadeUp}>
+          <Grid
+            size={{ xs: 12, md: 6 }}
+            component={motion.div}
+            variants={fadeUp}
+          >
             <Paper
               elevation={0}
               sx={{
                 p: 4,
                 borderRadius: "24px",
-                border: "1px solid #eee",
+                border: "1px solid rgba(0, 123, 255, 0.1)",
                 height: "100%",
               }}
             >
               <Box sx={{ display: "flex", gap: 2, mb: 3 }}>
                 <Box
                   sx={{
-                    bgcolor: "rgba(156,39,176,0.1)",
+                    bgcolor: "rgba(0, 86, 179, 0.1)",
                     p: 1.5,
                     borderRadius: "12px",
-                    color: "#9C27B0",
+                    color: "#0056B3",
                   }}
                 >
                   <BadgeIcon />
                 </Box>
                 <Box>
-                  <Typography variant="h5" fontWeight="800" color="#0A192F">
+                  <Typography variant="h5" fontWeight="800" color="#003366">
                     5. Recursos Humanos
                   </Typography>
-                  <Typography variant="body2" color="#666">
+                  <Typography variant="body2" color="#333333">
                     Equipo profesional y vacantes.
                   </Typography>
                 </Box>
               </Box>
-              <Typography variant="subtitle2" color="#888" mb={2}>
+              <Typography variant="subtitle2" color="#0056B3" mb={2}>
                 Directorio e Instrumentos
               </Typography>
               <DocumentLink title="Directorio Institucional Completo" />
               <DocumentLink title="Cuadro de Asignación de Personal Administrativo (CAP 2025)" />
               <DocumentLink title="Cuadro de Asignación de Personal Docente (CAP 2025)" />
 
-              <Typography variant="subtitle2" color="#888" mb={2} mt={3}>
+              <Typography variant="subtitle2" color="#0056B3" mb={2} mt={3}>
                 Hojas de Vida (CVs)
               </Typography>
               <DocumentLink title="Hojas de Vida Resumidas del Personal Directivo" />
@@ -814,10 +736,14 @@ export default function Transparencia() {
           </Grid>
 
           {/* 6. Estadísticas y 7. Inversiones (Banners Anchos) */}
-          <Grid item xs={12} md={6} component={motion.div} variants={fadeUp}>
+          <Grid
+            size={{ xs: 12, md: 6 }}
+            component={motion.div}
+            variants={fadeUp}
+          >
             <Box
               sx={{
-                bgcolor: "#0A192F",
+                bgcolor: "#003366",
                 color: "#fff",
                 p: 4,
                 borderRadius: "24px",
@@ -836,17 +762,21 @@ export default function Transparencia() {
                     mb: 1,
                   }}
                 >
-                  <TrendingUpIcon sx={{ color: "#42A5F5" }} />
+                  <TrendingUpIcon sx={{ color: "#007BFF" }} />
                   <Typography variant="h6" fontWeight="800">
                     6. Estadísticas
                   </Typography>
                 </Box>
-                <Typography variant="body2" color="#a0aec0" mb={2}>
+                <Typography variant="body2" color="#F0F2F5" mb={2}>
                   Cifras de nuestra comunidad estudiantil.
                 </Typography>
                 <Button
                   variant="contained"
-                  sx={{ bgcolor: "#1976d2", borderRadius: "20px" }}
+                  sx={{
+                    bgcolor: "#007BFF",
+                    borderRadius: "20px",
+                    "&:hover": { bgcolor: "#0056B3" },
+                  }}
                   endIcon={<OpenInNewIcon />}
                 >
                   Ver Reporte Detallado
@@ -855,10 +785,14 @@ export default function Transparencia() {
             </Box>
           </Grid>
 
-          <Grid item xs={12} md={6} component={motion.div} variants={fadeUp}>
+          <Grid
+            size={{ xs: 12, md: 6 }}
+            component={motion.div}
+            variants={fadeUp}
+          >
             <Box
               sx={{
-                bgcolor: "#1976d2",
+                bgcolor: "#0056B3",
                 color: "#fff",
                 p: 4,
                 borderRadius: "24px",
@@ -877,20 +811,20 @@ export default function Transparencia() {
                     mb: 1,
                   }}
                 >
-                  <FoundationIcon sx={{ color: "#BBDEFB" }} />
+                  <FoundationIcon sx={{ color: "#F0F2F5" }} />
                   <Typography variant="h6" fontWeight="800">
                     7. Inversiones y Obras
                   </Typography>
                 </Box>
-                <Typography variant="body2" color="#e3f2fd" mb={2}>
+                <Typography variant="body2" color="#F0F2F5" mb={2}>
                   Infraestructura y mejora continua.
                 </Typography>
                 <Button
                   variant="contained"
                   sx={{
-                    bgcolor: "#0A192F",
+                    bgcolor: "#003366",
                     borderRadius: "20px",
-                    "&:hover": { bgcolor: "#000" },
+                    "&:hover": { bgcolor: "#002244" },
                   }}
                   endIcon={<OpenInNewIcon />}
                 >
@@ -901,177 +835,6 @@ export default function Transparencia() {
           </Grid>
         </Grid>
       </Container>
-
-      {/* Footer */}
-      <Box
-        component="footer"
-        sx={{
-          bgcolor: "#0A192F",
-          color: "#fff",
-          pt: 10,
-          pb: 4,
-          borderTop: "4px solid #1976d2",
-          position: "relative",
-          zIndex: 2,
-        }}
-      >
-        <Container maxWidth="lg">
-          <Grid container spacing={6} mb={8}>
-            <Grid item xs={12} md={4}>
-              <Box
-                sx={{ display: "flex", alignItems: "center", gap: 1, mb: 3 }}
-              >
-                <Box
-                  component="img"
-                  src="https://arcoiris.edu.pe/assets/Img/LOGO%20INSTI%20BLANCO.png"
-                  alt="Logo Arco Iris"
-                  sx={{
-                    height: 160,
-                    width: "auto",
-                    transition: "all 0.3s ease",
-                  }}
-                />
-              </Box>
-              <Typography
-                variant="body2"
-                sx={{ color: "#a0aec0", mb: 3, lineHeight: 1.8, pr: 2 }}
-              >
-                Formando educadores líderes con vocación de servicio,
-                pensamiento crítico y valores éticos para el desarrollo de la
-                región Cusco y el Perú.
-              </Typography>
-              <Box sx={{ display: "flex", gap: 2 }}>
-                <IconButton
-                  sx={{
-                    bgcolor: "rgba(255,255,255,0.05)",
-                    color: "#fff",
-                    "&:hover": { bgcolor: "#1976d2" },
-                  }}
-                >
-                  <FacebookIcon />
-                </IconButton>
-                <IconButton
-                  sx={{
-                    bgcolor: "rgba(255,255,255,0.05)",
-                    color: "#fff",
-                    "&:hover": { bgcolor: "#1976d2" },
-                  }}
-                >
-                  <InstagramIcon />
-                </IconButton>
-                <IconButton
-                  sx={{
-                    bgcolor: "rgba(255,255,255,0.05)",
-                    color: "#fff",
-                    "&:hover": { bgcolor: "#1976d2" },
-                  }}
-                >
-                  <LinkedInIcon />
-                </IconButton>
-              </Box>
-            </Grid>
-            <Grid item xs={12} sm={6} md={2}>
-              <Typography variant="h6" fontWeight="bold" mb={3}>
-                Institucional
-              </Typography>
-              {[
-                "Nosotros",
-                "Autoridades",
-                "Docentes",
-                "Transparencia",
-                "Reclamaciones",
-              ].map((link) => (
-                <Typography
-                  key={link}
-                  variant="body2"
-                  sx={{
-                    color: "#a0aec0",
-                    mb: 1.5,
-                    cursor: "pointer",
-                    "&:hover": { color: "#fff" },
-                  }}
-                >
-                  {link}
-                </Typography>
-              ))}
-            </Grid>
-            <Grid item xs={12} sm={6} md={3}>
-              <Typography variant="h6" fontWeight="bold" mb={3}>
-                Contacto
-              </Typography>
-              <Box
-                sx={{
-                  display: "flex",
-                  gap: 1.5,
-                  mb: 2,
-                  alignItems: "flex-start",
-                }}
-              >
-                <LocationOnIcon sx={{ color: "#1976d2", fontSize: 20 }} />
-                <Typography variant="body2" sx={{ color: "#a0aec0" }}>
-                  Tenería 4 Fracción II Enaco San Sebastián, San Sebastian,
-                  Cusco.
-                </Typography>
-              </Box>
-              <Box
-                sx={{ display: "flex", gap: 1.5, mb: 2, alignItems: "center" }}
-              >
-                <PhoneIcon sx={{ color: "#1976d2", fontSize: 20 }} />
-                <Typography variant="body2" sx={{ color: "#a0aec0" }}>
-                  +51 986 249 212
-                </Typography>
-              </Box>
-              <Box
-                sx={{ display: "flex", gap: 1.5, mb: 2, alignItems: "center" }}
-              >
-                <EmailIcon sx={{ color: "#1976d2", fontSize: 20 }} />
-                <Typography variant="body2" sx={{ color: "#a0aec0" }}>
-                  informes@arcoiris.edu.pe
-                </Typography>
-              </Box>
-            </Grid>
-            <Grid item xs={12} md={3}>
-              <Typography variant="h6" fontWeight="bold" mb={3}>
-                ¿Tienes dudas?
-              </Typography>
-              <Typography variant="body2" sx={{ color: "#a0aec0", mb: 3 }}>
-                Nuestro equipo está listo para ayudarte con tu proceso.
-              </Typography>
-              <Button
-                variant="contained"
-                fullWidth
-                sx={{
-                  bgcolor: "#1976d2",
-                  color: "#fff",
-                  py: 1.5,
-                  borderRadius: "8px",
-                  fontWeight: "bold",
-                  textTransform: "none",
-                  "&:hover": { bgcolor: "#1565c0" },
-                }}
-              >
-                Contáctanos Ahora
-              </Button>
-            </Grid>
-          </Grid>
-          <Divider sx={{ borderColor: "rgba(255,255,255,0.1)", mb: 3 }} />
-          <Box
-            sx={{
-              display: "flex",
-              flexWrap: "wrap",
-              justifyContent: "space-between",
-              alignItems: "center",
-            }}
-          >
-            <Typography variant="body2" sx={{ color: "#718096" }}>
-              © 2026 IESPP Arco Iris. Todos los derechos reservados.
-            </Typography>
-            <Typography variant="body2" sx={{ color: "#718096" }}>
-              RUC: 20123456789
-            </Typography>
-          </Box>
-        </Container>
-      </Box>
     </Box>
   );
 }

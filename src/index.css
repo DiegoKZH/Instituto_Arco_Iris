@@ -4,6 +4,17 @@
   box-sizing: border-box;
 }
 
+::-webkit-scrollbar {
+  display: none;
+}
+
+/* Firefox */
+html {
+  scrollbar-width: none;
+}
+
+/* IE/Edge viejo */
 body {
+  -ms-overflow-style: none;
   text-align: left;
 }
