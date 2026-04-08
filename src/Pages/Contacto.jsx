@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Box,
   Container,
@@ -25,6 +25,15 @@ import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import MapIcon from "@mui/icons-material/Map";
 
 export default function Contacto() {
+  // 1. Mis Variables
+  const [formData, setFormData] = useState({
+    nombre: "",
+    correo: "",
+    telefono: "",
+    asunto: "",
+    mensaje: "",
+  });
+
   useEffect(() => {
     AOS.init({
       duration: 1000,
@@ -33,6 +42,35 @@ export default function Contacto() {
       easing: "ease-out-cubic",
     });
   }, []);
+
+  // 2. Manejador de cambios en los inputs
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  // 3. Función para estructurar el mensaje y enviarlo por WhatsApp
+  const handleWhatsAppSubmit = () => {
+    const { nombre, correo, telefono, asunto, mensaje } = formData;
+
+    // Validaciónde campos requeridos
+    if (!nombre || !correo || !asunto || !mensaje) {
+      alert("Por favor, completa los campos obligatorios.");
+      return;
+    }
+
+    // Estructura del mensaje
+    const textoMensaje = `*NUEVO MENSAJE DE CONTACTO (WEB)*\n\n*Nombre:* ${nombre}\n*Correo:* ${correo}\n*Teléfono:* ${
+      telefono || "No proporcionado"
+    }\n*Asunto:* ${asunto}\n*Mensaje:*\n${mensaje}`;
+
+    const numeroWhatsApp = "51999888777";
+    const url = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(
+      textoMensaje,
+    )}`;
+
+    window.open(url, "_blank", "noopener,noreferrer");
+  };
 
   return (
     <Box sx={{ bgcolor: "#F0F2F5", overflow: "hidden", pb: 10 }}>
@@ -49,7 +87,7 @@ export default function Contacto() {
             position: "absolute",
             inset: 0,
             backgroundImage:
-              "url('https://images.unsplash.com/photo-1516387622842-87db70912185?q=80&w=2070&auto=format&fit=crop')", // Imagen de equipo / contacto
+              "url('https://images.unsplash.com/photo-1516387622842-87db70912185?q=80&w=2070&auto=format&fit=crop')",
             backgroundSize: "cover",
             backgroundPosition: "center",
             opacity: 0.25,
@@ -126,7 +164,7 @@ export default function Contacto() {
               overflow: "hidden",
             }}
           >
-            {/* Círculos decorativos de fondo */}
+            {/* Círculos */}
             <Box
               sx={{
                 position: "absolute",
@@ -365,13 +403,17 @@ export default function Contacto() {
               mensaje.
             </Typography>
 
-            <form noValidate autoComplete="off">
+            {/* Agregado onKeyDown para enviar con Enter*/}
+            <Box component="form" noValidate autoComplete="off">
               <Grid container spacing={3}>
                 <Grid size={{ xs: 12, sm: 6 }}>
                   <TextField
                     fullWidth
                     label="Nombre Completo"
                     variant="outlined"
+                    name="nombre"
+                    value={formData.nombre}
+                    onChange={handleChange}
                     required
                     sx={{
                       "& .MuiOutlinedInput-root": { borderRadius: "12px" },
@@ -384,6 +426,9 @@ export default function Contacto() {
                     label="Correo Electrónico"
                     variant="outlined"
                     type="email"
+                    name="correo"
+                    value={formData.correo}
+                    onChange={handleChange}
                     required
                     sx={{
                       "& .MuiOutlinedInput-root": { borderRadius: "12px" },
@@ -396,6 +441,9 @@ export default function Contacto() {
                     label="Número de Teléfono (Opcional)"
                     variant="outlined"
                     type="tel"
+                    name="telefono"
+                    value={formData.telefono}
+                    onChange={handleChange}
                     sx={{
                       "& .MuiOutlinedInput-root": { borderRadius: "12px" },
                     }}
@@ -406,6 +454,9 @@ export default function Contacto() {
                     fullWidth
                     label="Asunto"
                     variant="outlined"
+                    name="asunto"
+                    value={formData.asunto}
+                    onChange={handleChange}
                     required
                     sx={{
                       "& .MuiOutlinedInput-root": { borderRadius: "12px" },
@@ -419,6 +470,9 @@ export default function Contacto() {
                     variant="outlined"
                     multiline
                     rows={4}
+                    name="mensaje"
+                    value={formData.mensaje}
+                    onChange={handleChange}
                     required
                     sx={{
                       "& .MuiOutlinedInput-root": { borderRadius: "12px" },
@@ -430,6 +484,7 @@ export default function Contacto() {
                     variant="contained"
                     size="large"
                     endIcon={<SendIcon />}
+                    onClick={handleWhatsAppSubmit}
                     sx={{
                       bgcolor: "#007BFF",
                       color: "#fff",
@@ -450,12 +505,12 @@ export default function Contacto() {
                   </Button>
                 </Grid>
               </Grid>
-            </form>
+            </Box>
           </Box>
         </Paper>
       </Container>
 
-      {/* 3. SECCIÓN DEL MAPA: DISEÑO CREATIVO Y PROFESIONAL */}
+      {/* 3. SECCIÓN DEL MAPA*/}
       <Container maxWidth="lg" sx={{ mt: 12, mb: 10 }}>
         <Box data-aos="fade-up" sx={{ textAlign: "center", mb: 8 }}>
           <Typography
@@ -503,7 +558,7 @@ export default function Contacto() {
             ></iframe>
           </Paper>
 
-          {/* Tarjeta de Información Flotante (Glassmorphism) */}
+          {/* Tarjeta de Información Flotante*/}
           <Paper
             sx={{
               position: "absolute",

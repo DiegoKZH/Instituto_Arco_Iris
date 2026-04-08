@@ -231,7 +231,6 @@ export default function Servicios() {
                     <Box
                       component="img"
                       src={s.img}
-                      alt={s.title}
                       sx={{
                         width: "100%",
                         height: { xs: "300px", md: "500px" },

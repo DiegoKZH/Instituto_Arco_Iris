@@ -6,8 +6,6 @@ import {
   Container,
   Grid,
   Card,
-  CardContent,
-  IconButton,
   useScrollTrigger,
   Paper,
   Divider,
@@ -16,15 +14,9 @@ import { keyframes } from "@emotion/react";
 import { motion, AnimatePresence } from "framer-motion";
 import MenuIcon from "@mui/icons-material/Menu";
 import SchoolIcon from "@mui/icons-material/School";
-import PsychologyIcon from "@mui/icons-material/Psychology";
-import DescriptionIcon from "@mui/icons-material/Description";
-import LocalHospitalIcon from "@mui/icons-material/LocalHospital";
-import HandshakeIcon from "@mui/icons-material/Handshake";
-import ScienceIcon from "@mui/icons-material/Science";
-import ComputerIcon from "@mui/icons-material/Computer";
+
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 
-import FitnessCenterIcon from "@mui/icons-material/FitnessCenter";
 import VerifiedIcon from "@mui/icons-material/Verified";
 import WorkspacePremiumIcon from "@mui/icons-material/WorkspacePremium";
 
@@ -153,7 +145,7 @@ export default function Inicio() {
         ))}
       </Box>
 
-      {/* Portada */}
+      {/* HERO */}
       <Box
         sx={{
           position: "relative",
@@ -202,7 +194,7 @@ export default function Inicio() {
               style={{
                 position: "absolute",
                 inset: 0,
-                backgroundColor: "#1976d2",
+                backgroundColor: "#1976d252",
                 zIndex: 3,
                 skewX: "-15deg",
                 transformOrigin: "bottom",
@@ -741,7 +733,18 @@ export default function Inicio() {
                       mb: 1,
                     }}
                   >
-                    <SchoolIcon sx={{ fontSize: 40, color: "#42A5F5" }} />
+                    <Box
+                      component="img"
+                      src="https://cdn-icons-png.flaticon.com/128/1761/1761446.png"
+                      sx={{
+                        width: 60,
+                        height: 60,
+                        objectFit: "contain",
+                        transition: "all 0.4s ease",
+                        filter: `brightness(0) saturate(100%) invert(70%) sepia(30%)
+                        saturate(2000%) hue-rotate(170deg) brightness(105%) contrast(95%)`,
+                      }}
+                    />
                     <Typography variant="h4" fontWeight="800">
                       Educación Inicial
                     </Typography>
@@ -879,8 +882,17 @@ export default function Inicio() {
                       mb: 1,
                     }}
                   >
-                    <FitnessCenterIcon
-                      sx={{ fontSize: 40, color: "#26A69A" }}
+                    <Box
+                      component="img"
+                      src="https://cdn-icons-png.flaticon.com/128/3048/3048355.png"
+                      sx={{
+                        width: 60,
+                        height: 60,
+                        objectFit: "contain",
+                        transition: "all 0.4s ease",
+                        filter: `brightness(0) saturate(100%) invert(55%) sepia(45%)
+                        saturate(600%) hue-rotate(130deg) brightness(95%) contrast(90%)`,
+                      }}
                     />
                     <Typography variant="h4" fontWeight="800">
                       Educación Física
@@ -979,51 +991,45 @@ export default function Inicio() {
           {[
             {
               size: 8,
-              icon: <PsychologyIcon sx={{ fontSize: 60 }} />,
+              img: "https://cdn-icons-png.flaticon.com/128/1491/1491165.png",
               title: "Psicopedagógico",
               desc: "Orientación profesional integral para potenciar el desarrollo cognitivo y emocional de nuestros estudiantes. Un acompañamiento continuo hacia tu éxito.",
               color: "#FF7043",
-              colorD: "#ff6f430c",
             },
             {
               size: 4,
-              icon: <DescriptionIcon sx={{ fontSize: 60 }} />,
+              img: "https://cdn-icons-png.flaticon.com/128/2172/2172479.png",
               title: "Administrativo",
               desc: "Gestión eficiente, transparente y ágil de todos los trámites documentarios y académicos.",
               color: "#42A5F5",
-              colorD: "#42a4f51c",
             },
             {
               size: 4,
-              icon: <LocalHospitalIcon sx={{ fontSize: 60 }} />,
+              img: "https://cdn-icons-png.flaticon.com/128/11638/11638205.png",
               title: "Soporte Médico",
               desc: "Atención primaria, primeros auxilios y campañas de prevención.",
               color: "#EF5350",
-              colorD: "#ef53500c",
             },
             {
               size: 8,
-              icon: <ComputerIcon sx={{ fontSize: 60 }} />,
+              img: "https://cdn-icons-png.flaticon.com/128/1732/1732607.png",
               title: "Tecnología (TI)",
               desc: "Soporte continuo en el manejo de plataformas, aulas virtuales y herramientas digitales de vanguardia. Equipamiento moderno para tu aprendizaje.",
               color: "#26C6DA",
-              colorD: "#26c5da1c",
             },
             {
               size: 6,
-              icon: <HandshakeIcon sx={{ fontSize: 60 }} />,
+              img: "https://cdn-icons-png.flaticon.com/128/11210/11210086.png",
               title: "Servicio Social",
               desc: "Acompañamiento y apoyo constante a estudiantes que enfrentan situaciones de vulnerabilidad.",
               color: "#26A69A",
-              colorD: "#26a6991c",
             },
             {
               size: 6,
-              icon: <ScienceIcon sx={{ fontSize: 60 }} />,
+              img: "https://cdn-icons-png.flaticon.com/128/3041/3041005.png",
               title: "Investigación",
               desc: "Asesoría metodológica especializada para la elaboración y ejecución de proyectos académicos.",
               color: "#AB47BC",
-              colorD: "#aa47bc1c",
             },
           ].map((servicio, index) => (
             <Grid
@@ -1051,19 +1057,26 @@ export default function Inicio() {
                   transition: "all 0.6s cubic-bezier(0.4, 0, 0.2, 1)",
                   border: `1px solid ${servicio.color}`,
                   boxShadow: "0 10px 25px rgba(37, 37, 37, 0.35)",
+
                   "&:hover": {
                     bgcolor: servicio.color,
                     boxShadow: `0 20px 40px ${servicio.color}30`,
                     transform: "translateY(-5px)",
                     justifyContent: "center",
                   },
+
                   "&:hover .bento-icon": {
                     transform: "scale(1.1) rotate(-3deg)",
-                    color: "#fff",
                     top: 24,
                     right: 24,
                   },
+
+                  "&:hover .bento-icon-mask": {
+                    backgroundColor: "#fff",
+                  },
+
                   "&:hover .bento-title": { color: "#fff" },
+
                   "&:hover .bento-desc": {
                     opacity: 1,
                     maxHeight: "150px",
@@ -1078,15 +1091,31 @@ export default function Inicio() {
                     position: "absolute",
                     top: 32,
                     right: 32,
-                    color: servicio.color,
                     transition: "all 0.4s ease",
                     zIndex: 1,
                     display: "flex",
-                    opacity: 0.8,
+                    opacity: 0.9,
                   }}
                 >
-                  {servicio.icon}
+                  <Box
+                    className="bento-icon-mask"
+                    sx={{
+                      width: 60,
+                      height: 60,
+                      backgroundColor: servicio.color,
+                      WebkitMaskImage: `url(${servicio.img})`,
+                      WebkitMaskRepeat: "no-repeat",
+                      WebkitMaskPosition: "center",
+                      WebkitMaskSize: "contain",
+                      maskImage: `url(${servicio.img})`,
+                      maskRepeat: "no-repeat",
+                      maskPosition: "center",
+                      maskSize: "contain",
+                      transition: "all 0.4s ease",
+                    }}
+                  />
                 </Box>
+
                 <Box
                   className="bento-content"
                   sx={{ position: "relative", zIndex: 1, width: "100%" }}
@@ -1103,6 +1132,7 @@ export default function Inicio() {
                   >
                     {servicio.title}
                   </Typography>
+
                   <Typography
                     variant="body1"
                     className="bento-desc"

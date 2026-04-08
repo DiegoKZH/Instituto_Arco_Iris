@@ -735,7 +735,7 @@ export default function Transparencia() {
             </Paper>
           </Grid>
 
-          {/* 6. Estadísticas y 7. Inversiones (Banners Anchos) */}
+          {/* 6. Estadísticas y 7. Inversiones */}
           <Grid
             size={{ xs: 12, md: 6 }}
             component={motion.div}
@@ -824,7 +824,8 @@ export default function Transparencia() {
                   sx={{
                     bgcolor: "#003366",
                     borderRadius: "20px",
-                    "&:hover": { bgcolor: "#002244" },
+                    color: "#fff",
+                    "&:hover": { bgcolor: "#456eba70" },
                   }}
                   endIcon={<OpenInNewIcon />}
                 >

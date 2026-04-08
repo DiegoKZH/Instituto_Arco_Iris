@@ -80,7 +80,13 @@ export default function Inicial() {
     { size: 10, top: "30%", left: "75%", duration: 7, delay: 0.5 },
     { size: 15, top: "50%", left: "45%", duration: 9, delay: 1.5 },
   ];
+  const handleWhatsAppClick = () => {
+    const numero = "51999999999";
+    const mensaje = "Hola buenos días, quiero postular para Educación Inicial";
+    const url = `https://wa.me/${numero}?text=${encodeURIComponent(mensaje)}`;
 
+    window.open(url, "_blank", "noopener,noreferrer");
+  };
   return (
     <Box
       sx={{
@@ -96,7 +102,7 @@ export default function Inicial() {
           height: { xs: "75vh", md: "85vh" },
           display: "flex",
           alignItems: "center",
-          bgcolor: "#003366", // Color de fondo base en caso de que tarde la imagen
+          bgcolor: "#003366",
           borderRadius: "0 0 50% 50% / 0 0 10% 10%",
           overflow: "hidden",
           boxShadow: "0 20px 50px rgba(0,0,0,0.1)",
@@ -680,6 +686,7 @@ export default function Inicial() {
               </Typography>
               <Button
                 variant="contained"
+                onClick={handleWhatsAppClick}
                 sx={{
                   bgcolor: "#ffffff",
                   color: "#003366",

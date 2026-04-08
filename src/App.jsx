@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Layout from "./Components/Layout";
-import Inicio from "./Pages/inicio";
+import Inicio from "./Pages/Inicio";
 import Inicial from "./Pages/Inicial";
 import Fisica from "./Pages/Fisica";
 import Transparencia from "./Pages/Transparencia";
@@ -15,6 +15,8 @@ import Unidades from "./Pages/Unidades";
 import Contacto from "./Pages/Contacto";
 import Plataformas from "./Pages/Plataformas";
 import Servicios from "./Pages/Servicios";
+import DocumentosGestion from "./Pages/Documentos_gestion";
+import UnidadInvestigacion from "./Pages/Unidad_investigacion";
 
 export default function App() {
   return (
@@ -35,6 +37,11 @@ export default function App() {
           <Route path="/Contacto" element={<Contacto />} />
           <Route path="/Plataformas" element={<Plataformas />} />
           <Route path="/Servicios" element={<Servicios />} />
+          <Route path="/Documentos_gestion" element={<DocumentosGestion />} />
+          <Route
+            path="/Unidad_investigacion"
+            element={<UnidadInvestigacion />}
+          />
         </Route>
       </Routes>
     </BrowserRouter>
