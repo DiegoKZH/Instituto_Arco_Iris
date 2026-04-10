@@ -15,7 +15,7 @@ const TikTokIcon = () => (
 
 export default function RedesFlotantes({
   scrollBanner = 300, // Píxeles de scroll para sacar redes
-  scrollSubir = 2900, // Píxeles de scroll para sacar mi flecha
+  scrollSubir = 2900, // Píxeles de scroll para sacar mi flechon
 }) {
   const [showSocials, setShowSocials] = useState(false);
   const [showScrollTop, setShowScrollTop] = useState(false);
@@ -38,7 +38,7 @@ export default function RedesFlotantes({
   const redes = [
     { name: "WhatsApp", icon: <WhatsAppIcon />, color: "#25D366", link: "#" },
     { name: "Facebook", icon: <FacebookIcon />, color: "#1877F2", link: "#" },
-    { name: "TikTok", icon: <TikTokIcon />, color: "#000000", link: "#" },
+    //{ name: "TikTok", icon: <TikTokIcon />, color: "#000000", link: "#" },
   ];
 
   const buttonStyle = {
@@ -80,10 +80,18 @@ export default function RedesFlotantes({
                   ...buttonStyle,
                   bgcolor: "#003366",
                   color: "#fff",
-                  "&:hover": { ...buttonStyle["&:hover"], bgcolor: "#007BFF" },
+                  "&:hover": { ...buttonStyle["&:hover"], bgcolor: "#1f73cc" },
                 }}
               >
-                <KeyboardArrowUpRoundedIcon />
+                <img
+                  src="https://cdn-icons-png.flaticon.com/128/25/25216.png"
+                  alt="Subir"
+                  style={{
+                    width: 20,
+                    height: 20,
+                    filter: "brightness(0) invert(1) contrast(0.9)",
+                  }}
+                />
               </IconButton>
             </Tooltip>
           </motion.div>

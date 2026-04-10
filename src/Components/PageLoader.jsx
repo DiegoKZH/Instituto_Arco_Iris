@@ -2,9 +2,9 @@ import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { Box } from "@mui/material";
 import { keyframes } from "@mui/system";
-import img1 from "../assets/logo_part1_blanco.png";
-import img2 from "../assets/logo_part2.png";
-import img3 from "../assets/logo_part3.png";
+import img1 from "../assets/logo_0_part1.png";
+import img2 from "../assets/logo_0_part2.png";
+import img3 from "../assets/logo_0_part3.png";
 
 // Animaciones desde distintas direcciones
 const slideFromTopLeft = keyframes`
@@ -48,14 +48,14 @@ export default function PageLoader() {
         left: 0,
         width: "100vw",
         height: "100vh",
-        bgcolor: "#ffffff",
+        bgcolor: "#fffffffa",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
         zIndex: 9999,
       }}
     >
-      <Box sx={{ position: "relative", width: 150, height: 150 }}>
+      <Box sx={{ position: "relative", width: 350, height: 350 }}>
         {/* PARTE 1: Desde arriba a la izquierda */}
         <Box
           component="img"
@@ -67,7 +67,7 @@ export default function PageLoader() {
             width: "100%",
             height: "100%",
             objectFit: "contain",
-            filter: darkBlueFilter,
+
             animation: `${slideFromTopLeft} 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards`,
           }}
         />
@@ -83,7 +83,7 @@ export default function PageLoader() {
             width: "100%",
             height: "100%",
             objectFit: "contain",
-            filter: darkBlueFilter,
+
             animation: `${slideFromRight} 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.2s forwards`,
             opacity: 0,
           }}
@@ -100,7 +100,7 @@ export default function PageLoader() {
             width: "100%",
             height: "100%",
             objectFit: "contain",
-            filter: darkBlueFilter,
+
             animation: `${slideFromTop} 0.6s cubic-bezier(0.4, 0, 0.2, 1) 0.4s forwards`,
             opacity: 0,
           }}

@@ -193,7 +193,11 @@ export default function Navbar() {
                         height: "100%",
                         px: 2,
                         borderRadius: 0,
-                        color: isActive ? "#007BFF" : "inherit",
+                        color: isActive
+                          ? trigger
+                            ? "#007BFF"
+                            : "#ffffff"
+                          : "inherit",
                         fontWeight: isActive ? 800 : 600,
                         fontSize: "0.85rem",
                         textTransform: "none",
