@@ -18,7 +18,7 @@ import "aos/dist/aos.css";
 // Íconos
 import CloseIcon from "@mui/icons-material/Close";
 import PhoneIcon from "@mui/icons-material/Phone";
-import WhatsAppIcon from "@mui/icons-material/WhatsApp";
+import WhatsAppIcon from "@mui/icons-material/Email";
 import WorkspacePremiumIcon from "@mui/icons-material/WorkspacePremium";
 import PersonIcon from "@mui/icons-material/Person";
 import KeyboardDoubleArrowRightIcon from "@mui/icons-material/KeyboardDoubleArrowRight";
@@ -29,8 +29,8 @@ import ImageIcon from "@mui/icons-material/Image";
 // --- FUNCIÓN PARA ASIGNAR COLORES---
 const getColorBySpecialty = (specialty) => {
   const spec = specialty.toUpperCase();
-  if (spec.includes("INICIAL")) return "#880E4F"; // Vino
-  if (spec.includes("FISICA")) return "#BF360C"; // Cobrizo
+  if (spec.includes("INICIAL")) return "#880E4F";
+  if (spec.includes("FISICA")) return "#BF360C";
   if (
     spec.includes("SOCIALES") ||
     spec.includes("HISTORIA") ||
@@ -43,7 +43,7 @@ const getColorBySpecialty = (specialty) => {
     spec.includes("QUECHUA") ||
     spec.includes("ARTE")
   )
-    return "#311B92"; // Violeta oscuro
+    return "#311B92";
   if (
     spec.includes("BIOLOGIA") ||
     spec.includes("QUIMICA") ||
@@ -77,7 +77,6 @@ const DocenteCard = memo(({ docente, onOpenCV, onCopyPhone }) => {
         display: "flex",
         flexDirection: "column",
         height: "100%",
-        // SOLO animamos transform y box-shadow (Aceleración por GPU garantizada)
         transition: "transform 0.3s ease, box-shadow 0.3s ease",
         "&:hover": {
           transform: "translateY(-6px)",
@@ -85,11 +84,10 @@ const DocenteCard = memo(({ docente, onOpenCV, onCopyPhone }) => {
         },
       }}
     >
-      {/* Contenedor de Imagen (ESTÁTICO: No hay animaciones de altura aquí) */}
+      {/* Contenedor de Imagen */}
       <Box
         sx={{
           width: "100%",
-          // Altura condicional desde el renderizado inicial
           height: hasRealImage ? "280px" : "160px",
           position: "relative",
           bgcolor: "#f0f2f5",
@@ -125,11 +123,10 @@ const DocenteCard = memo(({ docente, onOpenCV, onCopyPhone }) => {
         />
       </Box>
 
-      {/* Medalla (Badge) solapada (Posición calculada estáticamente) */}
+      {/* Medalla*/}
       <Box
         sx={{
           position: "absolute",
-          // Ajusta la posición de la medalla según la altura de la imagen
           top: hasRealImage ? "255px" : "135px",
           left: "24px",
           bgcolor: "#ffffff",
@@ -141,7 +138,18 @@ const DocenteCard = memo(({ docente, onOpenCV, onCopyPhone }) => {
           pointerEvents: "none",
         }}
       >
-        <WorkspacePremiumIcon sx={{ fontSize: 40, color: themeColor }} />
+        <img
+          style={{
+            backgroundColor: themeColor,
+            width: 40,
+            height: 40,
+            webkitMask:
+              "url('https://cdn-icons-png.flaticon.com/128/1378/1378526.png') no-repeat center",
+            mask: "url('https://cdn-icons-png.flaticon.com/128/1378/1378526.png') no-repeat center",
+            maskRepeat: "no-repeat",
+            maskSize: "contain",
+          }}
+        />
       </Box>
 
       {/* Contenido de la Tarjeta */}
@@ -965,7 +973,7 @@ export default function Directorio() {
             </Grid>
           </Box>
 
-          {/* Administrativo (Estático) */}
+          {/* Administrativo */}
           <Box>
             <Box
               data-aos="fade-right"
@@ -1001,15 +1009,15 @@ export default function Directorio() {
                         border: "1px solid rgba(255,255,255,0.05)",
                         // --- NUEVAS PROPIEDADES PARA EL EFECTO ---
                         position: "relative",
-                        overflow: "hidden", // Oculta la imagen inicialmente
-                        height: "120px", // Altura base (cerrado)
-                        // Animamos solo height y border-color (específico, no 'all')
+                        overflow: "hidden",
+                        height: "120px",
+
                         transition:
                           "height 0.4s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.3s ease",
 
                         "&:hover": hasImage
                           ? {
-                              height: "340px", // Altura expandido
+                              height: "340px",
                               borderColor: "#C59B27",
                               bgcolor: "rgba(197, 155, 39, 0.05)",
                               transform: "translateY(-5px)",
@@ -1017,7 +1025,6 @@ export default function Directorio() {
                               boxShadow: "0 20px 40px rgba(0,0,0,0.3)",
                             }
                           : {
-                              // Estilos hover si NO tiene imagen
                               transform: "translateY(-5px)",
                               borderColor: "#C59B27",
                               bgcolor: "rgba(197, 155, 39, 0.05)",
@@ -1071,10 +1078,10 @@ export default function Directorio() {
                         )}
                       </Box>
 
-                      {/* Imagen Oculta que se revela (Solo si hay imagen) */}
+                      {/* Imagen Oculta que se revela*/}
                       {hasImage && (
                         <Box
-                          className="admin-img-box" // Clase para identificarlo en el hover del padre
+                          className="admin-img-box"
                           sx={{
                             position: "absolute",
                             bottom: 0,
@@ -1083,7 +1090,7 @@ export default function Directorio() {
                             height: "230px",
                             // --- ESTADOS INICIALES PARA ANIMACIÓN ---
                             opacity: 0,
-                            transform: "translateY(50px)", // Empieza un poco abajo
+                            transform: "translateY(50px)",
                             transition:
                               "opacity 0.4s ease, transform 0.4s ease",
                             zIndex: 1,
@@ -1099,7 +1106,7 @@ export default function Directorio() {
                               height: "100%",
                               borderRadius: "45% 45% 0 0",
                               objectFit: "cover",
-                              objectPosition: "top center", // Arreglado corte de rostro
+                              objectPosition: "top center",
                               display: "block",
                               margin: "0 auto",
                               borderTop: "1px solid rgba(255,255,255,0.1)",
