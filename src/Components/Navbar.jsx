@@ -74,7 +74,7 @@ export default function Navbar() {
         {
           label: "Educación Inicial",
           path: "/inicial",
-          icon: "https://cdn-icons-png.flaticon.com/128/1761/1761446.png",
+          icon: "https://cdn-icons-png.flaticon.com/512/7456/7456976.png",
           desc: "Formando el futuro desde la niñez",
         },
         {
@@ -203,13 +203,8 @@ export default function Navbar() {
                         textTransform: "none",
                         transition: "all 0.3s ease",
                         cursor: item.subItems ? "default" : "pointer",
-                        background: isActive
-                          ? "linear-gradient(to top, rgba(0, 123, 255, 0.08) 0%, transparent 60%)"
-                          : "transparent",
                         "&:hover": {
                           color: trigger ? "#007BFF" : "inherit",
-                          background:
-                            "linear-gradient(to top, rgba(0, 123, 255, 0.05) 0%, transparent 60%)",
                         },
                         "&::after": {
                           content: '""',

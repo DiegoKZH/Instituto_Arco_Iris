@@ -735,7 +735,7 @@ export default function Inicio() {
                   >
                     <Box
                       component="img"
-                      src="https://cdn-icons-png.flaticon.com/128/1761/1761446.png"
+                      src="https://cdn-icons-png.flaticon.com/512/7456/7456976.png"
                       sx={{
                         width: 60,
                         height: 60,

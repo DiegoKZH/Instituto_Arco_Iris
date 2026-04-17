@@ -23,18 +23,6 @@ import UploadFileIcon from "@mui/icons-material/UploadFile";
 import QuizIcon from "@mui/icons-material/Quiz";
 import FactCheckIcon from "@mui/icons-material/FactCheck";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
-import EmojiEventsIcon from "@mui/icons-material/EmojiEvents";
-import SchoolIcon from "@mui/icons-material/School";
-import BadgeIcon from "@mui/icons-material/Badge";
-import HistoryEduIcon from "@mui/icons-material/HistoryEdu";
-import DescriptionIcon from "@mui/icons-material/Description";
-import PortraitIcon from "@mui/icons-material/Portrait";
-import GavelIcon from "@mui/icons-material/Gavel";
-import ReceiptLongIcon from "@mui/icons-material/ReceiptLong";
-import MenuBookIcon from "@mui/icons-material/MenuBook";
-import PsychologyIcon from "@mui/icons-material/Psychology";
-import ChildCareIcon from "@mui/icons-material/ChildCare";
-import SportsIcon from "@mui/icons-material/Sports";
 import LightbulbIcon from "@mui/icons-material/Lightbulb";
 import PeopleAltIcon from "@mui/icons-material/PeopleAlt";
 import FavoriteIcon from "@mui/icons-material/Favorite";
@@ -169,7 +157,7 @@ export default function Admision() {
               left: "10%",
               right: "10%",
               height: "4px",
-              bgcolor: "rgba(0, 123, 255, 0.2)",
+              bgcolor: "#003366",
               zIndex: 0,
               transform: "translateY(-50%)",
             }}
@@ -180,19 +168,52 @@ export default function Admision() {
               step: "01",
               title: "Presentación de Requisitos",
               desc: "Adjunta toda la documentación solicitada de manera digital. Verifica la lista detallada para evitar inconvenientes.",
-              icon: <UploadFileIcon sx={{ fontSize: 50 }} />,
+              icon: (
+                <img
+                  src="https://cdn-icons-png.flaticon.com/128/3566/3566024.png"
+                  alt="Exoneración"
+                  style={{
+                    width: 50,
+                    height: 50,
+                    filter: `brightness(0) saturate(100%) invert(25%) sepia(30%)
+                        saturate(2000%) hue-rotate(170deg) brightness(105%) contrast(95%)`,
+                  }}
+                />
+              ),
             },
             {
               step: "02",
               title: "Evaluación de Postulantes",
               desc: "Participa en nuestra evaluación integral que mide tus conocimientos y habilidades básicas. Ofrecemos material de apoyo para tu preparación.",
-              icon: <QuizIcon sx={{ fontSize: 50 }} />,
+              icon: (
+                <img
+                  src="https://cdn-icons-png.flaticon.com/128/10188/10188018.png"
+                  alt="Exoneración"
+                  style={{
+                    width: 50,
+                    height: 50,
+                    filter: `brightness(0) saturate(100%) invert(25%) sepia(30%)
+                        saturate(2000%) hue-rotate(170deg) brightness(105%) contrast(95%)`,
+                  }}
+                />
+              ),
             },
             {
               step: "03",
               title: "Resultados y Matrícula",
-              desc: "Consulta los resultados en las fechas establecidas. Si eres admitido, completa tu matrícula para formalizar tu ingreso.",
-              icon: <FactCheckIcon sx={{ fontSize: 50 }} />,
+              desc: "Consulta los resultados en las fechas establecidas mediante nuestra página web. Si eres admitido, completa tu matrícula para formalizar tu ingreso.",
+              icon: (
+                <img
+                  src="https://cdn-icons-png.flaticon.com/128/16859/16859033.png"
+                  alt="Exoneración"
+                  style={{
+                    width: 55,
+                    height: 55,
+                    filter: `brightness(0) saturate(100%) invert(25%) sepia(30%)
+                        saturate(2000%) hue-rotate(170deg) brightness(105%) contrast(95%)`,
+                  }}
+                />
+              ),
             },
           ].map((item, idx) => (
             <Grid
@@ -221,7 +242,8 @@ export default function Admision() {
                     width: 80,
                     height: 80,
                     mx: "auto",
-                    bgcolor: "#003366",
+                    border: "3px solid #026ee1",
+                    bgcolor: "#ffffff",
                     color: "#fff",
                     borderRadius: "50%",
                     display: "flex",
@@ -268,7 +290,7 @@ export default function Admision() {
               textTransform="uppercase"
               textAlign="center"
             >
-              Modalidades de Admisión Periodo 2026-II
+              Modalidades Periodo 2026-II
             </Typography>
             <Typography variant="h6" color="#666" mt={1} textAlign="center">
               Elige la modalidad que mejor se adapte a tu perfil y trayectoria
@@ -301,18 +323,40 @@ export default function Admision() {
                   color: "#003366 !important",
                   bgcolor: "#fff",
                 },
-                "& .MuiTabs-indicator": { height: 4, bgcolor: "#C59B27" },
+                "& .MuiTabs-indicator": { height: 4, bgcolor: "#274fc5e3" },
               }}
             >
               <Tab
-                icon={<EmojiEventsIcon />}
+                icon={
+                  <img
+                    src="https://cdn-icons-png.flaticon.com/128/3135/3135736.png"
+                    alt="Exoneración"
+                    style={{
+                      width: 28,
+                      height: 28,
+                      filter: `brightness(0) saturate(100%) invert(25%) sepia(30%)
+                        saturate(2000%) hue-rotate(170deg) brightness(105%) contrast(95%)`,
+                    }}
+                  />
+                }
                 iconPosition="start"
                 label="Por Exoneración"
               />
               <Tab
-                icon={<SchoolIcon />}
+                icon={
+                  <img
+                    src="https://cdn-icons-png.flaticon.com/128/3626/3626788.png"
+                    alt="Admision"
+                    style={{
+                      width: 28,
+                      height: 28,
+                      filter: `brightness(0) saturate(100%) invert(25%) sepia(30%)
+                        saturate(2000%) hue-rotate(170deg) brightness(105%) contrast(95%)`,
+                    }}
+                  />
+                }
                 iconPosition="start"
-                label="Admisión Ordinaria"
+                label="Por Admisión"
               />
             </Tabs>
 
@@ -326,6 +370,7 @@ export default function Admision() {
                       paragraph
                       fontSize="1.1rem"
                       color="#444"
+                      textAlign="justify"
                     >
                       Esta modalidad se realiza de manera anticipada a la
                       admisión ordinaria. Si no alcanzas vacante por esta vía,
@@ -333,11 +378,11 @@ export default function Admision() {
                     </Typography>
                     <Box
                       sx={{
-                        bgcolor: "rgba(197, 155, 39, 0.1)",
+                        bgcolor: "rgba(117, 176, 242, 0.1)",
                         p: 3,
                         borderRadius: "16px",
                         mb: 4,
-                        borderLeft: "4px solid #C59B27",
+                        borderLeft: "4px solid #007bff",
                       }}
                     >
                       <Typography
@@ -348,7 +393,7 @@ export default function Admision() {
                         Requisitos clave: Haber concluido la educación básica y
                         contar con DNI.
                       </Typography>
-                      <Typography variant="body2" color="#555" mt={1}>
+                      <Typography variant="body2" color="#292929" mt={1}>
                         Se reserva el 20% de las vacantes por programa de
                         estudios para esta modalidad. Los postulantes por
                         exoneración{" "}
@@ -386,8 +431,8 @@ export default function Admision() {
                       ))}
                     </List>
                     <Typography
-                      variant="caption"
-                      color="text.secondary"
+                      variant="subtitle2"
+                      color="#eb4040"
                       display="block"
                       mt={2}
                     >
@@ -407,6 +452,7 @@ export default function Admision() {
                       paragraph
                       fontSize="1.1rem"
                       color="#444"
+                      textAlign="justify"
                     >
                       Participan en esta modalidad todos los estudiantes que han
                       culminado la Educación Básica en cualquiera de sus
@@ -467,7 +513,7 @@ export default function Admision() {
                         <Typography
                           variant="subtitle1"
                           fontWeight="bold"
-                          color="#C59B27"
+                          color="#003366"
                           mb={1}
                         >
                           1. Prueba Escrita de Competencias
@@ -489,7 +535,7 @@ export default function Admision() {
                         <Typography
                           variant="subtitle1"
                           fontWeight="bold"
-                          color="#C59B27"
+                          color="#003366"
                           mb={1}
                         >
                           2. Evaluación Diagnóstica Vocacional
@@ -529,32 +575,104 @@ export default function Admision() {
         <Grid container spacing={3}>
           {[
             {
-              icon: <BadgeIcon />,
+              icon: (
+                <img
+                  src="https://cdn-icons-png.flaticon.com/128/8509/8509159.png"
+                  alt="DNI"
+                  style={{
+                    width: 45,
+                    height: 45,
+                    objectFit: "contain",
+                    filter: `brightness(0) saturate(100%) invert(20%) sepia(30%)
+                        saturate(2000%) hue-rotate(170deg) brightness(105%) contrast(75%)`,
+                  }}
+                />
+              ),
               title: "Copia de DNI",
               desc: "Fotocopia a color y ampliada de tu Documento Nacional de Identidad.",
             },
             {
-              icon: <HistoryEduIcon />,
+              icon: (
+                <img
+                  src="https://cdn-icons-png.flaticon.com/128/1021/1021129.png"
+                  alt="Certificado"
+                  style={{
+                    width: 45,
+                    height: 45,
+                    objectFit: "contain",
+                    filter: `brightness(0) saturate(100%) invert(20%) sepia(30%)
+                        saturate(2000%) hue-rotate(170deg) brightness(105%) contrast(95%)`,
+                  }}
+                />
+              ),
               title: "Certificado de Estudios",
               desc: "Certificado de Educación Secundaria (1° a 5° EBR o 1° a 4° EBA), electrónico emitido por SIAGIE, con código QR.",
             },
             {
-              icon: <DescriptionIcon />,
+              icon: (
+                <img
+                  src="https://cdn-icons-png.flaticon.com/128/5240/5240807.png"
+                  alt="Partida Nacimiento"
+                  style={{
+                    width: 45,
+                    height: 45,
+                    objectFit: "contain",
+                    filter: `brightness(0) saturate(100%) invert(20%) sepia(30%)
+                        saturate(2000%) hue-rotate(170deg) brightness(105%) contrast(95%)`,
+                  }}
+                />
+              ),
               title: "Partida de Nacimiento Original",
               desc: "Partida de Nacimiento original expedida por el registro civil.",
             },
             {
-              icon: <PortraitIcon />,
+              icon: (
+                <img
+                  src="https://cdn-icons-png.flaticon.com/128/7782/7782095.png"
+                  alt="Foto Pasaporte"
+                  style={{
+                    width: 40,
+                    height: 40,
+                    objectFit: "contain",
+                    filter: `brightness(0) saturate(100%) invert(20%) sepia(30%)
+                        saturate(2000%) hue-rotate(170deg) brightness(105%) contrast(85%)`,
+                  }}
+                />
+              ),
               title: "Fotos Tamaño Pasaporte",
               desc: "Dos (02) fotografías recientes tamaño pasaporte, a color, con fondo blanco y terno.",
             },
             {
-              icon: <GavelIcon />,
+              icon: (
+                <img
+                  src="https://cdn-icons-png.flaticon.com/128/14034/14034867.png"
+                  alt="Declaracion"
+                  style={{
+                    width: 45,
+                    height: 45,
+                    objectFit: "contain",
+                    filter: `brightness(0) saturate(10%) invert(20%) sepia(30%)
+                        saturate(2000%) hue-rotate(170deg) brightness(105%) contrast(75%)`,
+                  }}
+                />
+              ),
               title: "Declaración Jurada",
               desc: "Declaración Jurada suscrita por el postulante (formato IESPP “AI”).",
             },
             {
-              icon: <ReceiptLongIcon />,
+              icon: (
+                <img
+                  src="https://cdn-icons-png.flaticon.com/128/5614/5614638.png"
+                  alt="Recibo"
+                  style={{
+                    width: 45,
+                    height: 45,
+                    objectFit: "contain",
+                    filter: `brightness(0) saturate(100%) invert(20%) sepia(30%)
+                        saturate(2000%) hue-rotate(170deg) brightness(105%) contrast(95%)`,
+                  }}
+                />
+              ),
               title: "Recibo de Pago",
               desc: "Comprobante de pago por Derecho de Admisión (S/ 120.00).",
             },
@@ -647,14 +765,23 @@ export default function Admision() {
                 <Box
                   sx={{ display: "flex", alignItems: "center", gap: 2, mb: 3 }}
                 >
-                  <MenuBookIcon sx={{ fontSize: 40, color: "#007BFF" }} />
+                  <img
+                    src="https://cdn-icons-png.flaticon.com/128/3626/3626788.png"
+                    alt="Exoneración"
+                    style={{
+                      width: 40,
+                      height: 40,
+                      filter: `brightness(0) saturate(100%) invert(25%) sepia(30%)
+                        saturate(2000%) hue-rotate(170deg) brightness(155%) contrast(95%)`,
+                    }}
+                  />
                   <Typography variant="h4" fontWeight="bold" color="#fff">
                     Primera Fase
                   </Typography>
                 </Box>
                 <Typography
                   variant="subtitle1"
-                  color="#C59B27"
+                  color="#61acfc"
                   fontWeight="bold"
                   mb={2}
                 >
@@ -671,7 +798,7 @@ export default function Admision() {
                   <ListItem sx={{ py: 0.5, px: 0 }}>
                     <ListItemIcon sx={{ minWidth: 30 }}>
                       <ArrowForwardIcon
-                        sx={{ color: "#007BFF", fontSize: 16 }}
+                        sx={{ color: "#61acfc", fontSize: 16 }}
                       />
                     </ListItemIcon>
                     <ListItemText
@@ -685,7 +812,7 @@ export default function Admision() {
                   <ListItem sx={{ py: 0.5, px: 0 }}>
                     <ListItemIcon sx={{ minWidth: 30 }}>
                       <ArrowForwardIcon
-                        sx={{ color: "#007BFF", fontSize: 16 }}
+                        sx={{ color: "#61acfc", fontSize: 16 }}
                       />
                     </ListItemIcon>
                     <ListItemText
@@ -699,7 +826,7 @@ export default function Admision() {
                   <ListItem sx={{ py: 0.5, px: 0 }}>
                     <ListItemIcon sx={{ minWidth: 30 }}>
                       <ArrowForwardIcon
-                        sx={{ color: "#007BFF", fontSize: 16 }}
+                        sx={{ color: "#61acfc", fontSize: 16 }}
                       />
                     </ListItemIcon>
                     <ListItemText
@@ -733,14 +860,23 @@ export default function Admision() {
                 <Box
                   sx={{ display: "flex", alignItems: "center", gap: 2, mb: 3 }}
                 >
-                  <PsychologyIcon sx={{ fontSize: 40, color: "#C59B27" }} />
+                  <img
+                    src="https://cdn-icons-png.flaticon.com/128/476/476698.png"
+                    alt="Exoneración"
+                    style={{
+                      width: 45,
+                      height: 45,
+                      filter: `brightness(0) saturate(100%) invert(25%) sepia(30%)
+                        saturate(2000%) hue-rotate(170deg) brightness(155%) contrast(95%)`,
+                    }}
+                  />
                   <Typography variant="h4" fontWeight="bold" color="#fff">
                     Segunda Fase
                   </Typography>
                 </Box>
                 <Typography
                   variant="subtitle1"
-                  color="#C59B27"
+                  color="#61acfc"
                   fontWeight="bold"
                   mb={2}
                 >
@@ -759,7 +895,7 @@ export default function Admision() {
                   <ListItem sx={{ py: 0.5, px: 0 }}>
                     <ListItemIcon sx={{ minWidth: 30 }}>
                       <ArrowForwardIcon
-                        sx={{ color: "#C59B27", fontSize: 16 }}
+                        sx={{ color: "#61acfc", fontSize: 16 }}
                       />
                     </ListItemIcon>
                     <ListItemText
@@ -773,7 +909,7 @@ export default function Admision() {
                   <ListItem sx={{ py: 0.5, px: 0 }}>
                     <ListItemIcon sx={{ minWidth: 30 }}>
                       <ArrowForwardIcon
-                        sx={{ color: "#C59B27", fontSize: 16 }}
+                        sx={{ color: "#61acfc", fontSize: 16 }}
                       />
                     </ListItemIcon>
                     <ListItemText
@@ -787,7 +923,7 @@ export default function Admision() {
                   <ListItem sx={{ py: 0.5, px: 0 }}>
                     <ListItemIcon sx={{ minWidth: 30 }}>
                       <ArrowForwardIcon
-                        sx={{ color: "#C59B27", fontSize: 16 }}
+                        sx={{ color: "#61acfc", fontSize: 16 }}
                       />
                     </ListItemIcon>
                     <ListItemText
@@ -821,7 +957,7 @@ export default function Admision() {
                 py: 2.5,
                 px: 2,
                 fontWeight: "bold",
-                bgcolor: "#C59B27",
+                bgcolor: "#c59b27",
                 color: "#003366",
               }}
             />
@@ -845,7 +981,7 @@ export default function Admision() {
             Inversión y Costos
           </Typography>
           <Typography variant="h6" color="#666" mt={2}>
-            Conoce las tarifas de inscripción y matrícula para el ciclo 2025-II.
+            Conoce las tarifas de inscripción y matrícula para el ciclo 2026-II.
           </Typography>
         </Box>
 
@@ -1000,7 +1136,16 @@ export default function Admision() {
                 <Box
                   sx={{ display: "flex", alignItems: "center", gap: 2, mb: 3 }}
                 >
-                  <ChildCareIcon sx={{ fontSize: 40, color: "#D81B60" }} />
+                  <img
+                    src="https://cdn-icons-png.flaticon.com/512/7456/7456976.png"
+                    alt="Exoneración"
+                    style={{
+                      width: 45,
+                      height: 45,
+                      filter: `brightness(0) saturate(100%) invert(25%) sepia(30%)
+                        saturate(2000%) hue-rotate(170deg) brightness(185%) contrast(95%)`,
+                    }}
+                  />
                   <Typography variant="h5" fontWeight="bold" color="#003366">
                     Educación Inicial
                   </Typography>
@@ -1037,7 +1182,16 @@ export default function Admision() {
                 <Box
                   sx={{ display: "flex", alignItems: "center", gap: 2, mb: 3 }}
                 >
-                  <SportsIcon sx={{ fontSize: 40, color: "#E65100" }} />
+                  <img
+                    src="https://cdn-icons-png.flaticon.com/128/3048/3048355.png"
+                    alt="Educación Física"
+                    style={{
+                      width: 50,
+                      height: 50,
+                      filter: `brightness(0) saturate(100%) invert(25%) sepia(90%)
+                        saturate(2000%) hue-rotate(170deg) brightness(145%) contrast(65%)`,
+                    }}
+                  />
                   <Typography variant="h5" fontWeight="bold" color="#003366">
                     Educación Física
                   </Typography>
@@ -1294,32 +1448,104 @@ export default function Admision() {
         <Grid container spacing={4}>
           {[
             {
-              icon: <LightbulbIcon />,
+              icon: (
+                <img
+                  src="https://cdn-icons-png.flaticon.com/128/993/993552.png"
+                  alt="Innovación Pedagógica"
+                  style={{
+                    width: 48,
+                    height: 48,
+                    objectFit: "contain",
+                    filter: `brightness(0) saturate(10%) invert(31%) sepia(100%)
+                        saturate(2714%) hue-rotate(170deg) brightness(105%) contrast(105%)`,
+                  }}
+                />
+              ),
               title: "Innovación Pedagógica",
               desc: "Adoptamos las últimas metodologías y tecnologías educativas para una enseñanza dinámica y efectiva, preparándote para los desafíos del futuro.",
             },
             {
-              icon: <PeopleAltIcon />,
+              icon: (
+                <img
+                  src="https://cdn-icons-png.flaticon.com/128/2972/2972383.png"
+                  alt="Docentes Altamente Calificados"
+                  style={{
+                    width: 48,
+                    height: 48,
+                    objectFit: "contain",
+                    filter: `brightness(0) saturate(10%) invert(31%) sepia(100%)
+                        saturate(2714%) hue-rotate(170deg) brightness(105%) contrast(105%)`,
+                  }}
+                />
+              ),
               title: "Docentes Altamente Calificados",
               desc: "Contamos con un equipo de profesionales apasionados, con amplia experiencia académica y práctica, dedicados a tu formación integral.",
             },
             {
-              icon: <FavoriteIcon />,
+              icon: (
+                <img
+                  src="https://cdn-icons-png.flaticon.com/128/2463/2463988.png"
+                  alt="Formación Integral y Humanista"
+                  style={{
+                    width: 48,
+                    height: 48,
+                    objectFit: "contain",
+                    filter: `brightness(0) saturate(10%) invert(31%) sepia(100%)
+                        saturate(2714%) hue-rotate(170deg) brightness(105%) contrast(105%)`,
+                  }}
+                />
+              ),
               title: "Formación Integral y Humanista",
               desc: "Nuestro enfoque va más allá de lo académico, desarrollando tus habilidades personales, éticas y sociales para que seas un educador completo.",
             },
             {
-              icon: <LocationCityIcon />,
+              icon: (
+                <img
+                  src="https://cdn-icons-png.flaticon.com/128/18790/18790608.png"
+                  alt="Infraestructura Moderna"
+                  style={{
+                    width: 48,
+                    height: 48,
+                    objectFit: "contain",
+                    filter: `brightness(0) saturate(10%) invert(31%) sepia(100%)
+                        saturate(2714%) hue-rotate(170deg) brightness(105%) contrast(105%)`,
+                  }}
+                />
+              ),
               title: "Infraestructura Moderna",
               desc: "Disfruta de aulas cómodas, laboratorios especializados, biblioteca actualizada y áreas verdes que propician un ambiente óptimo.",
             },
             {
-              icon: <HandshakeIcon />,
+              icon: (
+                <img
+                  src="https://cdn-icons-png.flaticon.com/128/4599/4599539.png"
+                  alt="Convenios y Oportunidades"
+                  style={{
+                    width: 48,
+                    height: 48,
+                    objectFit: "contain",
+                    filter: `brightness(0) saturate(10%) invert(31%) sepia(100%)
+                        saturate(2714%) hue-rotate(170deg) brightness(105%) contrast(105%)`,
+                  }}
+                />
+              ),
               title: "Convenios y Oportunidades",
               desc: "Accede a una red de convenios con instituciones educativas y organizaciones que te brindarán valiosas oportunidades de prácticas.",
             },
             {
-              icon: <PublicIcon />,
+              icon: (
+                <img
+                  src="https://cdn-icons-png.flaticon.com/128/18036/18036298.png"
+                  alt="Compromiso Social y Comunitario"
+                  style={{
+                    width: 48,
+                    height: 48,
+                    objectFit: "contain",
+                    filter: `brightness(0) saturate(10%) invert(31%) sepia(100%)
+                        saturate(2714%) hue-rotate(170deg) brightness(105%) contrast(105%)`,
+                  }}
+                />
+              ),
               title: "Compromiso Social y Comunitario",
               desc: "Formamos docentes con una sólida conciencia social, capaces de impulsar proyectos de impacto y contribuir activamente a su entorno.",
             },
@@ -1347,8 +1573,8 @@ export default function Admision() {
               >
                 <Box
                   sx={{
-                    width: 60,
-                    height: 60,
+                    width: 70,
+                    height: 70,
                     mx: "auto",
                     bgcolor: "rgba(0, 123, 255, 0.1)",
                     color: "#007BFF",
