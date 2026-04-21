@@ -965,196 +965,172 @@ export default function Inicio() {
         </Container>
       </Box>
 
-      {/* Servicios Destacados */}
       <Container maxWidth="lg" sx={{ py: 10, position: "relative", zIndex: 2 }}>
-        <Typography
-          component={motion.h3}
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          variant="h3"
-          fontWeight="900"
-          textAlign="center"
-          sx={{ color: "#0A192F", mb: 10 }}
+  <Typography
+    component={motion.h3}
+    initial={{ opacity: 0, y: 20 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true }}
+    variant="h3"
+    fontWeight="900"
+    textAlign="center"
+    sx={{ color: "#0A192F", mb: 10 }}
+  >
+    Servicios Destacados
+  </Typography>
+  <Grid
+    container
+    spacing={4}
+    component={motion.div}
+    variants={staggerContainer}
+    initial="hidden"
+    whileInView="visible"
+    viewport={{ once: true }}
+  >
+    {[
+      {
+        size: 8,
+        img: "https://cdn-icons-png.flaticon.com/128/746/746964.png",
+        title: "Psicopedagógico",
+        desc: "Orientación profesional integral para potenciar el desarrollo cognitivo y emocional de nuestros estudiantes. Un acompañamiento continuo hacia tu éxito.",
+        color: "#0a192f",
+      },
+      {
+        size: 4,
+        img: "https://cdn-icons-png.flaticon.com/128/7068/7068006.png",
+        title: "Administrativo",
+        desc: "Gestión eficiente, transparente y ágil de todos los trámites documentarios y académicos.",
+        color: "#0a192f",
+      },
+      {
+        size: 4,
+        img: "https://cdn-icons-png.flaticon.com/128/7310/7310705.png",
+        title: "Soporte Médico",
+        desc: "Atención primaria, primeros auxilios y campañas de prevención.",
+        color: "#0a192f",
+      },
+      {
+        size: 8,
+        img: "https://cdn-icons-png.flaticon.com/128/8445/8445679.png",
+        title: "Tecnología (TI)",
+        desc: "Soporte continuo en el manejo de plataformas, aulas virtuales y herramientas digitales de vanguardia. Equipamiento moderno para tu aprendizaje.",
+        color: "#0a192f",
+      },
+      {
+        size: 6,
+        img: "https://cdn-icons-png.flaticon.com/128/11210/11210017.png",
+        title: "Servicio Social",
+        desc: "Acompañamiento y apoyo constante a estudiantes que enfrentan situaciones de vulnerabilidad.",
+        color: "#0a192f",
+      },
+      {
+        size: 6,
+        img: "https://cdn-icons-png.flaticon.com/128/6012/6012178.png",
+        title: "Investigación",
+        desc: "Asesoría metodológica especializada para la elaboración y ejecución de proyectos académicos.",
+        color: "#0a192f",
+      },
+    ].map((servicio, index) => (
+      <Grid
+        size={{ xs: 12, md: servicio.size }}
+        key={index}
+        component={motion.div}
+        variants={fadeInUp}
+        sx={{ display: "flex" }}
+      >
+        <Paper
+          elevation={0}
+          sx={{
+            position: "relative",
+            width: "100%",
+            minHeight: "260px",
+            p: 4,
+            borderRadius: "28px",
+            bgcolor: "#ffffff",
+            display: "flex",
+            flexDirection: "column",
+            cursor: "pointer",
+            transition: "all 0.5s cubic-bezier(0.4, 0, 0.2, 1)",
+            border: "1px solid",
+            borderColor: `${servicio.color}20`,
+            boxShadow: "0 4px 20px rgba(0,0,0,0.03)",
+            "&:hover": {
+              borderColor: "transparent",
+              boxShadow: `0 22px 45px ${servicio.color}25, inset 0 0 0 2px ${servicio.color}`,
+              transform: "translateY(-10px) scale(1.02)",
+            },
+            "&:hover .icon-img": {
+              transform: "scale(1.25)",
+            },
+            "&:hover .title-text": {
+              color: servicio.color,
+            },
+          }}
         >
-          Servicios Destacados
-        </Typography>
-        <Grid
-          container
-          spacing={3}
-          component={motion.div}
-          variants={staggerContainer}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-        >
-          {[
-            {
-              size: 8,
-              img: "https://cdn-icons-png.flaticon.com/128/1491/1491165.png",
-              title: "Psicopedagógico",
-              desc: "Orientación profesional integral para potenciar el desarrollo cognitivo y emocional de nuestros estudiantes. Un acompañamiento continuo hacia tu éxito.",
-              color: "#FF7043",
-            },
-            {
-              size: 4,
-              img: "https://cdn-icons-png.flaticon.com/128/2172/2172479.png",
-              title: "Administrativo",
-              desc: "Gestión eficiente, transparente y ágil de todos los trámites documentarios y académicos.",
-              color: "#42A5F5",
-            },
-            {
-              size: 4,
-              img: "https://cdn-icons-png.flaticon.com/128/11638/11638205.png",
-              title: "Soporte Médico",
-              desc: "Atención primaria, primeros auxilios y campañas de prevención.",
-              color: "#EF5350",
-            },
-            {
-              size: 8,
-              img: "https://cdn-icons-png.flaticon.com/128/1732/1732607.png",
-              title: "Tecnología (TI)",
-              desc: "Soporte continuo en el manejo de plataformas, aulas virtuales y herramientas digitales de vanguardia. Equipamiento moderno para tu aprendizaje.",
-              color: "#26C6DA",
-            },
-            {
-              size: 6,
-              img: "https://cdn-icons-png.flaticon.com/128/11210/11210086.png",
-              title: "Servicio Social",
-              desc: "Acompañamiento y apoyo constante a estudiantes que enfrentan situaciones de vulnerabilidad.",
-              color: "#26A69A",
-            },
-            {
-              size: 6,
-              img: "https://cdn-icons-png.flaticon.com/128/3041/3041005.png",
-              title: "Investigación",
-              desc: "Asesoría metodológica especializada para la elaboración y ejecución de proyectos académicos.",
-              color: "#AB47BC",
-            },
-          ].map((servicio, index) => (
-            <Grid
-              size={{ xs: 12, md: servicio.size }}
-              key={index}
-              component={motion.div}
-              variants={fadeInUp}
-              sx={{ display: "flex" }}
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              gap: 3,
+              mb: 3,
+            }}
+          >
+            <Box
+              className="icon-box"
+              sx={{
+                width: 70,
+                height: 70,
+                borderRadius: "20px",
+                bgcolor: `${servicio.color}15`,
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
             >
-              <Paper
-                elevation={0}
+              <Box
+                component="img"
+                className="icon-img"
+                src={servicio.img}
+                alt={`Icono de ${servicio.title}`}
                 sx={{
-                  position: "relative",
-                  height: "100%",
-                  width: "100%",
-                  minHeight: "280px",
-                  p: 5,
-                  borderRadius: "24px",
-                  bgcolor: "#fff",
-                  overflow: "hidden",
-                  display: "flex",
-                  flexDirection: "column",
-                  justifyContent: "flex-end",
-                  cursor: "pointer",
-                  transition: "all 0.6s cubic-bezier(0.4, 0, 0.2, 1)",
-                  border: `1px solid ${servicio.color}`,
-                  boxShadow: "0 10px 25px rgba(37, 37, 37, 0.35)",
-
-                  "&:hover": {
-                    bgcolor: servicio.color,
-                    boxShadow: `0 20px 40px ${servicio.color}30`,
-                    transform: "translateY(-5px)",
-                    justifyContent: "center",
-                  },
-
-                  "&:hover .bento-icon": {
-                    transform: "scale(1.1) rotate(-3deg)",
-                    top: 24,
-                    right: 24,
-                  },
-
-                  "&:hover .bento-icon-mask": {
-                    backgroundColor: "#fff",
-                  },
-
-                  "&:hover .bento-title": { color: "#fff" },
-
-                  "&:hover .bento-desc": {
-                    opacity: 1,
-                    maxHeight: "150px",
-                    color: "#fff",
-                    mt: 2,
-                  },
+                  width: 35,
+                  height: 35,
+                  objectFit: "contain",
+                  transition: "transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)",
                 }}
-              >
-                <Box
-                  className="bento-icon"
-                  sx={{
-                    position: "absolute",
-                    top: 32,
-                    right: 32,
-                    transition: "all 0.4s ease",
-                    zIndex: 1,
-                    display: "flex",
-                    opacity: 0.9,
-                  }}
-                >
-                  <Box
-                    className="bento-icon-mask"
-                    sx={{
-                      width: 60,
-                      height: 60,
-                      backgroundColor: servicio.color,
-                      WebkitMaskImage: `url(${servicio.img})`,
-                      WebkitMaskRepeat: "no-repeat",
-                      WebkitMaskPosition: "center",
-                      WebkitMaskSize: "contain",
-                      maskImage: `url(${servicio.img})`,
-                      maskRepeat: "no-repeat",
-                      maskPosition: "center",
-                      maskSize: "contain",
-                      transition: "all 0.4s ease",
-                    }}
-                  />
-                </Box>
-
-                <Box
-                  className="bento-content"
-                  sx={{ position: "relative", zIndex: 1, width: "100%" }}
-                >
-                  <Typography
-                    variant="h5"
-                    fontWeight="900"
-                    className="bento-title"
-                    sx={{
-                      color: servicio.color,
-                      transition: "color 0.4s ease",
-                      lineHeight: 1.2,
-                    }}
-                  >
-                    {servicio.title}
-                  </Typography>
-
-                  <Typography
-                    variant="body1"
-                    className="bento-desc"
-                    sx={{
-                      lineHeight: 1.6,
-                      color: servicio.color,
-                      opacity: 1,
-                      maxHeight: "200px",
-                      overflow: "hidden",
-                      transition: "all 0.5s ease-in-out",
-                      fontWeight: 500,
-                      mt: 2,
-                    }}
-                  >
-                    {servicio.desc}
-                  </Typography>
-                </Box>
-              </Paper>
-            </Grid>
-          ))}
-        </Grid>
-      </Container>
+              />
+            </Box>
+            <Typography
+              variant="h5"
+              fontWeight="800"
+              className="title-text"
+              sx={{
+                color: "#0A192F",
+                transition: "color 0.4s ease",
+                lineHeight: 1.2,
+              }}
+            >
+              {servicio.title}
+            </Typography>
+          </Box>
+          <Typography
+            variant="body1"
+            sx={{
+              color: "#546E7A",
+              lineHeight: 1.7,
+              fontWeight: 500,
+              flexGrow: 1,
+              display: "flex",
+              alignItems: "flex-start",
+            }}
+          >
+            {servicio.desc}
+          </Typography>
+        </Paper>
+      </Grid>
+    ))}
+  </Grid>
+</Container>
 
       {/* Video */}
       <Box

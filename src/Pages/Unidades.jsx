@@ -179,7 +179,7 @@ export default function Unidades() {
     },
   ];
   return (
-    <Box sx={{ bgcolor: "#F0F2F5", overflow: "hidden" }}>
+    <Box sx={{ bgcolor: "#f4f7fb", overflow: "hidden" }}>
       {/* 1. PORTADA HERO */}
       <Box
         sx={{
@@ -421,15 +421,16 @@ export default function Unidades() {
         </Container>
       </Box>
 
-      {/* 3. OFICINAS ADMINISTRATIVAS (GRID BACKGROUND OSCURO - ACTUALIZADO CON IMÁGENES Y FONDO MÁS SUTIL) */}
+      {/* 3. OFICINAS ADMINISTRATIVAS */}
       <Box
         sx={{
           bgcolor: "#003366",
           py: { xs: 10, md: 14 },
           position: "relative",
+          mb: { xs: "-80px", md: "-120px" },
         }}
       >
-        {/* MODIFICACIÓN: Patrón de fondo sutil con opacidad reducida (0.02) */}
+        {/* MODIFICACIÓN*/}
         <Box
           sx={{
             position: "absolute",

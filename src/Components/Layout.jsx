@@ -6,6 +6,7 @@ import Footer from "./Footer";
 import ModalAnuncios from "./ModalAnuncios";
 import RedesFlotantes from "./RedesFlotantes";
 import PageLoader from "./PageLoader";
+import AccesosDirectos from "./AccesosDirectos";
 
 export default function Layout() {
   return (
@@ -13,6 +14,7 @@ export default function Layout() {
       <PageLoader />
       <Navbar />
       <ModalAnuncios />
+      <AccesosDirectos />
       <RedesFlotantes />
       <Box component="main" sx={{ flexGrow: 1 }}>
         <Outlet />

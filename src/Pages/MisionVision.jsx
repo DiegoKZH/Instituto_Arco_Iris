@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { Box, Container, Typography, Grid, Paper } from "@mui/material";
 import AOS from "aos";
-import "aos/dist/aos.css"; // Estilos de AOS
+import "aos/dist/aos.css";
 
 // Íconos
 import FlagCircleIcon from "@mui/icons-material/FlagCircle";
@@ -75,7 +75,7 @@ export default function MisionVision() {
   ];
 
   return (
-    <Box sx={{ bgcolor: "#F0F2F5", overflow: "hidden" }}>
+    <Box sx={{ bgcolor: "#f4f7fb", overflow: "hidden" }}>
       {/* 1. PORTADA HERO */}
       <Box
         sx={{
@@ -232,7 +232,7 @@ export default function MisionVision() {
         </Grid>
       </Container>
 
-      {/* 3. SECCIÓN VISIÓN (Diseño Invertido y Oscuro) */}
+      {/* 3. SECCIÓN VISIÓN (Invertido y Oscuro) */}
       <Box sx={{ bgcolor: "#003366", py: 12, position: "relative" }}>
         {/* Adornos de fondo */}
         <Box
@@ -279,10 +279,10 @@ export default function MisionVision() {
                       alignItems: "center",
                       gap: 2,
                       p: 3,
-                      bgcolor: "rgba(255,255,255,0.05)",
+                      bgcolor: "rgba(156, 53, 53, 0.05)",
                       backdropFilter: "blur(10px)",
                       borderRadius: "16px",
-                      border: "1px solid rgba(255,255,255,0.1)",
+                      border: "1px solid rgba(255, 255, 255, 0.93)",
                       transition: "all 0.3s",
                       "&:hover": {
                         transform: "translateX(-10px)",
@@ -361,7 +361,7 @@ export default function MisionVision() {
         </Container>
       </Box>
 
-      {/* 4. SECCIÓN VALORES (Nuevo Diseño Premium) */}
+      {/* 4. SECCIÓN VALORES*/}
       <Container maxWidth="lg" sx={{ py: 12 }}>
         <Box data-aos="zoom-in" sx={{ textAlign: "center", mb: 8 }}>
           <Typography
@@ -405,11 +405,11 @@ export default function MisionVision() {
                   zIndex: 1,
                   "&:hover": {
                     transform: "translateY(-12px)",
-                    bgcolor: "#003366", // Cambio dramático de color al hacer hover
+                    bgcolor: "#003366",
                     boxShadow: "0 25px 50px rgba(0, 51, 102, 0.3)",
                     borderColor: "transparent",
                   },
-                  // Animaciones hijas gatilladas por el hover del padre
+                  // Animaciones hijas inicializadas por el hover del padre
                   "&:hover .value-icon": {
                     color: "#007BFF",
                     transform: "scale(1.15) translateY(-5px)",
@@ -438,7 +438,7 @@ export default function MisionVision() {
                     transform: "scale(0.5) rotate(0deg)",
                     transition: "all 0.6s cubic-bezier(0.4, 0, 0.2, 1)",
                     zIndex: -1,
-                    fontSize: 180, // Tamaño gigante
+                    fontSize: 180,
                     display: "flex",
                   }}
                 >
@@ -451,7 +451,7 @@ export default function MisionVision() {
                     className="value-icon"
                     sx={{
                       color: "#0056B3",
-                      fontSize: 40, // Tamaño para el ícono normal
+                      fontSize: 40,
                       transition: "all 0.4s ease",
                       display: "flex",
                       mr: 2,
