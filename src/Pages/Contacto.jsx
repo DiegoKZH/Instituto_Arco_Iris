@@ -64,7 +64,7 @@ export default function Contacto() {
       telefono || "No proporcionado"
     }\n*Asunto:* ${asunto}\n*Mensaje:*\n${mensaje}`;
 
-    const numeroWhatsApp = "51999888777";
+    const numeroWhatsApp = "51986249212";
     const url = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(
       textoMensaje,
     )}`;

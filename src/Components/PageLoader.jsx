@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import React from "react";
 import { Box } from "@mui/material";
 import { keyframes } from "@mui/system";
 import img1 from "../assets/logo_0_part1.png";
@@ -23,22 +22,8 @@ const slideFromTop = keyframes`
 `;
 
 export default function PageLoader() {
-  const location = useLocation();
-  const [isLoading, setIsLoading] = useState(false);
-
-  useEffect(() => {
-    setIsLoading(true);
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 1500);
-
-    return () => clearTimeout(timer);
-  }, [location.pathname]);
-
-  if (!isLoading) return null;
-
-  const darkBlueFilter =
-    "invert(13%) sepia(90%) saturate(5595%) hue-rotate(233deg) brightness(89%) contrast(110%)";
+  // Eliminamos isLoading, useEffect y useLocation.
+  // Si este componente se llama, simplemente se muestra.
 
   return (
     <Box
@@ -48,7 +33,7 @@ export default function PageLoader() {
         left: 0,
         width: "100vw",
         height: "100vh",
-        bgcolor: "#fffffffa",
+        bgcolor: "#ffffff",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
@@ -67,7 +52,6 @@ export default function PageLoader() {
             width: "100%",
             height: "100%",
             objectFit: "contain",
-
             animation: `${slideFromTopLeft} 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards`,
           }}
         />
@@ -83,7 +67,6 @@ export default function PageLoader() {
             width: "100%",
             height: "100%",
             objectFit: "contain",
-
             animation: `${slideFromRight} 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.2s forwards`,
             opacity: 0,
           }}
@@ -100,7 +83,6 @@ export default function PageLoader() {
             width: "100%",
             height: "100%",
             objectFit: "contain",
-
             animation: `${slideFromTop} 0.6s cubic-bezier(0.4, 0, 0.2, 1) 0.4s forwards`,
             opacity: 0,
           }}

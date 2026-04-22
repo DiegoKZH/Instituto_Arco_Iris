@@ -77,7 +77,7 @@ export default function Egresados() {
   ];
 
   return (
-    <Box sx={{ bgcolor: "#F0F2F5", overflow: "hidden" }}>
+    <Box sx={{ bgcolor: "#f4f7fb", overflow: "hidden" }}>
       {/* 1. PORTADA HERO */}
       <Box
         sx={{
@@ -387,7 +387,7 @@ export default function Egresados() {
         </Container>
       </Box>
 
-      {/* 4. BENEFICIOS EXCLUSIVOS (DISEÑO BENTO GRID) */}
+      {/* 4. BENEFICIOS EXCLUSIVOS */}
       <Box
         data-aos="fade-up"
         sx={{
@@ -420,16 +420,6 @@ export default function Egresados() {
               textTransform="uppercase"
             >
               Beneficios Exclusivos para Nuestros Egresados
-            </Typography>
-            <Typography
-              variant="h6"
-              color="#80bdff"
-              mt={2}
-              maxWidth="700px"
-              mx="auto"
-            >
-              Más allá de la graduación, continuamos impulsando tu crecimiento
-              profesional y personal.
             </Typography>
           </Box>
 
@@ -518,6 +508,29 @@ export default function Egresados() {
             </Button>
           </Box>
         </Container>
+      </Box>
+      <Box
+        sx={{
+          py: 10,
+          px: 2,
+          textAlign: "center",
+        }}
+      >
+        <Typography
+          sx={{
+            fontSize: { xs: "1.4rem", md: "2rem" },
+            fontStyle: "italic",
+            fontWeight: 500,
+            color: "#2c3e50",
+            maxWidth: "800px",
+            mx: "auto",
+            lineHeight: 1.6,
+            letterSpacing: "0.5px",
+          }}
+        >
+          Más allá de la graduación, continuamos impulsando tu crecimiento
+          profesional y personal.
+        </Typography>
       </Box>
     </Box>
   );

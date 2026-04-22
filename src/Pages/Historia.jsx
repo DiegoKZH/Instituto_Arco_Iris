@@ -3,11 +3,6 @@ import { Box, Container, Typography, Grid, Paper } from "@mui/material";
 import AOS from "aos";
 import "aos/dist/aos.css";
 
-// Íconos
-import HandshakeIcon from "@mui/icons-material/Handshake";
-import LightbulbCircleIcon from "@mui/icons-material/LightbulbCircle";
-import GavelIcon from "@mui/icons-material/Gavel";
-import VolunteerActivismIcon from "@mui/icons-material/VolunteerActivism";
 import WorkspacePremiumIcon from "@mui/icons-material/WorkspacePremium";
 import Diversity1Icon from "@mui/icons-material/Diversity1";
 import AccountBalanceIcon from "@mui/icons-material/AccountBalance";
@@ -15,7 +10,18 @@ import TimelineIcon from "@mui/icons-material/Timeline";
 import SchoolIcon from "@mui/icons-material/School";
 import TrendingUpIcon from "@mui/icons-material/TrendingUp";
 import PublicIcon from "@mui/icons-material/Public";
+import HandshakeIcon from "@mui/icons-material/Handshake";
 
+import LightbulbCircleIcon from "@mui/icons-material/LightbulbCircle";
+
+import GavelIcon from "@mui/icons-material/Gavel";
+
+import VolunteerActivismIcon from "@mui/icons-material/VolunteerActivism";
+const blueFilter =
+  "invert(39%) sepia(88%) saturate(1537%) hue-rotate(190deg) brightness(101%) contrast(103%)";
+const darkBlueFilter =
+  "invert(14%) sepia(94%) saturate(1480%) hue-rotate(193deg) brightness(85%) contrast(101%)";
+const whiteFilter = "invert(100%) brightness(200%)";
 export default function Historia() {
   useEffect(() => {
     AOS.init({
@@ -61,11 +67,10 @@ export default function Historia() {
 
   return (
     <Box sx={{ bgcolor: "#F0F2F5", overflow: "hidden" }}>
-      {/* 1. PORTADA HERO */}
       <Box
         sx={{
           position: "relative",
-          height: { xs: "55vh", md: "65vh" },
+          height: { xs: "50vh", sm: "55vh", md: "65vh" },
           display: "flex",
           alignItems: "center",
           bgcolor: "#003366",
@@ -73,7 +78,6 @@ export default function Historia() {
             content: '""',
             position: "absolute",
             inset: 0,
-
             backgroundImage:
               "url('https://images.unsplash.com/photo-1497633762265-9d179a990aa6?q=80&w=2073&auto=format&fit=crop')",
             backgroundSize: "cover",
@@ -91,15 +95,18 @@ export default function Historia() {
           },
         }}
       >
-        <Container maxWidth="lg" sx={{ position: "relative", zIndex: 2 }}>
+        <Container
+          maxWidth="lg"
+          sx={{ position: "relative", zIndex: 2, px: { xs: 2, sm: 3, md: 4 } }}
+        >
           <Box data-aos="fade-right">
             <Typography
               variant="overline"
               sx={{
                 color: "#007BFF",
                 fontWeight: 900,
-                letterSpacing: 3,
-                fontSize: "1.2rem",
+                letterSpacing: { xs: 1.5, md: 3 },
+                fontSize: { xs: "0.9rem", md: "1.2rem" },
               }}
             >
               NUESTRAS RAÍCES
@@ -110,9 +117,9 @@ export default function Historia() {
               sx={{
                 color: "#ffffff",
                 textTransform: "uppercase",
-                fontSize: { xs: "3.5rem", md: "5.5rem" },
+                fontSize: { xs: "2.5rem", sm: "3.5rem", md: "5.5rem" },
                 lineHeight: 1.1,
-                mb: 2,
+                mb: { xs: 1, md: 2 },
               }}
             >
               Nuestra Historia
@@ -124,7 +131,8 @@ export default function Historia() {
                 maxWidth: "650px",
                 fontWeight: 400,
                 borderLeft: "4px solid #007BFF",
-                pl: 3,
+                pl: { xs: 2, md: 3 },
+                fontSize: { xs: "0.9rem", sm: "1.1rem", md: "1.25rem" },
               }}
             >
               Un viaje a través de los años que nos han forjado.
@@ -133,29 +141,49 @@ export default function Historia() {
         </Container>
       </Box>
 
-      {/* 2. LOS INICIOS */}
-      <Container maxWidth="lg" sx={{ py: { xs: 8, md: 12 } }}>
-        <Box data-aos="fade-up" sx={{ mb: 8, textAlign: "center" }}>
-          <AccountBalanceIcon sx={{ fontSize: 50, color: "#007BFF", mb: 2 }} />
+      <Container
+        maxWidth="lg"
+        sx={{ py: { xs: 6, sm: 8, md: 12 }, px: { xs: 2, sm: 3, md: 4 } }}
+      >
+        <Box
+          data-aos="fade-up"
+          sx={{ mb: { xs: 5, md: 8 }, textAlign: "center" }}
+        >
+          <Box
+            component="img"
+            src="https://cdn-icons-png.flaticon.com/128/2201/2201563.png"
+            alt="Account Balance Icon"
+            sx={{
+              width: { xs: 40, md: 70 },
+              height: { xs: 40, md: 70 },
+              mb: { xs: 1, md: 2 },
+              filter: darkBlueFilter,
+            }}
+          />
           <Typography
             variant="h2"
             fontWeight="900"
             color="#003366"
             textTransform="uppercase"
+            sx={{ fontSize: { xs: "1.8rem", sm: "2.5rem", md: "3.75rem" } }}
           >
             Los Inicios del <br /> Instituto Arco Iris
           </Typography>
         </Box>
 
-        {/* Bloque 1 */}
-        <Grid container spacing={6} alignItems="center" sx={{ mb: 10 }}>
+        <Grid
+          container
+          spacing={{ xs: 4, md: 6 }}
+          alignItems="center"
+          sx={{ mb: { xs: 6, md: 10 } }}
+        >
           <Grid size={{ xs: 12, md: 6 }} data-aos="fade-right">
             <Typography
               variant="body1"
               color="#333333"
               lineHeight={1.9}
               textAlign="justify"
-              sx={{ fontSize: "1.1rem" }}
+              sx={{ fontSize: { xs: "0.95rem", md: "1.1rem" } }}
             >
               El instituto de Educacion Superior Pedagogico Privado "Arco Iris"
               Cusco, creado po Decreto Supremo N° 073-94-ED. Dado en el Palacio
@@ -180,11 +208,11 @@ export default function Historia() {
             <Box
               sx={{
                 position: "relative",
-                p: 2,
+                p: { xs: 1.5, md: 2 },
                 bgcolor: "#ffffff",
                 boxShadow: "0 20px 40px rgba(0, 51, 102, 0.1)",
                 borderRadius: "16px",
-                transform: "rotate(2deg)",
+                transform: { xs: "none", md: "rotate(2deg)" },
                 transition: "transform 0.4s ease",
                 "&:hover": { transform: "rotate(0deg) scale(1.02)" },
               }}
@@ -197,17 +225,18 @@ export default function Historia() {
                   width: "100%",
                   height: "auto",
                   borderRadius: "8px",
-                  background:
-                    "linear-gradient(to right, rgba(0, 51, 102, 0.55) 0%, rgba(0, 51, 102, 0.11) 100%)",
-                  filter: "sepia(30%)",
-                  "&::after": {
-                    content: '""',
-                    position: "absolute",
-                    inset: 0,
-                    background:
-                      "linear-gradient(to right, rgba(0, 51, 102, 0.55) 0%, rgba(0, 51, 102, 0.11) 100%)",
-                    zIndex: 1,
-                  },
+                  position: "relative",
+                  zIndex: 2,
+                }}
+              />
+              <Box
+                sx={{
+                  position: "absolute",
+                  inset: 0,
+                  zIndex: 3,
+                  pointerEvents: "none",
+                  borderRadius: "16px",
+                  opacity: 0.5,
                 }}
               />
               <Typography
@@ -216,7 +245,11 @@ export default function Historia() {
                 textAlign="center"
                 color="#0056B3"
                 fontWeight="bold"
-                sx={{ mt: 2, fontStyle: "italic" }}
+                sx={{
+                  mt: 2,
+                  fontStyle: "italic",
+                  fontSize: { xs: "0.75rem", md: "0.875rem" },
+                }}
               >
                 Desfile en la Plaza de Armas Cusco, en frente el Lic. Aquilino
                 Espinoza Challco
@@ -225,10 +258,9 @@ export default function Historia() {
           </Grid>
         </Grid>
 
-        {/* Bloque 2 */}
         <Grid
           container
-          spacing={6}
+          spacing={{ xs: 4, md: 6 }}
           alignItems="center"
           direction={{ xs: "column-reverse", md: "row" }}
         >
@@ -236,11 +268,11 @@ export default function Historia() {
             <Box
               sx={{
                 position: "relative",
-                p: 2,
+                p: { xs: 1.5, md: 2 },
                 bgcolor: "#ffffff",
                 boxShadow: "0 20px 40px rgba(0, 51, 102, 0.1)",
                 borderRadius: "16px",
-                transform: "rotate(-2deg)",
+                transform: { xs: "none", md: "rotate(-2deg)" },
                 transition: "transform 0.4s ease",
                 "&:hover": { transform: "rotate(0deg) scale(1.02)" },
               }}
@@ -262,7 +294,11 @@ export default function Historia() {
                 textAlign="center"
                 color="#0056B3"
                 fontWeight="bold"
-                sx={{ mt: 2, fontStyle: "italic" }}
+                sx={{
+                  mt: 2,
+                  fontStyle: "italic",
+                  fontSize: { xs: "0.75rem", md: "0.875rem" },
+                }}
               >
                 Nuestras primeras instalaciones, un sueño hecho realidad.
               </Typography>
@@ -274,7 +310,7 @@ export default function Historia() {
               color="#333333"
               lineHeight={1.9}
               textAlign="justify"
-              sx={{ fontSize: "1.1rem" }}
+              sx={{ fontSize: { xs: "0.95rem", md: "1.1rem" } }}
             >
               Despues de 30 años, el Instituto Arco Iris ha traspasado las
               fronteras de la Region, transformandose en una institucion lider
@@ -290,31 +326,56 @@ export default function Historia() {
         </Grid>
       </Container>
 
-      {/* 3. CRECIMIENTO Y CONSOLIDACIÓN (Diseño de Timeline Asimétrico) */}
-      <Box sx={{ bgcolor: "#003366", py: 12, position: "relative" }}>
-        {/* Fondo decorativo */}
+      <Box
+        sx={{ bgcolor: "#003366", py: { xs: 8, md: 12 }, position: "relative" }}
+      >
         <Box
           sx={{
             position: "absolute",
             right: 0,
             top: 0,
-            width: "40%",
+            width: { xs: "100%", md: "40%" },
             height: "100%",
             bgcolor: "#002244",
-            clipPath: "polygon(20% 0, 100% 0, 100% 100%, 0% 100%)",
+            clipPath: {
+              xs: "none",
+              md: "polygon(20% 0, 100% 0, 100% 100%, 0% 100%)",
+            },
+            opacity: { xs: 0.5, md: 1 },
             zIndex: 0,
           }}
         />
 
-        <Container maxWidth="lg" sx={{ position: "relative", zIndex: 2 }}>
-          <Box data-aos="fade-up" sx={{ mb: 8 }}>
-            <Box sx={{ display: "flex", alignItems: "center", gap: 2, mb: 2 }}>
-              <TimelineIcon sx={{ fontSize: 40, color: "#007BFF" }} />
+        <Container
+          maxWidth="lg"
+          sx={{ position: "relative", zIndex: 2, px: { xs: 2, sm: 3, md: 4 } }}
+        >
+          <Box data-aos="fade-up" sx={{ mb: { xs: 5, md: 8 } }}>
+            <Box
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                gap: { xs: 1, md: 2 },
+                mb: { xs: 1, md: 2 },
+              }}
+            >
+              <Box
+                component="img"
+                src="https://cdn-icons-png.flaticon.com/128/1589/1589131.png"
+                alt="Account Balance Icon"
+                sx={{
+                  width: { xs: 40, md: 60 },
+                  height: { xs: 40, md: 60 },
+                  mb: { xs: 1, md: 2 },
+                  filter: blueFilter,
+                }}
+              />
               <Typography
                 variant="overline"
                 color="#007BFF"
                 fontWeight="bold"
-                letterSpacing={2}
+                letterSpacing={{ xs: 1, md: 2 }}
+                sx={{ fontSize: { xs: "0.8rem", md: "1rem" } }}
               >
                 EVOLUCIÓN CONSTANTE
               </Typography>
@@ -324,6 +385,7 @@ export default function Historia() {
               fontWeight="900"
               color="#ffffff"
               textTransform="uppercase"
+              sx={{ fontSize: { xs: "1.8rem", sm: "2.5rem", md: "3.75rem" } }}
             >
               Crecimiento y Consolidación
             </Typography>
@@ -331,21 +393,24 @@ export default function Historia() {
               variant="h6"
               color="#F0F2F5"
               fontWeight="400"
-              sx={{ mt: 2, maxWidth: "600px" }}
+              sx={{
+                mt: { xs: 1, md: 2 },
+                maxWidth: "600px",
+                fontSize: { xs: "0.95rem", md: "1.25rem" },
+              }}
             >
               Momentos clave que marcan nuestro desarrollo institucional.
             </Typography>
           </Box>
 
-          <Grid container spacing={6} alignItems="center">
-            {/* Imagen Grande a la Izquierda */}
+          <Grid container spacing={{ xs: 4, md: 6 }} alignItems="center">
             <Grid size={{ xs: 12, lg: 5 }} data-aos="zoom-in-right">
               <Box
                 sx={{
                   position: "relative",
                   borderRadius: "24px",
                   overflow: "hidden",
-                  height: { xs: "400px", md: "600px" },
+                  height: { xs: "300px", sm: "400px", md: "600px" },
                   boxShadow: "0 30px 60px rgba(0,0,0,0.5)",
                 }}
               >
@@ -360,47 +425,53 @@ export default function Historia() {
                     filter: "brightness(0.85)",
                   }}
                 />
-                {/* Tarjeta flotante sobre la imagen */}
                 <Box
                   sx={{
                     position: "absolute",
-                    bottom: 30,
-                    left: 30,
-                    right: 30,
+                    bottom: { xs: 15, md: 30 },
+                    left: { xs: 15, md: 30 },
+                    right: { xs: 15, md: 30 },
                     bgcolor: "rgba(0, 123, 255, 0.9)",
                     backdropFilter: "blur(10px)",
-                    p: 2,
+                    p: { xs: 1.5, md: 2 },
                     borderRadius: "16px",
                     color: "#fff",
                     boxShadow: "0 10px 30px rgba(0,0,0,0.3)",
                   }}
                 >
-                  <Typography variant="h3" fontWeight="900" mb={0.5}>
+                  <Typography
+                    variant="h3"
+                    fontWeight="900"
+                    mb={0.5}
+                    sx={{ fontSize: { xs: "1.5rem", md: "3rem" } }}
+                  >
                     30+ Años
                   </Typography>
-                  <Typography variant="subtitle1" fontWeight="bold">
+                  <Typography
+                    variant="subtitle1"
+                    fontWeight="bold"
+                    sx={{ fontSize: { xs: "0.85rem", md: "1rem" } }}
+                  >
                     De excelencia académica ininterrumpida.
                   </Typography>
                 </Box>
               </Box>
             </Grid>
 
-            {/* Párrafos a la Derecha tipo Timeline */}
             <Grid size={{ xs: 12, lg: 7 }}>
               <Box
                 sx={{
                   display: "flex",
                   flexDirection: "column",
-                  gap: 4,
+                  gap: { xs: 3, md: 4 },
                   position: "relative",
                 }}
               >
-                {/* Línea conectora del timeline (Solo visible en desktop) */}
                 <Box
                   sx={{
                     display: { xs: "none", sm: "block" },
                     position: "absolute",
-                    left: "28px",
+                    left: { sm: "24px", md: "28px" },
                     top: "40px",
                     bottom: "40px",
                     width: "2px",
@@ -411,15 +482,36 @@ export default function Historia() {
 
                 {[
                   {
-                    icon: <SchoolIcon />,
+                    icon: (
+                      <Box
+                        component="img"
+                        src="https://cdn-icons-png.flaticon.com/128/3197/3197944.png"
+                        alt="School Icon"
+                        sx={{ width: 28, height: 35, filter: whiteFilter }}
+                      />
+                    ),
                     text: "A lo largo de las décadas, el Instituto Arco Iris ha experimentado un crecimiento significativo, tanto en infraestructura como en oferta académica. Hemos ampliado nuestras instalaciones, incorporado tecnología de vanguardia y desarrollado nuevos programas educativos para satisfacer la demanda de profesionales altamente calificados.",
                   },
                   {
-                    icon: <TrendingUpIcon />,
+                    icon: (
+                      <Box
+                        component="img"
+                        src="https://cdn-icons-png.flaticon.com/128/10929/10929932.png"
+                        alt="School Icon"
+                        sx={{ width: 28, height: 35, filter: whiteFilter }}
+                      />
+                    ),
                     text: "La consolidación de nuestra institución se ha basado en un compromiso inquebrantable con la calidad y la mejora continua. Hemos implementado rigurosos procesos de autoevaluación y acreditación, lo que nos ha permitido obtener el reconocimiento de organismos nacionales e internacionales, validando la excelencia de nuestra propuesta educativa.",
                   },
                   {
-                    icon: <PublicIcon />,
+                    icon: (
+                      <Box
+                        component="img"
+                        src="https://cdn-icons-png.flaticon.com/128/708/708739.png"
+                        alt="School Icon"
+                        sx={{ width: 28, height: 35, filter: whiteFilter }}
+                      />
+                    ),
                     text: "Nuestra historia es también la historia de miles de egresados que han dejado una huella positiva en la educación peruana, transformando vidas y comunidades. Nos enorgullece ser parte de su trayectoria y seguir construyendo un futuro prometedor para las nuevas generaciones de educadores.",
                   },
                 ].map((item, index) => (
@@ -429,15 +521,16 @@ export default function Historia() {
                     data-aos-delay={index * 150}
                     sx={{
                       display: "flex",
-                      gap: 3,
+                      flexDirection: { xs: "column", sm: "row" },
+                      gap: { xs: 2, sm: 3 },
                       position: "relative",
                       zIndex: 1,
                     }}
                   >
                     <Box
                       sx={{
-                        minWidth: 60,
-                        height: 60,
+                        minWidth: { xs: 50, sm: 60 },
+                        height: { xs: 50, sm: 60 },
                         borderRadius: "50%",
                         bgcolor: "#0056B3",
                         border: "4px solid #003366",
@@ -446,6 +539,7 @@ export default function Historia() {
                         justifyContent: "center",
                         color: "#fff",
                         boxShadow: "0 0 0 2px rgba(0, 123, 255, 0.5)",
+                        alignSelf: { xs: "flex-start", sm: "auto" },
                       }}
                     >
                       {item.icon}
@@ -453,13 +547,14 @@ export default function Historia() {
                     <Paper
                       elevation={0}
                       sx={{
-                        p: 3,
+                        p: { xs: 2.5, md: 3 },
                         bgcolor: "rgba(255, 255, 255, 0.05)",
                         backdropFilter: "blur(10px)",
                         border: "1px solid rgba(255,255,255,0.1)",
-                        borderRadius: "0 20px 20px 20px",
+                        borderRadius: { xs: "20px", sm: "0 20px 20px 20px" },
                         color: "#ffffff",
                         transition: "all 0.3s ease",
+                        flex: 1,
                         "&:hover": {
                           bgcolor: "rgba(0, 123, 255, 0.15)",
                           borderColor: "#007BFF",
@@ -470,6 +565,7 @@ export default function Historia() {
                         variant="body1"
                         lineHeight={1.8}
                         textAlign="justify"
+                        sx={{ fontSize: { xs: "0.9rem", md: "1rem" } }}
                       >
                         {item.text}
                       </Typography>
@@ -482,12 +578,22 @@ export default function Historia() {
         </Container>
       </Box>
 
-      {/* 4. SECCIÓN VALORES FUNDAMENTALES (Diseño Asimétrico y Staggered) */}
-      <Container maxWidth="lg" sx={{ py: 12 }}>
-        <Box data-aos="zoom-in" sx={{ textAlign: "center", mb: 10 }}>
+      <Container
+        maxWidth="lg"
+        sx={{ py: { xs: 8, md: 12 }, px: { xs: 2, sm: 3, md: 4 } }}
+      >
+        <Box
+          data-aos="zoom-in"
+          sx={{ textAlign: "center", mb: { xs: 6, md: 10 } }}
+        >
           <Typography
             variant="overline"
-            sx={{ color: "#007BFF", fontWeight: 900, letterSpacing: 2 }}
+            sx={{
+              color: "#007BFF",
+              fontWeight: 900,
+              letterSpacing: { xs: 1.5, md: 2 },
+              fontSize: { xs: "0.8rem", md: "1rem" },
+            }}
           >
             NUESTRA ESENCIA
           </Typography>
@@ -497,6 +603,7 @@ export default function Historia() {
             color="#003366"
             textTransform="uppercase"
             mb={2}
+            sx={{ fontSize: { xs: "1.8rem", sm: "2.5rem", md: "3.75rem" } }}
           >
             Valores Fundamentales
           </Typography>
@@ -504,31 +611,33 @@ export default function Historia() {
             variant="h6"
             color="#333333"
             fontWeight="400"
-            sx={{ maxWidth: "800px", mx: "auto" }}
+            sx={{
+              maxWidth: "800px",
+              mx: "auto",
+              fontSize: { xs: "0.95rem", md: "1.25rem" },
+            }}
           >
             Estos principios guían cada paso de nuestra institución y reflejan
             el espíritu de nuestra comunidad.
           </Typography>
         </Box>
 
-        <Grid container spacing={4}>
+        <Grid container spacing={{ xs: 3, sm: 4 }}>
           {valores.map((item, index) => (
             <Grid
               size={{ xs: 12, sm: 6, md: 4 }}
               key={index}
               data-aos="fade-up"
               data-aos-delay={index * 150}
-              // El contenedor del medio baja un poco para crear el efecto "mampostería" o escalonado
               sx={{ mt: { md: index % 3 === 1 ? 6 : 0 } }}
             >
               <Box
                 sx={{
                   position: "relative",
                   overflow: "hidden",
-                  p: 5,
+                  p: { xs: 4, md: 5 },
                   height: "100%",
                   bgcolor: "#ffffff",
-                  // Forma asimétrica tipo "Hoja"
                   borderRadius: "40px 10px 40px 10px",
                   boxShadow: "0 10px 30px rgba(0,0,0,0.05)",
                   border: "1px solid rgba(0, 123, 255, 0.1)",
@@ -539,12 +648,11 @@ export default function Historia() {
                   zIndex: 1,
                   "&:hover": {
                     transform: "translateY(-12px)",
-                    bgcolor: "#0056B3", // Cambio dramático de color al hacer hover
+                    bgcolor: "#0056B3",
                     boxShadow: "0 25px 50px rgba(0, 51, 102, 0.3)",
                     borderColor: "transparent",
-                    borderRadius: "10px 40px 10px 40px", // Invierte la forma al hover
+                    borderRadius: "10px 40px 10px 40px",
                   },
-                  // Animaciones hijas gatilladas por el hover del padre
                   "&:hover .value-icon": {
                     color: "#007BFF",
                     transform: "scale(1.15) translateY(-5px)",
@@ -561,7 +669,6 @@ export default function Historia() {
                   },
                 }}
               >
-                {/* Ícono gigante translúcido de fondo (Marca de agua) */}
                 <Box
                   className="bg-watermark"
                   sx={{
@@ -573,20 +680,19 @@ export default function Historia() {
                     transform: "scale(0.5) rotate(0deg)",
                     transition: "all 0.6s cubic-bezier(0.4, 0, 0.2, 1)",
                     zIndex: -1,
-                    fontSize: 180,
+                    fontSize: { xs: 120, md: 180 },
                     display: "flex",
                   }}
                 >
                   {item.icon}
                 </Box>
 
-                {/* Contenido Superior (Ícono + Título) */}
                 <Box sx={{ display: "flex", alignItems: "center", mb: 3 }}>
                   <Box
                     className="value-icon"
                     sx={{
                       color: "#003366",
-                      fontSize: 40,
+                      fontSize: { xs: 32, md: 40 },
                       transition: "all 0.4s ease",
                       display: "flex",
                       mr: 2,
@@ -599,13 +705,16 @@ export default function Historia() {
                     variant="h5"
                     fontWeight="900"
                     color="#003366"
-                    sx={{ transition: "color 0.4s ease", m: 0 }}
+                    sx={{
+                      transition: "color 0.4s ease",
+                      m: 0,
+                      fontSize: { xs: "1.25rem", md: "1.5rem" },
+                    }}
                   >
                     {item.title}
                   </Typography>
                 </Box>
 
-                {/* Línea de acento animada */}
                 <Box
                   className="accent-line"
                   sx={{
@@ -618,13 +727,16 @@ export default function Historia() {
                   }}
                 />
 
-                {/* Descripción */}
                 <Typography
                   className="value-desc"
                   variant="body1"
                   color="#333333"
                   lineHeight={1.7}
-                  sx={{ transition: "color 0.4s ease", fontWeight: 500 }}
+                  sx={{
+                    transition: "color 0.4s ease",
+                    fontWeight: 500,
+                    fontSize: { xs: "0.9rem", md: "1rem" },
+                  }}
                 >
                   {item.desc}
                 </Typography>

@@ -33,7 +33,7 @@ import Diversity3RoundedIcon from "@mui/icons-material/Diversity3Rounded";
 export default function Inicial() {
   const [openPdf, setOpenPdf] = useState(false);
 
-  // Array de Campo Laboral rediseñado con íconos específicos
+  // Array de Campo Laboral
   const laborales = [
     {
       text: "Docente en nidos y jardines de infancia (públicos y privados).",
@@ -81,8 +81,9 @@ export default function Inicial() {
     { size: 15, top: "50%", left: "45%", duration: 9, delay: 1.5 },
   ];
   const handleWhatsAppClick = () => {
-    const numero = "51999999999";
-    const mensaje = "Hola buenos días, quiero postular para Educación Inicial";
+    const numero = "51986249212";
+    const mensaje =
+      "Hola buenos días, ¡Quiero postular para Educación Inicial¡ 🧩";
     const url = `https://wa.me/${numero}?text=${encodeURIComponent(mensaje)}`;
 
     window.open(url, "_blank", "noopener,noreferrer");
@@ -249,7 +250,17 @@ export default function Inicial() {
                 "&:hover": { transform: "translateY(-5px)" },
               }}
             >
-              <ChildCareIcon sx={{ fontSize: 60, color: "#007BFF", mb: 2 }} />
+              <Box
+                component="img"
+                src="https://cdn-icons-png.flaticon.com/512/7456/7456976.png"
+                alt="icon inicial"
+                sx={{
+                  width: { xs: 65, md: 85 },
+                  height: { xs: 65, md: 85 },
+                  filter:
+                    "brightness(0) saturate(100%) invert(36%) sepia(98%) saturate(1800%) hue-rotate(200deg) brightness(95%) contrast(100%)",
+                }}
+              />
               <Typography variant="h4" fontWeight="800" color="#003366" mb={3}>
                 El Programa
               </Typography>
@@ -278,7 +289,16 @@ export default function Inicial() {
                 "&:hover": { transform: "translateY(-5px)" },
               }}
             >
-              <PaletteIcon sx={{ fontSize: 60, color: "#ffffff", mb: 2 }} />
+              <Box
+                component="img"
+                src="https://cdn-icons-png.flaticon.com/128/2973/2973247.png"
+                alt="icono metodología"
+                sx={{
+                  width: { xs: 65, md: 85 },
+                  height: { xs: 65, md: 85 },
+                  filter: "brightness(0) invert(1)",
+                }}
+              />
               <Typography variant="h4" fontWeight="800" mb={3}>
                 Enfoque Metodológico
               </Typography>
@@ -472,13 +492,13 @@ export default function Inicial() {
                 },
               }}
             >
-              Descargar PDF
+              Descargar Plan de Estudios
             </Button>
           </Box>
         </Container>
       </Box>
 
-      {/* 5. CAMPO LABORAL (REDISEÑADO: BENTO GRID Y WATERMARKS) */}
+      {/* 5. CAMPO LABORAL*/}
       <Box
         sx={{
           position: "relative",

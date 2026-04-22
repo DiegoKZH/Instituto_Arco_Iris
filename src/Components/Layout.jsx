@@ -5,14 +5,14 @@ import Navbar from "./Navbar";
 import Footer from "./Footer";
 import ModalAnuncios from "./ModalAnuncios";
 import RedesFlotantes from "./RedesFlotantes";
-import PageLoader from "./PageLoader";
+import AccesosDirectos from "./AccesosDirectos";
 
 export default function Layout() {
   return (
     <Box sx={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}>
-      <PageLoader />
       <Navbar />
       <ModalAnuncios />
+      <AccesosDirectos />
       <RedesFlotantes />
       <Box component="main" sx={{ flexGrow: 1 }}>
         <Outlet />

@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { Box, Container, Typography, Grid, Paper } from "@mui/material";
 import AOS from "aos";
-import "aos/dist/aos.css"; // Estilos de AOS
+import "aos/dist/aos.css";
 
 // Íconos
 import FlagCircleIcon from "@mui/icons-material/FlagCircle";
@@ -75,7 +75,7 @@ export default function MisionVision() {
   ];
 
   return (
-    <Box sx={{ bgcolor: "#F0F2F5", overflow: "hidden" }}>
+    <Box sx={{ bgcolor: "#f4f7fb", overflow: "hidden" }}>
       {/* 1. PORTADA HERO */}
       <Box
         sx={{
@@ -97,7 +97,14 @@ export default function MisionVision() {
           },
         }}
       >
-        <Container maxWidth="lg" sx={{ position: "relative", zIndex: 2 }}>
+        <Container
+          maxWidth="lg"
+          sx={{
+            position: "relative",
+            zIndex: 2,
+            pt: { xs: 10, md: 0 },
+          }}
+        >
           <Box data-aos="fade-down">
             <Typography
               variant="overline"
@@ -105,7 +112,7 @@ export default function MisionVision() {
                 color: "#007BFF",
                 fontWeight: 900,
                 letterSpacing: 3,
-                fontSize: "1.2rem",
+                fontSize: { xs: "0.9rem", md: "1.2rem" },
               }}
             >
               NUESTRA IDENTIDAD
@@ -116,7 +123,7 @@ export default function MisionVision() {
               sx={{
                 color: "#ffffff",
                 textTransform: "uppercase",
-                fontSize: { xs: "3.5rem", md: "5.5rem" },
+                fontSize: { xs: "2.5rem", md: "5.5rem" },
                 lineHeight: 1.1,
                 mb: 2,
               }}
@@ -131,6 +138,7 @@ export default function MisionVision() {
                 fontWeight: 400,
                 borderLeft: "4px solid #007BFF",
                 pl: 3,
+                fontSize: { xs: "1rem", md: "1.25rem" },
               }}
             >
               Conoce el propósito que nos impulsa, hacia dónde nos dirigimos y
@@ -145,12 +153,12 @@ export default function MisionVision() {
         maxWidth="lg"
         sx={{ mt: 8, position: "relative", zIndex: 3, pb: 10 }}
       >
-        <Grid container spacing={6} alignItems="center">
+        <Grid container spacing={{ xs: 4, md: 6 }} alignItems="center">
           <Grid size={{ xs: 12, md: 6 }} data-aos="fade-right">
             <Paper
               elevation={0}
               sx={{
-                p: { xs: 4, md: 6 },
+                p: { xs: 3, md: 6 },
                 bgcolor: "#ffffff",
                 borderTop: "8px solid #007BFF",
                 borderRadius: "24px",
@@ -160,12 +168,19 @@ export default function MisionVision() {
               <Box
                 sx={{ display: "flex", alignItems: "center", gap: 2, mb: 4 }}
               >
-                <FlagCircleIcon sx={{ fontSize: 50, color: "#007BFF" }} />
+                <Box
+                  component="img"
+                  src="https://cdn-icons-png.flaticon.com/128/2163/2163253.png"
+                  alt="icono misión"
+                  sx={{ width: 65, height: 65 }}
+                />
+
                 <Typography
                   variant="h3"
                   fontWeight="900"
                   color="#003366"
                   textTransform="uppercase"
+                  sx={{ fontSize: { xs: "2rem", md: "3rem" } }}
                 >
                   Nuestra Misión
                 </Typography>
@@ -209,7 +224,7 @@ export default function MisionVision() {
                     display: "flex",
                     alignItems: "center",
                     gap: 2,
-                    p: 3,
+                    p: { xs: 2, md: 3 },
                     bgcolor: "#ffffff",
                     borderRadius: "16px",
                     boxShadow: "0 10px 30px rgba(0, 51, 102, 0.05)",
@@ -222,7 +237,12 @@ export default function MisionVision() {
                   }}
                 >
                   <CheckCircleIcon sx={{ color: "#007BFF", fontSize: 28 }} />
-                  <Typography variant="h6" fontWeight="700" color="#003366">
+                  <Typography
+                    variant="h6"
+                    fontWeight="700"
+                    color="#003366"
+                    sx={{ fontSize: { xs: "1rem", md: "1.25rem" } }}
+                  >
                     {item}
                   </Typography>
                 </Box>
@@ -232,7 +252,7 @@ export default function MisionVision() {
         </Grid>
       </Container>
 
-      {/* 3. SECCIÓN VISIÓN (Diseño Invertido y Oscuro) */}
+      {/* 3. SECCIÓN VISIÓN*/}
       <Box sx={{ bgcolor: "#003366", py: 12, position: "relative" }}>
         {/* Adornos de fondo */}
         <Box
@@ -263,7 +283,7 @@ export default function MisionVision() {
         <Container maxWidth="lg" sx={{ position: "relative", zIndex: 2 }}>
           <Grid
             container
-            spacing={6}
+            spacing={{ xs: 4, md: 6 }}
             alignItems="center"
             direction={{ xs: "column-reverse", md: "row" }}
           >
@@ -278,11 +298,11 @@ export default function MisionVision() {
                       display: "flex",
                       alignItems: "center",
                       gap: 2,
-                      p: 3,
-                      bgcolor: "rgba(255,255,255,0.05)",
+                      p: { xs: 2, md: 3 },
+                      bgcolor: "rgba(156, 53, 53, 0.05)",
                       backdropFilter: "blur(10px)",
                       borderRadius: "16px",
-                      border: "1px solid rgba(255,255,255,0.1)",
+                      border: "1px solid rgba(255, 255, 255, 0.93)",
                       transition: "all 0.3s",
                       "&:hover": {
                         transform: "translateX(-10px)",
@@ -292,7 +312,12 @@ export default function MisionVision() {
                     }}
                   >
                     <CheckCircleIcon sx={{ color: "#F0F2F5", fontSize: 28 }} />
-                    <Typography variant="h6" fontWeight="700" color="#ffffff">
+                    <Typography
+                      variant="h6"
+                      fontWeight="700"
+                      color="#ffffff"
+                      sx={{ fontSize: { xs: "1rem", md: "1.25rem" } }}
+                    >
                       {item}
                     </Typography>
                   </Box>
@@ -304,7 +329,7 @@ export default function MisionVision() {
               <Paper
                 elevation={0}
                 sx={{
-                  p: { xs: 4, md: 6 },
+                  p: { xs: 3, md: 6 },
                   bgcolor: "#0056B3",
                   color: "#ffffff",
                   borderTop: "8px solid #F0F2F5",
@@ -315,12 +340,18 @@ export default function MisionVision() {
                 <Box
                   sx={{ display: "flex", alignItems: "center", gap: 2, mb: 4 }}
                 >
-                  <VisibilityIcon sx={{ fontSize: 50, color: "#F0F2F5" }} />
+                  <Box
+                    component="img"
+                    src="https://cdn-icons-png.flaticon.com/128/4149/4149687.png"
+                    alt="icono misión"
+                    sx={{ width: 85, height: 85 }}
+                  />
                   <Typography
                     variant="h3"
                     fontWeight="900"
                     color="#ffffff"
                     textTransform="uppercase"
+                    sx={{ fontSize: { xs: "2rem", md: "3rem" } }}
                   >
                     Nuestra Visión
                   </Typography>
@@ -361,12 +392,17 @@ export default function MisionVision() {
         </Container>
       </Box>
 
-      {/* 4. SECCIÓN VALORES (Nuevo Diseño Premium) */}
+      {/* 4. SECCIÓN VALORES*/}
       <Container maxWidth="lg" sx={{ py: 12 }}>
         <Box data-aos="zoom-in" sx={{ textAlign: "center", mb: 8 }}>
           <Typography
             variant="overline"
-            sx={{ color: "#007BFF", fontWeight: 900, letterSpacing: 2 }}
+            sx={{
+              color: "#007BFF",
+              fontWeight: 900,
+              letterSpacing: 2,
+              fontSize: { xs: "0.8rem", md: "1rem" },
+            }}
           >
             NUESTROS PILARES
           </Typography>
@@ -375,12 +411,13 @@ export default function MisionVision() {
             fontWeight="900"
             color="#003366"
             textTransform="uppercase"
+            sx={{ fontSize: { xs: "2.2rem", md: "3.75rem" } }}
           >
             Valores Institucionales
           </Typography>
         </Box>
 
-        <Grid container spacing={4}>
+        <Grid container spacing={{ xs: 3, md: 4 }}>
           {valores.map((item, index) => (
             <Grid
               size={{ xs: 12, sm: 6, md: 4 }}
@@ -392,7 +429,7 @@ export default function MisionVision() {
                 sx={{
                   position: "relative",
                   overflow: "hidden",
-                  p: 5,
+                  p: { xs: 3, md: 5 },
                   height: "100%",
                   bgcolor: "#ffffff",
                   borderRadius: "24px",
@@ -405,11 +442,10 @@ export default function MisionVision() {
                   zIndex: 1,
                   "&:hover": {
                     transform: "translateY(-12px)",
-                    bgcolor: "#003366", // Cambio dramático de color al hacer hover
+                    bgcolor: "#003366",
                     boxShadow: "0 25px 50px rgba(0, 51, 102, 0.3)",
                     borderColor: "transparent",
                   },
-                  // Animaciones hijas gatilladas por el hover del padre
                   "&:hover .value-icon": {
                     color: "#007BFF",
                     transform: "scale(1.15) translateY(-5px)",
@@ -426,7 +462,6 @@ export default function MisionVision() {
                   },
                 }}
               >
-                {/* Ícono gigante translúcido de fondo (Marca de agua) */}
                 <Box
                   className="bg-watermark"
                   sx={{
@@ -438,20 +473,19 @@ export default function MisionVision() {
                     transform: "scale(0.5) rotate(0deg)",
                     transition: "all 0.6s cubic-bezier(0.4, 0, 0.2, 1)",
                     zIndex: -1,
-                    fontSize: 180, // Tamaño gigante
+                    fontSize: 180,
                     display: "flex",
                   }}
                 >
                   {item.icon}
                 </Box>
 
-                {/* Contenido Superior (Ícono + Título) */}
                 <Box sx={{ display: "flex", alignItems: "center", mb: 3 }}>
                   <Box
                     className="value-icon"
                     sx={{
                       color: "#0056B3",
-                      fontSize: 40, // Tamaño para el ícono normal
+                      fontSize: 40,
                       transition: "all 0.4s ease",
                       display: "flex",
                       mr: 2,
@@ -470,7 +504,6 @@ export default function MisionVision() {
                   </Typography>
                 </Box>
 
-                {/* Línea de acento animada */}
                 <Box
                   className="accent-line"
                   sx={{
@@ -483,7 +516,6 @@ export default function MisionVision() {
                   }}
                 />
 
-                {/* Descripción */}
                 <Typography
                   className="value-desc"
                   variant="body1"

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useGlobalData } from "../routes/AppContext";
 import {
   Box,
   Container,
@@ -63,7 +64,7 @@ export default function Admision() {
   const handleTabChange = (event, newValue) => {
     setTabValue(newValue);
   };
-
+  const { periodo } = useGlobalData();
   return (
     <Box sx={{ bgcolor: "#F0F2F5", overflow: "hidden" }}>
       {/* 1. PORTADA HERO */}
@@ -98,7 +99,7 @@ export default function Admision() {
                 fontSize: "1.2rem",
               }}
             >
-              ADMisión 2025-II
+              ADMisións {periodo}
             </Typography>
             <Typography
               variant="h1"
@@ -290,7 +291,7 @@ export default function Admision() {
               textTransform="uppercase"
               textAlign="center"
             >
-              Modalidades Periodo 2026-II
+              Modalidades Periodo {periodo}
             </Typography>
             <Typography variant="h6" color="#666" mt={1} textAlign="center">
               Elige la modalidad que mejor se adapte a tu perfil y trayectoria
@@ -981,7 +982,8 @@ export default function Admision() {
             Inversión y Costos
           </Typography>
           <Typography variant="h6" color="#666" mt={2}>
-            Conoce las tarifas de inscripción y matrícula para el ciclo 2026-II.
+            Conoce las tarifas de inscripción y matrícula para el ciclo{" "}
+            {periodo}.
           </Typography>
         </Box>
 
