@@ -504,7 +504,9 @@ export default function Inicio() {
             >
               <Box
                 component="img"
-                src="https://arcoiris.edu.pe/assets/Img/Fotos%20Multiple/Portada_Bienvenidos.png"
+                src={
+                  "https://arcoiris.edu.pe/assets/Img/Fotos%20Multiple/Portada_Bienvenidos.png"
+                }
                 sx={{
                   width: "100%",
                   height: "100%",

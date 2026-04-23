@@ -21,6 +21,7 @@ const Plataformas = lazy(() => import("./Pages/Plataformas"));
 const Servicios = lazy(() => import("./Pages/Servicios"));
 const DocumentosGestion = lazy(() => import("./Pages/Documentos_gestion"));
 const UnidadInvestigacion = lazy(() => import("./Pages/Unidad_investigacion"));
+const NotFound = lazy(() => import("./Components/NotFound"));
 
 export default function App() {
   return (
@@ -49,6 +50,7 @@ export default function App() {
               element={<UnidadInvestigacion />}
             />
           </Route>
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </Suspense>
     </BrowserRouter>

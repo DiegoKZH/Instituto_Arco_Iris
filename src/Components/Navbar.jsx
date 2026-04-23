@@ -23,6 +23,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import ExpandLess from "@mui/icons-material/ExpandLess";
 import ExpandMore from "@mui/icons-material/ExpandMore";
 
+import logo from "../assets/logo_arcoiris_svg.svg";
 export default function Navbar() {
   const trigger = useScrollTrigger({ disableHysteresis: true, threshold: 50 });
   const location = useLocation();
@@ -285,7 +286,7 @@ export default function Navbar() {
                       : "https://arcoiris.edu.pe/assets/Img/LOGO%20INSTI%20BLANCO.png"
                   }
                   sx={{
-                    height: trigger ? 50 : 60,
+                    height: trigger ? 60 : 60,
                     cursor: "pointer",
                     transition: "all 0.3s ease",
                     filter:

@@ -34,7 +34,17 @@ export default function Plataformas() {
       easing: "ease-out-cubic",
     });
   }, []);
+  const getLinkProps = (plat) => {
+    const isExternal = plat.target === "_blank";
 
+    return {
+      // Si usas React Router, cambia "a" por Link en el caso interno
+      component: isExternal ? "a" : "a",
+      [isExternal ? "href" : "href"]: plat.ref, // Cambiar a 'to' si usas Link de react-router
+      target: plat.target,
+      ...(isExternal && { rel: "noopener noreferrer" }),
+    };
+  };
   // --- DATOS DE LAS PLATAFORMAS ---
   const plataformas = [
     {
@@ -51,6 +61,8 @@ export default function Plataformas() {
         "Descargar documentos y constancias.",
       ],
       cta: "Acceder a la Intranet",
+      ref: "https://intranet.arcoiris.edu.pe/",
+      target: "_blank",
       icon: <DashboardCustomizeRoundedIcon sx={{ fontSize: 50 }} />,
       img: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=2070&auto=format&fit=crop",
       darkTheme: false,
@@ -69,9 +81,11 @@ export default function Plataformas() {
         "Comunicación directa con docentes y compañeros.",
       ],
       cta: "Ir al Aula Virtual",
+      ref: "https://aulavirtual.arcoiris.edu.pe/",
+      target: "_blank",
       icon: <LaptopMacRoundedIcon sx={{ fontSize: 50 }} />,
       img: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=2070&auto=format&fit=crop",
-      darkTheme: true, // Esta sección invertirá los colores para romper la monotonía
+      darkTheme: true,
     },
     {
       id: "03",
@@ -87,6 +101,8 @@ export default function Plataformas() {
         "Guías y tutoriales para la investigación.",
       ],
       cta: "Explorar Biblioteca Virtual",
+      ref: "https://elibro.net/es/lc/arcoiris/login_usuario/?next=/es/lc/arcoiris/inicio/",
+      target: "_blank",
       icon: <LocalLibraryRoundedIcon sx={{ fontSize: 50 }} />,
       img: "https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?q=80&w=2070&auto=format&fit=crop",
       darkTheme: false,
@@ -105,6 +121,8 @@ export default function Plataformas() {
         "Herramienta para la visibilidad y el impacto de la investigación.",
       ],
       cta: "Explorar Repositorio",
+      ref: "https://repositorio.arcoiris.edu.pea/",
+      target: "_blank",
       icon: <Inventory2RoundedIcon sx={{ fontSize: 50 }} />,
       img: "https://images.unsplash.com/photo-1456406644174-8ddd4cd52a06?q=80&w=2068&auto=format&fit=crop",
       darkTheme: false,
@@ -213,7 +231,7 @@ export default function Plataformas() {
         </Container>
       </Box>
 
-      {/* 2. PLATAFORMAS (LAYOUT ALTERNADO) */}
+      {/* 2. PLATAFORMAS */}
       <Box sx={{ py: { xs: 8, md: 0 } }}>
         {plataformas.map((plat, index) => {
           const isEven = index % 2 === 0;
@@ -237,7 +255,7 @@ export default function Plataformas() {
                 borderBottom: "1px solid rgba(0,0,0,0.03)",
               }}
             >
-              {/* Tipografía Gigante de Fondo (Número) */}
+              {/* Tipografía Gigante de Fondo */}
               <Typography
                 variant="h1"
                 sx={{
@@ -340,6 +358,7 @@ export default function Plataformas() {
                     </List>
 
                     <Button
+                      {...getLinkProps(plat)}
                       variant={plat.darkTheme ? "contained" : "outlined"}
                       endIcon={<ArrowForwardRoundedIcon />}
                       sx={{
@@ -452,62 +471,6 @@ export default function Plataformas() {
             </Box>
           );
         })}
-      </Box>
-
-      {/* 3. CTA FINAL */}
-      <Box sx={{ bgcolor: "#F0F2F5", pt: 5, pb: 12 }}>
-        <Container maxWidth="md">
-          <Paper
-            data-aos="zoom-in"
-            sx={{
-              p: { xs: 5, md: 8 },
-              borderRadius: "40px",
-              textAlign: "center",
-              bgcolor: "#ffffff",
-              border: "1px solid rgba(0, 123, 255, 0.1)",
-              boxShadow: "0 20px 50px rgba(0, 51, 102, 0.08)",
-            }}
-          >
-            <LanguageIcon sx={{ fontSize: 60, color: "#007BFF", mb: 2 }} />
-            <Typography variant="h3" fontWeight="900" color="#003366" mb={2}>
-              Todo el Instituto a un Clic
-            </Typography>
-            <Typography
-              variant="h6"
-              color="#666"
-              mb={5}
-              fontWeight={400}
-              sx={{ maxWidth: "600px", mx: "auto" }}
-            >
-              Nuestras plataformas están diseñadas para acompañarte en cada paso
-              de tu formación profesional.
-            </Typography>
-            <Button
-              variant="contained"
-              size="large"
-              endIcon={<ArrowForwardRoundedIcon />}
-              sx={{
-                bgcolor: "#003366",
-                color: "#ffffff",
-                px: 5,
-                py: 1.8,
-                borderRadius: "30px",
-                fontSize: "1.1rem",
-                fontWeight: "bold",
-                textTransform: "none",
-                boxShadow: "0 10px 30px rgba(0, 51, 102, 0.3)",
-                "&:hover": {
-                  bgcolor: "#007BFF",
-                  boxShadow: "0 15px 40px rgba(0, 123, 255, 0.4)",
-                  transform: "translateY(-3px)",
-                },
-                transition: "all 0.3s ease",
-              }}
-            >
-              Ir al Portal Principal
-            </Button>
-          </Paper>
-        </Container>
       </Box>
     </Box>
   );
