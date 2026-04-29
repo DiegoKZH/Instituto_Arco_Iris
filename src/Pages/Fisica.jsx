@@ -9,18 +9,13 @@ import {
   Dialog,
   DialogContent,
   IconButton,
-  Divider,
   useScrollTrigger,
 } from "@mui/material";
 import { motion } from "framer-motion";
 import CloseIcon from "@mui/icons-material/Close";
-import DirectionsRunIcon from "@mui/icons-material/DirectionsRun";
 import FitnessCenterIcon from "@mui/icons-material/FitnessCenter";
 import PictureAsPdfIcon from "@mui/icons-material/PictureAsPdf";
 import DownloadIcon from "@mui/icons-material/Download";
-import EmojiEventsIcon from "@mui/icons-material/EmojiEvents";
-
-// Íconos para Campo Laboral
 import SchoolRoundedIcon from "@mui/icons-material/SchoolRounded";
 import SportsRoundedIcon from "@mui/icons-material/SportsRounded";
 import EventRoundedIcon from "@mui/icons-material/EventRounded";
@@ -28,19 +23,22 @@ import FavoriteRoundedIcon from "@mui/icons-material/FavoriteRounded";
 import EngineeringRoundedIcon from "@mui/icons-material/EngineeringRounded";
 import ScienceRoundedIcon from "@mui/icons-material/ScienceRounded";
 
-// Animaciones
+import imgCompetencias from "../assets/Imagenes/Fisica1.jpg";
+import imgProyectos from "../assets/Imagenes/Fisica2.jpg";
+import imgValores from "../assets/Imagenes/Fisica3.jpg";
+
 const fadeUp = {
   hidden: { opacity: 0, y: 40 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
 };
+
 const stagger = { visible: { transition: { staggerChildren: 0.2 } } };
 
 export default function Fisica() {
   const [openPdf, setOpenPdf] = useState(false);
   const trigger = useScrollTrigger({ disableHysteresis: true, threshold: 50 });
 
-  // Array de Campo Laboral
-  const laborales = [
+  const laboralesData = [
     {
       text: "Docente de Educación Física en colegios (públicos y privados).",
       icon: <SchoolRoundedIcon fontSize="large" />,
@@ -66,17 +64,39 @@ export default function Fisica() {
       icon: <ScienceRoundedIcon fontSize="large" />,
     },
   ];
+
+  const competenciasData = [
+    "Desarrollo de competencias en diversas disciplinas deportivas.",
+    "Énfasis en la planificación y ejecución de clases dinámicas.",
+    "Formación en gestión de proyectos deportivos y recreativos.",
+    "Prácticas pre-profesionales en instituciones educativas.",
+  ];
+
+  const proyectosData = [
+    {
+      title: "Proyectos Deportivos",
+      desc: "Organización y ejecución de olimpiadas, campeonatos y actividades recreativas que fomentan el trabajo en equipo, la disciplina y el liderazgo en la comunidad educativa.",
+      img: imgProyectos,
+      reverse: false,
+    },
+    {
+      title: "Compromiso Institucional",
+      desc: "Nuestros estudiantes se forman con sólidos principios éticos, promoviendo la inclusión, el respeto y la salud integral como pilares fundamentales en su labor docente.",
+      img: imgValores,
+      reverse: true,
+    },
+  ];
+
   const handleWhatsAppClick = () => {
     const numero = "51986249212";
     const mensaje =
       "Hola buenos días, ¡Quiero postular para Educación Física¡ 💪";
     const url = `https://wa.me/${numero}?text=${encodeURIComponent(mensaje)}`;
-
     window.open(url, "_blank", "noopener,noreferrer");
   };
+
   return (
     <Box sx={{ bgcolor: "#F0F2F5", overflow: "hidden" }}>
-      {/* 1. PORTADA CON CORTE DIAGONAL */}
       <Box
         sx={{
           position: "relative",
@@ -141,7 +161,6 @@ export default function Fisica() {
         </Container>
       </Box>
 
-      {/* 2. PROGRAMA Y METODOLOGÍA (Tarjetas desplazadas) */}
       <Container
         maxWidth="lg"
         sx={{ mt: -10, position: "relative", zIndex: 3, pb: 10 }}
@@ -222,7 +241,6 @@ export default function Fisica() {
         </Grid>
       </Container>
 
-      {/* 3. COMPETENCIAS CON IMAGEN (Diseño Asimétrico) */}
       <Box sx={{ bgcolor: "#F0F2F5", py: 10 }}>
         <Container maxWidth="lg">
           <Grid container spacing={8} alignItems="center">
@@ -245,7 +263,7 @@ export default function Fisica() {
                 />
                 <Box
                   component="img"
-                  src="https://arcoiris.edu.pe/assets/Img/Fotos%20Estudiantes/est-07.jpg"
+                  src={imgCompetencias}
                   sx={{
                     width: "100%",
                     height: "400px",
@@ -275,12 +293,7 @@ export default function Fisica() {
                 Competencias <br />
                 <span style={{ color: "#007BFF" }}>Clave</span>
               </Typography>
-              {[
-                "Desarrollo de competencias en diversas disciplinas deportivas.",
-                "Énfasis en la planificación y ejecución de clases dinámicas.",
-                "Formación en gestión de proyectos deportivos y recreativos.",
-                "Prácticas pre-profesionales en instituciones educativas.",
-              ].map((item, i) => (
+              {competenciasData.map((item, i) => (
                 <Box
                   key={i}
                   component={motion.div}
@@ -306,7 +319,103 @@ export default function Fisica() {
         </Container>
       </Box>
 
-      {/* 4. PLAN DE ESTUDIOS */}
+      <Box sx={{ bgcolor: "#ffffff", py: 10 }}>
+        <Container maxWidth="lg">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeUp}
+          >
+            <Typography
+              variant="h3"
+              fontWeight="900"
+              color="#003366"
+              textAlign="center"
+              mb={8}
+              textTransform="uppercase"
+            >
+              Proyectos e <span style={{ color: "#007BFF" }}>Identidad</span>
+            </Typography>
+          </motion.div>
+
+          {proyectosData.map((item, index) => (
+            <Grid
+              key={index}
+              container
+              spacing={8}
+              alignItems="center"
+              mb={index === proyectosData.length - 1 ? 0 : 10}
+              direction={{
+                xs: "column-reverse",
+                md: item.reverse ? "row-reverse" : "row",
+              }}
+            >
+              <Grid
+                size={{ xs: 12, md: 6 }}
+                component={motion.div}
+                initial={{ opacity: 0, x: item.reverse ? 50 : -50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+              >
+                <Typography
+                  variant="h4"
+                  fontWeight="900"
+                  color="#003366"
+                  mb={3}
+                  textTransform="uppercase"
+                >
+                  {item.title}
+                </Typography>
+                <Typography
+                  variant="body1"
+                  color="#555"
+                  fontSize="1.1rem"
+                  lineHeight={1.8}
+                >
+                  {item.desc}
+                </Typography>
+              </Grid>
+              <Grid
+                size={{ xs: 12, md: 6 }}
+                component={motion.div}
+                initial={{ opacity: 0, x: item.reverse ? -50 : 50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+              >
+                <Box sx={{ position: "relative" }}>
+                  <Box
+                    sx={{
+                      position: "absolute",
+                      inset: -15,
+                      border: "4px solid #003366",
+                      transform: item.reverse
+                        ? "translate(-15px, 15px)"
+                        : "translate(15px, 15px)",
+                      zIndex: 0,
+                    }}
+                  />
+                  <Box
+                    component="img"
+                    src={item.img}
+                    sx={{
+                      width: "100%",
+                      height: "350px",
+                      objectFit: "cover",
+                      position: "relative",
+                      zIndex: 1,
+                      boxShadow: "0 10px 30px rgba(0,0,0,0.1)",
+                    }}
+                  />
+                </Box>
+              </Grid>
+            </Grid>
+          ))}
+        </Container>
+      </Box>
+
       <Box
         sx={{
           bgcolor: "#003366",
@@ -422,7 +531,6 @@ export default function Fisica() {
         </Container>
       </Box>
 
-      {/* 5. CAMPO LABORAL*/}
       <Box
         sx={{
           position: "relative",
@@ -431,7 +539,6 @@ export default function Fisica() {
           overflow: "hidden",
         }}
       >
-        {/* Luces de fondo difuminadas para quitar el aspecto "plano y blanco" */}
         <Box
           sx={{
             position: "absolute",
@@ -460,35 +567,40 @@ export default function Fisica() {
         />
 
         <Container maxWidth="lg" sx={{ position: "relative", zIndex: 1 }}>
-          <Typography
-            data-aos="fade-down"
-            variant="h3"
-            fontWeight="900"
-            textAlign="center"
-            color="#003366"
-            mb={8}
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeUp}
           >
-            Campo{" "}
-            <span style={{ color: "#007BFF", position: "relative" }}>
-              Laboral
-              <Box
-                sx={{
-                  position: "absolute",
-                  bottom: 4,
-                  left: 0,
-                  width: "100%",
-                  height: "30%",
-                  bgcolor: "rgba(0, 123, 255, 0.2)",
-                  zIndex: -1,
-                  borderRadius: "10px",
-                }}
-              />
-            </span>
-          </Typography>
+            <Typography
+              variant="h3"
+              fontWeight="900"
+              textAlign="center"
+              color="#003366"
+              mb={8}
+            >
+              Campo{" "}
+              <span style={{ color: "#007BFF", position: "relative" }}>
+                Laboral
+                <Box
+                  sx={{
+                    position: "absolute",
+                    bottom: 4,
+                    left: 0,
+                    width: "100%",
+                    height: "30%",
+                    bgcolor: "rgba(0, 123, 255, 0.2)",
+                    zIndex: -1,
+                    borderRadius: "10px",
+                  }}
+                />
+              </span>
+            </Typography>
+          </motion.div>
 
           <Grid container spacing={4}>
-            {laborales.map((item, index) => {
-              // Lógica BENTO GRID: Destacamos la tarjeta 1 y la 5
+            {laboralesData.map((item, index) => {
               const isHighlighted = index === 0 || index === 4;
               const bgCard = isHighlighted
                 ? index === 0
@@ -505,8 +617,11 @@ export default function Fisica() {
                 <Grid
                   size={{ xs: 12, sm: 6, md: 4 }}
                   key={index}
-                  data-aos="fade-up"
-                  data-aos-delay={index * 100}
+                  component={motion.div}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1, duration: 0.5 }}
                 >
                   <Box
                     sx={{
@@ -549,7 +664,6 @@ export default function Fisica() {
                       },
                     }}
                   >
-                    {/* Marca de agua gigante de fondo (Rellena el espacio vacío) */}
                     <Box
                       className="watermark-icon"
                       sx={{
@@ -560,13 +674,12 @@ export default function Fisica() {
                         opacity: isHighlighted ? 0.08 : 0.03,
                         transition: "all 0.5s ease",
                         zIndex: 0,
-                        "& > svg": { fontSize: 160 }, // Tamaño gigante
+                        "& > svg": { fontSize: 160 },
                       }}
                     >
                       {item.icon}
                     </Box>
 
-                    {/* Contenido Real */}
                     <Box
                       className="laboral-icon"
                       sx={{
@@ -596,9 +709,12 @@ export default function Fisica() {
             })}
           </Grid>
 
-          {/* CTA FINAL INTEGRAD0 */}
           <Box
-            data-aos="zoom-in"
+            component={motion.div}
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
             sx={{
               mt: 12,
               p: { xs: 6, md: 8 },
@@ -614,7 +730,6 @@ export default function Fisica() {
               overflow: "hidden",
             }}
           >
-            {/* Capa oscurecedora para el CTA */}
             <Box
               sx={{
                 position: "absolute",
@@ -655,7 +770,6 @@ export default function Fisica() {
         </Container>
       </Box>
 
-      {/* MODAL PDF */}
       <Dialog
         open={openPdf}
         onClose={() => setOpenPdf(false)}

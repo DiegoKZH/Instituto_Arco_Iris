@@ -14,12 +14,10 @@ import {
   ListItemIcon,
   ListItemText,
   Chip,
-  Divider,
 } from "@mui/material";
 import AOS from "aos";
 import "aos/dist/aos.css";
 
-// Íconos
 import UploadFileIcon from "@mui/icons-material/UploadFile";
 import QuizIcon from "@mui/icons-material/Quiz";
 import FactCheckIcon from "@mui/icons-material/FactCheck";
@@ -33,7 +31,6 @@ import PublicIcon from "@mui/icons-material/Public";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import { Link } from "react-router-dom";
 
-// Componente para el panel de Pestañas (Tabs)
 function CustomTabPanel(props) {
   const { children, value, index, ...other } = props;
   return (
@@ -44,13 +41,14 @@ function CustomTabPanel(props) {
       aria-labelledby={`admision-tab-${index}`}
       {...other}
     >
-      {value === index && <Box sx={{ pt: 4 }}>{children}</Box>}
+      {value === index && <Box sx={{ pt: { xs: 2, md: 4 } }}>{children}</Box>}
     </div>
   );
 }
 
 export default function Admision() {
   const [tabValue, setTabValue] = useState(0);
+  const { periodo } = useGlobalData();
 
   useEffect(() => {
     AOS.init({
@@ -64,14 +62,13 @@ export default function Admision() {
   const handleTabChange = (event, newValue) => {
     setTabValue(newValue);
   };
-  const { periodo } = useGlobalData();
+
   return (
     <Box sx={{ bgcolor: "#F0F2F5", overflow: "hidden" }}>
-      {/* 1. PORTADA HERO */}
       <Box
         sx={{
           position: "relative",
-          height: { xs: "55vh", md: "65vh" },
+          height: { xs: "60vh", md: "65vh" },
           display: "flex",
           alignItems: "center",
           bgcolor: "#003366",
@@ -95,8 +92,8 @@ export default function Admision() {
               sx={{
                 color: "#007BFF",
                 fontWeight: 900,
-                letterSpacing: 3,
-                fontSize: "1.2rem",
+                letterSpacing: { xs: 2, md: 3 },
+                fontSize: "clamp(1rem, 2vw, 1.2rem)",
               }}
             >
               ADMisións {periodo}
@@ -107,7 +104,7 @@ export default function Admision() {
               sx={{
                 color: "#ffffff",
                 textTransform: "uppercase",
-                fontSize: { xs: "3rem", md: "5rem" },
+                fontSize: "clamp(2.5rem, 6vw, 5rem)",
                 lineHeight: 1.1,
                 mb: 2,
               }}
@@ -121,7 +118,8 @@ export default function Admision() {
                 maxWidth: "600px",
                 fontWeight: 400,
                 borderLeft: "4px solid #C59B27",
-                pl: 3,
+                pl: { xs: 2, md: 3 },
+                fontSize: "clamp(1rem, 2vw, 1.25rem)",
               }}
             >
               Descubre el camino para formarte como un educador de excelencia en
@@ -131,25 +129,32 @@ export default function Admision() {
         </Container>
       </Box>
 
-      {/* 2. PROCESO PASO A PASO */}
-      <Container maxWidth="lg" sx={{ py: 10 }}>
-        <Box data-aos="fade-up" sx={{ textAlign: "center", mb: 8 }}>
+      <Container maxWidth="lg" sx={{ py: { xs: 6, md: 10 } }}>
+        <Box
+          data-aos="fade-up"
+          sx={{ textAlign: "center", mb: { xs: 5, md: 8 } }}
+        >
           <Typography
             variant="h2"
             fontWeight="900"
             color="#003366"
             textTransform="uppercase"
+            sx={{ fontSize: "clamp(1.8rem, 5vw, 3.75rem)" }}
           >
             Nuestro Sencillo Proceso de Admisión
           </Typography>
-          <Typography variant="h6" color="#666" mt={2}>
+          <Typography
+            variant="h6"
+            color="#666"
+            mt={2}
+            sx={{ fontSize: "clamp(1rem, 2vw, 1.25rem)" }}
+          >
             Te guiamos paso a paso para que tu ingreso sea lo más fácil y
             transparente posible.
           </Typography>
         </Box>
 
-        <Grid container spacing={4} position="relative">
-          {/* Línea conectora de fondo (solo desktop) */}
+        <Grid container spacing={{ xs: 4, md: 4 }} position="relative">
           <Box
             sx={{
               display: { xs: "none", md: "block" },
@@ -172,7 +177,7 @@ export default function Admision() {
               icon: (
                 <img
                   src="https://cdn-icons-png.flaticon.com/128/3566/3566024.png"
-                  alt="Exoneración"
+                  alt="Requisitos"
                   style={{
                     width: 50,
                     height: 50,
@@ -189,7 +194,7 @@ export default function Admision() {
               icon: (
                 <img
                   src="https://cdn-icons-png.flaticon.com/128/10188/10188018.png"
-                  alt="Exoneración"
+                  alt="Evaluación"
                   style={{
                     width: 50,
                     height: 50,
@@ -206,7 +211,7 @@ export default function Admision() {
               icon: (
                 <img
                   src="https://cdn-icons-png.flaticon.com/128/16859/16859033.png"
-                  alt="Exoneración"
+                  alt="Matrícula"
                   style={{
                     width: 55,
                     height: 55,
@@ -226,7 +231,7 @@ export default function Admision() {
             >
               <Paper
                 sx={{
-                  p: 4,
+                  p: { xs: 3, md: 4 },
                   borderRadius: "24px",
                   textAlign: "center",
                   height: "100%",
@@ -261,10 +266,15 @@ export default function Admision() {
                   fontWeight="bold"
                   color="#003366"
                   mb={2}
+                  sx={{ fontSize: "clamp(1.25rem, 2.5vw, 1.5rem)" }}
                 >
                   {item.step}. {item.title}
                 </Typography>
-                <Typography variant="body1" color="#555">
+                <Typography
+                  variant="body1"
+                  color="#555"
+                  sx={{ fontSize: "clamp(0.95rem, 2vw, 1.1rem)" }}
+                >
                   {item.desc}
                 </Typography>
               </Paper>
@@ -273,27 +283,33 @@ export default function Admision() {
         </Grid>
       </Container>
 
-      {/* 3. MODALIDADES DE ADMISIÓN (TABS UX) */}
       <Box
         sx={{
           bgcolor: "#ffffff",
-          py: 10,
+          py: { xs: 6, md: 10 },
           borderTop: "1px solid #e0e0e0",
           borderBottom: "1px solid #e0e0e0",
         }}
       >
         <Container maxWidth="lg">
-          <Box data-aos="fade-right" sx={{ mb: 6 }}>
+          <Box data-aos="fade-right" sx={{ mb: { xs: 4, md: 6 } }}>
             <Typography
               variant="h2"
               fontWeight="900"
               color="#003366"
               textTransform="uppercase"
               textAlign="center"
+              sx={{ fontSize: "clamp(1.8rem, 5vw, 3.75rem)" }}
             >
               Modalidades Periodo {periodo}
             </Typography>
-            <Typography variant="h6" color="#666" mt={1} textAlign="center">
+            <Typography
+              variant="h6"
+              color="#666"
+              mt={1}
+              textAlign="center"
+              sx={{ fontSize: "clamp(1rem, 2vw, 1.25rem)" }}
+            >
               Elige la modalidad que mejor se adapte a tu perfil y trayectoria
               académica.
             </Typography>
@@ -305,26 +321,44 @@ export default function Admision() {
               borderRadius: "24px",
               border: "1px solid #eee",
               overflow: "hidden",
+              display: { md: "flex" },
+              minHeight: { md: "500px" },
             }}
           >
             <Tabs
               value={tabValue}
               onChange={handleTabChange}
-              variant="fullWidth"
+              orientation="vertical"
+              variant="scrollable"
+              scrollButtons="auto"
               sx={{
+                minWidth: { xs: "100%", md: "320px" },
                 bgcolor: "#f8f9fa",
-                borderBottom: "1px solid #eee",
+                borderRight: { md: "1px solid #eee" },
+                borderBottom: { xs: "1px solid #eee", md: "none" },
                 "& .MuiTab-root": {
-                  py: 3,
-                  fontSize: "1.1rem",
+                  py: { xs: 2.5, md: 4 },
+                  px: { xs: 3, md: 4 },
+                  fontSize: "clamp(1rem, 2vw, 1.1rem)",
                   fontWeight: "bold",
-                  color: "#666",
+                  color: "#0e3a8b",
+                  justifyContent: "flex-start",
+                  textAlign: "left",
+                  minHeight: { xs: "60px", md: "80px" },
+                  opacity: 1,
                 },
                 "& .Mui-selected": {
                   color: "#003366 !important",
                   bgcolor: "#fff",
                 },
-                "& .MuiTabs-indicator": { height: 4, bgcolor: "#274fc5e3" },
+                "& .MuiTabs-indicator": {
+                  left: 0,
+                  width: { xs: "100%", md: "6px" },
+                  height: { xs: "4px", md: "100%" },
+                  top: { xs: "auto", md: 0 },
+                  bottom: 0,
+                  bgcolor: "#1d4e96",
+                },
               }}
             >
               <Tab
@@ -361,17 +395,16 @@ export default function Admision() {
               />
             </Tabs>
 
-            <Box sx={{ p: { xs: 3, md: 6 } }}>
-              {/* Contenido Exoneración */}
+            <Box sx={{ flexGrow: 1, p: { xs: 3, md: 6 } }}>
               <CustomTabPanel value={tabValue} index={0}>
-                <Grid container spacing={4}>
+                <Grid container spacing={{ xs: 4, md: 6 }}>
                   <Grid size={{ xs: 12, md: 7 }} data-aos="fade-in">
                     <Typography
                       variant="body1"
                       paragraph
-                      fontSize="1.1rem"
                       color="#444"
                       textAlign="justify"
+                      sx={{ fontSize: "clamp(0.95rem, 2vw, 1.1rem)" }}
                     >
                       Esta modalidad se realiza de manera anticipada a la
                       admisión ordinaria. Si no alcanzas vacante por esta vía,
@@ -380,7 +413,7 @@ export default function Admision() {
                     <Box
                       sx={{
                         bgcolor: "rgba(117, 176, 242, 0.1)",
-                        p: 3,
+                        p: { xs: 2.5, md: 3 },
                         borderRadius: "16px",
                         mb: 4,
                         borderLeft: "4px solid #007bff",
@@ -390,11 +423,18 @@ export default function Admision() {
                         variant="subtitle1"
                         fontWeight="bold"
                         color="#003366"
+                        sx={{ fontSize: "clamp(0.95rem, 2vw, 1rem)" }}
                       >
                         Requisitos clave: Haber concluido la educación básica y
                         contar con DNI.
                       </Typography>
-                      <Typography variant="body2" color="#292929" mt={1}>
+                      <Typography
+                        variant="body2"
+                        color="#292929"
+                        textAlign="justify"
+                        mt={1}
+                        sx={{ fontSize: "clamp(0.85rem, 1.5vw, 0.9rem)" }}
+                      >
                         Se reserva el 20% de las vacantes por programa de
                         estudios para esta modalidad. Los postulantes por
                         exoneración{" "}
@@ -411,6 +451,7 @@ export default function Admision() {
                       fontWeight="bold"
                       color="#003366"
                       mb={2}
+                      sx={{ fontSize: "clamp(1.1rem, 2.5vw, 1.25rem)" }}
                     >
                       ¿Quiénes pueden postular?
                     </Typography>
@@ -427,15 +468,25 @@ export default function Admision() {
                           <ListItemIcon sx={{ minWidth: 36 }}>
                             <CheckCircleIcon color="primary" fontSize="small" />
                           </ListItemIcon>
-                          <ListItemText primary={text} />
+                          <ListItemText
+                            primary={text}
+                            primaryTypographyProps={{
+                              sx: {
+                                fontSize: "clamp(0.85rem, 1.5vw, 0.95rem)",
+                              },
+                            }}
+                          />
                         </ListItem>
                       ))}
                     </List>
                     <Typography
                       variant="subtitle2"
                       color="#eb4040"
+                      fontStyle="italic"
                       display="block"
+                      textAlign="justify"
                       mt={2}
+                      sx={{ fontSize: "clamp(0.8rem, 1.5vw, 0.875rem)" }}
                     >
                       *De no cubrirse el 20% asignado, el instituto dispone de
                       dichas vacantes para la modalidad ordinaria.
@@ -444,16 +495,15 @@ export default function Admision() {
                 </Grid>
               </CustomTabPanel>
 
-              {/* Contenido Ordinaria */}
               <CustomTabPanel value={tabValue} index={1}>
-                <Grid container spacing={4}>
+                <Grid container spacing={{ xs: 4, md: 6 }}>
                   <Grid size={{ xs: 12, md: 6 }} data-aos="fade-in">
                     <Typography
                       variant="body1"
                       paragraph
-                      fontSize="1.1rem"
                       color="#444"
                       textAlign="justify"
+                      sx={{ fontSize: "clamp(0.95rem, 2vw, 1.1rem)" }}
                     >
                       Participan en esta modalidad todos los estudiantes que han
                       culminado la Educación Básica en cualquiera de sus
@@ -462,9 +512,12 @@ export default function Admision() {
                     </Typography>
                     <Typography
                       variant="body2"
-                      color="#666"
+                      color="#eb4040"
                       fontStyle="italic"
-                      mb={4}
+                      textAlign="justify"
+                      paddingLeft="6px"
+                      mb={3}
+                      sx={{ fontSize: "clamp(0.85rem, 1.5vw, 0.9rem)" }}
                     >
                       *Si realizaste estudios secundarios en el extranjero,
                       deberás convalidar o revalidar tus estudios previamente
@@ -473,7 +526,7 @@ export default function Admision() {
                     <Box
                       sx={{
                         bgcolor: "rgba(0, 123, 255, 0.05)",
-                        p: 3,
+                        p: { xs: 2.5, md: 3 },
                         borderRadius: "16px",
                         borderLeft: "4px solid #007BFF",
                       }}
@@ -482,6 +535,8 @@ export default function Admision() {
                         variant="body2"
                         color="#003366"
                         fontWeight="bold"
+                        textAlign="justify"
+                        sx={{ fontSize: "clamp(0.85rem, 1.5vw, 0.95rem)" }}
                       >
                         Se reserva el 5% de las vacantes por programa de
                         estudios en la modalidad Ordinaria para postulantes con
@@ -496,6 +551,7 @@ export default function Admision() {
                       fontWeight="bold"
                       color="#003366"
                       mb={3}
+                      sx={{ fontSize: "clamp(1.1rem, 2.5vw, 1.25rem)" }}
                     >
                       Fases del Proceso Ordinario:
                     </Typography>
@@ -505,7 +561,7 @@ export default function Admision() {
                       <Paper
                         elevation={0}
                         sx={{
-                          p: 3,
+                          p: { xs: 2.5, md: 3 },
                           bgcolor: "#f8f9fa",
                           border: "1px solid #e0e0e0",
                           borderRadius: "16px",
@@ -516,10 +572,15 @@ export default function Admision() {
                           fontWeight="bold"
                           color="#003366"
                           mb={1}
+                          sx={{ fontSize: "clamp(0.95rem, 2vw, 1rem)" }}
                         >
                           1. Prueba Escrita de Competencias
                         </Typography>
-                        <Typography variant="body2" color="#555">
+                        <Typography
+                          variant="body2"
+                          color="#555"
+                          sx={{ fontSize: "clamp(0.85rem, 1.5vw, 0.9rem)" }}
+                        >
                           Evalúa competencias fundamentales para la Formación
                           Inicial Docente.
                         </Typography>
@@ -527,7 +588,7 @@ export default function Admision() {
                       <Paper
                         elevation={0}
                         sx={{
-                          p: 3,
+                          p: { xs: 2.5, md: 3 },
                           bgcolor: "#f8f9fa",
                           border: "1px solid #e0e0e0",
                           borderRadius: "16px",
@@ -538,10 +599,15 @@ export default function Admision() {
                           fontWeight="bold"
                           color="#003366"
                           mb={1}
+                          sx={{ fontSize: "clamp(0.95rem, 2vw, 1rem)" }}
                         >
                           2. Evaluación Diagnóstica Vocacional
                         </Typography>
-                        <Typography variant="body2" color="#555">
+                        <Typography
+                          variant="body2"
+                          color="#555"
+                          sx={{ fontSize: "clamp(0.85rem, 1.5vw, 0.9rem)" }}
+                        >
                           A través de entrevista y dinámica grupal, se evalúan
                           capacidades de disposición y buen desempeño para el
                           ejercicio docente.
@@ -556,24 +622,32 @@ export default function Admision() {
         </Container>
       </Box>
 
-      {/* 4. DOCUMENTOS NECESARIOS (GRID DE ICONOS) */}
-      <Container maxWidth="lg" sx={{ py: 10 }}>
-        <Box data-aos="zoom-in" sx={{ textAlign: "center", mb: 8 }}>
+      <Container maxWidth="lg" sx={{ py: { xs: 6, md: 10 } }}>
+        <Box
+          data-aos="zoom-in"
+          sx={{ textAlign: "center", mb: { xs: 6, md: 8 } }}
+        >
           <Typography
             variant="h2"
             fontWeight="900"
             color="#003366"
             textTransform="uppercase"
+            sx={{ fontSize: "clamp(1.8rem, 5vw, 3.75rem)" }}
           >
             Documentos Necesarios para tu Postulación
           </Typography>
-          <Typography variant="h6" color="#666" mt={2}>
+          <Typography
+            variant="h6"
+            color="#666"
+            mt={2}
+            sx={{ fontSize: "clamp(1rem, 2vw, 1.25rem)" }}
+          >
             Asegúrate de tener la siguiente documentación completa y
             digitalizada para tu proceso de admisión.
           </Typography>
         </Box>
 
-        <Grid container spacing={3}>
+        <Grid container spacing={{ xs: 3, md: 4 }}>
           {[
             {
               icon: (
@@ -686,11 +760,11 @@ export default function Admision() {
             >
               <Paper
                 sx={{
-                  p: 4,
+                  p: { xs: 3, md: 4 },
                   borderRadius: "16px",
                   height: "100%",
                   display: "flex",
-                  gap: 2,
+                  gap: { xs: 1.5, md: 2 },
                   border: "1px solid #eaeaea",
                   "&:hover": {
                     borderColor: "#007BFF",
@@ -698,7 +772,12 @@ export default function Admision() {
                   },
                 }}
               >
-                <Box sx={{ color: "#C59B27", "& svg": { fontSize: 40 } }}>
+                <Box
+                  sx={{
+                    color: "#C59B27",
+                    "& svg": { fontSize: { xs: 30, md: 40 } },
+                  }}
+                >
                   {doc.icon}
                 </Box>
                 <Box>
@@ -708,10 +787,15 @@ export default function Admision() {
                     color="#003366"
                     mb={1}
                     lineHeight={1.2}
+                    sx={{ fontSize: "clamp(1.1rem, 2.5vw, 1.25rem)" }}
                   >
                     {doc.title}
                   </Typography>
-                  <Typography variant="body2" color="#666">
+                  <Typography
+                    variant="body2"
+                    color="#666"
+                    sx={{ fontSize: "clamp(0.85rem, 1.5vw, 0.95rem)" }}
+                  >
                     {doc.desc}
                   </Typography>
                 </Box>
@@ -721,11 +805,14 @@ export default function Admision() {
         </Grid>
       </Container>
 
-      {/* 5. DETALLES DE LA EVALUACIÓN (FONDO OSCURO ELEGANTE) */}
       <Box
-        sx={{ bgcolor: "#003366", py: 12, color: "#fff", position: "relative" }}
+        sx={{
+          bgcolor: "#003366",
+          py: { xs: 8, md: 12 },
+          color: "#fff",
+          position: "relative",
+        }}
       >
-        {/* Decoración CSS */}
         <Box
           sx={{
             position: "absolute",
@@ -736,26 +823,36 @@ export default function Admision() {
             bgcolor: "#002244",
             clipPath: "polygon(100% 0, 100% 100%, 0 100%, 30% 0)",
             zIndex: 0,
+            display: { xs: "none", md: "block" },
           }}
         />
 
         <Container maxWidth="lg" sx={{ position: "relative", zIndex: 1 }}>
-          <Box data-aos="fade-right" sx={{ mb: 8 }}>
-            <Typography variant="h2" fontWeight="900" textTransform="uppercase">
+          <Box data-aos="fade-right" sx={{ mb: { xs: 6, md: 8 } }}>
+            <Typography
+              variant="h2"
+              fontWeight="900"
+              textTransform="uppercase"
+              sx={{ fontSize: "clamp(1.8rem, 5vw, 3.75rem)" }}
+            >
               Detalles de la Evaluación de Admisión
             </Typography>
-            <Typography variant="h6" color="#a0aec0" mt={1}>
+            <Typography
+              variant="h6"
+              color="#a0aec0"
+              mt={1}
+              sx={{ fontSize: "clamp(1rem, 2vw, 1.25rem)" }}
+            >
               Nuestra evaluación busca identificar tu potencial y vocación
               docente.
             </Typography>
           </Box>
 
-          <Grid container spacing={6}>
-            {/* FASE 1 */}
+          <Grid container spacing={{ xs: 4, md: 6 }}>
             <Grid size={{ xs: 12, md: 6 }} data-aos="fade-up">
               <Paper
                 sx={{
-                  p: 5,
+                  p: { xs: 3, md: 5 },
                   borderRadius: "24px",
                   bgcolor: "rgba(255,255,255,0.05)",
                   border: "1px solid rgba(255,255,255,0.1)",
@@ -768,7 +865,7 @@ export default function Admision() {
                 >
                   <img
                     src="https://cdn-icons-png.flaticon.com/128/3626/3626788.png"
-                    alt="Exoneración"
+                    alt="Fase 1"
                     style={{
                       width: 40,
                       height: 40,
@@ -776,7 +873,12 @@ export default function Admision() {
                         saturate(2000%) hue-rotate(170deg) brightness(155%) contrast(95%)`,
                     }}
                   />
-                  <Typography variant="h4" fontWeight="bold" color="#fff">
+                  <Typography
+                    variant="h4"
+                    fontWeight="bold"
+                    color="#fff"
+                    sx={{ fontSize: "clamp(1.5rem, 3.5vw, 2.125rem)" }}
+                  >
                     Primera Fase
                   </Typography>
                 </Box>
@@ -785,10 +887,16 @@ export default function Admision() {
                   color="#61acfc"
                   fontWeight="bold"
                   mb={2}
+                  sx={{ fontSize: "clamp(1rem, 2.5vw, 1.1rem)" }}
                 >
                   Prueba Escrita de Competencias
                 </Typography>
-                <Typography variant="body2" color="#e2e8f0" mb={3}>
+                <Typography
+                  variant="body2"
+                  color="#e2e8f0"
+                  mb={3}
+                  sx={{ fontSize: "clamp(0.85rem, 1.5vw, 0.95rem)" }}
+                >
                   <strong>Duración:</strong> 2 horas (09:00 a.m. - 11:00 a.m.)
                   <br />
                   Evaluación de aptitudes en áreas clave con un total de 50
@@ -806,7 +914,7 @@ export default function Admision() {
                       primary="Comunicación en su Lengua Materna: 20 preguntas (20 ptos)"
                       primaryTypographyProps={{
                         color: "#e2e8f0",
-                        fontSize: "0.9rem",
+                        fontSize: "clamp(0.85rem, 1.5vw, 0.9rem)",
                       }}
                     />
                   </ListItem>
@@ -820,7 +928,7 @@ export default function Admision() {
                       primary="Resolución de Problemas Matemáticos: 20 preguntas (20 ptos)"
                       primaryTypographyProps={{
                         color: "#e2e8f0",
-                        fontSize: "0.9rem",
+                        fontSize: "clamp(0.85rem, 1.5vw, 0.9rem)",
                       }}
                     />
                   </ListItem>
@@ -834,7 +942,7 @@ export default function Admision() {
                       primary="Convivencia y Participación Democrática: 10 preguntas (10 ptos)"
                       primaryTypographyProps={{
                         color: "#e2e8f0",
-                        fontSize: "0.9rem",
+                        fontSize: "clamp(0.85rem, 1.5vw, 0.9rem)",
                       }}
                     />
                   </ListItem>
@@ -842,7 +950,6 @@ export default function Admision() {
               </Paper>
             </Grid>
 
-            {/* FASE 2 */}
             <Grid
               size={{ xs: 12, md: 6 }}
               data-aos="fade-up"
@@ -850,7 +957,7 @@ export default function Admision() {
             >
               <Paper
                 sx={{
-                  p: 5,
+                  p: { xs: 3, md: 5 },
                   borderRadius: "24px",
                   bgcolor: "rgba(255,255,255,0.05)",
                   border: "1px solid rgba(255,255,255,0.1)",
@@ -863,7 +970,7 @@ export default function Admision() {
                 >
                   <img
                     src="https://cdn-icons-png.flaticon.com/128/476/476698.png"
-                    alt="Exoneración"
+                    alt="Fase 2"
                     style={{
                       width: 45,
                       height: 45,
@@ -871,7 +978,12 @@ export default function Admision() {
                         saturate(2000%) hue-rotate(170deg) brightness(155%) contrast(95%)`,
                     }}
                   />
-                  <Typography variant="h4" fontWeight="bold" color="#fff">
+                  <Typography
+                    variant="h4"
+                    fontWeight="bold"
+                    color="#fff"
+                    sx={{ fontSize: "clamp(1.5rem, 3.5vw, 2.125rem)" }}
+                  >
                     Segunda Fase
                   </Typography>
                 </Box>
@@ -880,10 +992,16 @@ export default function Admision() {
                   color="#61acfc"
                   fontWeight="bold"
                   mb={2}
+                  sx={{ fontSize: "clamp(1rem, 2.5vw, 1.1rem)" }}
                 >
                   Evaluación Diagnóstica Vocacional
                 </Typography>
-                <Typography variant="body2" color="#e2e8f0" mb={3}>
+                <Typography
+                  variant="body2"
+                  color="#e2e8f0"
+                  mb={3}
+                  sx={{ fontSize: "clamp(0.85rem, 1.5vw, 0.95rem)" }}
+                >
                   <strong>Modalidad:</strong> Entrevista y Dinámica Grupal
                   <br />
                   <strong>Duración:</strong> 3 minutos por postulante (a partir
@@ -903,7 +1021,7 @@ export default function Admision() {
                       primary="Pensamiento Crítico y Creativo: 20 puntos"
                       primaryTypographyProps={{
                         color: "#e2e8f0",
-                        fontSize: "0.9rem",
+                        fontSize: "clamp(0.85rem, 1.5vw, 0.9rem)",
                       }}
                     />
                   </ListItem>
@@ -917,7 +1035,7 @@ export default function Admision() {
                       primary="Trabajo Colaborativo: 20 puntos"
                       primaryTypographyProps={{
                         color: "#e2e8f0",
-                        fontSize: "0.9rem",
+                        fontSize: "clamp(0.85rem, 1.5vw, 0.9rem)",
                       }}
                     />
                   </ListItem>
@@ -931,7 +1049,7 @@ export default function Admision() {
                       primary="TICs: 10 puntos"
                       primaryTypographyProps={{
                         color: "#e2e8f0",
-                        fontSize: "0.9rem",
+                        fontSize: "clamp(0.85rem, 1.5vw, 0.9rem)",
                       }}
                     />
                   </ListItem>
@@ -941,6 +1059,7 @@ export default function Admision() {
                   color="rgba(255,255,255,0.5)"
                   display="block"
                   mt={2}
+                  sx={{ fontSize: "clamp(0.7rem, 1.5vw, 0.75rem)" }}
                 >
                   *Contendrá pruebas de ejecución y prueba oral, elaboradas por
                   docentes de especialidad.
@@ -949,20 +1068,27 @@ export default function Admision() {
             </Grid>
           </Grid>
 
-          <Box mt={6} textAlign="center" data-aos="zoom-in">
+          <Box mt={{ xs: 5, md: 6 }} textAlign="center" data-aos="zoom-in">
             <Chip
               label="Nota mínima de aprobación: 12"
               color="primary"
               sx={{
-                fontSize: "1.1rem",
-                py: 2.5,
-                px: 2,
+                fontSize: "clamp(0.95rem, 2vw, 1.1rem)",
+                py: { xs: 2, md: 2.5 },
+                px: { xs: 1, md: 2 },
                 fontWeight: "bold",
                 bgcolor: "#c59b27",
                 color: "#003366",
+                height: "auto",
+                "& .MuiChip-label": { whiteSpace: "normal" },
               }}
             />
-            <Typography variant="body2" color="#a0aec0" mt={2}>
+            <Typography
+              variant="body2"
+              color="#a0aec0"
+              mt={2}
+              sx={{ fontSize: "clamp(0.85rem, 1.5vw, 0.95rem)" }}
+            >
               Los resultados serán publicados en la página web del IESPP “Arco
               Iris” y el SIA del MINEDU.
             </Typography>
@@ -970,29 +1096,41 @@ export default function Admision() {
         </Container>
       </Box>
 
-      {/* 6. INVERSIÓN Y COSTOS (PRICING CARDS) */}
-      <Container maxWidth="lg" sx={{ py: 12 }}>
-        <Box data-aos="fade-up" sx={{ textAlign: "center", mb: 8 }}>
+      <Container maxWidth="lg" sx={{ py: { xs: 8, md: 12 } }}>
+        <Box
+          data-aos="fade-up"
+          sx={{ textAlign: "center", mb: { xs: 6, md: 8 } }}
+        >
           <Typography
             variant="h2"
             fontWeight="900"
             color="#003366"
             textTransform="uppercase"
+            sx={{ fontSize: "clamp(1.8rem, 5vw, 3.75rem)" }}
           >
             Inversión y Costos
           </Typography>
-          <Typography variant="h6" color="#666" mt={2}>
+          <Typography
+            variant="h6"
+            color="#666"
+            mt={2}
+            sx={{ fontSize: "clamp(1rem, 2vw, 1.25rem)" }}
+          >
             Conoce las tarifas de inscripción y matrícula para el ciclo{" "}
             {periodo}.
           </Typography>
         </Box>
 
-        {/* Fila 1: Procesos de Admisión */}
-        <Grid container spacing={4} mb={6} justifyContent="center">
+        <Grid
+          container
+          spacing={{ xs: 3, md: 4 }}
+          mb={{ xs: 4, md: 6 }}
+          justifyContent="center"
+        >
           <Grid size={{ xs: 12, md: 4 }} data-aos="fade-up" data-aos-delay="0">
             <Paper
               sx={{
-                p: 4,
+                p: { xs: 3, md: 4 },
                 borderRadius: "24px",
                 border: "1px solid #eee",
                 textAlign: "center",
@@ -1006,13 +1144,26 @@ export default function Admision() {
                 color="#666"
                 fontWeight="bold"
                 textTransform="uppercase"
+                sx={{ fontSize: "clamp(0.95rem, 2vw, 1rem)" }}
               >
                 Examen de Admisión
               </Typography>
-              <Typography variant="h3" fontWeight="900" color="#003366" my={2}>
+              <Typography
+                variant="h3"
+                fontWeight="900"
+                color="#003366"
+                my={2}
+                sx={{ fontSize: "clamp(2rem, 4vw, 3rem)" }}
+              >
                 S/ 120.00
               </Typography>
-              <Typography variant="body2" color="#555" mb={3} flexGrow={1}>
+              <Typography
+                variant="body2"
+                color="#555"
+                mb={3}
+                flexGrow={1}
+                sx={{ fontSize: "clamp(0.85rem, 1.5vw, 0.95rem)" }}
+              >
                 Costo único por el derecho a rendir el examen de admisión.
               </Typography>
             </Paper>
@@ -1024,7 +1175,7 @@ export default function Admision() {
           >
             <Paper
               sx={{
-                p: 4,
+                p: { xs: 3, md: 4 },
                 borderRadius: "24px",
                 border: "2px solid #007BFF",
                 textAlign: "center",
@@ -1032,6 +1183,7 @@ export default function Admision() {
                 display: "flex",
                 flexDirection: "column",
                 position: "relative",
+                mt: { xs: 2, md: 0 },
               }}
             >
               <Chip
@@ -1052,18 +1204,35 @@ export default function Admision() {
                 color="#007BFF"
                 fontWeight="bold"
                 textTransform="uppercase"
+                sx={{ fontSize: "clamp(0.95rem, 2vw, 1rem)" }}
               >
                 Paquetes PRE-ARCO IRIS
               </Typography>
               <Box my={2}>
-                <Typography variant="h5" fontWeight="900" color="#003366">
+                <Typography
+                  variant="h5"
+                  fontWeight="900"
+                  color="#003366"
+                  sx={{ fontSize: "clamp(1.25rem, 2.5vw, 1.5rem)" }}
+                >
                   Enero: S/ 270.00
                 </Typography>
-                <Typography variant="h5" fontWeight="900" color="#003366">
+                <Typography
+                  variant="h5"
+                  fontWeight="900"
+                  color="#003366"
+                  sx={{ fontSize: "clamp(1.25rem, 2.5vw, 1.5rem)" }}
+                >
                   Ene y Feb: S/ 370.00
                 </Typography>
               </Box>
-              <Typography variant="body2" color="#555" mb={3} flexGrow={1}>
+              <Typography
+                variant="body2"
+                color="#555"
+                mb={3}
+                flexGrow={1}
+                sx={{ fontSize: "clamp(0.85rem, 1.5vw, 0.95rem)" }}
+              >
                 Incluyen clases de preparación y el derecho al examen de
                 admisión.
               </Typography>
@@ -1076,7 +1245,7 @@ export default function Admision() {
           >
             <Paper
               sx={{
-                p: 4,
+                p: { xs: 3, md: 4 },
                 borderRadius: "24px",
                 border: "1px solid #eee",
                 textAlign: "center",
@@ -1090,13 +1259,26 @@ export default function Admision() {
                 color="#666"
                 fontWeight="bold"
                 textTransform="uppercase"
+                sx={{ fontSize: "clamp(0.95rem, 2vw, 1rem)" }}
               >
                 Examen Simulacro
               </Typography>
-              <Typography variant="h3" fontWeight="900" color="#003366" my={2}>
+              <Typography
+                variant="h3"
+                fontWeight="900"
+                color="#003366"
+                my={2}
+                sx={{ fontSize: "clamp(2rem, 4vw, 3rem)" }}
+              >
                 S/ 5.00
               </Typography>
-              <Typography variant="body2" color="#555" mb={3} flexGrow={1}>
+              <Typography
+                variant="body2"
+                color="#555"
+                mb={3}
+                flexGrow={1}
+                sx={{ fontSize: "clamp(0.85rem, 1.5vw, 0.95rem)" }}
+              >
                 Costo por participar en el examen simulacro (miércoles 25 de
                 marzo).
               </Typography>
@@ -1104,7 +1286,6 @@ export default function Admision() {
           </Grid>
         </Grid>
 
-        {/* Fila 2: Mensualidades y Matrícula por Carrera */}
         <Box data-aos="zoom-in">
           <Paper
             sx={{
@@ -1117,12 +1298,16 @@ export default function Admision() {
             <Box
               sx={{
                 bgcolor: "#003366",
-                py: 2,
+                py: { xs: 2, md: 2.5 },
                 textAlign: "center",
                 color: "#fff",
               }}
             >
-              <Typography variant="h5" fontWeight="bold">
+              <Typography
+                variant="h5"
+                fontWeight="bold"
+                sx={{ fontSize: "clamp(1.25rem, 2.5vw, 1.5rem)", px: 2 }}
+              >
                 Costos de Matrícula y Cuotas Mensuales
               </Typography>
             </Box>
@@ -1140,7 +1325,7 @@ export default function Admision() {
                 >
                   <img
                     src="https://cdn-icons-png.flaticon.com/512/7456/7456976.png"
-                    alt="Exoneración"
+                    alt="Inicial"
                     style={{
                       width: 45,
                       height: 45,
@@ -1148,7 +1333,12 @@ export default function Admision() {
                         saturate(2000%) hue-rotate(170deg) brightness(185%) contrast(95%)`,
                     }}
                   />
-                  <Typography variant="h5" fontWeight="bold" color="#003366">
+                  <Typography
+                    variant="h5"
+                    fontWeight="bold"
+                    color="#003366"
+                    sx={{ fontSize: "clamp(1.25rem, 2.5vw, 1.5rem)" }}
+                  >
                     Educación Inicial
                   </Typography>
                 </Box>
@@ -1161,18 +1351,36 @@ export default function Admision() {
                     borderBottom: "1px dashed #ccc",
                   }}
                 >
-                  <Typography variant="body1" color="#555">
+                  <Typography
+                    variant="body1"
+                    color="#555"
+                    sx={{ fontSize: "clamp(0.95rem, 2vw, 1.1rem)" }}
+                  >
                     Matrícula
                   </Typography>
-                  <Typography variant="h6" fontWeight="bold" color="#333">
+                  <Typography
+                    variant="h6"
+                    fontWeight="bold"
+                    color="#333"
+                    sx={{ fontSize: "clamp(1.1rem, 2vw, 1.25rem)" }}
+                  >
                     S/ 240.00
                   </Typography>
                 </Box>
                 <Box sx={{ display: "flex", justifyContent: "space-between" }}>
-                  <Typography variant="body1" color="#555">
+                  <Typography
+                    variant="body1"
+                    color="#555"
+                    sx={{ fontSize: "clamp(0.95rem, 2vw, 1.1rem)" }}
+                  >
                     Cuotas Mensuales
                   </Typography>
-                  <Typography variant="h6" fontWeight="bold" color="#333">
+                  <Typography
+                    variant="h6"
+                    fontWeight="bold"
+                    color="#333"
+                    sx={{ fontSize: "clamp(1.1rem, 2vw, 1.25rem)" }}
+                  >
                     S/ 280.00
                   </Typography>
                 </Box>
@@ -1194,7 +1402,12 @@ export default function Admision() {
                         saturate(2000%) hue-rotate(170deg) brightness(145%) contrast(65%)`,
                     }}
                   />
-                  <Typography variant="h5" fontWeight="bold" color="#003366">
+                  <Typography
+                    variant="h5"
+                    fontWeight="bold"
+                    color="#003366"
+                    sx={{ fontSize: "clamp(1.25rem, 2.5vw, 1.5rem)" }}
+                  >
                     Educación Física
                   </Typography>
                 </Box>
@@ -1207,25 +1420,54 @@ export default function Admision() {
                     borderBottom: "1px dashed #ccc",
                   }}
                 >
-                  <Typography variant="body1" color="#555">
+                  <Typography
+                    variant="body1"
+                    color="#555"
+                    sx={{ fontSize: "clamp(0.95rem, 2vw, 1.1rem)" }}
+                  >
                     Matrícula
                   </Typography>
-                  <Typography variant="h6" fontWeight="bold" color="#333">
+                  <Typography
+                    variant="h6"
+                    fontWeight="bold"
+                    color="#333"
+                    sx={{ fontSize: "clamp(1.1rem, 2vw, 1.25rem)" }}
+                  >
                     S/ 280.00
                   </Typography>
                 </Box>
                 <Box sx={{ display: "flex", justifyContent: "space-between" }}>
-                  <Typography variant="body1" color="#555">
+                  <Typography
+                    variant="body1"
+                    color="#555"
+                    sx={{ fontSize: "clamp(0.95rem, 2vw, 1.1rem)" }}
+                  >
                     Cuotas Mensuales
                   </Typography>
-                  <Typography variant="h6" fontWeight="bold" color="#333">
+                  <Typography
+                    variant="h6"
+                    fontWeight="bold"
+                    color="#333"
+                    sx={{ fontSize: "clamp(1.1rem, 2vw, 1.25rem)" }}
+                  >
                     S/ 320.00
                   </Typography>
                 </Box>
               </Grid>
             </Grid>
-            <Box sx={{ bgcolor: "#F0F2F5", py: 1.5, textAlign: "center" }}>
-              <Typography variant="subtitle2" color="#003366" fontWeight="bold">
+            <Box
+              sx={{
+                bgcolor: "#F0F2F5",
+                py: { xs: 2, md: 1.5 },
+                textAlign: "center",
+              }}
+            >
+              <Typography
+                variant="subtitle2"
+                color="#003366"
+                fontWeight="bold"
+                sx={{ fontSize: "clamp(0.8rem, 1.5vw, 0.95rem)" }}
+              >
                 INICIO DE CLASES: LUNES 06 DE ABRIL
               </Typography>
             </Box>
@@ -1233,26 +1475,36 @@ export default function Admision() {
         </Box>
       </Container>
 
-      {/* 7. OFERTA FORMATIVA (PROGRAMAS) */}
-      <Box sx={{ bgcolor: "#ffffff", py: 12, borderTop: "1px solid #e0e0e0" }}>
+      <Box
+        sx={{
+          bgcolor: "#ffffff",
+          py: { xs: 8, md: 12 },
+          borderTop: "1px solid #e0e0e0",
+        }}
+      >
         <Container maxWidth="lg">
-          <Box data-aos="fade-right" sx={{ mb: 8 }}>
+          <Box data-aos="fade-right" sx={{ mb: { xs: 6, md: 8 } }}>
             <Typography
               variant="h2"
               fontWeight="900"
               color="#003366"
               textTransform="uppercase"
+              sx={{ fontSize: "clamp(1.8rem, 5vw, 3.75rem)" }}
             >
               Nuestra Oferta Formativa
             </Typography>
-            <Typography variant="h6" color="#666" mt={1}>
+            <Typography
+              variant="h6"
+              color="#666"
+              mt={1}
+              sx={{ fontSize: "clamp(1rem, 2vw, 1.25rem)" }}
+            >
               Formamos profesionales de la educación con excelencia y visión
               humanista.
             </Typography>
           </Box>
 
-          <Grid container spacing={6}>
-            {/* INICIAL */}
+          <Grid container spacing={{ xs: 4, md: 6 }}>
             <Grid size={{ xs: 12, md: 6 }} data-aos="fade-up">
               <Paper
                 sx={{
@@ -1271,7 +1523,7 @@ export default function Admision() {
               >
                 <Box
                   sx={{
-                    height: 200,
+                    height: { xs: 180, md: 200 },
                     bgcolor: "#f0f0f0",
                     backgroundImage:
                       "url('https://plus.unsplash.com/premium_photo-1663047589329-e340c9234b61?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nzd8fGRvY2VudGUlMjBlZHVjYWNpb24lMjBpbmljaWFsfGVufDB8fDB8fHww')",
@@ -1281,7 +1533,7 @@ export default function Admision() {
                 />
                 <Box
                   sx={{
-                    p: 4,
+                    p: { xs: 3, md: 4 },
                     flexGrow: 1,
                     display: "flex",
                     flexDirection: "column",
@@ -1292,6 +1544,7 @@ export default function Admision() {
                     fontWeight="900"
                     color="#003366"
                     mb={2}
+                    sx={{ fontSize: "clamp(1.5rem, 3.5vw, 2.125rem)" }}
                   >
                     Educación Inicial
                   </Typography>
@@ -1300,16 +1553,26 @@ export default function Admision() {
                     color="#555"
                     mb={3}
                     textAlign="justify"
+                    sx={{ fontSize: "clamp(0.95rem, 2vw, 1.1rem)" }}
                   >
                     Formamos profesionales capacitados para enseñar y cuidar a
                     niños durante su primera infancia (0-6 años), con un enfoque
                     integral en su desarrollo motriz e intelectual.
                   </Typography>
-                  <Box sx={{ mt: "auto", mb: 3 }}>
-                    <Typography variant="body2" color="#333">
+                  <Box sx={{ mt: "auto", mb: { xs: 4, md: 3 } }}>
+                    <Typography
+                      variant="body2"
+                      color="#333"
+                      sx={{ fontSize: "clamp(0.85rem, 1.5vw, 0.95rem)" }}
+                    >
                       <strong>Duración:</strong> 5 años (10 ciclos académicos)
                     </Typography>
-                    <Typography variant="body2" color="#333" mt={1}>
+                    <Typography
+                      variant="body2"
+                      color="#333"
+                      mt={1}
+                      sx={{ fontSize: "clamp(0.85rem, 1.5vw, 0.95rem)" }}
+                    >
                       <strong>Campo Laboral:</strong> Docencia en I.E.
                       públicas/privadas, guarderías, cunas, jardines de
                       infancia, especialista pedagógico, consultor en ONG,
@@ -1326,8 +1589,9 @@ export default function Admision() {
                       borderColor: "#ffffff",
                       backgroundColor: "#003366",
                       borderRadius: "35px",
-                      p: 2,
-                      alignSelf: "flex-start",
+                      p: { xs: 1.5, md: 2 },
+                      alignSelf: { xs: "stretch", sm: "flex-start" },
+                      fontSize: "clamp(0.85rem, 1.5vw, 1rem)",
                       "&:hover": { bgcolor: "#045bb3" },
                     }}
                   >
@@ -1337,7 +1601,6 @@ export default function Admision() {
               </Paper>
             </Grid>
 
-            {/* FÍSICA */}
             <Grid
               size={{ xs: 12, md: 6 }}
               data-aos="fade-up"
@@ -1360,7 +1623,7 @@ export default function Admision() {
               >
                 <Box
                   sx={{
-                    height: 200,
+                    height: { xs: 180, md: 200 },
                     bgcolor: "#f0f0f0",
                     backgroundImage:
                       "url('https://images.unsplash.com/photo-1717689410645-62564f0a9acd?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MzF8fGRvY2VudGUlMjBlZHVjYWNpb24lMjBmaXNpY2F8ZW58MHx8MHx8fDA%3D')",
@@ -1370,7 +1633,7 @@ export default function Admision() {
                 />
                 <Box
                   sx={{
-                    p: 4,
+                    p: { xs: 3, md: 4 },
                     flexGrow: 1,
                     display: "flex",
                     flexDirection: "column",
@@ -1381,6 +1644,7 @@ export default function Admision() {
                     fontWeight="900"
                     color="#003366"
                     mb={2}
+                    sx={{ fontSize: "clamp(1.5rem, 3.5vw, 2.125rem)" }}
                   >
                     Educación Física
                   </Typography>
@@ -1389,17 +1653,27 @@ export default function Admision() {
                     color="#555"
                     mb={3}
                     textAlign="justify"
+                    sx={{ fontSize: "clamp(0.95rem, 2vw, 1.1rem)" }}
                   >
                     Formamos profesionales dedicados a la docencia de la
                     educación física en todos los niveles, promoviendo la
                     actividad física, el deporte y valores como la honestidad y
                     el respeto.
                   </Typography>
-                  <Box sx={{ mt: "auto", mb: 3 }}>
-                    <Typography variant="body2" color="#333">
+                  <Box sx={{ mt: "auto", mb: { xs: 4, md: 3 } }}>
+                    <Typography
+                      variant="body2"
+                      color="#333"
+                      sx={{ fontSize: "clamp(0.85rem, 1.5vw, 0.95rem)" }}
+                    >
                       <strong>Duración:</strong> 5 años (10 ciclos académicos)
                     </Typography>
-                    <Typography variant="body2" color="#333" mt={1}>
+                    <Typography
+                      variant="body2"
+                      color="#333"
+                      mt={1}
+                      sx={{ fontSize: "clamp(0.85rem, 1.5vw, 0.95rem)" }}
+                    >
                       <strong>Campo Laboral:</strong> Profesor de Educación
                       Física (EBR), preparador físico, investigador, entrenador
                       deportivo, instructor de actividad física, director
@@ -1416,8 +1690,9 @@ export default function Admision() {
                       borderColor: "#ffffff",
                       backgroundColor: "#003366",
                       borderRadius: "35px",
-                      p: 2,
-                      alignSelf: "flex-start",
+                      p: { xs: 1.5, md: 2 },
+                      alignSelf: { xs: "stretch", sm: "flex-start" },
+                      fontSize: "clamp(0.85rem, 1.5vw, 1rem)",
                       "&:hover": { bgcolor: "#044d96" },
                     }}
                   >
@@ -1430,24 +1705,32 @@ export default function Admision() {
         </Container>
       </Box>
 
-      {/* 8. ¿POR QUÉ ELEGIRNOS? */}
-      <Container maxWidth="lg" sx={{ py: 12 }}>
-        <Box data-aos="zoom-in" sx={{ textAlign: "center", mb: 8 }}>
+      <Container maxWidth="lg" sx={{ py: { xs: 8, md: 12 } }}>
+        <Box
+          data-aos="zoom-in"
+          sx={{ textAlign: "center", mb: { xs: 6, md: 8 } }}
+        >
           <Typography
             variant="h2"
             fontWeight="900"
             color="#003366"
             textTransform="uppercase"
+            sx={{ fontSize: "clamp(1.8rem, 5vw, 3.75rem)" }}
           >
             ¿Por Qué Elegir el Instituto Arcoíris?
           </Typography>
-          <Typography variant="h6" color="#666" mt={2}>
+          <Typography
+            variant="h6"
+            color="#666"
+            mt={2}
+            sx={{ fontSize: "clamp(1rem, 2vw, 1.25rem)" }}
+          >
             Más de dos décadas formando los mejores docentes del país con
             excelencia y compromiso.
           </Typography>
         </Box>
 
-        <Grid container spacing={4}>
+        <Grid container spacing={{ xs: 3, md: 4 }}>
           {[
             {
               icon: (
@@ -1560,7 +1843,7 @@ export default function Admision() {
             >
               <Paper
                 sx={{
-                  p: 4,
+                  p: { xs: 3, md: 4 },
                   borderRadius: "24px",
                   height: "100%",
                   textAlign: "center",
@@ -1575,8 +1858,8 @@ export default function Admision() {
               >
                 <Box
                   sx={{
-                    width: 70,
-                    height: 70,
+                    width: { xs: 60, md: 70 },
+                    height: { xs: 60, md: 70 },
                     mx: "auto",
                     bgcolor: "rgba(0, 123, 255, 0.1)",
                     color: "#007BFF",
@@ -1594,10 +1877,15 @@ export default function Admision() {
                   fontWeight="bold"
                   color="#003366"
                   mb={2}
+                  sx={{ fontSize: "clamp(1.1rem, 2.5vw, 1.25rem)" }}
                 >
                   {item.title}
                 </Typography>
-                <Typography variant="body2" color="#666">
+                <Typography
+                  variant="body2"
+                  color="#666"
+                  sx={{ fontSize: "clamp(0.85rem, 1.5vw, 0.95rem)" }}
+                >
                   {item.desc}
                 </Typography>
               </Paper>

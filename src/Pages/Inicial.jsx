@@ -13,16 +13,11 @@ import { motion } from "framer-motion";
 import AOS from "aos";
 import "aos/dist/aos.css";
 
-// Íconos Principales
 import CloseIcon from "@mui/icons-material/Close";
 import AutoAwesomeIcon from "@mui/icons-material/AutoAwesome";
-import ChildCareIcon from "@mui/icons-material/ChildCare";
-import PaletteIcon from "@mui/icons-material/Palette";
 import MenuBookIcon from "@mui/icons-material/MenuBook";
 import DownloadRoundedIcon from "@mui/icons-material/DownloadRounded";
 import VisibilityRoundedIcon from "@mui/icons-material/VisibilityRounded";
-
-// Íconos para Campo Laboral
 import SchoolRoundedIcon from "@mui/icons-material/SchoolRounded";
 import ExtensionRoundedIcon from "@mui/icons-material/ExtensionRounded";
 import CastForEducationRoundedIcon from "@mui/icons-material/CastForEducationRounded";
@@ -30,11 +25,14 @@ import DashboardCustomizeRoundedIcon from "@mui/icons-material/DashboardCustomiz
 import BiotechRoundedIcon from "@mui/icons-material/BiotechRounded";
 import Diversity3RoundedIcon from "@mui/icons-material/Diversity3Rounded";
 
+import imgBlob from "../assets/Imagenes/Inicial4.jpg";
+import imgProyecto from "../assets/Imagenes/Inicial2.jpg";
+import imgValores from "../assets/Imagenes/Inicial3.jpg";
+
 export default function Inicial() {
   const [openPdf, setOpenPdf] = useState(false);
 
-  // Array de Campo Laboral
-  const laborales = [
+  const laboralesData = [
     {
       text: "Docente en nidos y jardines de infancia (públicos y privados).",
       icon: <SchoolRoundedIcon fontSize="large" />,
@@ -61,9 +59,38 @@ export default function Inicial() {
     },
   ];
 
+  const competenciasData = [
+    "Desarrollo de habilidades pedagógicas innovadoras.",
+    "Énfasis en la estimulación temprana y el juego didáctico.",
+    "Formación en gestión de aulas inclusivas y diversificadas.",
+    "Prácticas pre-profesionales desde los primeros ciclos.",
+  ];
+
+  const proyectosData = [
+    {
+      title: "Proyectos de Innovación",
+      desc: "Nuestras estudiantes participan en exposiciones anuales donde diseñan, construyen y presentan recursos educativos innovadores. Estos materiales están enfocados en estimular el aprendizaje sensorial y cognitivo en la primera infancia.",
+      img: imgProyecto,
+      reverse: false,
+    },
+    {
+      title: "Compromiso Institucional",
+      desc: "Fomentamos una vocación basada en la ética, la empatía y la responsabilidad social. Nuestras futuras docentes se forman con un profundo sentido de respeto por la diversidad y el bienestar integral de cada niño y su comunidad.",
+      img: imgValores,
+      reverse: true,
+    },
+  ];
+
+  const particlesData = [
+    { size: 8, top: "20%", left: "15%", duration: 6, delay: 0 },
+    { size: 12, top: "60%", left: "80%", duration: 8, delay: 1 },
+    { size: 6, top: "80%", left: "30%", duration: 5, delay: 2 },
+    { size: 10, top: "30%", left: "75%", duration: 7, delay: 0.5 },
+    { size: 15, top: "50%", left: "45%", duration: 9, delay: 1.5 },
+  ];
+
   useEffect(() => {
     document.body.setAttribute("data-theme", "light");
-    // Inicializar AOS
     AOS.init({
       duration: 1000,
       once: false,
@@ -72,22 +99,14 @@ export default function Inicial() {
     });
   }, []);
 
-  // Configuración de partículas elegantes (Framer Motion)
-  const particles = [
-    { size: 8, top: "20%", left: "15%", duration: 6, delay: 0 },
-    { size: 12, top: "60%", left: "80%", duration: 8, delay: 1 },
-    { size: 6, top: "80%", left: "30%", duration: 5, delay: 2 },
-    { size: 10, top: "30%", left: "75%", duration: 7, delay: 0.5 },
-    { size: 15, top: "50%", left: "45%", duration: 9, delay: 1.5 },
-  ];
   const handleWhatsAppClick = () => {
     const numero = "51986249212";
     const mensaje =
       "Hola buenos días, ¡Quiero postular para Educación Inicial¡ 🧩";
     const url = `https://wa.me/${numero}?text=${encodeURIComponent(mensaje)}`;
-
     window.open(url, "_blank", "noopener,noreferrer");
   };
+
   return (
     <Box
       sx={{
@@ -96,7 +115,6 @@ export default function Inicial() {
         fontFamily: "'Nunito', sans-serif",
       }}
     >
-      {/* 1. PORTADA CON FILTRO OSCURECEDOR Y PARTÍCULAS */}
       <Box
         sx={{
           position: "relative",
@@ -109,7 +127,6 @@ export default function Inicial() {
           boxShadow: "0 20px 50px rgba(0,0,0,0.1)",
         }}
       >
-        {/* Imagen de Fondo */}
         <Box
           sx={{
             position: "absolute",
@@ -121,8 +138,6 @@ export default function Inicial() {
             zIndex: 0,
           }}
         />
-
-        {/* Filtro Oscurecedor Elegante (Gradiente) */}
         <Box
           sx={{
             position: "absolute",
@@ -133,8 +148,7 @@ export default function Inicial() {
           }}
         />
 
-        {/* Sistema de Partículas Minimalistas (Framer Motion) */}
-        {particles.map((p, i) => (
+        {particlesData.map((p, i) => (
           <Box
             key={i}
             component={motion.div}
@@ -226,7 +240,6 @@ export default function Inicial() {
         </Container>
       </Box>
 
-      {/* 2. PROGRAMA Y METODOLOGÍA */}
       <Container
         maxWidth="lg"
         sx={{ mt: -8, position: "relative", zIndex: 4, pb: 10 }}
@@ -316,14 +329,13 @@ export default function Inicial() {
         </Grid>
       </Container>
 
-      {/* 3. COMPETENCIAS CON IMAGEN EN FORMA DE BLOB */}
       <Box sx={{ py: 10, bgcolor: "#ffffff" }}>
         <Container maxWidth="lg">
           <Grid container spacing={8} alignItems="center">
             <Grid size={{ xs: 12, md: 5 }} data-aos="fade-right">
               <Box
                 component="img"
-                src="https://arcoiris.edu.pe/assets/Img/Fotos%20Estudiantes/est-11.jpg"
+                src={imgBlob}
                 sx={{
                   width: "100%",
                   height: "450px",
@@ -343,12 +355,7 @@ export default function Inicial() {
                 Creciendo y{" "}
                 <span style={{ color: "#007BFF" }}>Aprendiendo</span>
               </Typography>
-              {[
-                "Desarrollo de habilidades pedagógicas innovadoras.",
-                "Énfasis en la estimulación temprana y el juego didáctico.",
-                "Formación en gestión de aulas inclusivas y diversificadas.",
-                "Prácticas pre-profesionales desde los primeros ciclos.",
-              ].map((item, i) => (
+              {competenciasData.map((item, i) => (
                 <Box
                   key={i}
                   data-aos="fade-up"
@@ -386,14 +393,83 @@ export default function Inicial() {
         </Container>
       </Box>
 
-      {/* 4. PLAN DE ESTUDIOS */}
+      <Box sx={{ py: 10, bgcolor: "#F8FAFC" }}>
+        <Container maxWidth="lg">
+          <Typography
+            variant="h3"
+            fontWeight="900"
+            color="#003366"
+            textAlign="center"
+            mb={8}
+            data-aos="fade-down"
+          >
+            Formación e <span style={{ color: "#007BFF" }}>Identidad</span>
+          </Typography>
+
+          {proyectosData.map((item, index) => (
+            <Grid
+              key={index}
+              container
+              spacing={6}
+              alignItems="center"
+              mb={index === proyectosData.length - 1 ? 0 : 8}
+              direction={{
+                xs: "column-reverse",
+                md: item.reverse ? "row-reverse" : "row",
+              }}
+            >
+              <Grid
+                size={{ xs: 12, md: 6 }}
+                data-aos={item.reverse ? "fade-left" : "fade-right"}
+              >
+                <Typography
+                  variant="h4"
+                  fontWeight="800"
+                  color="#003366"
+                  mb={2}
+                >
+                  {item.title}
+                </Typography>
+                <Typography
+                  variant="body1"
+                  color="#555"
+                  fontSize="1.1rem"
+                  lineHeight={1.8}
+                >
+                  {item.desc}
+                </Typography>
+              </Grid>
+              <Grid
+                size={{ xs: 12, md: 6 }}
+                data-aos={item.reverse ? "fade-right" : "fade-left"}
+              >
+                <Box
+                  component="img"
+                  src={item.img}
+                  sx={{
+                    width: "100%",
+                    height: "320px",
+                    objectFit: "cover",
+                    borderRadius: "32px",
+                    boxShadow: "0 20px 40px rgba(0,0,0,0.1)",
+                    transition: "transform 0.3s",
+                    "&:hover": { transform: "translateY(-5px)" },
+                  }}
+                />
+              </Grid>
+            </Grid>
+          ))}
+        </Container>
+      </Box>
+
       <Box
         sx={{
-          bgcolor: "#F0F2F5",
+          bgcolor: "#ffffff",
           py: 12,
           borderRadius: { xs: "0", md: "80px" },
           mx: { xs: 0, md: 4 },
           my: 6,
+          boxShadow: "0 10px 40px rgba(0,0,0,0.03)",
         }}
       >
         <Container maxWidth="md" sx={{ textAlign: "center" }}>
@@ -498,7 +574,6 @@ export default function Inicial() {
         </Container>
       </Box>
 
-      {/* 5. CAMPO LABORAL*/}
       <Box
         sx={{
           position: "relative",
@@ -507,7 +582,6 @@ export default function Inicial() {
           overflow: "hidden",
         }}
       >
-        {/* Luces de fondo difuminadas para quitar el aspecto "plano y blanco" */}
         <Box
           sx={{
             position: "absolute",
@@ -563,8 +637,7 @@ export default function Inicial() {
           </Typography>
 
           <Grid container spacing={4}>
-            {laborales.map((item, index) => {
-              // Lógica BENTO GRID: Destacamos la tarjeta 1 y la 5
+            {laboralesData.map((item, index) => {
               const isHighlighted = index === 0 || index === 4;
               const bgCard = isHighlighted
                 ? index === 0
@@ -625,7 +698,6 @@ export default function Inicial() {
                       },
                     }}
                   >
-                    {/* Marca de agua gigante de fondo (Rellena el espacio vacío) */}
                     <Box
                       className="watermark-icon"
                       sx={{
@@ -636,13 +708,12 @@ export default function Inicial() {
                         opacity: isHighlighted ? 0.08 : 0.03,
                         transition: "all 0.5s ease",
                         zIndex: 0,
-                        "& > svg": { fontSize: 160 }, // Tamaño gigante
+                        "& > svg": { fontSize: 160 },
                       }}
                     >
                       {item.icon}
                     </Box>
 
-                    {/* Contenido Real */}
                     <Box
                       className="laboral-icon"
                       sx={{
@@ -672,7 +743,6 @@ export default function Inicial() {
             })}
           </Grid>
 
-          {/* CTA FINAL INTEGRAD0 */}
           <Box
             data-aos="zoom-in"
             sx={{
@@ -690,7 +760,6 @@ export default function Inicial() {
               overflow: "hidden",
             }}
           >
-            {/* Capa oscurecedora para el CTA */}
             <Box
               sx={{
                 position: "absolute",
@@ -731,7 +800,6 @@ export default function Inicial() {
         </Container>
       </Box>
 
-      {/* MODAL PDF */}
       <Dialog
         open={openPdf}
         onClose={() => setOpenPdf(false)}

@@ -13,7 +13,7 @@ import {
 } from "@mui/material";
 import AOS from "aos";
 import "aos/dist/aos.css";
-
+import OpenInNewIcon from "@mui/icons-material/OpenInNew";
 import GavelRoundedIcon from "@mui/icons-material/GavelRounded";
 import PictureAsPdfRoundedIcon from "@mui/icons-material/PictureAsPdfRounded";
 import VisibilityRoundedIcon from "@mui/icons-material/VisibilityRounded";
@@ -51,34 +51,34 @@ export default function DocumentosGestion() {
     },
     {
       title: "Proyecto Curricular Institucional (PCI)",
-      url: "https://drive.google.com/file/d/1SVNYH__I-lM5EX0OQ2dA5cnUUitRms8m/view",
+      url: "https://drive.google.com/file/d/1nMJIoxwkvyWe59jOaNTs5NVGV_AGVqnF/view",
     },
     {
       title: "Plan Anual de Trabajo (PAT)",
-      url: "https://drive.google.com/file/d/1LXV22VpEPvVipzZ4Pk-ZIWGAbQJkpcQe/view",
+      url: "https://drive.google.com/file/d/1nMJIoxwkvyWe59jOaNTs5NVGV_AGVqnF/view",
     },
     {
       title: "Reglamento Institucional (RI)",
-      url: "https://drive.google.com/file/d/1XPO7v_hZBTmUAKu3twzVwZIosihIM4M1/view",
+      url: "https://drive.google.com/file/d/1nMJIoxwkvyWe59jOaNTs5NVGV_AGVqnF/view",
     },
     {
       title: "Manual de Procesos Institucionales (MPI)",
-      url: "https://drive.google.com/file/d/1H-ufC9SlVUd7-Rn6xfHYYPRxy0z6qqmp/view",
+      url: "https://drive.google.com/file/d/1nMJIoxwkvyWe59jOaNTs5NVGV_AGVqnF/view",
     },
     {
       title: "Cuadro de Asignación de Personal (CAP)",
-      url: "https://drive.google.com/file/d/1uhCXE2oeqWLJIucqmkyTgvv8s2t5IYVQ/view",
+      url: "https://drive.google.com/file/d/1nMJIoxwkvyWe59jOaNTs5NVGV_AGVqnF/view",
     },
   ];
 
   const reglamentos = [
     {
       title: "Reglamento Institucional General",
-      url: "https://drive.google.com/file/d/1zC8ORPvu6KKaXOBVimt2zz4pdv61DnMX/view",
+      url: "https://drive.google.com/file/d/1nMJIoxwkvyWe59jOaNTs5NVGV_AGVqnF/view",
     },
     {
       title: "Reglamento de Investigación",
-      url: "https://drive.google.com/file/d/1sQ6b8HYVKxL21FwBY4dCPDeOB0XVFkEm/view",
+      url: "https://drive.google.com/file/d/1nMJIoxwkvyWe59jOaNTs5NVGV_AGVqnF/view",
     },
   ];
 
@@ -242,17 +242,7 @@ export default function DocumentosGestion() {
                         "&:hover": { bgcolor: "transparent" },
                       }}
                     >
-                      <Box
-                        component="img"
-                        src="https://cdn-icons-png.flaticon.com/128/751/751463.png"
-                        alt="see icon"
-                        sx={{
-                          width: { xs: 15, md: 25 },
-                          height: { xs: 15, md: 25 },
-                          filter:
-                            "brightness(0) saturate(100%) invert(15%) sepia(98%) saturate(1500%) hue-rotate(200deg) brightness(90%) contrast(95%)",
-                        }}
-                      />
+                      <OpenInNewIcon sx={{ fontSize: { xs: 20, md: 24 } }} />
                     </IconButton>
                   </Paper>
                 ))}
@@ -347,17 +337,7 @@ export default function DocumentosGestion() {
                         "&:hover": { bgcolor: "transparent" },
                       }}
                     >
-                      <Box
-                        component="img"
-                        src="https://cdn-icons-png.flaticon.com/128/751/751463.png"
-                        alt="see icon"
-                        sx={{
-                          width: { xs: 15, md: 26 },
-                          height: { xs: 15, md: 26 },
-                          filter:
-                            "invert(42%) sepia(98%) saturate(749%) hue-rotate(170deg) brightness(95%) contrast(95%)",
-                        }}
-                      />
+                      <OpenInNewIcon sx={{ fontSize: { xs: 20, md: 24 } }} />
                     </IconButton>
                   </Paper>
                 ))}
@@ -386,7 +366,7 @@ export default function DocumentosGestion() {
               top: "50%",
               left: "50%",
               transform: "translate(-50%, -50%)",
-              width: { xs: "85%", sm: "80%", md: "70%", lg: "60%" },
+              width: { xs: "95%", sm: "90%", md: "80%", lg: "70%" },
               height: { xs: "90vh", md: "85vh" },
               bgcolor: "#fff",
               borderRadius: "16px",

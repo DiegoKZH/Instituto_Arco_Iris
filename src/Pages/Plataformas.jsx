@@ -34,17 +34,18 @@ export default function Plataformas() {
       easing: "ease-out-cubic",
     });
   }, []);
+
   const getLinkProps = (plat) => {
     const isExternal = plat.target === "_blank";
 
     return {
-      // Si usas React Router, cambia "a" por Link en el caso interno
       component: isExternal ? "a" : "a",
-      [isExternal ? "href" : "href"]: plat.ref, // Cambiar a 'to' si usas Link de react-router
+      [isExternal ? "href" : "href"]: plat.ref,
       target: plat.target,
       ...(isExternal && { rel: "noopener noreferrer" }),
     };
   };
+
   // --- DATOS DE LAS PLATAFORMAS ---
   const plataformas = [
     {
@@ -63,7 +64,9 @@ export default function Plataformas() {
       cta: "Acceder a la Intranet",
       ref: "https://intranet.arcoiris.edu.pe/",
       target: "_blank",
-      icon: <DashboardCustomizeRoundedIcon sx={{ fontSize: 50 }} />,
+      icon: (
+        <DashboardCustomizeRoundedIcon sx={{ fontSize: { xs: 35, md: 50 } }} />
+      ),
       img: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=2070&auto=format&fit=crop",
       darkTheme: false,
     },
@@ -83,7 +86,7 @@ export default function Plataformas() {
       cta: "Ir al Aula Virtual",
       ref: "https://aulavirtual.arcoiris.edu.pe/",
       target: "_blank",
-      icon: <LaptopMacRoundedIcon sx={{ fontSize: 50 }} />,
+      icon: <LaptopMacRoundedIcon sx={{ fontSize: { xs: 35, md: 50 } }} />,
       img: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=2070&auto=format&fit=crop",
       darkTheme: true,
     },
@@ -103,7 +106,7 @@ export default function Plataformas() {
       cta: "Explorar Biblioteca Virtual",
       ref: "https://elibro.net/es/lc/arcoiris/login_usuario/?next=/es/lc/arcoiris/inicio/",
       target: "_blank",
-      icon: <LocalLibraryRoundedIcon sx={{ fontSize: 50 }} />,
+      icon: <LocalLibraryRoundedIcon sx={{ fontSize: { xs: 35, md: 50 } }} />,
       img: "https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?q=80&w=2070&auto=format&fit=crop",
       darkTheme: false,
     },
@@ -123,7 +126,7 @@ export default function Plataformas() {
       cta: "Explorar Repositorio",
       ref: "https://repositorio.arcoiris.edu.pea/",
       target: "_blank",
-      icon: <Inventory2RoundedIcon sx={{ fontSize: 50 }} />,
+      icon: <Inventory2RoundedIcon sx={{ fontSize: { xs: 35, md: 50 } }} />,
       img: "https://images.unsplash.com/photo-1456406644174-8ddd4cd52a06?q=80&w=2068&auto=format&fit=crop",
       darkTheme: false,
     },
@@ -135,14 +138,13 @@ export default function Plataformas() {
       <Box
         sx={{
           position: "relative",
-          height: { xs: "50vh", md: "65vh" },
+          height: { xs: "60vh", md: "65vh" },
           display: "flex",
           alignItems: "center",
           bgcolor: "#003366",
           overflow: "hidden",
         }}
       >
-        {/* Fondo con imagen tecnológica abstracta */}
         <Box
           sx={{
             position: "absolute",
@@ -155,7 +157,6 @@ export default function Plataformas() {
             mixBlendMode: "luminosity",
           }}
         />
-        {/* Gradiente para asegurar legibilidad */}
         <Box
           sx={{
             position: "absolute",
@@ -166,17 +167,16 @@ export default function Plataformas() {
           }}
         />
 
-        {/* Círculo decorativo animado */}
         <Box
           component={motion.div}
           animate={{ scale: [1, 1.1, 1], opacity: [0.1, 0.2, 0.1] }}
           transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
           sx={{
             position: "absolute",
-            right: "-10%",
-            top: "-20%",
-            width: "600px",
-            height: "600px",
+            right: { xs: "-30%", md: "-10%" },
+            top: { xs: "-10%", md: "-20%" },
+            width: { xs: "400px", md: "600px" },
+            height: { xs: "400px", md: "600px" },
             borderRadius: "50%",
             border: "2px dashed rgba(255,255,255,0.2)",
             zIndex: 1,
@@ -188,14 +188,19 @@ export default function Plataformas() {
             <Box
               sx={{ display: "flex", alignItems: "center", gap: 1.5, mb: 2 }}
             >
-              <LanguageIcon sx={{ color: "#80bdff" }} />
+              <LanguageIcon
+                sx={{
+                  color: "#80bdff",
+                  fontSize: { xs: "1.2rem", md: "1.5rem" },
+                }}
+              />
               <Typography
                 variant="overline"
                 sx={{
                   color: "#80bdff",
                   fontWeight: 900,
-                  letterSpacing: 3,
-                  fontSize: "1.1rem",
+                  letterSpacing: { xs: 2, md: 3 },
+                  fontSize: "clamp(1rem, 2vw, 1.1rem)",
                 }}
               >
                 CAMPUS VIRTUAL
@@ -207,7 +212,7 @@ export default function Plataformas() {
               sx={{
                 color: "#ffffff",
                 textTransform: "uppercase",
-                fontSize: { xs: "3rem", md: "5rem" },
+                fontSize: "clamp(2.5rem, 6vw, 5rem)",
                 lineHeight: 1.1,
                 mb: 3,
               }}
@@ -221,7 +226,8 @@ export default function Plataformas() {
                 maxWidth: "600px",
                 fontWeight: 400,
                 borderLeft: "4px solid #007BFF",
-                pl: 3,
+                pl: { xs: 2, md: 3 },
+                fontSize: "clamp(1rem, 2vw, 1.25rem)",
               }}
             >
               Accede a todas las herramientas y recursos en línea que el
@@ -232,7 +238,7 @@ export default function Plataformas() {
       </Box>
 
       {/* 2. PLATAFORMAS */}
-      <Box sx={{ py: { xs: 8, md: 0 } }}>
+      <Box sx={{ py: { xs: 4, md: 0 } }}>
         {plataformas.map((plat, index) => {
           const isEven = index % 2 === 0;
           const bgSection = plat.darkTheme
@@ -249,20 +255,19 @@ export default function Plataformas() {
               key={plat.id}
               sx={{
                 bgcolor: bgSection,
-                py: { xs: 10, md: 16 },
+                py: { xs: 8, md: 16 },
                 position: "relative",
                 overflow: "hidden",
                 borderBottom: "1px solid rgba(0,0,0,0.03)",
               }}
             >
-              {/* Tipografía Gigante de Fondo */}
               <Typography
                 variant="h1"
                 sx={{
                   position: "absolute",
-                  top: { xs: "5%", md: "10%" },
-                  [isEven ? "right" : "left"]: { xs: "10%", md: "5%" },
-                  fontSize: { xs: "10rem", md: "25rem" },
+                  top: { xs: "2%", md: "10%" },
+                  [isEven ? "right" : "left"]: { xs: "5%", md: "5%" },
+                  fontSize: "clamp(8rem, 20vw, 25rem)",
                   fontWeight: 900,
                   color: plat.darkTheme
                     ? "rgba(255,255,255,0.03)"
@@ -278,11 +283,13 @@ export default function Plataformas() {
               <Container maxWidth="lg" sx={{ position: "relative", zIndex: 1 }}>
                 <Grid
                   container
-                  spacing={8}
+                  spacing={{ xs: 6, md: 8 }}
                   alignItems="center"
-                  direction={isEven ? "row" : "row-reverse"}
+                  direction={{
+                    xs: "column",
+                    md: isEven ? "row" : "row-reverse",
+                  }}
                 >
-                  {/* TEXTO */}
                   <Grid
                     size={{ xs: 12, md: 6 }}
                     data-aos={isEven ? "fade-right" : "fade-left"}
@@ -291,18 +298,19 @@ export default function Plataformas() {
                       sx={{
                         display: "flex",
                         alignItems: "center",
-                        gap: 2,
+                        gap: { xs: 1.5, md: 2 },
                         mb: 3,
                       }}
                     >
                       <Box
                         sx={{
-                          p: 1.5,
+                          p: { xs: 1, md: 1.5 },
                           bgcolor: plat.darkTheme
                             ? "rgba(255,255,255,0.1)"
                             : "rgba(0, 123, 255, 0.1)",
                           borderRadius: "16px",
                           color: iconColor,
+                          display: "flex",
                         }}
                       >
                         {plat.icon}
@@ -312,7 +320,7 @@ export default function Plataformas() {
                         color={iconColor}
                         fontWeight="bold"
                         letterSpacing={2}
-                        fontSize="1rem"
+                        sx={{ fontSize: "clamp(0.85rem, 1.5vw, 1rem)" }}
                       >
                         {plat.subtitle}
                       </Typography>
@@ -324,6 +332,7 @@ export default function Plataformas() {
                       color={textColor}
                       mb={3}
                       lineHeight={1.1}
+                      sx={{ fontSize: "clamp(1.75rem, 4vw, 3rem)" }}
                     >
                       {plat.title}
                     </Typography>
@@ -332,18 +341,21 @@ export default function Plataformas() {
                       variant="body1"
                       color={subTextColor}
                       mb={4}
-                      fontSize="1.1rem"
                       lineHeight={1.7}
+                      sx={{ fontSize: "clamp(0.95rem, 2vw, 1.1rem)" }}
                     >
                       {plat.desc}
                     </Typography>
 
-                    <List sx={{ mb: 5 }}>
+                    <List sx={{ mb: { xs: 4, md: 5 } }}>
                       {plat.features.map((feature, i) => (
                         <ListItem key={i} sx={{ px: 0, py: 0.5 }}>
-                          <ListItemIcon sx={{ minWidth: 35 }}>
+                          <ListItemIcon sx={{ minWidth: { xs: 30, md: 35 } }}>
                             <CheckCircleOutlineRoundedIcon
-                              sx={{ color: iconColor, fontSize: 22 }}
+                              sx={{
+                                color: iconColor,
+                                fontSize: { xs: 20, md: 22 },
+                              }}
                             />
                           </ListItemIcon>
                           <ListItemText
@@ -351,6 +363,7 @@ export default function Plataformas() {
                             primaryTypographyProps={{
                               color: subTextColor,
                               fontWeight: 500,
+                              fontSize: "clamp(0.85rem, 1.5vw, 0.95rem)",
                             }}
                           />
                         </ListItem>
@@ -366,11 +379,12 @@ export default function Plataformas() {
                         color: plat.darkTheme ? "#ffffff" : "#007BFF",
                         borderColor: "#007BFF",
                         borderRadius: "30px",
-                        px: 4,
-                        py: 1.5,
+                        px: { xs: 3, md: 4 },
+                        py: { xs: 1.2, md: 1.5 },
                         fontWeight: "bold",
+                        width: { xs: "100%", sm: "auto" },
                         textTransform: "none",
-                        fontSize: "1rem",
+                        fontSize: "clamp(0.9rem, 1.5vw, 1rem)",
                         "&:hover": {
                           bgcolor: plat.darkTheme
                             ? "#0056b3"
@@ -378,7 +392,7 @@ export default function Plataformas() {
                           borderColor: plat.darkTheme
                             ? "transparent"
                             : "#0056b3",
-                          transform: "translateX(5px)",
+                          transform: { xs: "none", md: "translateX(5px)" },
                         },
                         transition: "all 0.3s ease",
                       }}
@@ -387,21 +401,20 @@ export default function Plataformas() {
                     </Button>
                   </Grid>
 
-                  {/* IMAGEN Y GLASSMORPHISM */}
                   <Grid
                     size={{ xs: 12, md: 6 }}
                     data-aos={isEven ? "fade-left" : "fade-right"}
+                    sx={{ width: "100%" }}
                   >
-                    <Box sx={{ position: "relative" }}>
-                      {/* Elemento decorativo de fondo */}
+                    <Box sx={{ position: "relative", px: { xs: 1, md: 0 } }}>
                       <Box
                         sx={{
                           position: "absolute",
-                          top: -20,
-                          [isEven ? "right" : "left"]: -20,
-                          width: "80%",
+                          top: { xs: -10, md: -20 },
+                          [isEven ? "right" : "left"]: { xs: -5, md: -20 },
+                          width: { xs: "90%", md: "80%" },
                           height: "100%",
-                          borderRadius: "30px",
+                          borderRadius: { xs: "20px", md: "30px" },
                           bgcolor: plat.darkTheme
                             ? "rgba(0, 123, 255, 0.2)"
                             : "rgba(0, 123, 255, 0.05)",
@@ -416,23 +429,22 @@ export default function Plataformas() {
                         loading="lazy"
                         sx={{
                           width: "100%",
-                          height: "500px",
+                          height: { xs: "300px", sm: "400px", md: "500px" },
                           objectFit: "cover",
-                          borderRadius: "30px",
+                          borderRadius: { xs: "20px", md: "30px" },
                           position: "relative",
                           zIndex: 1,
                           boxShadow: "0 30px 60px rgba(0,0,0,0.15)",
                         }}
                       />
 
-                      {/* Tarjeta Glassmorphism superpuesta */}
                       <Paper
                         sx={{
                           position: "absolute",
                           bottom: { xs: -20, md: 40 },
                           [isEven ? "left" : "right"]: { xs: 10, md: -30 },
-                          p: 3,
-                          maxWidth: "280px",
+                          p: { xs: 2, md: 3 },
+                          maxWidth: { xs: "240px", md: "280px" },
                           borderRadius: "20px",
                           bgcolor: plat.darkTheme
                             ? "rgba(0, 51, 102, 0.85)"
@@ -444,12 +456,16 @@ export default function Plataformas() {
                         }}
                       >
                         <Box
-                          sx={{ display: "flex", gap: 2, alignItems: "center" }}
+                          sx={{
+                            display: "flex",
+                            gap: { xs: 1.5, md: 2 },
+                            alignItems: "center",
+                          }}
                         >
                           <Box
                             sx={{
                               width: 4,
-                              height: 40,
+                              height: { xs: 30, md: 40 },
                               bgcolor: iconColor,
                               borderRadius: "4px",
                             }}
@@ -459,6 +475,7 @@ export default function Plataformas() {
                             fontWeight="bold"
                             lineHeight={1.4}
                             color={plat.darkTheme ? "#ffffff" : "#003366"}
+                            sx={{ fontSize: "clamp(0.75rem, 1.5vw, 0.875rem)" }}
                           >
                             "{plat.tagline}"
                           </Typography>

@@ -18,9 +18,25 @@ import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import VerifiedIcon from "@mui/icons-material/Verified";
 import WorkspacePremiumIcon from "@mui/icons-material/WorkspacePremium";
 import GroupsIcon from "@mui/icons-material/Groups";
+import KeyboardDoubleArrowDownIcon from "@mui/icons-material/KeyboardDoubleArrowDown";
 import { Link } from "react-router-dom";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import bgImage1 from "../assets/Imagenes/DocentesVarones.jpg";
+import bgImage2 from "../assets/Imagenes/DocentesMujeres.jpg";
+import bgImage3 from "../assets/Imagenes/FachadaInterior1.png";
+
+import Inicial from "../assets/Imagenes/Inicial1.jpg";
+import Fisica from "../assets/Imagenes/Basquet.jpg";
+
+import Formacion from "../assets/Imagenes/Formacion.jpg";
+import Inicial3 from "../assets/Imagenes/Inicial3.jpg";
+import InicialDisfraz from "../assets/Imagenes/InicialDisfraz.jpg";
+
+import logo_muni_sb from "../assets/Logos/logo_muni_sb_rm.png";
+import logo_perueduca from "../assets/Logos/logo_perueduca_rm.png";
+import logo_pronabec from "../assets/Logos/logo_pronabec.png";
+import logo_geredu from "../assets/Logos/logo_GEREDU_rm.png";
 
 const floatSubtle = keyframes`
   0% { transform: translateY(0px) rotate(0deg); }
@@ -39,23 +55,24 @@ const carouselData = [
     texto:
       "Educación de calidad con valores, comprometidos con el desarrollo de la región.",
     boton: "¡Postula Aquí!",
-    bgImage: "https://arcoiris.edu.pe/assets/Img/Fotos%20Admision/admin-04.jpg",
+    ref: "/admision",
+    bgImage: bgImage1,
   },
   {
     eslogan: "Docentes Expertos, Tu Guía hacia el Éxito",
     texto:
       "Un equipo pedagógico altamente calificado y comprometido con tu formación.",
     boton: "Conoce a Nuestros Docentes",
-    bgImage:
-      "https://arcoiris.edu.pe/assets/Img/Fotos%20Egresados/hero-bg-7.jpg",
+    ref: "/directorio",
+    bgImage: bgImage2,
   },
   {
     eslogan: "Instalaciones Modernas para tu Aprendizaje",
     texto:
       "Ambientes equipados con tecnología de punta para una experiencia educativa de primer nivel.",
-    boton: "Explora el Campus",
-    bgImage:
-      "https://arcoiris.edu.pe/assets/Img/Fotos%20Multiple/hero-bg-6.png",
+    boton: "Ver Transparencia",
+    ref: "/transparencia",
+    bgImage: bgImage3,
   },
 ];
 
@@ -70,13 +87,12 @@ const staggerContainer = {
 };
 
 const logosAcreditaciones = [
-  "https://arcoiris.edu.pe/assets/Img/Acredi.jpg",
-  "https://arcoiris.edu.pe/assets/Img/Acredi%20DIFOID-300x65.png",
-  "https://arcoiris.edu.pe/assets/Img/Acredi%20DIFOID-300x65.png",
-  "https://arcoiris.edu.pe/assets/Img/Acredi%20municipalidad.jpg",
-  "https://arcoiris.edu.pe/assets/Img/Acredi%20perueduca-300x79.png",
-  "https://arcoiris.edu.pe/assets/Img/Acredi%20pronabec.png",
-  "https://arcoiris.edu.pe/assets/Img/Acredi%20renati-300x71.png",
+  "https://www.iesppazangaro.edu.pe/wp-content/uploads/2021/01/link_difoid.png",
+  logo_muni_sb,
+  logo_perueduca,
+  logo_pronabec,
+  logo_geredu,
+  "https://sunedu.us-east-1.linodeobjects.com/renati%2Flogo.png",
 ];
 
 const particles = Array.from({ length: 20 }).map((_, i) => ({
@@ -163,7 +179,7 @@ export default function Inicio() {
       <Box
         sx={{
           position: "relative",
-          height: "100vh",
+          height: { xs: "100dvh", md: "100vh" },
           display: "flex",
           alignItems: "center",
           overflow: "hidden",
@@ -198,6 +214,7 @@ export default function Inicio() {
             />
           </motion.div>
         </AnimatePresence>
+
         <AnimatePresence>
           {isTransitioning && (
             <motion.div
@@ -216,9 +233,16 @@ export default function Inicio() {
             />
           )}
         </AnimatePresence>
+
+        {/* Contenido principal del Slide */}
         <Container
           maxWidth="lg"
-          sx={{ position: "relative", zIndex: 4, pt: 10 }}
+          sx={{
+            position: "relative",
+            zIndex: 4,
+            pt: { xs: 6, sm: 8, md: 10 },
+            px: { xs: 3, sm: 4, md: 3 },
+          }}
         >
           <AnimatePresence mode="wait">
             <motion.div
@@ -230,38 +254,55 @@ export default function Inicio() {
             >
               <Typography
                 variant="h2"
-                fontWeight="800"
+                fontWeight="900"
                 sx={{
-                  mb: 3,
                   color: "#ffffff",
-                  maxWidth: "800px",
-                  lineHeight: 1.1,
+                  mb: { xs: 2, md: 3 },
+                  fontSize: {
+                    xs: "clamp(2.5rem, 10vw, 3.2rem)",
+                    sm: "3.5rem",
+                    md: "3rem",
+                    lg: "4rem",
+                  },
+                  lineHeight: { xs: 1.15, md: 1.1 },
+                  letterSpacing: "-0.02em",
                 }}
               >
                 {carouselData[activeSlide].eslogan}
               </Typography>
+
               <Typography
                 variant="h5"
                 sx={{
-                  mb: 5,
+                  mb: { xs: 4, md: 5 },
                   fontWeight: 300,
                   color: "#e0e0e0",
-                  maxWidth: "600px",
-                  lineHeight: 1.6,
+                  maxWidth: { xs: "100%", md: "700px" },
+                  lineHeight: { xs: 1.5, md: 1.6 },
+                  fontSize: {
+                    xs: "1.05rem",
+                    sm: "1.2rem",
+                    md: "1.3rem",
+                    lg: "1.5rem",
+                  },
                 }}
               >
                 {carouselData[activeSlide].texto}
               </Typography>
+
               <Button
+                component={Link}
+                to={carouselData[activeSlide].ref}
                 variant="contained"
                 endIcon={<ArrowForwardIcon />}
                 sx={{
                   bgcolor: "#ffffff",
                   color: "#0A192F",
-                  px: 4,
-                  py: 1.5,
-                  fontSize: "1rem",
+                  px: { xs: 3, md: 4.5 },
+                  py: { xs: 1.5, md: 1.5 },
+                  width: { xs: "100%", sm: "auto" },
                   fontWeight: "bold",
+                  fontSize: { xs: "1rem", md: "1.1rem" },
                   borderRadius: "30px",
                   textTransform: "none",
                   transition: "all 0.4s ease",
@@ -277,6 +318,33 @@ export default function Inicio() {
             </motion.div>
           </AnimatePresence>
         </Container>
+
+        {/* Indicador animado de Scroll */}
+        <Box
+          component={motion.div}
+          animate={{ y: [0, 15, 0], opacity: [0.3, 1, 0.3] }}
+          transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
+          onClick={() =>
+            window.scrollBy({ top: window.innerHeight, behavior: "smooth" })
+          }
+          sx={{
+            position: "absolute",
+            bottom: { xs: 30, md: 40 },
+            left: "50%",
+            transform: "translateX(-50%)",
+            zIndex: 5,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <KeyboardDoubleArrowDownIcon
+            sx={{
+              color: "#ffffff",
+              fontSize: { xs: "3rem", md: "3.5rem" },
+            }}
+          />
+        </Box>
       </Box>
 
       <Container maxWidth="lg" sx={{ py: 15, position: "relative", zIndex: 2 }}>
@@ -504,9 +572,7 @@ export default function Inicio() {
             >
               <Box
                 component="img"
-                src={
-                  "https://arcoiris.edu.pe/assets/Img/Fotos%20Multiple/Portada_Bienvenidos.png"
-                }
+                src={bgImage3}
                 sx={{
                   width: "100%",
                   height: "100%",
@@ -707,8 +773,7 @@ export default function Inicio() {
                   sx={{
                     position: "absolute",
                     inset: 0,
-                    backgroundImage:
-                      "url(https://arcoiris.edu.pe/assets/Img/Fotos%20Programas/edu-inicial-02.jpg)",
+                    backgroundImage: `url(${Inicial})`,
                     backgroundSize: "cover",
                     backgroundPosition: "center",
                     transition: "transform 0.8s ease",
@@ -856,8 +921,7 @@ export default function Inicio() {
                   sx={{
                     position: "absolute",
                     inset: 0,
-                    backgroundImage:
-                      "url(https://arcoiris.edu.pe/assets/Img/Fotos%20Programas/edu-fisica.jpg)",
+                    backgroundImage: `url(${Fisica})`,
                     backgroundSize: "cover",
                     backgroundPosition: "center",
                     transition: "transform 0.8s ease",
@@ -1058,7 +1122,7 @@ export default function Inicio() {
                   bgcolor: "#ffffff",
                   display: "flex",
                   flexDirection: "column",
-                  cursor: "pointer",
+                  cursor: "default",
                   transition: "all 0.5s cubic-bezier(0.4, 0, 0.2, 1)",
                   border: "1px solid",
                   borderColor: `${servicio.color}20`,
@@ -1272,7 +1336,7 @@ export default function Inicio() {
                 "&:hover": { bgcolor: "rgba(25,118,210,0.05)" },
               }}
             >
-              Ver todas las noticias
+              Visitar nuestra página de Facebook
             </Button>
           </Box>
 
@@ -1313,8 +1377,7 @@ export default function Inicio() {
                   sx={{
                     position: "absolute",
                     inset: 0,
-                    backgroundImage:
-                      "url(https://arcoiris.edu.pe/assets/Img/Fotos%20Estudiantes/est-08.jpg)",
+                    backgroundImage: `url(${Formacion})`,
                     backgroundSize: "cover",
                     backgroundPosition: "center",
                     transition: "transform 0.8s ease",
@@ -1424,7 +1487,7 @@ export default function Inicio() {
                       },
                     }}
                   >
-                    Leer completo
+                    Ver más
                   </Button>
                 </Box>
               </Paper>
@@ -1469,8 +1532,7 @@ export default function Inicio() {
                       width: "100%",
                       height: "100%",
                       minHeight: { xs: "200px", sm: "100%" },
-                      backgroundImage:
-                        "url(https://arcoiris.edu.pe/assets/Img/Fotos%20Estudiantes/est-10.jpg)",
+                      backgroundImage: `url(${Inicial3})`,
                       backgroundSize: "cover",
                       backgroundPosition: "center",
                       transition: "transform 0.7s ease",
@@ -1585,8 +1647,7 @@ export default function Inicio() {
                       width: "100%",
                       height: "100%",
                       minHeight: { xs: "200px", sm: "100%" },
-                      backgroundImage:
-                        "url(https://arcoiris.edu.pe/assets/Img/Fotos%20Antiguas/jpg-13.jpg)",
+                      backgroundImage: `url(${InicialDisfraz})`,
                       backgroundSize: "cover",
                       backgroundPosition: "center",
                       transition: "transform 0.7s ease",

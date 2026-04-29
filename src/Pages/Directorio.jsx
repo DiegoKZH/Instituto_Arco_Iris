@@ -26,6 +26,8 @@ import AccountTreeIcon from "@mui/icons-material/AccountTree";
 import AssignmentIndIcon from "@mui/icons-material/AssignmentInd";
 import ImageIcon from "@mui/icons-material/Image";
 
+import FondoDirectorio from "../assets/Imagenes/InicioClases1.jpg";
+
 // --- FUNCIÓN PARA ASIGNAR COLORES---
 const getColorBySpecialty = (specialty) => {
   const spec = specialty.toUpperCase();
@@ -800,13 +802,12 @@ export default function Directorio() {
           height: { xs: "50vh", md: "60vh" },
           display: "flex",
           alignItems: "center",
-          bgcolor: "#003366",
+          bgcolor: "#003366d2",
           "&::before": {
             content: '""',
             position: "absolute",
             inset: 0,
-            backgroundImage:
-              "url('https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=2084&auto=format&fit=crop')",
+            backgroundImage: `url(${FondoDirectorio})`,
             backgroundSize: "cover",
             backgroundPosition: "center",
             opacity: 0.25,

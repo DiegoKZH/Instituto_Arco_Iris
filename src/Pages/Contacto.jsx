@@ -13,19 +13,16 @@ import {
 import AOS from "aos";
 import "aos/dist/aos.css";
 
-// Íconos
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import PhoneInTalkIcon from "@mui/icons-material/PhoneInTalk";
 import EmailIcon from "@mui/icons-material/Email";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import SendIcon from "@mui/icons-material/Send";
 import FacebookIcon from "@mui/icons-material/Facebook";
-import InstagramIcon from "@mui/icons-material/Instagram";
-import LinkedInIcon from "@mui/icons-material/LinkedIn";
+import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 import MapIcon from "@mui/icons-material/Map";
 
 export default function Contacto() {
-  // 1. Mis Variables
   const [formData, setFormData] = useState({
     nombre: "",
     correo: "",
@@ -43,23 +40,19 @@ export default function Contacto() {
     });
   }, []);
 
-  // 2. Manejador de cambios en los inputs
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  // 3. Función para estructurar el mensaje y enviarlo por WhatsApp
   const handleWhatsAppSubmit = () => {
     const { nombre, correo, telefono, asunto, mensaje } = formData;
 
-    // Validaciónde campos requeridos
     if (!nombre || !correo || !asunto || !mensaje) {
       alert("Por favor, completa los campos obligatorios.");
       return;
     }
 
-    // Estructura del mensaje
     const textoMensaje = `*NUEVO MENSAJE DE CONTACTO (WEB)*\n\n*Nombre:* ${nombre}\n*Correo:* ${correo}\n*Teléfono:* ${
       telefono || "No proporcionado"
     }\n*Asunto:* ${asunto}\n*Mensaje:*\n${mensaje}`;
@@ -73,12 +66,11 @@ export default function Contacto() {
   };
 
   return (
-    <Box sx={{ bgcolor: "#F0F2F5", overflow: "hidden", pb: 10 }}>
-      {/* 1. PORTADA HERO */}
+    <Box sx={{ bgcolor: "#F0F2F5", overflow: "hidden", pb: { xs: 6, md: 10 } }}>
       <Box
         sx={{
           position: "relative",
-          height: { xs: "45vh", md: "55vh" },
+          height: { xs: "55vh", md: "65vh" },
           display: "flex",
           alignItems: "center",
           bgcolor: "#003366",
@@ -102,8 +94,8 @@ export default function Contacto() {
               sx={{
                 color: "#80bdff",
                 fontWeight: 900,
-                letterSpacing: 3,
-                fontSize: "1.2rem",
+                letterSpacing: { xs: 2, md: 3 },
+                fontSize: "clamp(0.9rem, 2vw, 1.2rem)",
               }}
             >
               ATENCIÓN AL ESTUDIANTE
@@ -114,9 +106,10 @@ export default function Contacto() {
               sx={{
                 color: "#ffffff",
                 textTransform: "uppercase",
-                fontSize: { xs: "3rem", md: "5rem" },
+                fontSize: "clamp(2.5rem, 6vw, 5rem)",
                 lineHeight: 1.1,
                 mb: 2,
+                px: { xs: 2, md: 0 },
               }}
             >
               Contáctanos
@@ -128,6 +121,8 @@ export default function Contacto() {
                 maxWidth: "600px",
                 mx: "auto",
                 fontWeight: 400,
+                fontSize: "clamp(0.95rem, 2vw, 1.25rem)",
+                px: { xs: 2, md: 0 },
               }}
             >
               Estamos aquí para escucharte y resolver tus dudas de manera rápida
@@ -137,38 +132,35 @@ export default function Contacto() {
         </Container>
       </Box>
 
-      {/* 2. SECCIÓN PRINCIPAL: SPLIT CARD (Información + Formulario) */}
       <Container
         maxWidth="lg"
-        sx={{ mt: { xs: -5, md: -10 }, position: "relative", zIndex: 3 }}
+        sx={{ mt: { xs: 4, md: 6 }, position: "relative", zIndex: 3 }}
       >
         <Paper
           elevation={0}
           sx={{
-            borderRadius: "24px",
+            borderRadius: { xs: "16px", md: "24px" },
             overflow: "hidden",
             boxShadow: "0 30px 60px rgba(0, 51, 102, 0.15)",
             display: "flex",
             flexDirection: { xs: "column", md: "row" },
           }}
         >
-          {/* LADO IZQUIERDO: INFORMACIÓN (Fondo Oscuro) */}
           <Box
             data-aos="fade-right"
             sx={{
               flex: { xs: "1 1 100%", md: "0 0 40%" },
               bgcolor: "#003366",
               color: "#ffffff",
-              p: { xs: 4, md: 6 },
+              p: { xs: 3, sm: 5, md: 6 },
               position: "relative",
               overflow: "hidden",
             }}
           >
-            {/* Círculos */}
             <Box
               sx={{
                 position: "absolute",
-                top: -50,
+                top: 0,
                 right: -50,
                 width: 200,
                 height: 200,
@@ -179,7 +171,7 @@ export default function Contacto() {
             <Box
               sx={{
                 position: "absolute",
-                bottom: -80,
+                bottom: 0,
                 left: -50,
                 width: 250,
                 height: 250,
@@ -189,23 +181,28 @@ export default function Contacto() {
             />
 
             <Box sx={{ position: "relative", zIndex: 1 }}>
-              <Typography variant="h4" fontWeight="900" mb={1}>
+              <Typography
+                variant="h4"
+                fontWeight="900"
+                mb={1}
+                sx={{ fontSize: "clamp(1.5rem, 3vw, 2.125rem)" }}
+              >
                 Nuestra Información
               </Typography>
               <Typography
                 variant="body2"
                 color="#80bdff"
                 mb={5}
-                fontSize="1rem"
+                sx={{ fontSize: "clamp(0.85rem, 1.5vw, 1rem)" }}
               >
                 Visítanos o comunícate a través de nuestros canales oficiales.
               </Typography>
 
-              {/* Lista de Contacto */}
               <Box sx={{ display: "flex", flexDirection: "column", gap: 4 }}>
-                {/* Dirección */}
                 <Box sx={{ display: "flex", gap: 2 }}>
-                  <LocationOnIcon sx={{ color: "#007BFF", fontSize: 30 }} />
+                  <LocationOnIcon
+                    sx={{ color: "#007BFF", fontSize: { xs: 26, md: 30 } }}
+                  />
                   <Box>
                     <Typography
                       variant="subtitle2"
@@ -213,10 +210,16 @@ export default function Contacto() {
                       color="#80bdff"
                       textTransform="uppercase"
                       mb={0.5}
+                      sx={{ fontSize: "clamp(0.75rem, 1.2vw, 0.875rem)" }}
                     >
                       Dirección
                     </Typography>
-                    <Typography variant="body1" fontWeight="500" mb={1}>
+                    <Typography
+                      variant="body1"
+                      fontWeight="500"
+                      mb={1}
+                      sx={{ fontSize: "clamp(0.9rem, 1.5vw, 1rem)" }}
+                    >
                       Tenería 4 Fracción II Enaco San Sebastián,
                       <br />
                       San Sebastian, Cusco.
@@ -243,9 +246,10 @@ export default function Contacto() {
                   </Box>
                 </Box>
 
-                {/* Teléfono */}
                 <Box sx={{ display: "flex", gap: 2 }}>
-                  <PhoneInTalkIcon sx={{ color: "#007BFF", fontSize: 30 }} />
+                  <PhoneInTalkIcon
+                    sx={{ color: "#007BFF", fontSize: { xs: 26, md: 30 } }}
+                  />
                   <Box>
                     <Typography
                       variant="subtitle2"
@@ -253,35 +257,45 @@ export default function Contacto() {
                       color="#80bdff"
                       textTransform="uppercase"
                       mb={0.5}
+                      sx={{ fontSize: "clamp(0.75rem, 1.2vw, 0.875rem)" }}
                     >
                       Teléfono
                     </Typography>
-                    <Typography variant="body1" fontWeight="500">
+                    <Typography
+                      variant="body1"
+                      fontWeight="500"
+                      sx={{ fontSize: "clamp(0.9rem, 1.5vw, 1rem)" }}
+                    >
                       +51 986 249 212{" "}
                       <Typography
                         component="span"
                         variant="body2"
                         color="rgba(255,255,255,0.7)"
                       >
-                        (Admisión)
+                        (Informes)
                       </Typography>
                     </Typography>
-                    <Typography variant="body1" fontWeight="500">
-                      +51 999 888 777{" "}
+                    <Typography
+                      variant="body1"
+                      fontWeight="500"
+                      sx={{ fontSize: "clamp(0.9rem, 1.5vw, 1rem)" }}
+                    >
+                      +51 952 423 842{" "}
                       <Typography
                         component="span"
                         variant="body2"
                         color="rgba(255,255,255,0.7)"
                       >
-                        (Central)
+                        (Mesa de Partes)
                       </Typography>
                     </Typography>
                   </Box>
                 </Box>
 
-                {/* Correo Electrónico */}
                 <Box sx={{ display: "flex", gap: 2 }}>
-                  <EmailIcon sx={{ color: "#007BFF", fontSize: 30 }} />
+                  <EmailIcon
+                    sx={{ color: "#007BFF", fontSize: { xs: 26, md: 30 } }}
+                  />
                   <Box>
                     <Typography
                       variant="subtitle2"
@@ -289,10 +303,18 @@ export default function Contacto() {
                       color="#80bdff"
                       textTransform="uppercase"
                       mb={0.5}
+                      sx={{ fontSize: "clamp(0.75rem, 1.2vw, 0.875rem)" }}
                     >
                       Correo Electrónico
                     </Typography>
-                    <Typography variant="body1" fontWeight="500">
+                    <Typography
+                      variant="body1"
+                      fontWeight="500"
+                      sx={{
+                        fontSize: "clamp(0.9rem, 1.5vw, 1rem)",
+                        wordBreak: "break-all",
+                      }}
+                    >
                       informes@arcoiris.edu.pe{" "}
                       <Typography
                         component="span"
@@ -302,22 +324,13 @@ export default function Contacto() {
                         (General)
                       </Typography>
                     </Typography>
-                    <Typography variant="body1" fontWeight="500">
-                      admision@arcoiris.edu.pe{" "}
-                      <Typography
-                        component="span"
-                        variant="body2"
-                        color="rgba(255,255,255,0.7)"
-                      >
-                        (Admisión)
-                      </Typography>
-                    </Typography>
                   </Box>
                 </Box>
 
-                {/* Horario */}
                 <Box sx={{ display: "flex", gap: 2 }}>
-                  <AccessTimeIcon sx={{ color: "#007BFF", fontSize: 30 }} />
+                  <AccessTimeIcon
+                    sx={{ color: "#007BFF", fontSize: { xs: 26, md: 30 } }}
+                  />
                   <Box>
                     <Typography
                       variant="subtitle2"
@@ -325,13 +338,22 @@ export default function Contacto() {
                       color="#80bdff"
                       textTransform="uppercase"
                       mb={0.5}
+                      sx={{ fontSize: "clamp(0.75rem, 1.2vw, 0.875rem)" }}
                     >
                       Horario de Atención
                     </Typography>
-                    <Typography variant="body1" fontWeight="500">
+                    <Typography
+                      variant="body1"
+                      fontWeight="500"
+                      sx={{ fontSize: "clamp(0.9rem, 1.5vw, 1rem)" }}
+                    >
                       Lunes a Viernes:
                     </Typography>
-                    <Typography variant="body2" color="rgba(255,255,255,0.8)">
+                    <Typography
+                      variant="body2"
+                      color="rgba(255,255,255,0.8)"
+                      sx={{ fontSize: "clamp(0.85rem, 1.2vw, 0.95rem)" }}
+                    >
                       8:00 AM - 1:00 PM
                       <br />
                       2:00 PM - 5:00 PM
@@ -340,9 +362,13 @@ export default function Contacto() {
                 </Box>
               </Box>
 
-              <Divider sx={{ borderColor: "rgba(255,255,255,0.1)", my: 4 }} />
+              <Divider
+                sx={{
+                  borderColor: "rgba(255,255,255,0.1)",
+                  my: { xs: 3, md: 4 },
+                }}
+              />
 
-              {/* Redes Sociales */}
               <Box>
                 <Typography
                   variant="subtitle2"
@@ -354,56 +380,74 @@ export default function Contacto() {
                 </Typography>
                 <Box sx={{ display: "flex", gap: 1 }}>
                   <IconButton
+                    component="a"
+                    href="https://www.facebook.com/pedagogicoarcoiris/?locale=es_LA"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     sx={{
                       bgcolor: "rgba(255,255,255,0.1)",
                       color: "#fff",
-                      "&:hover": { bgcolor: "#007BFF" },
+                      transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
+                      "&:hover": {
+                        bgcolor: "#007BFF",
+                        transform: "translateY(-5px) scale(1.1)",
+                        boxShadow: "0 10px 20px rgba(0, 123, 255, 0.3)",
+                      },
                     }}
                   >
                     <FacebookIcon />
                   </IconButton>
                   <IconButton
+                    component="a"
+                    href="https://wa.me/51986249212"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     sx={{
                       bgcolor: "rgba(255,255,255,0.1)",
                       color: "#fff",
-                      "&:hover": { bgcolor: "#007BFF" },
+                      transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
+                      "&:hover": {
+                        bgcolor: "#007BFF",
+                        transform: "translateY(-5px) scale(1.1)",
+                        boxShadow: "0 10px 20px rgba(0, 123, 255, 0.3)",
+                      },
                     }}
                   >
-                    <InstagramIcon />
-                  </IconButton>
-                  <IconButton
-                    sx={{
-                      bgcolor: "rgba(255,255,255,0.1)",
-                      color: "#fff",
-                      "&:hover": { bgcolor: "#007BFF" },
-                    }}
-                  >
-                    <LinkedInIcon />
+                    <WhatsAppIcon />
                   </IconButton>
                 </Box>
               </Box>
             </Box>
           </Box>
 
-          {/* LADO DERECHO: FORMULARIO (Fondo Blanco) */}
           <Box
             data-aos="fade-left"
             sx={{
               flex: { xs: "1 1 100%", md: "0 0 60%" },
               bgcolor: "#ffffff",
-              p: { xs: 4, md: 8 },
+              p: { xs: 3, sm: 5, md: 8 },
             }}
           >
-            <Typography variant="h3" fontWeight="900" color="#003366" mb={1}>
+            <Typography
+              variant="h3"
+              fontWeight="900"
+              color="#003366"
+              mb={1}
+              sx={{ fontSize: "clamp(1.5rem, 3.5vw, 2.5rem)" }}
+            >
               ¡Ponte en Contacto con Nosotros!
             </Typography>
-            <Typography variant="body1" color="#555" mb={5}>
+            <Typography
+              variant="body1"
+              color="#555"
+              mb={5}
+              sx={{ fontSize: "clamp(0.95rem, 2vw, 1.1rem)" }}
+            >
               Ya sea para información académica, trámites administrativos o
               cualquier consulta, estamos listos para asistirte. Envíanos un
               mensaje.
             </Typography>
 
-            {/* Agregado onKeyDown para enviar con Enter*/}
             <Box component="form" noValidate autoComplete="off">
               <Grid container spacing={3}>
                 <Grid size={{ xs: 12, sm: 6 }}>
@@ -489,10 +533,11 @@ export default function Contacto() {
                       bgcolor: "#007BFF",
                       color: "#fff",
                       borderRadius: "30px",
-                      px: 5,
+                      px: { xs: 3, md: 5 },
                       py: 1.5,
+                      width: { xs: "100%", sm: "auto" },
                       fontWeight: "bold",
-                      fontSize: "1rem",
+                      fontSize: "clamp(0.95rem, 1.5vw, 1rem)",
                       textTransform: "none",
                       boxShadow: "0 10px 20px rgba(0, 123, 255, 0.3)",
                       "&:hover": {
@@ -510,12 +555,22 @@ export default function Contacto() {
         </Paper>
       </Container>
 
-      {/* 3. SECCIÓN DEL MAPA*/}
-      <Container maxWidth="lg" sx={{ mt: 12, mb: 10 }}>
-        <Box data-aos="fade-up" sx={{ textAlign: "center", mb: 8 }}>
+      <Container
+        maxWidth="lg"
+        sx={{ mt: { xs: 8, md: 12 }, mb: { xs: 6, md: 10 } }}
+      >
+        <Box
+          data-aos="fade-up"
+          sx={{ textAlign: "center", mb: { xs: 5, md: 8 } }}
+        >
           <Typography
             variant="overline"
-            sx={{ color: "#007BFF", fontWeight: 900, letterSpacing: 2 }}
+            sx={{
+              color: "#007BFF",
+              fontWeight: 900,
+              letterSpacing: 2,
+              fontSize: "clamp(0.8rem, 1.5vw, 1rem)",
+            }}
           >
             UBICACIÓN ESTRATÉGICA
           </Typography>
@@ -524,25 +579,29 @@ export default function Contacto() {
             fontWeight="900"
             color="#003366"
             textTransform="uppercase"
+            sx={{ fontSize: "clamp(1.5rem, 4vw, 2.5rem)", mt: 1 }}
           >
             Encuéntranos en el Corazón de Cusco
           </Typography>
         </Box>
 
         <Box
-          sx={{ position: "relative", width: "100%", height: "700px" }}
+          sx={{
+            position: "relative",
+            width: "100%",
+            height: { xs: "400px", sm: "500px", md: "700px" },
+          }}
           data-aos="zoom-in"
         >
-          {/* Contenedor Principal del Mapa */}
           <Paper
             elevation={0}
             sx={{
               width: "100%",
               height: "100%",
-              borderRadius: { xs: "18px", md: "80px 24px 80px 24px" },
+              borderRadius: { xs: "24px", md: "80px 24px 80px 24px" },
               overflow: "hidden",
               position: "relative",
-              border: "8px solid #ffffff",
+              border: { xs: "4px solid #ffffff", md: "8px solid #ffffff" },
               boxShadow: "0 40px 80px rgba(0, 51, 102, 0.12)",
             }}
           >
@@ -558,14 +617,14 @@ export default function Contacto() {
             ></iframe>
           </Paper>
 
-          {/* Tarjeta de Información Flotante*/}
           <Paper
             sx={{
               position: "absolute",
-              bottom: { xs: 20, md: 50 },
-              left: { xs: 20, md: 50 },
-              p: { xs: 3, md: 4 },
-              maxWidth: "380px",
+              bottom: { xs: 15, sm: 30, md: 50 },
+              left: { xs: 15, sm: 30, md: 50 },
+              right: { xs: 15, sm: "auto" },
+              p: { xs: 2, md: 4 },
+              maxWidth: { xs: "none", sm: "320px", md: "380px" },
               borderRadius: "24px",
               bgcolor: "rgba(255, 255, 255, 0.9)",
               backdropFilter: "blur(10px)",
@@ -574,12 +633,18 @@ export default function Contacto() {
               zIndex: 10,
             }}
           >
-            <Box sx={{ display: "flex", alignItems: "center", gap: 2, mb: 2 }}>
-              {/* Icono con animación de pulso */}
+            <Box
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                gap: 2,
+                mb: { xs: 1.5, md: 2 },
+              }}
+            >
               <Box
                 sx={{
-                  width: 50,
-                  height: 50,
+                  width: { xs: 40, md: 50 },
+                  height: { xs: 40, md: 50 },
                   bgcolor: "#003366",
                   borderRadius: "50%",
                   display: "flex",
@@ -587,6 +652,7 @@ export default function Contacto() {
                   justifyContent: "center",
                   color: "#fff",
                   position: "relative",
+                  flexShrink: 0,
                   "&::after": {
                     content: '""',
                     position: "absolute",
@@ -602,19 +668,38 @@ export default function Contacto() {
                   },
                 }}
               >
-                <LocationOnIcon />
+                <LocationOnIcon sx={{ fontSize: { xs: 20, md: 24 } }} />
               </Box>
               <Box>
-                <Typography variant="h6" fontWeight="bold" color="#003366">
+                <Typography
+                  variant="h6"
+                  fontWeight="bold"
+                  color="#003366"
+                  sx={{
+                    fontSize: "clamp(1rem, 1.5vw, 1.25rem)",
+                    lineHeight: 1.2,
+                  }}
+                >
                   Nuestra Sede
                 </Typography>
-                <Typography variant="body2" color="#007BFF" fontWeight="bold">
+                <Typography
+                  variant="body2"
+                  color="#007BFF"
+                  fontWeight="bold"
+                  sx={{ fontSize: "clamp(0.75rem, 1.2vw, 0.875rem)" }}
+                >
                   San Sebastián, Cusco
                 </Typography>
               </Box>
             </Box>
 
-            <Typography variant="body2" color="#555" mb={3} lineHeight={1.6}>
+            <Typography
+              variant="body2"
+              color="#555"
+              mb={{ xs: 2, md: 3 }}
+              lineHeight={1.6}
+              sx={{ fontSize: "clamp(0.8rem, 1.2vw, 0.875rem)" }}
+            >
               Tenería 4 Fracción II Enaco San Sebastián. Ubicados en una zona
               accesible para toda nuestra comunidad estudiantil.
             </Typography>
@@ -633,9 +718,10 @@ export default function Contacto() {
                 bgcolor: "#003366",
                 color: "#fff",
                 borderRadius: "15px",
-                py: 1.5,
+                py: { xs: 1, md: 1.5 },
                 fontWeight: "bold",
                 textTransform: "none",
+                fontSize: "clamp(0.85rem, 1.5vw, 1rem)",
                 "&:hover": { bgcolor: "#007BFF" },
               }}
             >
@@ -643,14 +729,13 @@ export default function Contacto() {
             </Button>
           </Paper>
 
-          {/* Elemento decorativo detrás del mapa */}
           <Box
             sx={{
               position: "absolute",
-              top: -50,
-              right: -50,
-              width: "200px",
-              height: "200px",
+              top: { xs: -20, md: -50 },
+              right: { xs: -20, md: -50 },
+              width: { xs: "100px", md: "200px" },
+              height: { xs: "100px", md: "200px" },
               bgcolor: "rgba(0, 123, 255, 0.05)",
               borderRadius: "50%",
               zIndex: -1,

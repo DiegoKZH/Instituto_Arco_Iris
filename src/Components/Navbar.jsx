@@ -23,14 +23,15 @@ import CloseIcon from "@mui/icons-material/Close";
 import ExpandLess from "@mui/icons-material/ExpandLess";
 import ExpandMore from "@mui/icons-material/ExpandMore";
 
-import logo from "../assets/logo_arcoiris_svg.svg";
+import logo1 from "../assets/logo_arcoiris_rm.png";
+import logo2 from "../assets/logo_arcoiris_blanco.png";
+
 export default function Navbar() {
   const trigger = useScrollTrigger({ disableHysteresis: true, threshold: 50 });
   const location = useLocation();
   const navigate = useNavigate();
   const [isLight, setIsLight] = useState(false);
 
-  // Estados para el menú móvil
   const [mobileOpen, setMobileOpen] = useState(false);
   const [openSubMenus, setOpenSubMenus] = useState({});
 
@@ -41,10 +42,8 @@ export default function Navbar() {
 
   const handleNavigation = (path) => {
     navigate(path);
-    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
-  // Manejadores móvil
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
@@ -122,7 +121,14 @@ export default function Navbar() {
   ];
 
   const drawerContent = (
-    <Box sx={{ display: "flex", flexDirection: "column", height: "100%" }}>
+    <Box
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        height: "100%",
+        justifyContent: "center",
+      }}
+    >
       <Box
         sx={{
           p: 2.5,
@@ -132,17 +138,19 @@ export default function Navbar() {
           borderBottom: "1px solid rgba(255,255,255,0.08)",
         }}
       >
-        <Box
-          component="img"
-          src="https://arcoiris.edu.pe/assets/Img/LOGO%20INSTI%20BLANCO.png"
-          sx={{ height: 40 }}
-        />
+        <Box component="img" src={logo2} sx={{ height: 80 }} />
         <IconButton onClick={handleDrawerToggle} sx={{ color: "#ffffff" }}>
           <CloseIcon />
         </IconButton>
       </Box>
 
-      <List sx={{ px: 2, py: 3, flexGrow: 1, overflowY: "auto" }}>
+      <List
+        sx={{
+          px: 2,
+          py: 3,
+          overflowY: "auto",
+        }}
+      >
         {navItems.map((item) => {
           const isMainActive = item.path
             ? location.pathname === item.path
@@ -165,11 +173,11 @@ export default function Navbar() {
                 sx={{
                   borderRadius: "10px",
                   mb: 1,
-                  bgcolor:
-                    isActive && !item.subItems
-                      ? "rgba(0, 123, 255, 0.15)"
-                      : "transparent",
+                  bgcolor: isActive ? "rgba(0, 123, 255, 0.15)" : "transparent",
                   color: isActive ? "#007BFF" : "#e2e8f0",
+                  boxShadow: isActive
+                    ? "0 4px 12px rgba(0, 123, 255, 0.25)"
+                    : "none",
                   "&:hover": {
                     bgcolor: "rgba(255,255,255,0.05)",
                   },
@@ -280,11 +288,7 @@ export default function Navbar() {
                 <Box
                   component="img"
                   onClick={() => handleNavigation("/")}
-                  src={
-                    trigger
-                      ? "https://arcoiris.edu.pe/assets/Img/LOGO%20INSTITUTO%20ARCO%20IRIS%20CUSCO%20(5).png"
-                      : "https://arcoiris.edu.pe/assets/Img/LOGO%20INSTI%20BLANCO.png"
-                  }
+                  src={trigger ? logo1 : logo2}
                   sx={{
                     height: trigger ? 60 : 60,
                     cursor: "pointer",
@@ -483,7 +487,7 @@ export default function Navbar() {
                                         height: "80%",
                                         filter: isSubItemActive
                                           ? "brightness(0) invert(1)"
-                                          : "invert(36%) sepia(82%) saturate(2853%) hue-rotate(195deg) brightness(103%) contrast(105%)", // Filtro a #007BFF
+                                          : "invert(36%) sepia(82%) saturate(2853%) hue-rotate(195deg) brightness(103%) contrast(105%)",
                                         transition:
                                           "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
                                       }}

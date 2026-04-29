@@ -14,9 +14,17 @@ import EmailIcon from "@mui/icons-material/Email";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 
+import logo from "../assets/logo_arcoiris_blanco.png";
+
 export default function Footer() {
-  // Centralizamos el color para asegurarnos de que el fondo y la ola sean idénticos
   const footerColor = "#003366";
+
+  const handleWhatsAppClick = () => {
+    const numero = "51986249212";
+    const mensaje = "Hola, tengo una consulta";
+    const url = `https://wa.me/${numero}?text=${encodeURIComponent(mensaje)}`;
+    window.open(url, "_blank", "noopener,noreferrer");
+  };
 
   return (
     <Box
@@ -26,14 +34,12 @@ export default function Footer() {
         color: "#fff",
         pt: { xs: 8, md: 6 },
         pb: { xs: 12, md: 4 },
+        paddingX: { xs: 3, md: 0 },
         position: "relative",
         zIndex: 2,
         fontFamily: "'Roboto', sans-serif",
       }}
     >
-      {/* ========================================================
-                        FORMA DE OLA INVERTIDA
-        ======================================================== */}
       <Box
         sx={{
           position: "absolute",
@@ -65,16 +71,24 @@ export default function Footer() {
         </svg>
       </Box>
 
-      {/* ========================================================
-                      CONTENIDO PRINCIPAL DEL FOOTER
-        ======================================================== */}
       <Container maxWidth="lg" sx={{ position: "relative", zIndex: 1 }}>
         <Grid container spacing={6} mb={8}>
-          <Grid size={{ xs: 12, md: 4 }}>
-            <Box sx={{ display: "flex", alignItems: "center", gap: 1, mb: 3 }}>
+          <Grid
+            size={{ xs: 12, md: 4 }}
+            sx={{ textAlign: { xs: "center", md: "left" } }}
+          >
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: { xs: "center", md: "flex-start" },
+                alignItems: "center",
+                gap: 1,
+                mb: 3,
+              }}
+            >
               <Box
                 component="img"
-                src="https://arcoiris.edu.pe/assets/Img/LOGO%20INSTI%20BLANCO.png"
+                src={logo}
                 alt="Logo Arco Iris"
                 sx={{
                   height: 160,
@@ -85,44 +99,69 @@ export default function Footer() {
             </Box>
             <Typography
               variant="body2"
-              sx={{ color: "#F0F2F5", mb: 3, lineHeight: 1.8, pr: 2 }}
+              textAlign="justify"
+              sx={{
+                color: "#F0F2F5",
+                mb: 3,
+                lineHeight: 1.8,
+                pr: { xs: 0, md: 2 },
+              }}
             >
               Formando educadores líderes con vocación de servicio, pensamiento
               crítico y valores éticos para el desarrollo de la región Cusco y
               el Perú.
             </Typography>
             <Typography variant="body2" sx={{ color: "#F0F2F5" }}>
-              RUC: 20123456789
+              RUC: 20392505432
             </Typography>
           </Grid>
 
-          <Grid size={{ xs: 12, sm: 6, md: 2 }}>
+          <Grid
+            size={{ xs: 12, sm: 6, md: 2 }}
+            sx={{ textAlign: { xs: "center", sm: "left" } }}
+          >
             <Typography variant="h6" fontWeight="bold" mb={3}>
               Institucional
             </Typography>
-            {[
-              "Nosotros",
-              "Autoridades",
-              "Docentes",
-              "Transparencia",
-              "Reclamaciones",
-            ].map((link) => (
-              <Typography
-                key={link}
-                variant="body2"
-                sx={{
-                  color: "#F0F2F5",
-                  mb: 1.5,
-                  cursor: "pointer",
-                  "&:hover": { color: "#ffffff", textDecoration: "underline" },
-                }}
-              >
-                {link}
-              </Typography>
-            ))}
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: { xs: "row", sm: "column" },
+                flexWrap: "wrap",
+                justifyContent: { xs: "center", sm: "flex-start" },
+                gap: { xs: 2, sm: 0 },
+              }}
+            >
+              {[
+                "Nosotros",
+                "Autoridades",
+                "Docentes",
+                "Transparencia",
+                "Reclamaciones",
+              ].map((link) => (
+                <Typography
+                  key={link}
+                  variant="body2"
+                  sx={{
+                    color: "#F0F2F5",
+                    mb: { xs: 0, sm: 1.5 },
+                    cursor: "pointer",
+                    "&:hover": {
+                      color: "#ffffff",
+                      textDecoration: "underline",
+                    },
+                  }}
+                >
+                  {link}
+                </Typography>
+              ))}
+            </Box>
           </Grid>
 
-          <Grid size={{ xs: 12, sm: 6, md: 3 }}>
+          <Grid
+            size={{ xs: 12, sm: 6, md: 3 }}
+            sx={{ textAlign: { xs: "left", sm: "left" } }}
+          >
             <Typography variant="h6" fontWeight="bold" mb={3}>
               Contacto
             </Typography>
@@ -131,16 +170,28 @@ export default function Footer() {
                 display: "flex",
                 gap: 1.5,
                 mb: 2,
+                justifyContent: { xs: "center", sm: "flex-start" },
                 alignItems: "flex-start",
               }}
             >
-              <LocationOnIcon sx={{ color: "#007BFF", fontSize: 20 }} />
-              <Typography variant="body2" sx={{ color: "#F0F2F5" }}>
+              <LocationOnIcon
+                sx={{ color: "#007BFF", fontSize: 20, flexShrink: 0 }}
+              />
+              <Typography
+                variant="body2"
+                sx={{ color: "#F0F2F5", textAlign: "left" }}
+              >
                 Tenería 4 Fracción II Enaco San Sebastián, San Sebastian, Cusco.
               </Typography>
             </Box>
             <Box
-              sx={{ display: "flex", gap: 1.5, mb: 2, alignItems: "center" }}
+              sx={{
+                display: "flex",
+                gap: 1.5,
+                mb: 2,
+                justifyContent: { xs: "left", sm: "flex-start" },
+                alignItems: "center",
+              }}
             >
               <PhoneIcon sx={{ color: "#007BFF", fontSize: 20 }} />
               <Typography variant="body2" sx={{ color: "#F0F2F5" }}>
@@ -148,7 +199,13 @@ export default function Footer() {
               </Typography>
             </Box>
             <Box
-              sx={{ display: "flex", gap: 1.5, mb: 2, alignItems: "center" }}
+              sx={{
+                display: "flex",
+                gap: 1.5,
+                mb: 2,
+                justifyContent: { xs: "left", sm: "flex-start" },
+                alignItems: "center",
+              }}
             >
               <EmailIcon sx={{ color: "#007BFF", fontSize: 20 }} />
               <Typography variant="body2" sx={{ color: "#F0F2F5" }}>
@@ -157,7 +214,10 @@ export default function Footer() {
             </Box>
           </Grid>
 
-          <Grid size={{ xs: 12, md: 3 }}>
+          <Grid
+            size={{ xs: 12, md: 3 }}
+            sx={{ textAlign: { xs: "left", md: "left" } }}
+          >
             <Typography variant="h6" fontWeight="bold" mb={3}>
               ¿Tienes dudas?
             </Typography>
@@ -167,6 +227,7 @@ export default function Footer() {
             <Button
               variant="contained"
               fullWidth
+              onClick={handleWhatsAppClick}
               sx={{
                 bgcolor: "#007BFF",
                 color: "#fff",
@@ -179,18 +240,16 @@ export default function Footer() {
             >
               Contáctanos Ahora
             </Button>
-            {/* ========================================================
-                                    WIDGET FLOTANTE SOCIAL
-            ======================================================== */}
             <Box
               sx={{
-                paddingTop: 6,
+                pt: 6,
                 width: "236px",
                 height: "54px",
                 zIndex: 10,
                 display: "flex",
                 justifyContent: "space-between",
                 alignItems: "center",
+                mx: { xs: "auto", md: 0 },
               }}
             >
               <IconButton
@@ -246,9 +305,10 @@ export default function Footer() {
           sx={{
             display: "flex",
             flexWrap: "wrap",
-            justifyContent: "space-between",
+            justifyContent: { xs: "center", sm: "space-between" },
             alignItems: "center",
             pr: { xs: 0, sm: "240px", md: 0 },
+            textAlign: "center",
           }}
         >
           <Typography

@@ -14,7 +14,6 @@ import {
 import AOS from "aos";
 import "aos/dist/aos.css";
 
-// Íconos
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import LocalOfferIcon from "@mui/icons-material/LocalOffer";
@@ -26,6 +25,9 @@ import SupportAgentIcon from "@mui/icons-material/SupportAgent";
 import CloudDownloadIcon from "@mui/icons-material/CloudDownload";
 import ConnectWithoutContactIcon from "@mui/icons-material/ConnectWithoutContact";
 
+import Egresados1 from "../assets/imagenes/Graduado.jpeg";
+import Egresados2 from "../assets/imagenes/Graduados.jpg";
+
 export default function Egresados() {
   useEffect(() => {
     AOS.init({
@@ -36,53 +38,51 @@ export default function Egresados() {
     });
   }, []);
 
-  // Datos de los Beneficios (Sección 3)
   const beneficios = [
     {
       title: "Descuentos Académicos",
       desc: "Beneficios en programas de posgrado, diplomados y cursos de especialización en el instituto y en instituciones aliadas.",
-      icon: <LocalOfferIcon sx={{ fontSize: 40 }} />,
-      colSpan: { xs: 12, md: 8 }, // Tarjeta ancha
+      icon: <LocalOfferIcon sx={{ fontSize: { xs: 30, md: 40 } }} />,
+      colSpan: { xs: 12, md: 8 },
     },
     {
       title: "Biblioteca Virtual",
       desc: "Acceso ilimitado a nuestra vasta colección de recursos académicos, revistas especializadas y bases de datos.",
-      icon: <AutoStoriesIcon sx={{ fontSize: 40 }} />,
-      colSpan: { xs: 12, md: 4 }, // Tarjeta estrecha
+      icon: <AutoStoriesIcon sx={{ fontSize: { xs: 30, md: 40 } }} />,
+      colSpan: { xs: 12, md: 4 },
     },
     {
       title: "Bolsa de Trabajo",
       desc: "Acceso prioritario a ofertas laborales exclusivas de nuestra red de contactos empresariales e institucionales.",
-      icon: <WorkOutlineIcon sx={{ fontSize: 40 }} />,
-      colSpan: { xs: 12, md: 4 }, // Tarjeta estrecha
+      icon: <WorkOutlineIcon sx={{ fontSize: { xs: 30, md: 40 } }} />,
+      colSpan: { xs: 12, md: 4 },
     },
     {
       title: "Asesoría de Emprendimiento",
       desc: "Soporte y guía para el desarrollo de tus propios proyectos educativos y startups.",
-      icon: <RocketLaunchIcon sx={{ fontSize: 40 }} />,
-      colSpan: { xs: 12, md: 8 }, // Tarjeta ancha
+      icon: <RocketLaunchIcon sx={{ fontSize: { xs: 30, md: 40 } }} />,
+      colSpan: { xs: 12, md: 8 },
     },
     {
       title: "Eventos Exclusivos",
       desc: "Invitaciones a conferencias, talleres, seminarios y encuentros con líderes del sector educativo.",
-      icon: <EventAvailableIcon sx={{ fontSize: 40 }} />,
-      colSpan: { xs: 12, md: 6 }, // Mitad
+      icon: <EventAvailableIcon sx={{ fontSize: { xs: 30, md: 40 } }} />,
+      colSpan: { xs: 12, md: 6 },
     },
     {
       title: "Soporte y Orientación",
       desc: "Servicios de orientación profesional y actualización de conocimientos para mantenerte a la vanguardia.",
-      icon: <SupportAgentIcon sx={{ fontSize: 40 }} />,
-      colSpan: { xs: 12, md: 6 }, // Mitad
+      icon: <SupportAgentIcon sx={{ fontSize: { xs: 30, md: 40 } }} />,
+      colSpan: { xs: 12, md: 6 },
     },
   ];
 
   return (
     <Box sx={{ bgcolor: "#f4f7fb", overflow: "hidden" }}>
-      {/* 1. PORTADA HERO */}
       <Box
         sx={{
           position: "relative",
-          height: { xs: "55vh", md: "65vh" },
+          height: { xs: "60vh", md: "65vh" },
           display: "flex",
           alignItems: "center",
           bgcolor: "#003366",
@@ -91,7 +91,7 @@ export default function Egresados() {
             position: "absolute",
             inset: 0,
             backgroundImage:
-              "url('https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=2070&auto=format&fit=crop')", // Imagen de profesionales
+              "url('https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=2070&auto=format&fit=crop')",
             backgroundSize: "cover",
             backgroundPosition: "center",
             opacity: 0.25,
@@ -106,8 +106,8 @@ export default function Egresados() {
               sx={{
                 color: "#80bdff",
                 fontWeight: 900,
-                letterSpacing: 3,
-                fontSize: "1.2rem",
+                letterSpacing: { xs: 2, md: 3 },
+                fontSize: "clamp(1rem, 2vw, 1.2rem)",
               }}
             >
               RED DE PROFESIONALES
@@ -118,7 +118,7 @@ export default function Egresados() {
               sx={{
                 color: "#ffffff",
                 textTransform: "uppercase",
-                fontSize: { xs: "3rem", md: "5rem" },
+                fontSize: "clamp(2.5rem, 6vw, 5rem)",
                 lineHeight: 1.1,
                 mb: 2,
               }}
@@ -132,7 +132,8 @@ export default function Egresados() {
                 maxWidth: "600px",
                 fontWeight: 400,
                 borderLeft: "4px solid #007BFF",
-                pl: 3,
+                pl: { xs: 2, md: 3 },
+                fontSize: "clamp(1rem, 2vw, 1.25rem)",
               }}
             >
               Tu éxito es nuestro orgullo. Mantente conectado con la red de
@@ -142,15 +143,18 @@ export default function Egresados() {
         </Container>
       </Box>
 
-      {/* 2. IMPACTO PROFESIONAL (Imagen Izquierda, Texto Derecha) */}
-      <Box sx={{ bgcolor: "#ffffff", py: { xs: 8, md: 12 } }}>
+      <Box sx={{ bgcolor: "#ffffff", py: { xs: 6, md: 12 } }}>
         <Container maxWidth="lg">
-          <Box data-aos="fade-up" sx={{ textAlign: "center", mb: 8 }}>
+          <Box
+            data-aos="fade-up"
+            sx={{ textAlign: "center", mb: { xs: 6, md: 8 } }}
+          >
             <Typography
               variant="h2"
               fontWeight="900"
               color="#003366"
               textTransform="uppercase"
+              sx={{ fontSize: "clamp(1.8rem, 5vw, 3.75rem)" }}
             >
               Impacto Profesional de Nuestros Egresados
             </Typography>
@@ -160,38 +164,41 @@ export default function Egresados() {
               mt={2}
               maxWidth="800px"
               mx="auto"
+              sx={{ fontSize: "clamp(1rem, 2vw, 1.25rem)" }}
             >
               Nuestros egresados son líderes y agentes de cambio en el ámbito
               educativo nacional.
             </Typography>
           </Box>
 
-          <Grid container spacing={6} alignItems="center">
+          <Grid container spacing={{ xs: 4, md: 6 }} alignItems="center">
             <Grid size={{ xs: 12, md: 7 }} data-aos="fade-right">
-              <Box sx={{ position: "relative", p: 0 }}>
+              <Box sx={{ position: "relative", px: { xs: 2, sm: 0 } }}>
                 <Box
                   component="img"
-                  src="https://arcoiris.edu.pe/assets/Img/Fotos%20Egresados/hero-bg.jpg"
+                  src={Egresados1}
                   alt="Egresados liderando proyectos"
                   sx={{
                     width: "100%",
-                    borderRadius: "20px 100px 20px 20px",
+                    borderRadius: {
+                      xs: "20px 50px 20px 20px",
+                      md: "20px 100px 20px 20px",
+                    },
                     objectFit: "cover",
-                    height: "450px",
+                    height: { xs: "400px", sm: "500px", md: "650px" },
                     boxShadow: "0 20px 40px rgba(0,51,102,0.15)",
                   }}
                 />
-                {/* Leyenda de imagen flotante */}
                 <Paper
                   sx={{
                     position: "absolute",
-                    bottom: -10,
-                    left: -10,
-                    p: 2,
+                    bottom: { xs: -20, md: -10 },
+                    left: { xs: 10, md: -10 },
+                    p: { xs: 1.5, md: 2 },
                     borderRadius: "12px",
                     bgcolor: "#007BFF",
                     color: "#fff",
-                    maxWidth: "250px",
+                    maxWidth: { xs: "200px", md: "250px" },
                     boxShadow: "0 10px 20px rgba(0, 123, 255, 0.3)",
                   }}
                 >
@@ -199,6 +206,7 @@ export default function Egresados() {
                     variant="body2"
                     fontWeight="bold"
                     textAlign="center"
+                    sx={{ fontSize: "clamp(0.75rem, 1.5vw, 0.875rem)" }}
                   >
                     Nuestros egresados liderando proyectos educativos.
                   </Typography>
@@ -206,16 +214,26 @@ export default function Egresados() {
               </Box>
             </Grid>
 
-            <Grid size={{ xs: 12, md: 5 }} data-aos="fade-left">
-              <Typography variant="h3" fontWeight="900" color="#003366" mb={2}>
+            <Grid
+              size={{ xs: 12, md: 5 }}
+              data-aos="fade-left"
+              sx={{ mt: { xs: 3, md: 0 } }}
+            >
+              <Typography
+                variant="h3"
+                fontWeight="900"
+                color="#003366"
+                mb={2}
+                sx={{ fontSize: "clamp(1.75rem, 4vw, 3rem)" }}
+              >
                 Trayectorias que Inspiran
               </Typography>
               <Typography
                 variant="body1"
                 color="#555"
                 mb={4}
-                fontSize="1.1rem"
                 textAlign="justify"
+                sx={{ fontSize: "clamp(0.95rem, 2vw, 1.1rem)" }}
               >
                 Desde aulas de inicial hasta la gestión de proyectos educativos,
                 los profesionales formados en el Instituto Arcoíris demuestran
@@ -235,7 +253,7 @@ export default function Egresados() {
                     <Paper
                       elevation={0}
                       sx={{
-                        p: 2,
+                        p: { xs: 1.5, md: 2 },
                         bgcolor: "#F0F2F5",
                         borderLeft: "4px solid #007BFF",
                         display: "flex",
@@ -249,6 +267,7 @@ export default function Egresados() {
                         variant="body2"
                         fontWeight="600"
                         color="#003366"
+                        sx={{ fontSize: "clamp(0.85rem, 1.5vw, 0.95rem)" }}
                       >
                         {item}
                       </Typography>
@@ -261,12 +280,11 @@ export default function Egresados() {
         </Container>
       </Box>
 
-      {/* 3. RED PROFESIONAL (Texto Izquierda, Imagen Derecha - Asimétrico) */}
       <Box sx={{ bgcolor: "#F0F2F5", py: { xs: 8, md: 12 } }}>
         <Container maxWidth="lg">
           <Grid
             container
-            spacing={6}
+            spacing={{ xs: 5, md: 6 }}
             alignItems="center"
             direction={{ xs: "column-reverse", md: "row" }}
           >
@@ -276,13 +294,25 @@ export default function Egresados() {
                 color="#007BFF"
                 fontWeight="bold"
                 letterSpacing={2}
+                sx={{ fontSize: "clamp(0.8rem, 1.5vw, 1rem)" }}
               >
                 NETWORKING
               </Typography>
-              <Typography variant="h3" fontWeight="900" color="#003366" mb={2}>
+              <Typography
+                variant="h3"
+                fontWeight="900"
+                color="#003366"
+                mb={2}
+                sx={{ fontSize: "clamp(1.75rem, 4vw, 3rem)" }}
+              >
                 Construyendo Puentes Profesionales
               </Typography>
-              <Typography variant="body1" color="#555" mb={3} fontSize="1.1rem">
+              <Typography
+                variant="body1"
+                color="#555"
+                mb={3}
+                sx={{ fontSize: "clamp(0.95rem, 2vw, 1.1rem)" }}
+              >
                 Conecta con una comunidad vibrante de colegas y mentores a nivel
                 nacional.
               </Typography>
@@ -291,6 +321,7 @@ export default function Egresados() {
                 color="#666"
                 mb={4}
                 textAlign="justify"
+                sx={{ fontSize: "clamp(0.9rem, 1.8vw, 1rem)" }}
               >
                 <strong>Construyendo Puentes Profesionales:</strong> Creemos en
                 el poder de la colaboración. Nuestra plataforma exclusiva y
@@ -306,7 +337,7 @@ export default function Egresados() {
                   "Programas de Mentoría y Desarrollo de Liderazgo.",
                   "Oportunidades de Colaboración en Proyectos.",
                 ].map((item, idx) => (
-                  <ListItem key={idx} sx={{ px: 0, py: 1 }}>
+                  <ListItem key={idx} sx={{ px: 0, py: { xs: 0.5, md: 1 } }}>
                     <ListItemIcon sx={{ minWidth: 35 }}>
                       <ArrowForwardIosIcon
                         sx={{ color: "#007BFF", fontSize: 18 }}
@@ -317,6 +348,7 @@ export default function Egresados() {
                       primaryTypographyProps={{
                         color: "#333",
                         fontWeight: 500,
+                        fontSize: "clamp(0.9rem, 1.5vw, 1rem)",
                       }}
                     />
                   </ListItem>
@@ -328,30 +360,32 @@ export default function Egresados() {
               <Box
                 sx={{
                   position: "relative",
-                  p: 2,
+                  p: { xs: 0, md: 2 },
                   display: "flex",
-                  justifyContent: "flex-end",
+                  justifyContent: { xs: "center", md: "flex-end" },
                 }}
               >
                 <Box
                   component="img"
-                  src="https://arcoiris.edu.pe/assets/Img/Fotos%20Egresados/ad-01.jpg"
+                  src={Egresados2}
                   alt="Networking"
                   sx={{
-                    width: "90%",
-                    borderRadius: "100px 20px 100px 20px",
+                    width: { xs: "100%", md: "90%" },
+                    borderRadius: {
+                      xs: "50px 20px 50px 20px",
+                      md: "100px 20px 100px 20px",
+                    },
                     objectFit: "cover",
-                    height: "500px",
+                    height: { xs: "350px", sm: "400px", md: "500px" },
                     boxShadow: "0 20px 40px rgba(0,51,102,0.1)",
                   }}
                 />
-                {/* Etiqueta conectada */}
                 <Paper
                   sx={{
                     position: "absolute",
-                    bottom: 40,
-                    left: 0,
-                    p: 2,
+                    bottom: { xs: -15, md: 40 },
+                    left: { xs: 15, md: 0 },
+                    p: { xs: 1.5, md: 2 },
                     borderRadius: "12px",
                     bgcolor: "#ffffff",
                     border: "1px solid #eaeaea",
@@ -370,15 +404,18 @@ export default function Egresados() {
                       color: "#007BFF",
                     }}
                   >
-                    <ConnectWithoutContactIcon />
+                    <ConnectWithoutContactIcon
+                      sx={{ fontSize: { xs: 20, md: 24 } }}
+                    />
                   </Box>
                   <Typography
                     variant="body2"
                     fontWeight="bold"
                     color="#003366"
                     maxWidth="150px"
+                    sx={{ fontSize: "clamp(0.75rem, 1.5vw, 0.875rem)" }}
                   >
-                    Conexiones de calidad para neustros Egresados.
+                    Conexiones de calidad para nuestros Egresados.
                   </Typography>
                 </Paper>
               </Box>
@@ -387,16 +424,14 @@ export default function Egresados() {
         </Container>
       </Box>
 
-      {/* 4. BENEFICIOS EXCLUSIVOS */}
       <Box
         data-aos="fade-up"
         sx={{
           bgcolor: "#003366",
-          py: { xs: 10, md: 14 },
+          py: { xs: 8, md: 14 },
           position: "relative",
         }}
       >
-        {/* Fondo decorativo geométrico */}
         <Box
           sx={{
             position: "absolute",
@@ -412,19 +447,22 @@ export default function Egresados() {
         />
 
         <Container maxWidth="lg" sx={{ position: "relative", zIndex: 1 }}>
-          <Box data-aos="fade-up" sx={{ textAlign: "center", mb: 8 }}>
+          <Box
+            data-aos="fade-up"
+            sx={{ textAlign: "center", mb: { xs: 6, md: 8 } }}
+          >
             <Typography
               variant="h2"
               fontWeight="900"
               color="#ffffff"
               textTransform="uppercase"
+              sx={{ fontSize: "clamp(1.8rem, 5vw, 3.75rem)" }}
             >
               Beneficios Exclusivos para Nuestros Egresados
             </Typography>
           </Box>
 
-          {/* Bento Grid Layout */}
-          <Grid container spacing={3}>
+          <Grid container spacing={{ xs: 2, md: 3 }}>
             {beneficios.map((beneficio, index) => (
               <Grid
                 size={beneficio.colSpan}
@@ -447,11 +485,11 @@ export default function Egresados() {
                     "&:hover": {
                       bgcolor: "rgba(0, 123, 255, 0.1)",
                       borderColor: "#007BFF",
-                      transform: "scale(1.1)",
+                      transform: { xs: "none", md: "scale(1.05)" },
                       boxShadow: "0 20px 40px rgba(0, 0, 0, 0.3)",
                     },
                     "&:hover .bento-icon": {
-                      transform: "scale(1.1)",
+                      transform: { xs: "none", md: "scale(1.1)" },
                       color: "#80bdff",
                     },
                   }}
@@ -471,10 +509,16 @@ export default function Egresados() {
                     fontWeight="bold"
                     color="#ffffff"
                     mb={1.5}
+                    sx={{ fontSize: "clamp(1.1rem, 2.5vw, 1.5rem)" }}
                   >
                     {beneficio.title}
                   </Typography>
-                  <Typography variant="body2" color="#e2e8f0" lineHeight={1.6}>
+                  <Typography
+                    variant="body2"
+                    color="#e2e8f0"
+                    lineHeight={1.6}
+                    sx={{ fontSize: "clamp(0.85rem, 1.5vw, 0.95rem)" }}
+                  >
                     {beneficio.desc}
                   </Typography>
                 </Paper>
@@ -482,19 +526,19 @@ export default function Egresados() {
             ))}
           </Grid>
 
-          {/* CTA FINAL */}
-          <Box mt={10} textAlign="center" data-aos="fade-up">
-            <Button
+          <Box mt={{ xs: 6, md: 10 }} textAlign="center" data-aos="fade-up">
+            {/*<Button
               variant="contained"
               size="large"
               startIcon={<CloudDownloadIcon />}
               sx={{
                 bgcolor: "#007BFF",
                 color: "#ffffff",
-                px: 4,
-                py: 2,
+                px: { xs: 3, md: 4 },
+                py: { xs: 1.5, md: 2 },
+                width: { xs: "100%", sm: "auto" },
                 borderRadius: "30px",
-                fontSize: "1.1rem",
+                fontSize: "clamp(0.9rem, 2vw, 1.1rem)",
                 fontWeight: "bold",
                 textTransform: "none",
                 boxShadow: "0 10px 30px rgba(0, 123, 255, 0.3)",
@@ -506,21 +550,23 @@ export default function Egresados() {
             >
               Descargar Guía Completa de Beneficios
             </Button>
+            */}
           </Box>
         </Container>
       </Box>
       <Box
         sx={{
-          py: 10,
+          py: { xs: 6, md: 10 },
           px: 2,
           textAlign: "center",
         }}
       >
         <Typography
           sx={{
-            fontSize: { xs: "1.4rem", md: "2rem" },
+            fontSize: "clamp(1.2rem, 3vw, 2rem)",
             fontStyle: "italic",
             fontWeight: 500,
+            paddingBottom: 4,
             color: "#2c3e50",
             maxWidth: "800px",
             mx: "auto",

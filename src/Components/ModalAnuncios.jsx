@@ -12,6 +12,12 @@ import CloseIcon from "@mui/icons-material/Close";
 import ArrowBackIosNewRoundedIcon from "@mui/icons-material/ArrowBackIosNewRounded";
 import ArrowForwardIosRoundedIcon from "@mui/icons-material/ArrowForwardIosRounded";
 
+import ad1 from "../assets/Anuncios/resultados_2026_1.jpg";
+import ad2 from "../assets/Anuncios/laboral.jpg";
+import ad3 from "../assets/Anuncios/apertura2026_1.jpg";
+import ad4 from "../assets/Anuncios/campeon.jpg";
+import ad5 from "../assets/Anuncios/examen_simulacro.jpg";
+
 const Transition = forwardRef((props, ref) => (
   <Slide direction="up" ref={ref} {...props} />
 ));
@@ -26,23 +32,22 @@ export default function ModalAnuncios({
 
   const anuncios = [
     {
-      img: "https://arcoiris.edu.pe/assets/Img/comunicados/WhatsApp%20Image%202026-03-29%20at%203.57.42%20PM.jpeg",
+      img: ad1,
       link: "/admision",
       btnText: "Ver Resultados",
     },
     {
-      img: "https://arcoiris.edu.pe/assets/Img/comunicados/CONVOCATORIA%202026-l-2.png",
+      img: ad2,
       link: "/eventos",
-      btnText: "Postular",
     },
     {
-      img: "https://arcoiris.edu.pe/assets/Img/comunicados/CONVOCATORIA%202026-I-1.png",
+      img: ad3,
     },
     {
-      img: "https://arcoiris.edu.pe/assets/Img/comunicados/Comunicado_Simuilacro.jpeg",
+      img: ad4,
     },
     {
-      img: "https://arcoiris.edu.pe/assets/Img/comunicados/ultimo_lic.jpg",
+      img: ad5,
     },
   ];
 
@@ -74,11 +79,14 @@ export default function ModalAnuncios({
       fullWidth
       PaperProps={{
         sx: {
-          borderRadius: "24px",
+          borderRadius: { xs: "16px", md: "24px" },
           bgcolor: "#000",
           maxWidth: "750px",
-          width: "100%",
-          height: { xs: "65vh", sm: "70vh", md: "80vh" },
+          width: { xs: "90vw", sm: "100%" },
+          height: { xs: "auto", md: "80vh" },
+          aspectRatio: { xs: "1 / 1", md: "auto" },
+          maxHeight: { xs: "80vh", md: "90vh" },
+          margin: { xs: 2, md: 4 },
           overflow: "hidden",
         },
       }}
@@ -101,16 +109,17 @@ export default function ModalAnuncios({
           onClick={() => setOpen(false)}
           sx={{
             position: "absolute",
-            top: 15,
-            right: 15,
+            top: { xs: 10, md: 15 },
+            right: { xs: 10, md: 15 },
             zIndex: 10,
             bgcolor: "rgba(0,0,0,0.4)",
             color: "#fff",
             backdropFilter: "blur(8px)",
+            cursor: "default",
             "&:hover": { bgcolor: "rgba(0,0,0,0.7)" },
           }}
         >
-          <CloseIcon fontSize="big" />
+          <CloseIcon fontSize="medium" />
         </IconButton>
 
         <AnimatePresence mode="wait">
@@ -132,7 +141,12 @@ export default function ModalAnuncios({
             <Box
               component="img"
               src={anuncios[currentIndex].img}
-              sx={{ width: "100%", height: "100%", objectFit: "cover" }}
+              sx={{
+                width: "100%",
+                height: "100%",
+                objectFit: { xs: "contain", md: "cover" },
+                bgcolor: "#000",
+              }}
             />
           </motion.div>
         </AnimatePresence>
@@ -141,7 +155,7 @@ export default function ModalAnuncios({
           <Box
             sx={{
               position: "absolute",
-              bottom: 35,
+              bottom: { xs: 20, md: 35 },
               width: "100%",
               display: "flex",
               justifyContent: "center",
@@ -157,18 +171,19 @@ export default function ModalAnuncios({
               sx={{
                 bgcolor: "#003366",
                 color: "#fff",
-                px: { xs: 4, md: 5 },
-                py: { xs: 1.2, md: 1.5 },
+                px: { xs: 3, md: 5 },
+                py: { xs: 1, md: 1.5 },
                 borderRadius: "50px",
                 textTransform: "none",
                 fontWeight: 800,
-                fontSize: "1rem",
+                fontSize: { xs: "0.9rem", md: "1rem" },
                 boxShadow: "0 8px 25px rgba(0, 0, 0, 0.5)",
                 position: "relative",
                 overflow: "hidden",
-                opacity: 0,
-                transform: "translateY(20px)",
+                opacity: { xs: 1, md: 0 },
+                transform: { xs: "none", md: "translateY(20px)" },
                 transition: "all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275)",
+                cursor: "default",
                 "&::before": {
                   content: '""',
                   position: "absolute",
@@ -182,7 +197,10 @@ export default function ModalAnuncios({
                 },
                 "&:hover": {
                   bgcolor: "#004080",
-                  transform: "scale(1.08) translateY(0)",
+                  transform: {
+                    xs: "scale(1.05)",
+                    md: "scale(1.08) translateY(0)",
+                  },
                   boxShadow: "0 12px 30px rgba(0, 51, 102, 0.8)",
                   "&::before": {
                     left: "100%",
@@ -190,7 +208,7 @@ export default function ModalAnuncios({
                 },
                 ".MuiDialogContent-root:hover &": {
                   opacity: 1,
-                  transform: "translateY(0)",
+                  transform: { md: "translateY(0)" },
                 },
               }}
             >
@@ -204,22 +222,25 @@ export default function ModalAnuncios({
           className="nav-btn"
           sx={{
             position: "absolute",
-            left: { xs: 10, md: 20 },
+            left: { xs: 5, md: 20 },
             top: "50%",
             transform: "translateY(-50%)",
-            opacity: 0,
+            opacity: { xs: 1, md: 0 },
             transition: "0.4s ease",
             bgcolor: "rgba(0,0,0,0.5)",
             color: "#fff",
             zIndex: 6,
             backdropFilter: "blur(4px)",
+            cursor: "default",
             "&:hover": {
               bgcolor: "rgba(0,0,0,0.8)",
               transform: "translateY(-50%) scale(1.1)",
             },
           }}
         >
-          <ArrowBackIosNewRoundedIcon fontSize="medium" />
+          <ArrowBackIosNewRoundedIcon
+            sx={{ fontSize: { xs: "1.2rem", md: "1.5rem" } }}
+          />
         </IconButton>
 
         <IconButton
@@ -227,22 +248,25 @@ export default function ModalAnuncios({
           className="nav-btn"
           sx={{
             position: "absolute",
-            right: { xs: 10, md: 20 },
+            right: { xs: 5, md: 20 },
             top: "50%",
             transform: "translateY(-50%)",
-            opacity: 0,
+            opacity: { xs: 1, md: 0 },
             transition: "0.4s ease",
             bgcolor: "rgba(0,0,0,0.5)",
             color: "#fff",
             zIndex: 6,
             backdropFilter: "blur(4px)",
+            cursor: "default",
             "&:hover": {
               bgcolor: "rgba(0,0,0,0.8)",
               transform: "translateY(-50%) scale(1.1)",
             },
           }}
         >
-          <ArrowForwardIosRoundedIcon fontSize="medium" />
+          <ArrowForwardIosRoundedIcon
+            sx={{ fontSize: { xs: "1.2rem", md: "1.5rem" } }}
+          />
         </IconButton>
       </DialogContent>
     </Dialog>

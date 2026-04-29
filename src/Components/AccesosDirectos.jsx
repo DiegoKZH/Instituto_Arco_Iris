@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Box, Typography, ButtonBase } from "@mui/material";
 import { motion, AnimatePresence } from "framer-motion";
+import { Link } from "react-router-dom";
 
 import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
@@ -44,7 +45,7 @@ export default function AccesosDirectos({
     {
       name: "Transparencia",
       icon: "https://cdn-icons-png.flaticon.com/128/5165/5165915.png",
-      link: "transparencia",
+      link: "/transparencia",
     },
     {
       name: "Aula Virtual",
@@ -155,56 +156,64 @@ export default function AccesosDirectos({
             >
               <AnimatePresence>
                 {isOpen &&
-                  accesos.map((acceso, index) => (
-                    <motion.div
-                      key={acceso.name}
-                      initial={{ opacity: 0, width: 0, x: 50 }}
-                      animate={{ opacity: 1, width: "auto", x: 0 }}
-                      exit={{ opacity: 0, width: 0, x: 50 }}
-                      transition={{
-                        duration: 0.3,
-                        delay: index * 0.05,
-                        ease: "easeOut",
-                      }}
-                    >
-                      <ButtonBase
-                        component="a"
-                        href={acceso.link}
-                        target={acceso.target}
-                        sx={buttonStyle}
+                  accesos.map((acceso, index) => {
+                    // Determinamos si es un enlace externo
+                    const isExternal = acceso.link.startsWith("http");
+
+                    return (
+                      <motion.div
+                        key={acceso.name}
+                        initial={{ opacity: 0, width: 0, x: 50 }}
+                        animate={{ opacity: 1, width: "auto", x: 0 }}
+                        exit={{ opacity: 0, width: 0, x: 50 }}
+                        transition={{
+                          duration: 0.3,
+                          delay: index * 0.05,
+                          ease: "easeOut",
+                        }}
                       >
-                        <Box
-                          component="img"
-                          src={acceso.icon}
-                          alt={acceso.name}
-                          sx={{
-                            width: { xs: 24, sm: 35 },
-                            height: { xs: 24, sm: 35 },
-                            mb: { xs: 0.2, sm: 0.8 },
-                            transition: "all 0.3s ease",
-                          }}
-                        />
-                        <Typography
-                          sx={{
-                            color: "inherit",
-                            fontWeight: 600,
-                            fontSize: { xs: "0.5rem", sm: "0.6rem" },
-                            lineHeight: 1.1,
-                            textAlign: "center",
-                            letterSpacing: "0.2px",
-                            px: 0.5,
-                            display: "-webkit-box",
-                            WebkitLineClamp: 2,
-                            WebkitBoxOrient: "vertical",
-                            overflow: "hidden",
-                            wordBreak: "break-word",
-                          }}
+                        <ButtonBase
+                          // Si es externo usa 'a', si es interno usa 'Link' de React Router
+                          component={isExternal ? "a" : Link}
+                          // Si es externo usa 'href', si es interno usa 'to'
+                          href={isExternal ? acceso.link : undefined}
+                          to={!isExternal ? acceso.link : undefined}
+                          target={acceso.target} // Esto aplicará el "_blank" a los externos
+                          sx={buttonStyle}
                         >
-                          {acceso.name}
-                        </Typography>
-                      </ButtonBase>
-                    </motion.div>
-                  ))}
+                          <Box
+                            component="img"
+                            src={acceso.icon}
+                            alt={acceso.name}
+                            sx={{
+                              width: { xs: 24, sm: 35 },
+                              height: { xs: 24, sm: 35 },
+                              mb: { xs: 0.2, sm: 0.8 },
+                              transition: "all 0.3s ease",
+                            }}
+                          />
+                          <Typography
+                            sx={{
+                              color: "inherit",
+                              fontWeight: 600,
+                              fontSize: { xs: "0.5rem", sm: "0.6rem" },
+                              lineHeight: 1.1,
+                              textAlign: "center",
+                              letterSpacing: "0.2px",
+                              px: 0.5,
+                              display: "-webkit-box",
+                              WebkitLineClamp: 2,
+                              WebkitBoxOrient: "vertical",
+                              overflow: "hidden",
+                              wordBreak: "break-word",
+                            }}
+                          >
+                            {acceso.name}
+                          </Typography>
+                        </ButtonBase>
+                      </motion.div>
+                    );
+                  })}
               </AnimatePresence>
             </Box>
           </motion.div>

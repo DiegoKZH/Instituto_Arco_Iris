@@ -54,8 +54,10 @@ export default function Unidades() {
         "Gestionar la programación académica semestral y la asignación de la carga horaria a los docentes.",
         "Implementar estrategias para la mejora continua de la calidad educativa.",
       ],
-      icon: <SchoolIcon sx={{ fontSize: 40, color: "#007BFF" }} />,
-      img: "https://arcoiris.edu.pe/assets/Img/Fotos%20Estudiantes/est-18.jpg",
+      icon: (
+        <SchoolIcon sx={{ fontSize: { xs: 30, md: 40 }, color: "#007BFF" }} />
+      ),
+      img: "https://cdn.create.vista.com/api/media/small/81223284/stock-photo-group-of-young-graduates",
     },
     {
       title: "Unidad de Investigación e Innovación",
@@ -70,8 +72,10 @@ export default function Unidades() {
         "Establecer y fortalecer alianzas estratégicas con otras instituciones y centros de investigación.",
         "Fomentar una cultura de investigación e innovación en la comunidad educativa.",
       ],
-      icon: <BiotechIcon sx={{ fontSize: 40, color: "#007BFF" }} />,
-      img: "https://arcoiris.edu.pe/assets/Img/Fotos%20Estudiantes/est-07.jpg",
+      icon: (
+        <BiotechIcon sx={{ fontSize: { xs: 30, md: 40 }, color: "#007BFF" }} />
+      ),
+      img: "https://cdn.create.vista.com/api/media/small/81223284/stock-photo-group-of-young-graduates",
       hasButton: true,
     },
     {
@@ -87,8 +91,12 @@ export default function Unidades() {
         "Organizar actividades deportivas, culturales y recreativas.",
         "Brindar atención de primeros auxilios y orientación en salud básica.",
       ],
-      icon: <Diversity3Icon sx={{ fontSize: 40, color: "#007BFF" }} />,
-      img: "https://arcoiris.edu.pe/assets/Img/Fotos%20Estudiantes/est-02.jpg",
+      icon: (
+        <Diversity3Icon
+          sx={{ fontSize: { xs: 30, md: 40 }, color: "#007BFF" }}
+        />
+      ),
+      img: "https://cdn.create.vista.com/api/media/small/81223284/stock-photo-group-of-young-graduates",
     },
     {
       title: "Unidad de Formación Continua",
@@ -103,8 +111,12 @@ export default function Unidades() {
         "Establecer convenios con instituciones y empresas para programas conjuntos.",
         "Evaluar la pertinencia y el impacto de los programas ofrecidos.",
       ],
-      icon: <TrendingUpIcon sx={{ fontSize: 40, color: "#007BFF" }} />,
-      img: "https://arcoiris.edu.pe/assets/Img/Fotos%20Estudiantes/est-17.jpg",
+      icon: (
+        <TrendingUpIcon
+          sx={{ fontSize: { xs: 30, md: 40 }, color: "#007BFF" }}
+        />
+      ),
+      img: "https://cdn.create.vista.com/api/media/small/81223284/stock-photo-group-of-young-graduates",
     },
   ];
 
@@ -123,9 +135,12 @@ export default function Unidades() {
         "Mantener y conservar la infraestructura y el equipamiento.",
         "Elaborar informes de gestión económica y financiera.",
       ],
-      icon: <BusinessCenterIcon sx={{ fontSize: 35, color: "#007BFF" }} />,
-      // NUEVA IMAGEN (Tonos fríos/azules)
-      img: "https://arcoiris.edu.pe/assets/Img/Fotos%20de%20Servicios/ser-01.jpg",
+      icon: (
+        <BusinessCenterIcon
+          sx={{ fontSize: { xs: 28, md: 35 }, color: "#007BFF" }}
+        />
+      ),
+      img: "",
     },
     {
       title: "Oficina de Calidad",
@@ -140,9 +155,10 @@ export default function Unidades() {
         "Capacitar a la comunidad educativa en temas de cultura de calidad.",
         "Elaborar y actualizar los manuales y procedimientos de calidad.",
       ],
-      icon: <VerifiedIcon sx={{ fontSize: 35, color: "#007BFF" }} />,
-      // NUEVA IMAGEN (Tonos fríos/azules)
-      img: "https://arcoiris.edu.pe/assets/Img/Fotos%20de%20Servicios/ser-2.jpg",
+      icon: (
+        <VerifiedIcon sx={{ fontSize: { xs: 28, md: 35 }, color: "#007BFF" }} />
+      ),
+      img: "",
     },
     {
       title: "Asesoría Normativa",
@@ -157,9 +173,10 @@ export default function Unidades() {
         "Atender consultas legales de la comunidad educativa.",
         "Representar a la institución en procesos administrativos o judiciales.",
       ],
-      icon: <GavelIcon sx={{ fontSize: 35, color: "#007BFF" }} />,
-      // NUEVA IMAGEN (Tonos fríos/azules)
-      img: "https://arcoiris.edu.pe/assets/Img/Fotos%20Admision/admin-01.jpg",
+      icon: (
+        <GavelIcon sx={{ fontSize: { xs: 28, md: 35 }, color: "#007BFF" }} />
+      ),
+      img: "",
     },
     {
       title: "Secretaría General",
@@ -174,17 +191,21 @@ export default function Unidades() {
         "Apoyar en la organización y ejecución de los procesos de matrícula.",
         "Gestionar la correspondencia y comunicaciones de la institución.",
       ],
-      icon: <AssignmentTurnedInIcon sx={{ fontSize: 35, color: "#007BFF" }} />,
-      img: "https://arcoiris.edu.pe/assets/Img/Fotos%20Admision/admin%2002.jpg",
+      icon: (
+        <AssignmentTurnedInIcon
+          sx={{ fontSize: { xs: 28, md: 35 }, color: "#007BFF" }}
+        />
+      ),
+      img: "",
     },
   ];
+
   return (
     <Box sx={{ bgcolor: "#f4f7fb", overflow: "hidden" }}>
-      {/* 1. PORTADA HERO */}
       <Box
         sx={{
           position: "relative",
-          height: { xs: "50vh", md: "60vh" },
+          height: { xs: "60vh", md: "65vh" },
           display: "flex",
           alignItems: "center",
           bgcolor: "#003366",
@@ -208,8 +229,8 @@ export default function Unidades() {
               sx={{
                 color: "#80bdff",
                 fontWeight: 900,
-                letterSpacing: 3,
-                fontSize: "1.2rem",
+                letterSpacing: { xs: 2, md: 3 },
+                fontSize: "clamp(1rem, 2vw, 1.2rem)",
               }}
             >
               ORGANIZACIÓN INSTITUCIONAL
@@ -220,7 +241,7 @@ export default function Unidades() {
               sx={{
                 color: "#ffffff",
                 textTransform: "uppercase",
-                fontSize: { xs: "3rem", md: "5rem" },
+                fontSize: "clamp(2.5rem, 6vw, 5rem)",
                 lineHeight: 1.1,
                 mb: 2,
               }}
@@ -234,6 +255,8 @@ export default function Unidades() {
                 maxWidth: "700px",
                 mx: "auto",
                 fontWeight: 400,
+                fontSize: "clamp(1rem, 2vw, 1.25rem)",
+                px: { xs: 2, md: 0 },
               }}
             >
               Descubre las áreas que trabajan día a día para tu desarrollo
@@ -243,8 +266,7 @@ export default function Unidades() {
         </Container>
       </Box>
 
-      {/* 2. UNIDADES PRINCIPALES (ZIG-ZAG) */}
-      <Box sx={{ py: 10, bgcolor: "#ffffff" }}>
+      <Box sx={{ py: { xs: 8, md: 12 }, bgcolor: "#ffffff" }}>
         <Container maxWidth="lg">
           {unidadesPrincipales.map((unidad, index) => {
             const isEven = index % 2 === 0;
@@ -252,18 +274,17 @@ export default function Unidades() {
             return (
               <Grid
                 container
-                spacing={6}
+                spacing={{ xs: 4, md: 6 }}
                 alignItems="center"
                 key={index}
-                direction={isEven ? "row" : "row-reverse"}
-                sx={{ mb: { xs: 8, md: 15 } }}
+                direction={{ xs: "column", md: isEven ? "row" : "row-reverse" }}
+                sx={{ mb: { xs: 8, md: 15 }, "&:last-child": { mb: 0 } }}
               >
-                {/* Imagen */}
                 <Grid
                   size={{ xs: 12, md: 6 }}
                   data-aos={isEven ? "fade-right" : "fade-left"}
                 >
-                  <Box sx={{ position: "relative" }}>
+                  <Box sx={{ position: "relative", px: { xs: 2, md: 0 } }}>
                     <Box
                       component="img"
                       src={unidad.img}
@@ -271,22 +292,24 @@ export default function Unidades() {
                       loading="lazy"
                       sx={{
                         width: "100%",
-                        height: "450px",
+                        height: { xs: "300px", sm: "400px", md: "450px" },
                         objectFit: "cover",
-                        borderRadius: isEven
-                          ? "20px 100px 20px 20px"
-                          : "100px 20px 20px 20px",
+                        borderRadius: {
+                          xs: "20px 50px 20px 20px",
+                          md: isEven
+                            ? "20px 100px 20px 20px"
+                            : "100px 20px 20px 20px",
+                        },
                         boxShadow: "0 20px 50px rgba(0, 51, 102, 0.15)",
                       }}
                     />
-                    {/* Tagline flotante */}
                     <Paper
                       sx={{
                         position: "absolute",
-                        bottom: 30,
-                        [isEven ? "right" : "left"]: -20,
-                        p: 2,
-                        pr: 3,
+                        bottom: { xs: -20, md: 30 },
+                        [isEven ? "right" : "left"]: { xs: 10, md: -20 },
+                        p: { xs: 1.5, md: 2 },
+                        pr: { xs: 2, md: 3 },
                         borderRadius: "12px",
                         bgcolor: "#007BFF",
                         color: "#fff",
@@ -294,7 +317,8 @@ export default function Unidades() {
                         alignItems: "center",
                         gap: 2,
                         boxShadow: "0 10px 30px rgba(0, 123, 255, 0.3)",
-                        maxWidth: "300px",
+                        maxWidth: { xs: "250px", md: "300px" },
+                        zIndex: 2,
                       }}
                     >
                       <Box
@@ -305,12 +329,15 @@ export default function Unidades() {
                           display: "flex",
                         }}
                       >
-                        <ArrowForwardIcon />
+                        <ArrowForwardIcon
+                          sx={{ fontSize: { xs: "1.2rem", md: "1.5rem" } }}
+                        />
                       </Box>
                       <Typography
                         variant="body2"
                         fontWeight="bold"
                         lineHeight={1.2}
+                        sx={{ fontSize: "clamp(0.75rem, 1.5vw, 0.875rem)" }}
                       >
                         {unidad.tagline}
                       </Typography>
@@ -318,10 +345,10 @@ export default function Unidades() {
                   </Box>
                 </Grid>
 
-                {/* Contenido de Texto */}
                 <Grid
                   size={{ xs: 12, md: 6 }}
                   data-aos={isEven ? "fade-left" : "fade-right"}
+                  sx={{ mt: { xs: 2, md: 0 } }}
                 >
                   <Box
                     sx={{
@@ -333,7 +360,7 @@ export default function Unidades() {
                   >
                     <Box
                       sx={{
-                        p: 1.5,
+                        p: { xs: 1, md: 1.5 },
                         bgcolor: "rgba(0, 123, 255, 0.1)",
                         borderRadius: "16px",
                       }}
@@ -345,6 +372,7 @@ export default function Unidades() {
                       fontWeight="900"
                       color="#003366"
                       lineHeight={1.1}
+                      sx={{ fontSize: "clamp(1.5rem, 3.5vw, 2.125rem)" }}
                     >
                       {unidad.title}
                     </Typography>
@@ -357,7 +385,10 @@ export default function Unidades() {
                       color: "#fff",
                       fontWeight: "bold",
                       mb: 3,
-                      fontSize: "0.9rem",
+                      fontSize: "clamp(0.8rem, 1.5vw, 0.9rem)",
+                      height: "auto",
+                      py: 0.5,
+                      "& .MuiChip-label": { whiteSpace: "normal" },
                     }}
                   />
 
@@ -365,8 +396,8 @@ export default function Unidades() {
                     variant="body1"
                     color="#555"
                     mb={3}
-                    fontSize="1.05rem"
                     textAlign="justify"
+                    sx={{ fontSize: "clamp(0.95rem, 2vw, 1.05rem)" }}
                   >
                     <strong>Misión:</strong> {unidad.mision}
                   </Typography>
@@ -376,6 +407,7 @@ export default function Unidades() {
                     fontWeight="bold"
                     color="#003366"
                     mb={2}
+                    sx={{ fontSize: "clamp(1rem, 2vw, 1.1rem)" }}
                   >
                     Funciones Principales:
                   </Typography>
@@ -392,7 +424,7 @@ export default function Unidades() {
                           primary={func}
                           primaryTypographyProps={{
                             color: "#444",
-                            fontSize: "0.95rem",
+                            fontSize: "clamp(0.85rem, 1.5vw, 0.95rem)",
                           }}
                         />
                       </ListItem>
@@ -408,6 +440,7 @@ export default function Unidades() {
                         borderColor: "#007BFF",
                         borderRadius: "20px",
                         fontWeight: "bold",
+                        width: { xs: "100%", sm: "auto" },
                         "&:hover": { bgcolor: "rgba(0, 123, 255, 0.05)" },
                       }}
                     >
@@ -421,16 +454,15 @@ export default function Unidades() {
         </Container>
       </Box>
 
-      {/* 3. OFICINAS ADMINISTRATIVAS */}
       <Box
         sx={{
-          bgcolor: "#003366",
-          py: { xs: 10, md: 14 },
+          bgcolor: "#003366ec",
+          py: { xs: 8, md: 14 },
           position: "relative",
-          mb: { xs: "-80px", md: "-120px" },
+          mb: { xs: "-40px", md: "-120px" },
+          pb: { xs: 12, md: 30 },
         }}
       >
-        {/* MODIFICACIÓN*/}
         <Box
           sx={{
             position: "absolute",
@@ -446,12 +478,16 @@ export default function Unidades() {
         />
 
         <Container maxWidth="lg" sx={{ position: "relative", zIndex: 1 }}>
-          <Box data-aos="fade-up" sx={{ textAlign: "center", mb: 8 }}>
+          <Box
+            data-aos="fade-up"
+            sx={{ textAlign: "center", mb: { xs: 6, md: 8 } }}
+          >
             <Typography
               variant="h2"
               fontWeight="900"
               color="#ffffff"
               textTransform="uppercase"
+              sx={{ fontSize: "clamp(1.8rem, 5vw, 3.75rem)" }}
             >
               Oficinas Administrativas
             </Typography>
@@ -461,13 +497,14 @@ export default function Unidades() {
               mt={2}
               maxWidth="700px"
               mx="auto"
+              sx={{ fontSize: "clamp(1rem, 2vw, 1.25rem)" }}
             >
               El soporte estratégico y legal que garantiza el correcto
               funcionamiento y la mejora continua de nuestra institución.
             </Typography>
           </Box>
 
-          <Grid container spacing={4}>
+          <Grid container spacing={{ xs: 3, md: 4 }}>
             {oficinasAdministrativas.map((oficina, idx) => (
               <Grid
                 size={{ xs: 12, md: 6 }}
@@ -487,7 +524,7 @@ export default function Unidades() {
                     overflow: "hidden",
                     transition: "transform 0.3s ease, box-shadow 0.3s ease",
                     "&:hover": {
-                      transform: "translateY(-8px)",
+                      transform: { xs: "none", md: "translateY(-8px)" },
                       boxShadow: "0 20px 40px rgba(0, 0, 0, 0.4)",
                     },
                   }}
@@ -499,14 +536,14 @@ export default function Unidades() {
                     loading="lazy"
                     sx={{
                       width: "100%",
-                      height: "310px",
+                      height: { xs: "200px", sm: "250px", md: "310px" },
                       objectFit: "cover",
                     }}
                   />
 
                   <Box
                     sx={{
-                      p: 4,
+                      p: { xs: 3, md: 4 },
                       display: "flex",
                       flexDirection: "column",
                       flexGrow: 1,
@@ -518,6 +555,7 @@ export default function Unidades() {
                         justifyContent: "space-between",
                         alignItems: "flex-start",
                         mb: 2,
+                        gap: 2,
                       }}
                     >
                       <Box>
@@ -526,6 +564,10 @@ export default function Unidades() {
                           fontWeight="900"
                           color="#003366"
                           mb={0.5}
+                          sx={{
+                            fontSize: "clamp(1.25rem, 2.5vw, 1.5rem)",
+                            lineHeight: 1.2,
+                          }}
                         >
                           {oficina.title}
                         </Typography>
@@ -535,15 +577,23 @@ export default function Unidades() {
                           fontWeight="bold"
                           textTransform="uppercase"
                           letterSpacing={1}
+                          sx={{
+                            display: "block",
+                            fontSize: "clamp(0.7rem, 1.5vw, 0.75rem)",
+                          }}
                         >
                           {oficina.tagline}
                         </Typography>
                       </Box>
                       <Box
                         sx={{
-                          p: 1,
+                          p: { xs: 1, md: 1.5 },
                           bgcolor: "rgba(0, 123, 255, 0.1)",
                           borderRadius: "12px",
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          flexShrink: 0,
                         }}
                       >
                         {oficina.icon}
@@ -558,7 +608,12 @@ export default function Unidades() {
                       >
                         Jefe(a):
                       </Typography>
-                      <Typography variant="body1" color="#333" fontWeight="600">
+                      <Typography
+                        variant="body1"
+                        color="#333"
+                        fontWeight="600"
+                        sx={{ fontSize: "clamp(0.9rem, 2vw, 1rem)" }}
+                      >
                         {oficina.jefe}
                       </Typography>
                     </Box>
@@ -569,6 +624,7 @@ export default function Unidades() {
                       mb={3}
                       textAlign="justify"
                       fontStyle="italic"
+                      sx={{ fontSize: "clamp(0.85rem, 1.5vw, 0.95rem)" }}
                     >
                       "{oficina.mision}"
                     </Typography>
@@ -579,13 +635,17 @@ export default function Unidades() {
                         fontWeight="bold"
                         color="#003366"
                         mb={1}
+                        sx={{ fontSize: "clamp(0.9rem, 2vw, 1rem)" }}
                       >
                         Funciones:
                       </Typography>
                       <List sx={{ p: 0 }}>
                         {oficina.funciones.map((func, i) => (
-                          <ListItem key={i} sx={{ px: 0, py: 0 }}>
-                            <ListItemIcon sx={{ minWidth: 25 }}>
+                          <ListItem
+                            key={i}
+                            sx={{ px: 0, py: 0.25, alignItems: "flex-start" }}
+                          >
+                            <ListItemIcon sx={{ minWidth: 20, mt: 1 }}>
                               <Box
                                 sx={{
                                   width: 6,
@@ -599,8 +659,8 @@ export default function Unidades() {
                               primary={func}
                               primaryTypographyProps={{
                                 color: "#555",
-                                fontSize: "0.85rem",
-                                lineHeight: 1.3,
+                                fontSize: "clamp(0.8rem, 1.5vw, 0.85rem)",
+                                lineHeight: 1.4,
                               }}
                             />
                           </ListItem>

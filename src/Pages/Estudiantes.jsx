@@ -15,14 +15,12 @@ import {
 import AOS from "aos";
 import "aos/dist/aos.css";
 
-// Íconos - Vida Estudiantil
 import PaletteIcon from "@mui/icons-material/Palette";
 import SportsSoccerIcon from "@mui/icons-material/SportsSoccer";
 import EventIcon from "@mui/icons-material/Event";
 import VolunteerActivismIcon from "@mui/icons-material/VolunteerActivism";
 import FestivalIcon from "@mui/icons-material/Festival";
 
-// Íconos - Biblioteca
 import AutoStoriesIcon from "@mui/icons-material/AutoStories";
 import WeekendIcon from "@mui/icons-material/Weekend";
 import ImportContactsIcon from "@mui/icons-material/ImportContacts";
@@ -30,18 +28,21 @@ import ComputerIcon from "@mui/icons-material/Computer";
 import LiveHelpIcon from "@mui/icons-material/LiveHelp";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 
-// Íconos - Bolsa de Trabajo
 import WorkOutlineIcon from "@mui/icons-material/WorkOutline";
 import DescriptionIcon from "@mui/icons-material/Description";
 import ModelTrainingIcon from "@mui/icons-material/ModelTraining";
 import HandshakeIcon from "@mui/icons-material/Handshake";
 
-// Íconos - Bienestar
 import PsychologyIcon from "@mui/icons-material/Psychology";
 import ExploreIcon from "@mui/icons-material/Explore";
 import LocalHospitalIcon from "@mui/icons-material/LocalHospital";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import Diversity1Icon from "@mui/icons-material/Diversity1";
+
+import FondoEstudiantes from "../assets/Imagenes/Formacion1.jpg";
+import Estudiantes1 from "../assets/Imagenes/Alumnos1.jpg";
+import BolsaLaboral from "../assets/Imagenes/laboral.jpg";
+import Bienestar from "../assets/Imagenes/InicioClases4.jpg";
 
 export default function Estudiantes() {
   useEffect(() => {
@@ -55,11 +56,10 @@ export default function Estudiantes() {
 
   return (
     <Box sx={{ bgcolor: "#F0F2F5", overflow: "hidden" }}>
-      {/* 1. PORTADA HERO */}
       <Box
         sx={{
           position: "relative",
-          height: { xs: "55vh", md: "65vh" },
+          height: { xs: "60vh", md: "65vh" },
           display: "flex",
           alignItems: "center",
           bgcolor: "#003366",
@@ -67,9 +67,7 @@ export default function Estudiantes() {
             content: '""',
             position: "absolute",
             inset: 0,
-            // CAMBIO: Nueva imagen de banner con tonos más fríos
-            backgroundImage:
-              "url('https://images.unsplash.com/photo-1758270705140-4e39219d4bba?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDB8fHZpZGElMjBlc3R1ZGlhbnRpbHxlbnwwfHwwfHx8MA%3D%3D')",
+            backgroundImage: `url(${FondoEstudiantes})`,
             backgroundSize: "cover",
             backgroundPosition: "center",
             opacity: 0.35,
@@ -79,14 +77,13 @@ export default function Estudiantes() {
       >
         <Container maxWidth="lg" sx={{ position: "relative", zIndex: 2 }}>
           <Box data-aos="fade-right">
-            {/* CAMBIO: Color dorado eliminado, se usa azul claro/variación de #007BFF */}
             <Typography
               variant="overline"
               sx={{
                 color: "#80bdff",
                 fontWeight: 900,
-                letterSpacing: 3,
-                fontSize: "1.2rem",
+                letterSpacing: { xs: 2, md: 3 },
+                fontSize: "clamp(1rem, 2vw, 1.2rem)",
               }}
             >
               COMUNIDAD ARCO IRIS
@@ -97,7 +94,7 @@ export default function Estudiantes() {
               sx={{
                 color: "#ffffff",
                 textTransform: "uppercase",
-                fontSize: { xs: "3.5rem", md: "5.5rem" },
+                fontSize: "clamp(3rem, 8vw, 5.5rem)",
                 lineHeight: 1.1,
                 mb: 2,
               }}
@@ -111,7 +108,8 @@ export default function Estudiantes() {
                 maxWidth: "600px",
                 fontWeight: 400,
                 borderLeft: "4px solid #007BFF",
-                pl: 3,
+                pl: { xs: 2, md: 3 },
+                fontSize: "clamp(1rem, 2vw, 1.25rem)",
               }}
             >
               Descubre todas las oportunidades y servicios que tenemos para ti
@@ -121,67 +119,81 @@ export default function Estudiantes() {
         </Container>
       </Box>
 
-      {/* TÍTULO DE SECCIÓN GENERAL */}
-      <Container maxWidth="lg" sx={{ pt: 10, pb: 4, textAlign: "center" }}>
+      <Container
+        maxWidth="lg"
+        sx={{
+          pt: { xs: 6, md: 10 },
+          pb: { xs: 3, md: 4 },
+          textAlign: "center",
+        }}
+      >
         <Typography
           variant="h2"
           fontWeight="900"
           color="#003366"
           textTransform="uppercase"
           data-aos="zoom-in"
+          sx={{ fontSize: "clamp(2rem, 5vw, 3.75rem)" }}
         >
           Servicios para Estudiantes
         </Typography>
-        {/* CAMBIO: Color dorado eliminado, se usa azul claro #007BFF */}
         <Box
-          sx={{ width: 80, height: 4, bgcolor: "#007BFF", mx: "auto", mt: 2 }}
+          sx={{
+            width: { xs: 60, md: 80 },
+            height: 4,
+            bgcolor: "#007BFF",
+            mx: "auto",
+            mt: 2,
+          }}
           data-aos="fade-up"
         />
       </Container>
 
-      {/* 2. VIDA ESTUDIANTIL (Imagen Izquierda, Texto Derecha) */}
-      <Container maxWidth="lg" sx={{ py: 8 }}>
-        <Grid container spacing={6} alignItems="center">
+      <Container maxWidth="lg" sx={{ py: { xs: 5, md: 8 } }}>
+        <Grid container spacing={{ xs: 4, md: 6 }} alignItems="center">
           <Grid size={{ xs: 12, md: 6 }} data-aos="fade-right">
-            <Box sx={{ position: "relative" }}>
+            <Box sx={{ position: "relative", px: { xs: 2, sm: 0 } }}>
               <Box
                 component="img"
-                src="https://arcoiris.edu.pe/assets/Img/Fotos%20Estudiantes/est-16.jpg"
+                src={Estudiantes1}
                 alt="Estudiantes compartiendo"
                 sx={{
                   width: "100%",
                   borderRadius: "24px",
                   boxShadow: "0 20px 40px rgba(0,0,0,0.15)",
                   objectFit: "cover",
-                  height: "450px",
+                  height: { xs: "300px", sm: "400px", md: "450px" },
                 }}
               />
-              {/* Tarjeta flotante decorativa */}
-              {/* CAMBIO: Color dorado eliminado, se usa azul oscuro institucional #003366 */}
               <Paper
                 sx={{
                   position: "absolute",
-                  bottom: -30,
-                  right: -20,
-                  p: 3,
+                  bottom: { xs: -20, md: -30 },
+                  right: { xs: 10, md: -20 },
+                  p: { xs: 2, md: 3 },
                   borderRadius: "20px",
                   bgcolor: "#003366",
                   color: "#fff",
                   boxShadow: "0 10px 30px rgba(0, 51, 102, 0.3)",
-                  display: { xs: "none", sm: "block" },
                 }}
               >
                 <Typography
                   variant="h4"
                   fontWeight="900"
-                  sx={{ color: "#ffffff" }}
+                  sx={{
+                    color: "#ffffff",
+                    fontSize: "clamp(1.5rem, 4vw, 2.125rem)",
+                  }}
                 >
-                  +50
+                  +20
                 </Typography>
                 <Typography
                   variant="body2"
                   fontWeight="bold"
-                  sx={{ color: "#ffffff" }}
+                  sx={{
+                    color: "#ffffff",
+                    fontSize: "clamp(0.8rem, 1.5vw, 0.875rem)",
+                  }}
                 >
                   Eventos Anuales
                 </Typography>
@@ -190,15 +202,21 @@ export default function Estudiantes() {
           </Grid>
 
           <Grid size={{ xs: 12, md: 6 }} data-aos="fade-left">
-            <Typography variant="h3" fontWeight="900" color="#003366" mb={2}>
+            <Typography
+              variant="h3"
+              fontWeight="900"
+              color="#003366"
+              mb={2}
+              sx={{ fontSize: "clamp(1.75rem, 4vw, 3rem)" }}
+            >
               Vida Estudiantil
             </Typography>
             <Typography
               variant="body1"
               color="#555"
               mb={3}
-              fontSize="1.1rem"
               textAlign="justify"
+              sx={{ fontSize: "clamp(1rem, 2vw, 1.1rem)" }}
             >
               Fomentamos un ambiente dinámico y participativo donde los
               estudiantes pueden desarrollar sus talentos y habilidades más allá
@@ -229,13 +247,17 @@ export default function Estudiantes() {
                   text: "Celebraciones y festividades institucionales.",
                 },
               ].map((item, index) => (
-                <ListItem key={index} sx={{ px: 0, py: 1 }}>
+                <ListItem key={index} sx={{ px: 0, py: { xs: 0.5, md: 1 } }}>
                   <ListItemIcon sx={{ minWidth: 40, color: "#007BFF" }}>
                     {item.icon}
                   </ListItemIcon>
                   <ListItemText
                     primary={item.text}
-                    primaryTypographyProps={{ fontWeight: 500, color: "#333" }}
+                    primaryTypographyProps={{
+                      fontWeight: 500,
+                      color: "#333",
+                      fontSize: "clamp(0.9rem, 2vw, 1rem)",
+                    }}
                   />
                 </ListItem>
               ))}
@@ -248,19 +270,23 @@ export default function Estudiantes() {
                 color: "#007BFF",
                 fontWeight: "bold",
                 px: 1,
-                py: 2.5,
-                fontSize: "0.95rem",
+                py: { xs: 2, md: 2.5 },
+                fontSize: "clamp(0.8rem, 2vw, 0.95rem)",
+                height: "auto",
+                "& .MuiChip-label": {
+                  whiteSpace: "normal",
+                  textAlign: "center",
+                },
               }}
             />
           </Grid>
         </Grid>
       </Container>
 
-      {/* 3. BIBLIOTECA (Texto Izquierda, Imagen Derecha, Forma Orgánica) */}
       <Box
         sx={{
           bgcolor: "#ffffff",
-          py: 10,
+          py: { xs: 6, md: 10 },
           borderTop: "1px solid #eaeaea",
           borderBottom: "1px solid #eaeaea",
         }}
@@ -268,15 +294,26 @@ export default function Estudiantes() {
         <Container maxWidth="lg">
           <Grid
             container
-            spacing={6}
+            spacing={{ xs: 5, md: 6 }}
             alignItems="center"
             direction={{ xs: "column-reverse", md: "row" }}
           >
             <Grid size={{ xs: 12, md: 6 }} data-aos="fade-right">
-              <Typography variant="h3" fontWeight="900" color="#003366" mb={2}>
+              <Typography
+                variant="h3"
+                fontWeight="900"
+                color="#003366"
+                mb={2}
+                sx={{ fontSize: "clamp(1.75rem, 4vw, 3rem)" }}
+              >
                 Biblioteca
               </Typography>
-              <Typography variant="body1" color="#555" mb={4} fontSize="1.1rem">
+              <Typography
+                variant="body1"
+                color="#555"
+                mb={4}
+                sx={{ fontSize: "clamp(1rem, 2vw, 1.1rem)" }}
+              >
                 Nuestra biblioteca es un espacio fundamental para el aprendizaje
                 y la investigación, ofreciendo una amplia colección de recursos
                 físicos y digitales.
@@ -313,9 +350,13 @@ export default function Estudiantes() {
                         alignItems: "flex-start",
                       }}
                     >
-                      {/* CAMBIO: Color dorado eliminado, se usa azul institucional claro #007BFF */}
                       <Box sx={{ color: "#007BFF", mt: 0.5 }}>{item.icon}</Box>
-                      <Typography variant="body2" color="#444" fontWeight="500">
+                      <Typography
+                        variant="body2"
+                        color="#444"
+                        fontWeight="500"
+                        sx={{ fontSize: "clamp(0.875rem, 1.5vw, 0.9rem)" }}
+                      >
                         {item.text}
                       </Typography>
                     </Box>
@@ -323,29 +364,38 @@ export default function Estudiantes() {
                 ))}
               </Grid>
 
-              {/* Caja de Horario */}
               <Paper
                 elevation={0}
                 sx={{
-                  p: 3,
+                  p: { xs: 2, md: 3 },
                   bgcolor: "rgba(0, 51, 102, 0.05)",
                   borderLeft: "4px solid #003366",
                   display: "flex",
                   alignItems: "center",
-                  gap: 2,
+                  gap: { xs: 1.5, md: 2 },
+                  flexDirection: { xs: "column", sm: "row" },
+                  textAlign: { xs: "center", sm: "left" },
                 }}
               >
-                <AccessTimeIcon sx={{ fontSize: 35, color: "#003366" }} />
+                <AccessTimeIcon
+                  sx={{ fontSize: { xs: 30, md: 35 }, color: "#003366" }}
+                />
                 <Box>
                   <Typography
                     variant="subtitle2"
                     color="#666"
                     textTransform="uppercase"
                     fontWeight="bold"
+                    sx={{ fontSize: "clamp(0.75rem, 1.5vw, 0.875rem)" }}
                   >
                     Horario de atención
                   </Typography>
-                  <Typography variant="h6" color="#003366" fontWeight="900">
+                  <Typography
+                    variant="h6"
+                    color="#003366"
+                    fontWeight="900"
+                    sx={{ fontSize: "clamp(1rem, 2vw, 1.25rem)" }}
+                  >
                     Lunes a Viernes de 8:00 AM a 6:00 PM
                   </Typography>
                 </Box>
@@ -359,10 +409,13 @@ export default function Estudiantes() {
                 alt="Biblioteca Institucional"
                 sx={{
                   width: "100%",
-                  borderRadius: "40px 10px 40px 10px",
+                  borderRadius: {
+                    xs: "20px 10px 20px 10px",
+                    md: "40px 10px 40px 10px",
+                  },
                   boxShadow: "0 25px 50px rgba(0,0,0,0.1)",
                   objectFit: "cover",
-                  height: "500px",
+                  height: { xs: "300px", sm: "400px", md: "500px" },
                 }}
               />
             </Grid>
@@ -370,16 +423,14 @@ export default function Estudiantes() {
         </Container>
       </Box>
 
-      {/* 4. BOLSA DE TRABAJO (Bloque Oscuro Full-Width para romper la monotonía) */}
       <Box
         sx={{
           bgcolor: "#003366",
-          py: 12,
+          py: { xs: 8, md: 12 },
           color: "#ffffff",
           position: "relative",
         }}
       >
-        {/* Patrón de fondo sutil */}
         <Box
           sx={{
             position: "absolute",
@@ -391,18 +442,18 @@ export default function Estudiantes() {
         />
 
         <Container maxWidth="lg" sx={{ position: "relative", zIndex: 1 }}>
-          <Grid container spacing={6} alignItems="center">
+          <Grid container spacing={{ xs: 4, md: 6 }} alignItems="center">
             <Grid size={{ xs: 12, md: 5 }} data-aos="zoom-in-right">
               <Box sx={{ position: "relative", p: 1 }}>
                 <Box
                   component="img"
-                  src="https://arcoiris.edu.pe/assets/Img/Fotos%20Estudiantes/est-09.jpg"
+                  src={BolsaLaboral}
                   alt="Networking y Bolsa de Trabajo"
                   sx={{
                     width: "100%",
                     borderRadius: "20px",
                     objectFit: "cover",
-                    height: "400px",
+                    height: { xs: "250px", sm: "350px", md: "400px" },
                     border: "4px solid rgba(255,255,255,0.1)",
                   }}
                 />
@@ -410,31 +461,37 @@ export default function Estudiantes() {
             </Grid>
 
             <Grid size={{ xs: 12, md: 7 }} data-aos="fade-left">
-              {/* CAMBIO: Color dorado eliminado, se usa azul institucional claro #007BFF */}
               <Typography
                 variant="overline"
                 color="#007BFF"
                 fontWeight="bold"
                 letterSpacing={2}
+                sx={{ fontSize: "clamp(0.75rem, 1.5vw, 1rem)" }}
               >
                 DESARROLLO PROFESIONAL
               </Typography>
-              <Typography variant="h3" fontWeight="900" color="#ffffff" mb={2}>
+              <Typography
+                variant="h3"
+                fontWeight="900"
+                color="#ffffff"
+                mb={2}
+                sx={{ fontSize: "clamp(1.75rem, 4vw, 3rem)" }}
+              >
                 Bolsa de Trabajo
               </Typography>
               <Typography
                 variant="body1"
                 color="#a0aec0"
                 mb={4}
-                fontSize="1.1rem"
                 textAlign="justify"
+                sx={{ fontSize: "clamp(1rem, 2vw, 1.1rem)" }}
               >
                 Apoyamos a nuestros estudiantes y egresados en su inserción
                 laboral y desarrollo profesional, conectándolos con
                 oportunidades en el sector educativo y afines.
               </Typography>
 
-              <Grid container spacing={3} mb={5}>
+              <Grid container spacing={{ xs: 2, md: 3 }} mb={5}>
                 {[
                   {
                     icon: <WorkOutlineIcon />,
@@ -454,15 +511,14 @@ export default function Estudiantes() {
                   },
                 ].map((item, idx) => (
                   <Grid size={{ xs: 12, sm: 6 }} key={idx}>
-                    {/* CAMBIO: Efecto hover de dorado a azul institucional claro */}
                     <Paper
                       sx={{
-                        p: 2.5,
+                        p: { xs: 2, md: 2.5 },
                         bgcolor: "rgba(255,255,255,0.05)",
                         border: "1px solid rgba(255,255,255,0.1)",
                         borderRadius: "12px",
                         display: "flex",
-                        gap: 2,
+                        gap: { xs: 1.5, md: 2 },
                         alignItems: "center",
                         height: "100%",
                         "&:hover": {
@@ -471,12 +527,12 @@ export default function Estudiantes() {
                         },
                       }}
                     >
-                      {/* CAMBIO: Color dorado eliminado, se usa azul institucional claro #007BFF */}
                       <Box sx={{ color: "#007BFF" }}>{item.icon}</Box>
                       <Typography
                         variant="body2"
                         color="#e2e8f0"
                         fontWeight="500"
+                        sx={{ fontSize: "clamp(0.85rem, 1.5vw, 0.9rem)" }}
                       >
                         {item.text}
                       </Typography>
@@ -485,48 +541,54 @@ export default function Estudiantes() {
                 ))}
               </Grid>
 
-              {/* CAMBIO: Color dorado eliminado, se usa azul institucional #007BFF, hover ajustado */}
-              <Button
+              {/*<Button
                 variant="contained"
                 size="large"
                 sx={{
                   bgcolor: "#007BFF",
                   color: "#fff",
                   borderRadius: "30px",
-                  px: 4,
-                  py: 1.5,
+                  px: { xs: 3, md: 4 },
+                  py: { xs: 1.2, md: 1.5 },
                   fontWeight: "bold",
+                  width: { xs: "100%", sm: "auto" },
                   "&:hover": { bgcolor: "#0069d9" },
                 }}
               >
                 Regístrate en nuestra plataforma
-              </Button>
+              </Button>*/}
             </Grid>
           </Grid>
         </Container>
       </Box>
 
-      {/* 5. BIENESTAR ESTUDIANTIL (Tarjetas Superpuestas) */}
-      <Container maxWidth="lg" sx={{ py: 12 }}>
-        <Grid container spacing={6} alignItems="center">
+      <Container maxWidth="lg" sx={{ py: { xs: 8, md: 12 } }}>
+        <Grid container spacing={{ xs: 6, md: 6 }} alignItems="center">
           <Grid size={{ xs: 12, md: 6 }} data-aos="fade-right">
             <Typography
               variant="overline"
               color="#007BFF"
               fontWeight="bold"
               letterSpacing={2}
+              sx={{ fontSize: "clamp(0.75rem, 1.5vw, 1rem)" }}
             >
               TU SALUD ES PRIMERO
             </Typography>
-            <Typography variant="h3" fontWeight="900" color="#003366" mb={2}>
+            <Typography
+              variant="h3"
+              fontWeight="900"
+              color="#003366"
+              mb={2}
+              sx={{ fontSize: "clamp(1.75rem, 4vw, 3rem)" }}
+            >
               Bienestar Estudiantil
             </Typography>
             <Typography
               variant="body1"
               color="#555"
               mb={4}
-              fontSize="1.1rem"
               textAlign="justify"
+              sx={{ fontSize: "clamp(1rem, 2vw, 1.1rem)" }}
             >
               El área de Bienestar Estudiantil se encarga de promover la salud
               física y mental, así como el desarrollo personal y social de
@@ -560,48 +622,53 @@ export default function Estudiantes() {
                   key={index}
                   sx={{
                     px: 0,
-                    py: 1.5,
+                    py: { xs: 1, md: 1.5 },
                     borderBottom: index !== 4 ? "1px dashed #ddd" : "none",
                   }}
                 >
-                  {/* CAMBIO: Color rojo eliminado, se usa azul institucional claro #007BFF */}
                   <ListItemIcon sx={{ minWidth: 40, color: "#007BFF" }}>
                     {item.icon}
                   </ListItemIcon>
                   <ListItemText
                     primary={item.text}
-                    primaryTypographyProps={{ fontWeight: 500, color: "#333" }}
+                    primaryTypographyProps={{
+                      fontWeight: 500,
+                      color: "#333",
+                      fontSize: "clamp(0.9rem, 2vw, 1rem)",
+                    }}
                   />
                 </ListItem>
               ))}
             </List>
 
-            <Button
+            {/*<Button
               variant="outlined"
               sx={{
                 color: "#003366",
                 borderColor: "#003366",
                 borderRadius: "20px",
-                px: 3,
+                px: { xs: 2, md: 3 },
+                py: { xs: 1, md: 1.5 },
                 fontWeight: "bold",
+                width: { xs: "100%", sm: "auto" },
                 "&:hover": { bgcolor: "rgba(0, 51, 102, 0.05)" },
               }}
             >
               Contáctanos para agendar cita
-            </Button>
+            </Button>*/}
           </Grid>
 
           <Grid size={{ xs: 12, md: 6 }} data-aos="zoom-in-left">
             <Box
               sx={{
                 position: "relative",
-                height: "550px",
+                height: { xs: "350px", sm: "450px", md: "550px" },
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
+                mt: { xs: 4, md: 0 },
               }}
             >
-              {/* Círculo decorativo de fondo */}
               <Box
                 sx={{
                   position: "absolute",
@@ -615,12 +682,15 @@ export default function Estudiantes() {
 
               <Box
                 component="img"
-                src="https://arcoiris.edu.pe/assets/Img/Fotos%20Estudiantes/est-15.jpg"
+                src={Bienestar}
                 alt="Bienestar y Apoyo"
                 sx={{
                   width: "85%",
                   height: "85%",
-                  borderRadius: "100px 100px 20px 20px",
+                  borderRadius: {
+                    xs: "50px 50px 15px 15px",
+                    md: "100px 100px 20px 20px",
+                  },
                   objectFit: "cover",
                   boxShadow: "0 30px 60px rgba(0,0,0,0.15)",
                   position: "relative",
@@ -628,43 +698,48 @@ export default function Estudiantes() {
                 }}
               />
 
-              {/* Insignia Flotante */}
               <Paper
                 sx={{
                   position: "absolute",
-                  top: "15%",
-                  left: 0,
-                  p: 2,
+                  top: { xs: "5%", md: "15%" },
+                  left: { xs: "5%", md: 0 },
+                  p: { xs: 1.5, md: 2 },
                   borderRadius: "16px",
                   bgcolor: "#ffffff",
                   display: "flex",
                   alignItems: "center",
-                  gap: 2,
+                  gap: { xs: 1.5, md: 2 },
                   boxShadow: "0 10px 30px rgba(0,0,0,0.1)",
                   zIndex: 2,
                 }}
               >
-                {/* CAMBIO: Color rojo/rosa eliminado, se usa azul institucional claro #007BFF y variación de fondo */}
                 <Box
                   sx={{
                     bgcolor: "rgba(0, 123, 255, 0.1)",
-                    p: 1,
+                    p: { xs: 0.8, md: 1 },
                     borderRadius: "50%",
                     color: "#007BFF",
                     display: "flex",
                   }}
                 >
-                  <FavoriteIcon />
+                  <FavoriteIcon
+                    sx={{ fontSize: { xs: "1.2rem", md: "1.5rem" } }}
+                  />
                 </Box>
                 <Box>
                   <Typography
                     variant="subtitle2"
                     fontWeight="bold"
                     color="#333"
+                    sx={{ fontSize: "clamp(0.8rem, 1.5vw, 0.875rem)" }}
                   >
                     Apoyo Constante
                   </Typography>
-                  <Typography variant="caption" color="#666">
+                  <Typography
+                    variant="caption"
+                    color="#666"
+                    sx={{ fontSize: "clamp(0.7rem, 1vw, 0.75rem)" }}
+                  >
                     Físico y Mental
                   </Typography>
                 </Box>
@@ -674,13 +749,14 @@ export default function Estudiantes() {
         </Grid>
       </Container>
 
-      {/* 6. CALL TO ACTION FINAL */}
-      <Box sx={{ bgcolor: "#F0F2F5", pb: 10 }}>
+      <Box
+        sx={{ bgcolor: "#F0F2F5", pb: { xs: 6, md: 10 }, px: { xs: 2, sm: 0 } }}
+      >
         <Container maxWidth="md">
           <Paper
             data-aos="fade-up"
             sx={{
-              p: { xs: 4, md: 6 },
+              p: { xs: 4, sm: 5, md: 6 },
               borderRadius: "24px",
               textAlign: "center",
               bgcolor: "#007BFF",
@@ -694,14 +770,18 @@ export default function Estudiantes() {
               variant="h3"
               fontWeight="900"
               mb={2}
-              sx={{ color: "#ffffff" }}
+              sx={{ color: "#ffffff", fontSize: "clamp(1.75rem, 4vw, 3rem)" }}
             >
               Tu éxito y bienestar son nuestra prioridad
             </Typography>
             <Typography
               variant="h6"
               fontWeight="400"
-              sx={{ opacity: 0.9, color: "#ffffff" }}
+              sx={{
+                opacity: 0.9,
+                color: "#ffffff",
+                fontSize: "clamp(1rem, 2vw, 1.25rem)",
+              }}
             >
               ¡Aprovecha todos los servicios que el Instituto Arco Iris tiene
               para ti!
