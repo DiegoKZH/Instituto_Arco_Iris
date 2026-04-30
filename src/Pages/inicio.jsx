@@ -339,6 +339,7 @@ export default function Inicio() {
           }}
         >
           <KeyboardDoubleArrowDownIcon
+            cursor="pointer"
             sx={{
               color: "#ffffff",
               fontSize: { xs: "3rem", md: "3.5rem" },
@@ -685,7 +686,7 @@ export default function Inicio() {
                     fontWeight="900"
                     sx={{ color: "#42A5F5", lineHeight: 1 }}
                   >
-                    20<span style={{ fontSize: "0.6em" }}>+</span>
+                    30<span style={{ fontSize: "0.6em" }}>+</span>
                   </Typography>
                 </Box>
                 <Typography variant="h6" fontWeight="bold" sx={{ mb: 0.5 }}>
@@ -1327,6 +1328,10 @@ export default function Inicio() {
               />
             </Box>
             <Button
+              component="a"
+              href="https://www.facebook.com/pedagogicoarcoiris/photos?locale=es_LA"
+              target="_blank"
+              rel="noopener noreferrer"
               endIcon={<ArrowForwardIcon />}
               sx={{
                 fontWeight: "bold",
@@ -1473,6 +1478,10 @@ export default function Inicio() {
                   </Typography>
                   <Button
                     className="arrow-icon"
+                    component="a"
+                    href="https://www.facebook.com/pedagogicoarcoiris/photos?locale=es_LA"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     endIcon={<ArrowForwardIcon />}
                     sx={{
                       color: "#fff",
@@ -1595,6 +1604,10 @@ export default function Inicio() {
                   </Typography>
                   <Box sx={{ mt: "auto" }}>
                     <Button
+                      component="a"
+                      href="https://www.facebook.com/pedagogicoarcoiris/photos?locale=es_LA"
+                      target="_blank"
+                      rel="noopener noreferrer"
                       variant="text"
                       sx={{
                         p: 0,
@@ -1710,6 +1723,10 @@ export default function Inicio() {
                   </Typography>
                   <Box sx={{ mt: "auto" }}>
                     <Button
+                      component="a"
+                      href="https://www.facebook.com/pedagogicoarcoiris/photos?locale=es_LA"
+                      target="_blank"
+                      rel="noopener noreferrer"
                       variant="text"
                       sx={{
                         p: 0,
@@ -2104,7 +2121,7 @@ export default function Inicio() {
                           color: "#42A5F5",
                         }}
                       >
-                        <VerifiedIcon sx={{ fontSize: 28 }} />
+                        <WorkspacePremiumIcon sx={{ fontSize: 28 }} />
                       </Box>
                       <Box>
                         <Typography
@@ -2125,49 +2142,10 @@ export default function Inicio() {
                         </Typography>
                       </Box>
                     </Box>
-                    <Box
-                      sx={{
-                        display: "flex",
-                        gap: 2.5,
-                        alignItems: "flex-start",
-                      }}
-                    >
-                      <Box
-                        sx={{
-                          bgcolor: "rgba(25,118,210,0.15)",
-                          p: 1,
-                          borderRadius: "12px",
-                          display: "flex",
-                          alignItems: "center",
-                          justifyContent: "center",
-                          color: "#42A5F5",
-                        }}
-                      >
-                        <WorkspacePremiumIcon sx={{ fontSize: 28 }} />
-                      </Box>
-                      <Box>
-                        <Typography
-                          variant="subtitle1"
-                          fontWeight="700"
-                          color="#ffffff"
-                          sx={{ lineHeight: 1.2, mb: 0.5 }}
-                        >
-                          ISO 9001
-                        </Typography>
-                        <Typography
-                          variant="body2"
-                          color="#a0aec0"
-                          sx={{ lineHeight: 1.6 }}
-                        >
-                          Certificación de nuestro Sistema de Gestión de Calidad
-                          (si aplica).
-                        </Typography>
-                      </Box>
-                    </Box>
                   </Box>
                   <Button
                     component={Link}
-                    to="/Transparencia"
+                    to="/Documentos_gestion"
                     onClick={() => window.scrollTo(0, 0)}
                     variant="contained"
                     disableElevation

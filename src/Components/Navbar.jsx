@@ -17,10 +17,7 @@ import {
 } from "@mui/material";
 import { useLocation, useNavigate } from "react-router-dom";
 
-import MenuIcon from "@mui/icons-material/Menu";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
-import CloseIcon from "@mui/icons-material/Close";
-import ExpandLess from "@mui/icons-material/ExpandLess";
 import ExpandMore from "@mui/icons-material/ExpandMore";
 
 import logo1 from "../assets/logo_arcoiris_rm.png";
@@ -120,37 +117,89 @@ export default function Navbar() {
     { label: "Contacto", path: "/contacto" },
   ];
 
+  // 1. Contenido del Drawer (Menú Móvil)
   const drawerContent = (
     <Box
       sx={{
         display: "flex",
         flexDirection: "column",
         height: "100%",
-        justifyContent: "center",
+        justifyContent: "flex-start",
+        position: "relative",
+        overflow: "hidden",
       }}
     >
       <Box
         sx={{
-          p: 2.5,
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-          borderBottom: "1px solid rgba(255,255,255,0.08)",
+          position: "absolute",
+          width: "250px",
+          height: "250px",
+          borderRadius: "50%",
+          border: "3px solid rgba(8, 90, 161, 0.12)",
+          bottom: "1%",
+          left: "-100px",
+          zIndex: 0,
+          pointerEvents: "none",
+          animation: "floatUpDownStroke 18s ease-in-out infinite",
+          "@keyframes floatUpDownStroke": {
+            "0%, 100%": { transform: "translateY(0) scale(1)" },
+            "50%": { transform: "translateY(-30px) scale(1.05)" },
+          },
         }}
-      >
-        <Box component="img" src={logo2} sx={{ height: 80 }} />
-        <IconButton onClick={handleDrawerToggle} sx={{ color: "#ffffff" }}>
-          <CloseIcon />
-        </IconButton>
-      </Box>
+      />
+      <Box
+        sx={{
+          position: "absolute",
+          width: "350px",
+          height: "350px",
+          borderRadius: "50%",
+          background:
+            "radial-gradient(circle, rgba(0, 123, 255, 0.29) 0%, rgba(0,0,0,0) 70%)",
+          top: "20%",
+          left: "-120px",
+          zIndex: 1,
+          pointerEvents: "none",
+          animation: "floatCircleFilled 15s ease-in-out infinite",
+          "@keyframes floatCircleFilled": {
+            "0%, 100%": { transform: "translate(0, 0)" },
+            "50%": { transform: "translate(40px, 20px)" },
+          },
+        }}
+      />
+      <Box
+        sx={{
+          position: "absolute",
+          width: "200px",
+          height: "200px",
+          borderRadius: "50%",
+          background:
+            "radial-gradient(circle, rgba(20, 81, 151, 0.35) 0%, rgba(0,0,0,0) 60%)",
+          bottom: "15%",
+          right: "-50px",
+          zIndex: 1,
+          pointerEvents: "none",
+          animation: "floatCircleFilledReverse 20s ease-in-out infinite",
+          "@keyframes floatCircleFilledReverse": {
+            "0%, 100%": { transform: "translate(0, 0)" },
+            "50%": { transform: "translate(-30px, -40px)" },
+          },
+        }}
+      />
 
       <List
         sx={{
-          px: 2,
-          py: 3,
+          px: 0,
+          pt: "135px",
+          pb: 3,
           overflowY: "auto",
+          position: "relative",
+          zIndex: 2,
         }}
       >
+        <Box
+          sx={{ borderTop: "1px solid rgba(255,255,255,0.08)", mb: 2, mx: 4.5 }}
+        />
+
         {navItems.map((item) => {
           const isMainActive = item.path
             ? location.pathname === item.path
@@ -171,16 +220,19 @@ export default function Navbar() {
                   }
                 }}
                 sx={{
-                  borderRadius: "10px",
-                  mb: 1,
-                  bgcolor: isActive ? "rgba(0, 123, 255, 0.15)" : "transparent",
-                  color: isActive ? "#007BFF" : "#e2e8f0",
+                  borderRadius: 0,
+                  mb: 0,
+                  width: "100%",
+                  px: 4.5,
+                  py: 1.2,
+                  bgcolor: isActive ? "rgb(4, 61, 121)" : "transparent",
+                  color: isActive ? "#3ea6ff" : "#e2e8f0",
                   boxShadow: isActive
-                    ? "0 4px 12px rgba(0, 123, 255, 0.25)"
+                    ? "inset 0 0 20px rgb(3, 74, 155)"
                     : "none",
-                  "&:hover": {
-                    bgcolor: "rgba(255,255,255,0.05)",
-                  },
+                  transform: "none",
+                  transition: "all 0.2s ease",
+                  "&:hover": { bgcolor: "rgba(4, 61, 121, 0.86)" },
                 }}
               >
                 <ListItemText
@@ -190,17 +242,37 @@ export default function Navbar() {
                     fontSize: "1.05rem",
                   }}
                 />
-                {item.subItems &&
-                  (openSubMenus[item.label] ? <ExpandLess /> : <ExpandMore />)}
+                {item.subItems && (
+                  <Box
+                    sx={{
+                      display: "flex",
+                      alignItems: "center",
+                      transition: "transform 0.3s ease",
+                      transform: openSubMenus[item.label]
+                        ? "rotate(180deg)"
+                        : "rotate(0deg)",
+                    }}
+                  >
+                    <ExpandMore />
+                  </Box>
+                )}
               </ListItemButton>
 
               {item.subItems && (
                 <Collapse
                   in={openSubMenus[item.label]}
-                  timeout="auto"
+                  timeout={350}
+                  easing={{
+                    enter: "cubic-bezier(0.4, 0, 0.2, 1)",
+                    exit: "cubic-bezier(0.4, 0, 1, 1)",
+                  }}
                   unmountOnExit
                 >
-                  <List component="div" disablePadding sx={{ mb: 1 }}>
+                  <List
+                    component="div"
+                    disablePadding
+                    sx={{ mb: 1, paddingLeft: 4, paddingTop: 2 }}
+                  >
                     {item.subItems.map((sub) => {
                       const isSubItemActive = location.pathname === sub.path;
                       return (
@@ -209,16 +281,26 @@ export default function Navbar() {
                           onClick={() => handleMobileNavigation(sub.path)}
                           sx={{
                             pl: 4,
-                            py: 1.5,
+                            pr: 2,
+                            py: 1.4,
                             borderRadius: "10px",
-                            mb: 0.5,
+                            mb: 0.6,
+                            width: "90%",
                             bgcolor: isSubItemActive
-                              ? "rgba(0, 123, 255, 0.1)"
+                              ? "rgb(3, 65, 131)"
                               : "transparent",
-                            color: isSubItemActive ? "#007BFF" : "#94a3b8",
+                            color: isSubItemActive ? "#3ea6ff" : "#94a3b8",
+                            boxShadow: isSubItemActive
+                              ? "-2px -2px 2px rgb(10, 105, 206)"
+                              : "none",
+                            transform: isSubItemActive
+                              ? "scale(1.01)"
+                              : "scale(1)",
+                            transition: "all 0.25s ease",
                             "&:hover": {
-                              bgcolor: "rgba(255,255,255,0.03)",
+                              bgcolor: "rgba(255, 255, 255, 0.64)",
                               color: "#ffffff",
+                              transform: "translateX(4px)",
                             },
                           }}
                         >
@@ -254,17 +336,30 @@ export default function Navbar() {
     </Box>
   );
 
+  // 2. Barra de Navegación Principal
   return (
     <>
       <AppBar
         position="fixed"
-        elevation={trigger ? 2 : 0}
+        elevation={trigger && !mobileOpen ? 2 : 0}
         sx={{
-          bgcolor: trigger ? "rgba(255, 255, 255, 0.95)" : "transparent",
-          backdropFilter: trigger ? "blur(10px)" : "none",
-          color: trigger ? "#003366" : isLight ? "#0A192F" : "#ffffff",
+          zIndex: (theme) => theme.zIndex.drawer + 1,
+          bgcolor: mobileOpen
+            ? "#0A192F"
+            : trigger
+              ? "rgba(255, 255, 255, 0.95)"
+              : "transparent",
+          backdropFilter: trigger && !mobileOpen ? "blur(10px)" : "none",
+          color: mobileOpen
+            ? "#ffffff"
+            : trigger
+              ? "#003366"
+              : isLight
+                ? "#0A192F"
+                : "#ffffff",
           transition: "all 0.4s cubic-bezier(0.4, 0, 0.2, 1)",
-          borderBottom: trigger ? "1px solid rgba(0,0,0,0.05)" : "none",
+          borderBottom:
+            trigger && !mobileOpen ? "1px solid rgba(0,0,0,0.05)" : "none",
         }}
       >
         <Container maxWidth="xl">
@@ -272,29 +367,38 @@ export default function Navbar() {
             disableGutters
             sx={{
               justifyContent: "space-between",
-              minHeight: trigger ? "70px" : "90px",
+              minHeight: mobileOpen ? "120px" : trigger ? "70px" : "90px",
               transition: "minHeight 0.4s ease",
-              alignItems: "stretch",
+              alignItems: "center",
             }}
           >
             <Box
               sx={{
                 display: "flex",
-                alignItems: "stretch",
+                alignItems: "center",
                 gap: { xs: 0, lg: 10 },
+                flexGrow: 1,
+                position: "relative",
               }}
             >
-              <Box sx={{ display: "flex", alignItems: "center" }}>
+              <Box
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  zIndex: 1,
+                  transition: "all 0.5s cubic-bezier(0.4, 0, 0.2, 1)",
+                }}
+              >
                 <Box
                   component="img"
                   onClick={() => handleNavigation("/")}
-                  src={trigger ? logo1 : logo2}
+                  src={mobileOpen ? logo2 : trigger ? logo1 : logo2}
                   sx={{
-                    height: trigger ? 60 : 60,
+                    height: mobileOpen ? 85 : 60,
                     cursor: "pointer",
-                    transition: "all 0.3s ease",
+                    transition: "height 0.5s ease, filter 0.3s ease",
                     filter:
-                      !trigger && isLight
+                      !trigger && !mobileOpen && isLight
                         ? "brightness(0) saturate(100%)"
                         : "none",
                   }}
@@ -306,6 +410,7 @@ export default function Navbar() {
                   display: { xs: "none", lg: "flex" },
                   alignItems: "stretch",
                   gap: 1.5,
+                  alignSelf: "stretch",
                 }}
               >
                 {navItems.map((item) => {
@@ -348,7 +453,7 @@ export default function Navbar() {
                           px: 2,
                           borderRadius: 0,
                           color: isActive
-                            ? trigger
+                            ? trigger && !mobileOpen
                               ? "#007BFF"
                               : "#ffffff"
                             : "inherit",
@@ -358,7 +463,8 @@ export default function Navbar() {
                           transition: "all 0.3s ease",
                           cursor: item.subItems ? "default" : "pointer",
                           "&:hover": {
-                            color: trigger ? "#007BFF" : "inherit",
+                            color:
+                              trigger && !mobileOpen ? "#007BFF" : "inherit",
                           },
                           "&::after": {
                             content: '""',
@@ -370,7 +476,7 @@ export default function Navbar() {
                             borderRadius: "4px 4px 0 0",
                             bgcolor: isActive ? "#ffffff" : "transparent",
                             boxShadow:
-                              isActive && trigger
+                              isActive && trigger && !mobileOpen
                                 ? "0 -4px 18px 2px rgba(0, 123, 255, 0.6)"
                                 : "none",
                             transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
@@ -419,7 +525,9 @@ export default function Navbar() {
                                 width: "12px",
                                 height: "12px",
                                 bgcolor: "#ffffff",
-                                borderLeft: "1px solid rgba(0,0,0,0.06)",
+                                borderLeft: isActive
+                                  ? "4px solid #3ea6ff"
+                                  : "4px solid transparent",
                                 borderTop: "1px solid rgba(0,0,0,0.06)",
                                 zIndex: 0,
                               },
@@ -466,7 +574,7 @@ export default function Navbar() {
                                     sx={{
                                       display: "flex",
                                       alignItems: "center",
-                                      justifyContent: "center",
+                                      justifyContent: "flex-start",
                                       width: 45,
                                       height: 45,
                                       flexShrink: 0,
@@ -493,7 +601,6 @@ export default function Navbar() {
                                       }}
                                     />
                                   </Box>
-
                                   <Box
                                     sx={{
                                       display: "flex",
@@ -534,13 +641,52 @@ export default function Navbar() {
               sx={{
                 display: { xs: "flex", lg: "none" },
                 alignItems: "center",
+                zIndex: mobileOpen ? 1 : "auto",
               }}
             >
               <IconButton
                 onClick={handleDrawerToggle}
-                sx={{ color: "inherit" }}
+                sx={{ color: "inherit", p: 1.5 }}
+                disableRipple
               >
-                <MenuIcon />
+                <Box sx={{ position: "relative", width: 20, height: 16 }}>
+                  <Box
+                    sx={{
+                      position: "absolute",
+                      top: mobileOpen ? 7 : 0,
+                      left: 0,
+                      width: 20,
+                      height: 1.5,
+                      bgcolor: "currentColor",
+                      transition: "all 0.6s cubic-bezier(0.4, 0, 0.2, 1)",
+                      transform: mobileOpen ? "rotate(45deg)" : "none",
+                    }}
+                  />
+                  <Box
+                    sx={{
+                      position: "absolute",
+                      top: 7,
+                      left: 0,
+                      width: 20,
+                      height: 1.5,
+                      bgcolor: "currentColor",
+                      transition: "all 0.6s cubic-bezier(0.4, 0, 0.2, 1)",
+                      opacity: mobileOpen ? 0 : 1,
+                    }}
+                  />
+                  <Box
+                    sx={{
+                      position: "absolute",
+                      top: mobileOpen ? 7 : 14,
+                      left: 0,
+                      width: 20,
+                      height: 1.5,
+                      bgcolor: "currentColor",
+                      transition: "all 0.6s cubic-bezier(0.4, 0, 0.2, 1)",
+                      transform: mobileOpen ? "rotate(-45deg)" : "none",
+                    }}
+                  />
+                </Box>
               </IconButton>
             </Box>
           </Toolbar>
@@ -551,9 +697,7 @@ export default function Navbar() {
         anchor="right"
         open={mobileOpen}
         onClose={handleDrawerToggle}
-        ModalProps={{
-          keepMounted: true,
-        }}
+        ModalProps={{ keepMounted: true }}
         PaperProps={{
           sx: {
             width: { xs: "100%", sm: "380px" },

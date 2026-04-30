@@ -4,6 +4,8 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
+import logo from "../assets/logo_arcoiris_blanco.png";
+
 const fadeUp = {
   hidden: { opacity: 0, y: 20 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
@@ -107,10 +109,10 @@ export default function NotFound() {
         <Box
           component={motion.img}
           variants={fadeUp}
-          src="https://arcoiris.edu.pe/assets/Img/LOGO%20INSTI%20BLANCO.png"
+          src={logo}
           alt="Logo IESPP Arco Iris"
           sx={{
-            height: "95px",
+            height: { xs: "115px", sm: "95px", md: "95px" },
             objectFit: "contain",
             mb: 4,
             filter: "drop-shadow(0px 4px 10px rgba(0,0,0,0.2))",
@@ -124,7 +126,7 @@ export default function NotFound() {
             animate={{ scale: [1, 1.02, 1], opacity: [0.9, 1, 0.9] }}
             transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
             sx={{
-              fontSize: { xs: "10rem", sm: "14rem", md: "18rem" },
+              fontSize: { xs: "6rem", sm: "12rem", md: "18rem" },
               fontWeight: 950,
               lineHeight: 1,
               letterSpacing: "-0.04em",
@@ -148,7 +150,7 @@ export default function NotFound() {
               color: "#ffffff",
               letterSpacing: "-0.8px",
               mb: 2,
-              fontSize: { xs: "2rem", md: "2.8rem" },
+              fontSize: { xs: "1.5rem", md: "2.8rem" },
             }}
           >
             Página no encontrada

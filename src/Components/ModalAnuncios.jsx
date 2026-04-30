@@ -8,6 +8,7 @@ import {
   Slide,
 } from "@mui/material";
 import { motion, AnimatePresence } from "framer-motion";
+import { Link, useLocation } from "react-router-dom";
 import CloseIcon from "@mui/icons-material/Close";
 import ArrowBackIosNewRoundedIcon from "@mui/icons-material/ArrowBackIosNewRounded";
 import ArrowForwardIosRoundedIcon from "@mui/icons-material/ArrowForwardIosRounded";
@@ -27,6 +28,7 @@ export default function ModalAnuncios({
   intervaloCarrusel = 4,
 }) {
   const [open, setOpen] = useState(false);
+  const location = useLocation();
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
 
@@ -52,10 +54,16 @@ export default function ModalAnuncios({
   ];
 
   useEffect(() => {
-    if (window.location.pathname !== "/") return;
+    if (location.pathname !== "/") return;
+
     const timer = setTimeout(() => setOpen(true), delaySegundos * 1000);
     return () => clearTimeout(timer);
-  }, [delaySegundos]);
+  }, [location.pathname, delaySegundos]);
+  useEffect(() => {
+    if (location.pathname !== "/") {
+      setOpen(false);
+    }
+  }, [location.pathname]);
 
   useEffect(() => {
     if (isPaused || !open) return;
@@ -163,10 +171,8 @@ export default function ModalAnuncios({
             }}
           >
             <Button
-              variant="contained"
-              onClick={() =>
-                (window.location.href = anuncios[currentIndex].link)
-              }
+              component={Link}
+              to={anuncios[currentIndex].link}
               disableElevation
               sx={{
                 bgcolor: "#003366",
