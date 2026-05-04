@@ -100,10 +100,13 @@ export default function Fisica() {
       <Box
         sx={{
           position: "relative",
-          height: { xs: "70vh", md: "80vh" },
+          height: { xs: "85vh", md: "80vh" },
           display: "flex",
           alignItems: "center",
-          clipPath: "polygon(0 0, 100% 0, 100% 85%, 0 100%)",
+          clipPath: {
+            xs: "polygon(0 0, 100% 0, 100% 95%, 0 100%)",
+            md: "polygon(0 0, 100% 0, 100% 85%, 0 100%)",
+          },
           bgcolor: "#003366",
           "&::before": {
             content: '""',
@@ -124,8 +127,8 @@ export default function Fisica() {
               sx={{
                 color: "#007BFF",
                 fontWeight: 900,
-                letterSpacing: 3,
-                fontSize: "1.2rem",
+                letterSpacing: { xs: 2, md: 3 },
+                fontSize: "clamp(0.9rem, 2vw, 1.2rem)",
               }}
             >
               PROGRAMA PROFESIONAL
@@ -136,8 +139,8 @@ export default function Fisica() {
               sx={{
                 color: "#ffffff",
                 textTransform: "uppercase",
-                fontSize: { xs: "3.5rem", md: "6rem" },
-                lineHeight: 1,
+                fontSize: "clamp(3.5rem, 10vw, 6rem)",
+                lineHeight: 1.1,
                 mb: 2,
                 textShadow: "4px 4px 0px rgba(0, 123, 255, 0.5)",
               }}
@@ -151,7 +154,8 @@ export default function Fisica() {
                 maxWidth: "600px",
                 fontWeight: 400,
                 borderLeft: "4px solid #007BFF",
-                pl: 3,
+                pl: { xs: 2, md: 3 },
+                fontSize: "clamp(0.95rem, 2.5vw, 1.25rem)",
               }}
             >
               Formando docentes que inspiran el movimiento, la salud y el
@@ -163,9 +167,14 @@ export default function Fisica() {
 
       <Container
         maxWidth="lg"
-        sx={{ mt: -10, position: "relative", zIndex: 3, pb: 10 }}
+        sx={{
+          mt: { xs: -8, md: -10 },
+          position: "relative",
+          zIndex: 3,
+          pb: { xs: 6, md: 10 },
+        }}
       >
-        <Grid container spacing={4}>
+        <Grid container spacing={{ xs: 3, md: 4 }}>
           <Grid
             size={{ xs: 12, md: 6 }}
             component={motion.div}
@@ -177,7 +186,7 @@ export default function Fisica() {
             <Paper
               elevation={0}
               sx={{
-                p: 5,
+                p: { xs: 4, md: 5 },
                 bgcolor: "#ffffff",
                 borderTop: "6px solid #007BFF",
                 borderRadius: 0,
@@ -191,10 +200,16 @@ export default function Fisica() {
                 color="#003366"
                 mb={3}
                 textTransform="uppercase"
+                sx={{ fontSize: "clamp(1.5rem, 3.5vw, 2.125rem)" }}
               >
                 El Programa
               </Typography>
-              <Typography variant="body1" color="#333333" lineHeight={1.8}>
+              <Typography
+                variant="body1"
+                color="#333333"
+                lineHeight={1.8}
+                sx={{ fontSize: "clamp(0.95rem, 2vw, 1.05rem)" }}
+              >
                 Nuestro programa está diseñado para formar profesionales
                 altamente capacitados en la enseñanza de la educación física,
                 promoviendo estilos de vida activos y saludables en todas las
@@ -213,7 +228,7 @@ export default function Fisica() {
             <Paper
               elevation={0}
               sx={{
-                p: 5,
+                p: { xs: 4, md: 5 },
                 bgcolor: "#003366",
                 color: "#ffffff",
                 borderTop: "6px solid #0056B3",
@@ -227,10 +242,16 @@ export default function Fisica() {
                 fontWeight="900"
                 mb={3}
                 textTransform="uppercase"
+                sx={{ fontSize: "clamp(1.5rem, 3.5vw, 2.125rem)" }}
               >
                 Enfoque y Metodología
               </Typography>
-              <Typography variant="body1" color="#F0F2F5" lineHeight={1.8}>
+              <Typography
+                variant="body1"
+                color="#F0F2F5"
+                lineHeight={1.8}
+                sx={{ fontSize: "clamp(0.95rem, 2vw, 1.05rem)" }}
+              >
                 Nos enfocamos en la didáctica del movimiento, desarrollo de
                 habilidades motrices y gestión deportiva. Integramos las últimas
                 tendencias en entrenamiento deportivo, nutrición y psicología
@@ -241,9 +262,9 @@ export default function Fisica() {
         </Grid>
       </Container>
 
-      <Box sx={{ bgcolor: "#F0F2F5", py: 10 }}>
+      <Box sx={{ bgcolor: "#F0F2F5", py: { xs: 6, md: 10 } }}>
         <Container maxWidth="lg">
-          <Grid container spacing={8} alignItems="center">
+          <Grid container spacing={{ xs: 6, md: 8 }} alignItems="center">
             <Grid
               size={{ xs: 12, md: 6 }}
               component={motion.div}
@@ -251,13 +272,19 @@ export default function Fisica() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
             >
-              <Box sx={{ position: "relative" }}>
+              <Box sx={{ position: "relative", px: { xs: 2, md: 0 } }}>
                 <Box
                   sx={{
                     position: "absolute",
-                    inset: -20,
-                    border: "4px solid #007BFF",
-                    transform: "translate(20px, 20px)",
+                    inset: { xs: -10, md: -20 },
+                    border: {
+                      xs: "3px solid #007BFF",
+                      md: "4px solid #007BFF",
+                    },
+                    transform: {
+                      xs: "translate(10px, 10px)",
+                      md: "translate(20px, 20px)",
+                    },
                     zIndex: 0,
                   }}
                 />
@@ -266,7 +293,7 @@ export default function Fisica() {
                   src={imgCompetencias}
                   sx={{
                     width: "100%",
-                    height: "400px",
+                    height: { xs: "280px", sm: "350px", md: "400px" },
                     objectFit: "cover",
                     position: "relative",
                     zIndex: 1,
@@ -289,6 +316,7 @@ export default function Fisica() {
                 color="#003366"
                 mb={4}
                 textTransform="uppercase"
+                sx={{ fontSize: "clamp(2rem, 5vw, 3rem)" }}
               >
                 Competencias <br />
                 <span style={{ color: "#007BFF" }}>Clave</span>
@@ -303,13 +331,18 @@ export default function Fisica() {
                     gap: 2,
                     mb: 3,
                     alignItems: "center",
-                    p: 2,
+                    p: { xs: 1.5, md: 2 },
                     bgcolor: "#ffffff",
                     borderLeft: "4px solid #003366",
                   }}
                 >
                   <FitnessCenterIcon sx={{ color: "#007BFF" }} />
-                  <Typography variant="body1" fontWeight="600" color="#333333">
+                  <Typography
+                    variant="body1"
+                    fontWeight="600"
+                    color="#333333"
+                    sx={{ fontSize: "clamp(0.9rem, 1.5vw, 1.05rem)" }}
+                  >
                     {item}
                   </Typography>
                 </Box>
@@ -319,7 +352,7 @@ export default function Fisica() {
         </Container>
       </Box>
 
-      <Box sx={{ bgcolor: "#ffffff", py: 10 }}>
+      <Box sx={{ bgcolor: "#ffffff", py: { xs: 8, md: 10 } }}>
         <Container maxWidth="lg">
           <motion.div
             initial="hidden"
@@ -332,8 +365,9 @@ export default function Fisica() {
               fontWeight="900"
               color="#003366"
               textAlign="center"
-              mb={8}
+              mb={{ xs: 6, md: 8 }}
               textTransform="uppercase"
+              sx={{ fontSize: "clamp(2rem, 5vw, 3rem)" }}
             >
               Proyectos e <span style={{ color: "#007BFF" }}>Identidad</span>
             </Typography>
@@ -343,9 +377,9 @@ export default function Fisica() {
             <Grid
               key={index}
               container
-              spacing={8}
+              spacing={{ xs: 6, md: 8 }}
               alignItems="center"
-              mb={index === proyectosData.length - 1 ? 0 : 10}
+              mb={index === proyectosData.length - 1 ? 0 : { xs: 8, md: 10 }}
               direction={{
                 xs: "column-reverse",
                 md: item.reverse ? "row-reverse" : "row",
@@ -365,14 +399,21 @@ export default function Fisica() {
                   color="#003366"
                   mb={3}
                   textTransform="uppercase"
+                  sx={{
+                    fontSize: "clamp(1.5rem, 3vw, 2.125rem)",
+                    textAlign: { xs: "center", md: "left" },
+                  }}
                 >
                   {item.title}
                 </Typography>
                 <Typography
                   variant="body1"
                   color="#555"
-                  fontSize="1.1rem"
                   lineHeight={1.8}
+                  sx={{
+                    fontSize: "clamp(0.95rem, 2vw, 1.1rem)",
+                    textAlign: { xs: "center", md: "left" },
+                  }}
                 >
                   {item.desc}
                 </Typography>
@@ -385,15 +426,24 @@ export default function Fisica() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.6 }}
               >
-                <Box sx={{ position: "relative" }}>
+                <Box sx={{ position: "relative", px: { xs: 2, md: 0 } }}>
                   <Box
                     sx={{
                       position: "absolute",
-                      inset: -15,
-                      border: "4px solid #003366",
+                      inset: { xs: -10, md: -15 },
+                      border: {
+                        xs: "3px solid #003366",
+                        md: "4px solid #003366",
+                      },
                       transform: item.reverse
-                        ? "translate(-15px, 15px)"
-                        : "translate(15px, 15px)",
+                        ? {
+                            xs: "translate(-10px, 10px)",
+                            md: "translate(-15px, 15px)",
+                          }
+                        : {
+                            xs: "translate(10px, 10px)",
+                            md: "translate(15px, 15px)",
+                          },
                       zIndex: 0,
                     }}
                   />
@@ -402,7 +452,7 @@ export default function Fisica() {
                     src={item.img}
                     sx={{
                       width: "100%",
-                      height: "350px",
+                      height: { xs: "280px", sm: "320px", md: "350px" },
                       objectFit: "cover",
                       position: "relative",
                       zIndex: 1,
@@ -419,7 +469,7 @@ export default function Fisica() {
       <Box
         sx={{
           bgcolor: "#003366",
-          py: 12,
+          py: { xs: 8, md: 12 },
           color: "#ffffff",
           backgroundImage:
             "radial-gradient(circle at 90% 10%, rgba(0, 123, 255, 0.15) 0%, transparent 50%)",
@@ -431,9 +481,10 @@ export default function Fisica() {
             src="https://cdn-icons-png.flaticon.com/128/3048/3048355.png"
             alt="icono E Física"
             sx={{
-              width: { xs: 65, md: 85 },
-              height: { xs: 65, md: 85 },
+              width: { xs: 55, md: 85 },
+              height: { xs: 55, md: 85 },
               filter: "brightness(0) invert(1)",
+              mb: { xs: 2, md: 0 },
             }}
           />
           <Typography
@@ -441,50 +492,76 @@ export default function Fisica() {
             fontWeight="900"
             mb={3}
             textTransform="uppercase"
+            sx={{ fontSize: "clamp(1.8rem, 4vw, 3rem)" }}
           >
             Malla Curricular
           </Typography>
           <Typography
             variant="body1"
             color="#F0F2F5"
-            mb={6}
-            fontSize="1.1rem"
+            mb={{ xs: 4, md: 6 }}
             lineHeight={1.8}
+            sx={{ fontSize: "clamp(0.95rem, 2vw, 1.1rem)" }}
           >
             Aborda áreas como anatomía, fisiología, didáctica, deportes e
             individuales, y gestión deportiva. Cumpliendo con los estándares del
             MINEDU.
           </Typography>
 
-          <Grid container spacing={3} justifyContent="center" mb={6}>
-            <Grid size={{ xs: 6, md: 4 }}>
+          <Grid
+            container
+            spacing={{ xs: 2, md: 3 }}
+            justifyContent="center"
+            mb={{ xs: 4, md: 6 }}
+          >
+            <Grid size={{ xs: 12, sm: 6, md: 4 }}>
               <Paper
                 sx={{
-                  p: 3,
+                  p: { xs: 2, md: 3 },
                   bgcolor: "rgba(255,255,255,0.05)",
                   border: "1px solid rgba(255,255,255,0.1)",
                   color: "#ffffff",
                 }}
               >
-                <Typography variant="h4" fontWeight="900" color="#007BFF">
+                <Typography
+                  variant="h4"
+                  fontWeight="900"
+                  color="#007BFF"
+                  sx={{ fontSize: "clamp(1.5rem, 3vw, 2.125rem)" }}
+                >
                   5
                 </Typography>
-                <Typography variant="overline">Años de Duración</Typography>
+                <Typography
+                  variant="overline"
+                  sx={{ fontSize: "clamp(0.75rem, 1.2vw, 0.875rem)" }}
+                >
+                  Años de Duración
+                </Typography>
               </Paper>
             </Grid>
-            <Grid size={{ xs: 6, md: 4 }}>
+            <Grid size={{ xs: 12, sm: 6, md: 4 }}>
               <Paper
                 sx={{
-                  p: 3,
+                  p: { xs: 2, md: 3 },
                   bgcolor: "rgba(255,255,255,0.05)",
                   border: "1px solid rgba(255,255,255,0.1)",
                   color: "#ffffff",
                 }}
               >
-                <Typography variant="h4" fontWeight="900" color="#007BFF">
+                <Typography
+                  variant="h4"
+                  fontWeight="900"
+                  color="#007BFF"
+                  sx={{ fontSize: "clamp(1.5rem, 3vw, 2.125rem)" }}
+                >
                   10
                 </Typography>
-                <Typography variant="overline">Semestres</Typography>
+                <Typography
+                  variant="overline"
+                  sx={{ fontSize: "clamp(0.75rem, 1.2vw, 0.875rem)" }}
+                >
+                  Semestres
+                </Typography>
               </Paper>
             </Grid>
           </Grid>
@@ -492,9 +569,9 @@ export default function Fisica() {
           <Box
             sx={{
               display: "flex",
-              gap: 3,
+              gap: { xs: 2, md: 3 },
               justifyContent: "center",
-              flexWrap: "wrap",
+              flexDirection: { xs: "column", sm: "row" },
             }}
           >
             <Button
@@ -505,8 +582,9 @@ export default function Fisica() {
               sx={{
                 bgcolor: "#007BFF",
                 borderRadius: 0,
-                px: 4,
-                py: 1.5,
+                px: { xs: 3, md: 4 },
+                py: { xs: 1.2, md: 1.5 },
+                width: { xs: "100%", sm: "auto" },
                 "&:hover": { bgcolor: "#0056B3" },
               }}
             >
@@ -520,8 +598,9 @@ export default function Fisica() {
                 color: "#ffffff",
                 borderColor: "#ffffff",
                 borderRadius: 0,
-                px: 4,
-                py: 1.5,
+                px: { xs: 3, md: 4 },
+                py: { xs: 1.2, md: 1.5 },
+                width: { xs: "100%", sm: "auto" },
                 "&:hover": { borderColor: "#007BFF", color: "#007BFF" },
               }}
             >
@@ -534,7 +613,7 @@ export default function Fisica() {
       <Box
         sx={{
           position: "relative",
-          py: { xs: 10, md: 14 },
+          py: { xs: 8, md: 14 },
           bgcolor: "#F8FAFC",
           overflow: "hidden",
         }}
@@ -544,8 +623,8 @@ export default function Fisica() {
             position: "absolute",
             top: "-10%",
             left: "-5%",
-            width: 500,
-            height: 500,
+            width: { xs: 300, md: 500 },
+            height: { xs: 300, md: 500 },
             bgcolor: "rgba(0, 123, 255, 0.05)",
             borderRadius: "50%",
             filter: "blur(80px)",
@@ -557,8 +636,8 @@ export default function Fisica() {
             position: "absolute",
             bottom: "-10%",
             right: "-5%",
-            width: 600,
-            height: 600,
+            width: { xs: 400, md: 600 },
+            height: { xs: 400, md: 600 },
             bgcolor: "rgba(0, 51, 102, 0.04)",
             borderRadius: "50%",
             filter: "blur(100px)",
@@ -578,7 +657,8 @@ export default function Fisica() {
               fontWeight="900"
               textAlign="center"
               color="#003366"
-              mb={8}
+              mb={{ xs: 6, md: 8 }}
+              sx={{ fontSize: "clamp(2rem, 5vw, 3rem)" }}
             >
               Campo{" "}
               <span style={{ color: "#007BFF", position: "relative" }}>
@@ -599,7 +679,7 @@ export default function Fisica() {
             </Typography>
           </motion.div>
 
-          <Grid container spacing={4}>
+          <Grid container spacing={{ xs: 3, md: 4 }}>
             {laboralesData.map((item, index) => {
               const isHighlighted = index === 0 || index === 4;
               const bgCard = isHighlighted
@@ -700,6 +780,7 @@ export default function Fisica() {
                       color={textColor}
                       lineHeight={1.5}
                       zIndex={1}
+                      sx={{ fontSize: "clamp(0.95rem, 1.5vw, 1.1rem)" }}
                     >
                       {item.text}
                     </Typography>
@@ -716,15 +797,15 @@ export default function Fisica() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
             sx={{
-              mt: 12,
-              p: { xs: 6, md: 8 },
+              mt: { xs: 8, md: 12 },
+              p: { xs: 4, md: 8 },
               bgcolor: "#007BFF",
               backgroundImage:
                 "url('https://images.unsplash.com/photo-1761258772213-49262ad73ec0?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NTR8fGVkdWNhY2klQzMlQjNuJTIwZGVwb3J0ZXxlbnwwfHwwfHx8MA%3D%3D')",
               backgroundSize: "cover",
               backgroundPosition: "center",
               position: "relative",
-              borderRadius: "40px",
+              borderRadius: { xs: "30px", md: "40px" },
               textAlign: "center",
               boxShadow: "0 20px 50px rgba(0, 51, 102, 0.25)",
               overflow: "hidden",
@@ -740,7 +821,13 @@ export default function Fisica() {
             />
 
             <Box sx={{ position: "relative", zIndex: 2 }}>
-              <Typography variant="h3" fontWeight="900" color="#fff" mb={3}>
+              <Typography
+                variant="h3"
+                fontWeight="900"
+                color="#fff"
+                mb={3}
+                sx={{ fontSize: "clamp(1.5rem, 4vw, 3rem)", lineHeight: 1.2 }}
+              >
                 ¡TU VICTORIA COMIENZA AQUÍ!
               </Typography>
               <Button
@@ -749,16 +836,18 @@ export default function Fisica() {
                 sx={{
                   bgcolor: "#ffffff",
                   color: "#003366",
-                  px: 6,
-                  py: 2,
-                  fontSize: "1.1rem",
+                  px: { xs: 4, md: 6 },
+                  py: { xs: 1.5, md: 2 },
+                  width: { xs: "100%", sm: "auto" },
+                  fontSize: "clamp(0.95rem, 1.5vw, 1.1rem)",
                   fontWeight: "bold",
                   borderRadius: "30px",
                   boxShadow: "0 10px 20px rgba(0,0,0,0.15)",
                   transition: "all 0.3s ease",
+                  textTransform: "none",
                   "&:hover": {
                     bgcolor: "#F0F2F5",
-                    transform: "translateY(-3px)",
+                    transform: { xs: "none", md: "translateY(-3px)" },
                     boxShadow: "0 15px 30px rgba(0,0,0,0.25)",
                   },
                 }}
@@ -775,6 +864,7 @@ export default function Fisica() {
         onClose={() => setOpenPdf(false)}
         maxWidth="lg"
         fullWidth
+        PaperProps={{ sx: { m: { xs: 2, md: 4 } } }}
       >
         <Box
           sx={{
@@ -786,7 +876,11 @@ export default function Fisica() {
             color: "#ffffff",
           }}
         >
-          <Typography variant="h6" fontWeight="bold">
+          <Typography
+            variant="h6"
+            fontWeight="bold"
+            sx={{ fontSize: "clamp(1rem, 2vw, 1.25rem)" }}
+          >
             Malla Curricular - Educación Física
           </Typography>
           <IconButton
@@ -796,7 +890,9 @@ export default function Fisica() {
             <CloseIcon />
           </IconButton>
         </Box>
-        <DialogContent sx={{ p: 0, height: "80vh", bgcolor: "#333333" }}>
+        <DialogContent
+          sx={{ p: 0, height: { xs: "70vh", md: "80vh" }, bgcolor: "#333333" }}
+        >
           <iframe
             src="https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf"
             width="100%"

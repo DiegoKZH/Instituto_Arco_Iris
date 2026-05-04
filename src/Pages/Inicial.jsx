@@ -118,11 +118,12 @@ export default function Inicial() {
       <Box
         sx={{
           position: "relative",
-          height: { xs: "75vh", md: "85vh" },
+          minHeight: { xs: "90vh", md: "85vh" },
+          py: { xs: 12, md: 0 },
           display: "flex",
           alignItems: "center",
           bgcolor: "#003366",
-          borderRadius: "0 0 50% 50% / 0 0 10% 10%",
+          borderRadius: { xs: "0 0 15% 15%", md: "0 0 50% 50% / 0 0 10% 10%" },
           overflow: "hidden",
           boxShadow: "0 20px 50px rgba(0,0,0,0.1)",
         }}
@@ -190,20 +191,26 @@ export default function Inicial() {
                 bgcolor: "rgba(255, 255, 255, 0.15)",
                 backdropFilter: "blur(10px)",
                 border: "1px solid rgba(255, 255, 255, 0.3)",
-                px: 3,
-                py: 1,
+                px: { xs: 2, md: 3 },
+                py: { xs: 0.5, md: 1 },
                 borderRadius: "50px",
-                mb: 4,
+                mb: { xs: 3, md: 4 },
               }}
             >
-              <AutoAwesomeIcon sx={{ color: "#ffffff" }} />
+              <AutoAwesomeIcon
+                sx={{
+                  color: "#ffffff",
+                  fontSize: { xs: "1.2rem", md: "1.5rem" },
+                }}
+              />
               <Typography
                 variant="overline"
                 sx={{
                   color: "#ffffff",
                   fontWeight: 800,
-                  letterSpacing: 2,
+                  letterSpacing: { xs: 1, md: 2 },
                   m: 0,
+                  fontSize: "clamp(0.75rem, 1.5vw, 1rem)",
                 }}
               >
                 Primera Infancia
@@ -214,10 +221,11 @@ export default function Inicial() {
               fontWeight="900"
               sx={{
                 color: "#ffffff",
-                fontSize: { xs: "3.5rem", md: "5.5rem" },
+                fontSize: "clamp(2.5rem, 8vw, 5.5rem)",
                 mb: 3,
                 textTransform: "uppercase",
                 letterSpacing: "-1px",
+                lineHeight: 1.1,
               }}
             >
               Educación Inicial
@@ -230,7 +238,9 @@ export default function Inicial() {
                 mx: "auto",
                 fontWeight: 400,
                 lineHeight: 1.6,
+                fontSize: "clamp(0.95rem, 2.5vw, 1.25rem)",
                 textShadow: "0 2px 10px rgba(0,0,0,0.3)",
+                px: { xs: 2, md: 0 },
               }}
             >
               Formando líderes en la primera infancia, con un enfoque innovador,
@@ -242,9 +252,14 @@ export default function Inicial() {
 
       <Container
         maxWidth="lg"
-        sx={{ mt: -8, position: "relative", zIndex: 4, pb: 10 }}
+        sx={{
+          mt: { xs: -6, md: -8 },
+          position: "relative",
+          zIndex: 4,
+          pb: { xs: 6, md: 10 },
+        }}
       >
-        <Grid container spacing={4}>
+        <Grid container spacing={{ xs: 3, md: 4 }}>
           <Grid
             size={{ xs: 12, md: 6 }}
             data-aos="fade-up"
@@ -268,16 +283,28 @@ export default function Inicial() {
                 src="https://cdn-icons-png.flaticon.com/512/7456/7456976.png"
                 alt="icon inicial"
                 sx={{
-                  width: { xs: 65, md: 85 },
-                  height: { xs: 65, md: 85 },
+                  width: { xs: 60, md: 85 },
+                  height: { xs: 60, md: 85 },
+                  mb: 2,
                   filter:
                     "brightness(0) saturate(100%) invert(36%) sepia(98%) saturate(1800%) hue-rotate(200deg) brightness(95%) contrast(100%)",
                 }}
               />
-              <Typography variant="h4" fontWeight="800" color="#003366" mb={3}>
+              <Typography
+                variant="h4"
+                fontWeight="800"
+                color="#003366"
+                mb={3}
+                sx={{ fontSize: "clamp(1.5rem, 3vw, 2.125rem)" }}
+              >
                 El Programa
               </Typography>
-              <Typography variant="body1" color="#555" lineHeight={1.8}>
+              <Typography
+                variant="body1"
+                color="#555"
+                lineHeight={1.8}
+                sx={{ fontSize: "clamp(0.95rem, 2vw, 1.05rem)" }}
+              >
                 Diseñado para formar profesionales altamente capacitados en el
                 desarrollo integral de niños de 0 a 5 años, preparándolos para
                 los desafíos de la educación del siglo XXI.
@@ -307,18 +334,25 @@ export default function Inicial() {
                 src="https://cdn-icons-png.flaticon.com/128/2973/2973247.png"
                 alt="icono metodología"
                 sx={{
-                  width: { xs: 65, md: 85 },
-                  height: { xs: 65, md: 85 },
+                  width: { xs: 60, md: 85 },
+                  height: { xs: 60, md: 85 },
+                  mb: 2,
                   filter: "brightness(0) invert(1)",
                 }}
               />
-              <Typography variant="h4" fontWeight="800" mb={3}>
+              <Typography
+                variant="h4"
+                fontWeight="800"
+                mb={3}
+                sx={{ fontSize: "clamp(1.5rem, 3vw, 2.125rem)" }}
+              >
                 Enfoque Metodológico
               </Typography>
               <Typography
                 variant="body1"
                 color="rgba(255,255,255,0.9)"
                 lineHeight={1.8}
+                sx={{ fontSize: "clamp(0.95rem, 2vw, 1.05rem)" }}
               >
                 Se centra en metodologías activas, promoviendo el aprendizaje a
                 través del juego y la exploración. Integramos avances en
@@ -329,16 +363,16 @@ export default function Inicial() {
         </Grid>
       </Container>
 
-      <Box sx={{ py: 10, bgcolor: "#ffffff" }}>
+      <Box sx={{ py: { xs: 6, md: 10 }, bgcolor: "#ffffff" }}>
         <Container maxWidth="lg">
-          <Grid container spacing={8} alignItems="center">
+          <Grid container spacing={{ xs: 6, md: 8 }} alignItems="center">
             <Grid size={{ xs: 12, md: 5 }} data-aos="fade-right">
               <Box
                 component="img"
                 src={imgBlob}
                 sx={{
                   width: "100%",
-                  height: "450px",
+                  height: { xs: "300px", sm: "400px", md: "450px" },
                   objectFit: "cover",
                   borderRadius: "40% 60% 70% 30% / 40% 50% 60% 50%",
                   boxShadow: "20px 20px 0px rgba(0, 123, 255, 0.15)",
@@ -351,7 +385,13 @@ export default function Inicial() {
               />
             </Grid>
             <Grid size={{ xs: 12, md: 7 }} data-aos="fade-left">
-              <Typography variant="h3" fontWeight="900" color="#003366" mb={4}>
+              <Typography
+                variant="h3"
+                fontWeight="900"
+                color="#003366"
+                mb={4}
+                sx={{ fontSize: "clamp(2rem, 5vw, 3rem)" }}
+              >
                 Creciendo y{" "}
                 <span style={{ color: "#007BFF" }}>Aprendiendo</span>
               </Typography>
@@ -371,18 +411,19 @@ export default function Inicial() {
                     sx={{
                       bgcolor: "rgba(0, 123, 255, 0.1)",
                       color: "#007BFF",
-                      p: 1.5,
+                      p: { xs: 1, md: 1.5 },
                       borderRadius: "50%",
                       display: "flex",
+                      flexShrink: 0,
                     }}
                   >
                     <AutoAwesomeIcon fontSize="small" />
                   </Box>
                   <Typography
                     variant="body1"
-                    fontSize="1.1rem"
                     color="#444"
                     mt={0.8}
+                    sx={{ fontSize: "clamp(0.95rem, 2vw, 1.1rem)" }}
                   >
                     {item}
                   </Typography>
@@ -393,15 +434,16 @@ export default function Inicial() {
         </Container>
       </Box>
 
-      <Box sx={{ py: 10, bgcolor: "#F8FAFC" }}>
+      <Box sx={{ py: { xs: 8, md: 10 }, bgcolor: "#F8FAFC" }}>
         <Container maxWidth="lg">
           <Typography
             variant="h3"
             fontWeight="900"
             color="#003366"
             textAlign="center"
-            mb={8}
+            mb={{ xs: 6, md: 8 }}
             data-aos="fade-down"
+            sx={{ fontSize: "clamp(2rem, 5vw, 3rem)" }}
           >
             Formación e <span style={{ color: "#007BFF" }}>Identidad</span>
           </Typography>
@@ -410,9 +452,9 @@ export default function Inicial() {
             <Grid
               key={index}
               container
-              spacing={6}
+              spacing={{ xs: 4, md: 6 }}
               alignItems="center"
-              mb={index === proyectosData.length - 1 ? 0 : 8}
+              mb={index === proyectosData.length - 1 ? 0 : { xs: 6, md: 8 }}
               direction={{
                 xs: "column-reverse",
                 md: item.reverse ? "row-reverse" : "row",
@@ -427,14 +469,21 @@ export default function Inicial() {
                   fontWeight="800"
                   color="#003366"
                   mb={2}
+                  sx={{
+                    fontSize: "clamp(1.5rem, 3.5vw, 2.125rem)",
+                    textAlign: { xs: "center", md: "left" },
+                  }}
                 >
                   {item.title}
                 </Typography>
                 <Typography
                   variant="body1"
                   color="#555"
-                  fontSize="1.1rem"
                   lineHeight={1.8}
+                  sx={{
+                    fontSize: "clamp(0.95rem, 2vw, 1.1rem)",
+                    textAlign: { xs: "center", md: "left" },
+                  }}
                 >
                   {item.desc}
                 </Typography>
@@ -442,13 +491,14 @@ export default function Inicial() {
               <Grid
                 size={{ xs: 12, md: 6 }}
                 data-aos={item.reverse ? "fade-right" : "fade-left"}
+                sx={{ width: "100%" }}
               >
                 <Box
                   component="img"
                   src={item.img}
                   sx={{
                     width: "100%",
-                    height: "320px",
+                    height: { xs: "250px", sm: "300px", md: "320px" },
                     objectFit: "cover",
                     borderRadius: "32px",
                     boxShadow: "0 20px 40px rgba(0,0,0,0.1)",
@@ -465,25 +515,33 @@ export default function Inicial() {
       <Box
         sx={{
           bgcolor: "#ffffff",
-          py: 12,
+          py: { xs: 8, md: 12 },
           borderRadius: { xs: "0", md: "80px" },
           mx: { xs: 0, md: 4 },
-          my: 6,
+          my: { xs: 4, md: 6 },
           boxShadow: "0 10px 40px rgba(0,0,0,0.03)",
         }}
       >
         <Container maxWidth="md" sx={{ textAlign: "center" }}>
           <Box data-aos="zoom-in">
-            <MenuBookIcon sx={{ fontSize: 60, color: "#003366", mb: 2 }} />
-            <Typography variant="h3" fontWeight="900" color="#003366" mb={3}>
+            <MenuBookIcon
+              sx={{ fontSize: { xs: 50, md: 60 }, color: "#003366", mb: 2 }}
+            />
+            <Typography
+              variant="h3"
+              fontWeight="900"
+              color="#003366"
+              mb={3}
+              sx={{ fontSize: "clamp(2rem, 5vw, 3rem)" }}
+            >
               Malla Curricular
             </Typography>
             <Typography
               variant="body1"
               color="#555"
-              mb={6}
-              fontSize="1.1rem"
+              mb={{ xs: 4, md: 6 }}
               lineHeight={1.8}
+              sx={{ fontSize: "clamp(0.95rem, 2vw, 1.1rem)" }}
             >
               Un plan de estudios completo, abarcando pedagogía, psicología,
               desarrollo infantil, arte y música. Alineado a los estándares del
@@ -493,31 +551,84 @@ export default function Inicial() {
 
           <Box
             data-aos="fade-up"
-            sx={{ display: "flex", gap: 4, justifyContent: "center", mb: 8 }}
+            sx={{
+              display: "flex",
+              gap: { xs: 2, md: 4 },
+              justifyContent: "center",
+              mb: { xs: 6, md: 8 },
+              flexWrap: "wrap",
+            }}
           >
-            <Box>
-              <Typography variant="h2" fontWeight="900" color="#007BFF">
+            <Box sx={{ flex: { xs: "1 1 40%", sm: "auto" } }}>
+              <Typography
+                variant="h2"
+                fontWeight="900"
+                color="#007BFF"
+                sx={{ fontSize: "clamp(2rem, 6vw, 3.75rem)" }}
+              >
                 5
               </Typography>
-              <Typography variant="subtitle1" fontWeight="bold" color="#003366">
+              <Typography
+                variant="subtitle1"
+                fontWeight="bold"
+                color="#003366"
+                sx={{ fontSize: "clamp(0.85rem, 2vw, 1rem)" }}
+              >
                 Años
               </Typography>
             </Box>
-            <Box sx={{ width: "2px", bgcolor: "rgba(0,0,0,0.1)" }} />
-            <Box>
-              <Typography variant="h2" fontWeight="900" color="#007BFF">
+            <Box
+              sx={{
+                width: "2px",
+                bgcolor: "rgba(0,0,0,0.1)",
+                display: { xs: "none", sm: "block" },
+              }}
+            />
+            <Box sx={{ flex: { xs: "1 1 40%", sm: "auto" } }}>
+              <Typography
+                variant="h2"
+                fontWeight="900"
+                color="#007BFF"
+                sx={{ fontSize: "clamp(2rem, 6vw, 3.75rem)" }}
+              >
                 10
               </Typography>
-              <Typography variant="subtitle1" fontWeight="bold" color="#003366">
+              <Typography
+                variant="subtitle1"
+                fontWeight="bold"
+                color="#003366"
+                sx={{ fontSize: "clamp(0.85rem, 2vw, 1rem)" }}
+              >
                 Semestres
               </Typography>
             </Box>
-            <Box sx={{ width: "2px", bgcolor: "rgba(0,0,0,0.1)" }} />
-            <Box>
-              <Typography variant="h2" fontWeight="900" color="#007BFF">
+            <Box
+              sx={{
+                width: "2px",
+                bgcolor: "rgba(0,0,0,0.1)",
+                display: { xs: "none", sm: "block" },
+              }}
+            />
+            <Box
+              sx={{
+                flex: { xs: "1 1 100%", sm: "auto" },
+                mt: { xs: 2, sm: 0 },
+              }}
+            >
+              <Typography
+                variant="h2"
+                fontWeight="900"
+                color="#007BFF"
+                sx={{ fontSize: "clamp(2rem, 6vw, 3.75rem)" }}
+              >
                 100%
               </Typography>
-              <Typography variant="subtitle1" fontWeight="bold" color="#003366">
+              <Typography
+                variant="subtitle1"
+                fontWeight="bold"
+                color="#003366"
+                sx={{ fontSize: "clamp(0.85rem, 2vw, 1rem)" }}
+              >
                 Presencial
               </Typography>
             </Box>
@@ -528,9 +639,9 @@ export default function Inicial() {
             data-aos-delay="200"
             sx={{
               display: "flex",
-              gap: 3,
+              gap: { xs: 2, md: 3 },
               justifyContent: "center",
-              flexWrap: "wrap",
+              flexDirection: { xs: "column", sm: "row" },
             }}
           >
             <Button
@@ -544,6 +655,7 @@ export default function Inicial() {
                 px: 4,
                 py: 1.5,
                 fontWeight: "bold",
+                width: { xs: "100%", sm: "auto" },
                 boxShadow: "0 10px 20px rgba(0, 123, 255, 0.3)",
                 "&:hover": { bgcolor: "#0056b3" },
               }}
@@ -561,6 +673,7 @@ export default function Inicial() {
                 px: 4,
                 py: 1.5,
                 fontWeight: "bold",
+                width: { xs: "100%", sm: "auto" },
                 "&:hover": {
                   borderColor: "#007BFF",
                   color: "#007BFF",
@@ -577,7 +690,7 @@ export default function Inicial() {
       <Box
         sx={{
           position: "relative",
-          py: { xs: 10, md: 14 },
+          py: { xs: 8, md: 14 },
           bgcolor: "#F8FAFC",
           overflow: "hidden",
         }}
@@ -587,8 +700,8 @@ export default function Inicial() {
             position: "absolute",
             top: "-10%",
             left: "-5%",
-            width: 500,
-            height: 500,
+            width: { xs: 300, md: 500 },
+            height: { xs: 300, md: 500 },
             bgcolor: "rgba(0, 123, 255, 0.05)",
             borderRadius: "50%",
             filter: "blur(80px)",
@@ -600,8 +713,8 @@ export default function Inicial() {
             position: "absolute",
             bottom: "-10%",
             right: "-5%",
-            width: 600,
-            height: 600,
+            width: { xs: 400, md: 600 },
+            height: { xs: 400, md: 600 },
             bgcolor: "rgba(0, 51, 102, 0.04)",
             borderRadius: "50%",
             filter: "blur(100px)",
@@ -616,7 +729,8 @@ export default function Inicial() {
             fontWeight="900"
             textAlign="center"
             color="#003366"
-            mb={8}
+            mb={{ xs: 6, md: 8 }}
+            sx={{ fontSize: "clamp(2rem, 5vw, 3rem)" }}
           >
             Campo{" "}
             <span style={{ color: "#007BFF", position: "relative" }}>
@@ -636,7 +750,7 @@ export default function Inicial() {
             </span>
           </Typography>
 
-          <Grid container spacing={4}>
+          <Grid container spacing={{ xs: 3, md: 4 }}>
             {laboralesData.map((item, index) => {
               const isHighlighted = index === 0 || index === 4;
               const bgCard = isHighlighted
@@ -734,6 +848,7 @@ export default function Inicial() {
                       color={textColor}
                       lineHeight={1.5}
                       zIndex={1}
+                      sx={{ fontSize: "clamp(0.95rem, 1.5vw, 1.1rem)" }}
                     >
                       {item.text}
                     </Typography>
@@ -746,15 +861,15 @@ export default function Inicial() {
           <Box
             data-aos="zoom-in"
             sx={{
-              mt: 12,
-              p: { xs: 6, md: 8 },
+              mt: { xs: 8, md: 12 },
+              p: { xs: 4, md: 8 },
               bgcolor: "#007BFF",
               backgroundImage:
                 "url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=2071&auto=format&fit=crop')",
               backgroundSize: "cover",
               backgroundPosition: "center",
               position: "relative",
-              borderRadius: "40px",
+              borderRadius: { xs: "30px", md: "40px" },
               textAlign: "center",
               boxShadow: "0 20px 50px rgba(0, 51, 102, 0.25)",
               overflow: "hidden",
@@ -770,7 +885,13 @@ export default function Inicial() {
             />
 
             <Box sx={{ position: "relative", zIndex: 2 }}>
-              <Typography variant="h3" fontWeight="900" color="#fff" mb={3}>
+              <Typography
+                variant="h3"
+                fontWeight="900"
+                color="#fff"
+                mb={3}
+                sx={{ fontSize: "clamp(1.8rem, 4vw, 3rem)", lineHeight: 1.2 }}
+              >
                 ¡Forma parte de su primer gran paso!
               </Typography>
               <Button
@@ -779,16 +900,18 @@ export default function Inicial() {
                 sx={{
                   bgcolor: "#ffffff",
                   color: "#003366",
-                  px: 6,
-                  py: 2,
-                  fontSize: "1.1rem",
+                  px: { xs: 4, md: 6 },
+                  py: { xs: 1.5, md: 2 },
+                  width: { xs: "100%", sm: "auto" },
+                  fontSize: "clamp(1rem, 1.5vw, 1.1rem)",
                   fontWeight: "bold",
                   borderRadius: "30px",
                   boxShadow: "0 10px 20px rgba(0,0,0,0.15)",
                   transition: "all 0.3s ease",
+                  textTransform: "none",
                   "&:hover": {
                     bgcolor: "#F0F2F5",
-                    transform: "translateY(-3px)",
+                    transform: { xs: "none", md: "translateY(-3px)" },
                     boxShadow: "0 15px 30px rgba(0,0,0,0.25)",
                   },
                 }}
@@ -805,18 +928,23 @@ export default function Inicial() {
         onClose={() => setOpenPdf(false)}
         maxWidth="lg"
         fullWidth
-        PaperProps={{ sx: { borderRadius: "24px" } }}
+        PaperProps={{ sx: { borderRadius: "24px", m: { xs: 2, md: 4 } } }}
       >
         <Box
           sx={{
             display: "flex",
             justifyContent: "space-between",
             alignItems: "center",
-            p: 3,
+            p: { xs: 2, md: 3 },
             bgcolor: "#F0F2F5",
           }}
         >
-          <Typography variant="h6" fontWeight="bold" color="#003366">
+          <Typography
+            variant="h6"
+            fontWeight="bold"
+            color="#003366"
+            sx={{ fontSize: "clamp(1rem, 2vw, 1.25rem)" }}
+          >
             Malla Curricular - Educación Inicial
           </Typography>
           <IconButton
@@ -830,7 +958,9 @@ export default function Inicial() {
             <CloseIcon />
           </IconButton>
         </Box>
-        <DialogContent sx={{ p: 0, height: "80vh", bgcolor: "#e0e0e0" }}>
+        <DialogContent
+          sx={{ p: 0, height: { xs: "70vh", md: "80vh" }, bgcolor: "#e0e0e0" }}
+        >
           <iframe
             src="https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf"
             width="100%"

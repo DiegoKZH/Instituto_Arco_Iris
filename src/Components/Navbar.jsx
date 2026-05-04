@@ -17,8 +17,12 @@ import {
 } from "@mui/material";
 import { useLocation, useNavigate } from "react-router-dom";
 
+// Iconos
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import ExpandMore from "@mui/icons-material/ExpandMore";
+import FacebookIcon from "@mui/icons-material/Facebook";
+import WhatsAppIcon from "@mui/icons-material/WhatsApp";
+import EmailIcon from "@mui/icons-material/Email";
 
 import logo1 from "../assets/logo_arcoiris_rm.png";
 import logo2 from "../assets/logo_arcoiris_blanco.png";
@@ -37,13 +41,8 @@ export default function Navbar() {
     setIsLight(theme === "light");
   }, []);
 
-  const handleNavigation = (path) => {
-    navigate(path);
-  };
-
-  const handleDrawerToggle = () => {
-    setMobileOpen(!mobileOpen);
-  };
+  const handleNavigation = (path) => navigate(path);
+  const handleDrawerToggle = () => setMobileOpen(!mobileOpen);
 
   const handleMobileNavigation = (path) => {
     handleNavigation(path);
@@ -117,90 +116,88 @@ export default function Navbar() {
     { label: "Contacto", path: "/contacto" },
   ];
 
-  // 1. Contenido del Drawer (Menú Móvil)
+  // 1. Menú Celular
   const drawerContent = (
     <Box
       sx={{
         display: "flex",
         flexDirection: "column",
         height: "100%",
-        justifyContent: "flex-start",
         position: "relative",
-        overflow: "hidden",
+        overflowX: "hidden",
+        overflowY: "auto",
+        bgcolor: "#ffffff",
       }}
     >
-      <Box
-        sx={{
-          position: "absolute",
-          width: "250px",
-          height: "250px",
-          borderRadius: "50%",
-          border: "3px solid rgba(8, 90, 161, 0.12)",
-          bottom: "1%",
-          left: "-100px",
-          zIndex: 0,
-          pointerEvents: "none",
-          animation: "floatUpDownStroke 18s ease-in-out infinite",
-          "@keyframes floatUpDownStroke": {
-            "0%, 100%": { transform: "translateY(0) scale(1)" },
-            "50%": { transform: "translateY(-30px) scale(1.05)" },
-          },
-        }}
-      />
-      <Box
-        sx={{
-          position: "absolute",
-          width: "350px",
-          height: "350px",
-          borderRadius: "50%",
-          background:
-            "radial-gradient(circle, rgba(0, 123, 255, 0.29) 0%, rgba(0,0,0,0) 70%)",
-          top: "20%",
-          left: "-120px",
-          zIndex: 1,
-          pointerEvents: "none",
-          animation: "floatCircleFilled 15s ease-in-out infinite",
-          "@keyframes floatCircleFilled": {
-            "0%, 100%": { transform: "translate(0, 0)" },
-            "50%": { transform: "translate(40px, 20px)" },
-          },
-        }}
-      />
-      <Box
-        sx={{
-          position: "absolute",
-          width: "200px",
-          height: "200px",
-          borderRadius: "50%",
-          background:
-            "radial-gradient(circle, rgba(20, 81, 151, 0.35) 0%, rgba(0,0,0,0) 60%)",
-          bottom: "15%",
-          right: "-50px",
-          zIndex: 1,
-          pointerEvents: "none",
-          animation: "floatCircleFilledReverse 20s ease-in-out infinite",
-          "@keyframes floatCircleFilledReverse": {
-            "0%, 100%": { transform: "translate(0, 0)" },
-            "50%": { transform: "translate(-30px, -40px)" },
-          },
-        }}
-      />
+      {/* Figuras de fondo animadas*/}
+      {mobileOpen && (
+        <>
+          <Box
+            sx={{
+              position: "absolute",
+              top: "15%",
+              left: "-30px",
+              width: "100px",
+              height: "100px",
+              borderRadius: "24px",
+              bgcolor: "rgba(0, 123, 255, 0.05)",
+              animation: "floatDiag 8s ease-in-out infinite",
+              "@keyframes floatDiag": {
+                "0%, 100%": { transform: "rotate(45deg) translate(0, 0)" },
+                "50%": { transform: "rotate(45deg) translate(20px, -20px)" },
+              },
+              zIndex: 0,
+            }}
+          />
+          <Box
+            sx={{
+              position: "absolute",
+              top: "45%",
+              right: "-40px",
+              width: "140px",
+              height: "140px",
+              borderRadius: "50%",
+              border: "4px dashed rgba(0, 123, 255, 0.2)",
+              animation: "spinSlow 45s linear infinite",
+              "@keyframes spinSlow": {
+                "100%": { transform: "rotate(360deg)" },
+              },
+              zIndex: 0,
+            }}
+          />
+          <Box
+            sx={{
+              position: "absolute",
+              bottom: "10%",
+              right: "-20px",
+              width: "120px",
+              height: "120px",
+              borderRadius: "32px",
+              border: "3px solid rgba(186, 230, 253, 0.6)",
+              bgcolor: "rgba(186, 230, 253, 0.15)",
+              animation: "floatDiagRev 10s ease-in-out infinite",
+              "@keyframes floatDiagRev": {
+                "0%, 100%": { transform: "rotate(-20deg) translate(0, 0)" },
+                "50%": { transform: "rotate(-20deg) translate(-25px, 20px)" },
+              },
+              zIndex: 0,
+            }}
+          />
+        </>
+      )}
 
+      {/* Lista de navegación */}
       <List
         sx={{
           px: 0,
-          pt: "135px",
-          pb: 3,
-          overflowY: "auto",
+          pt: "120px",
+          pb: 2,
           position: "relative",
-          zIndex: 2,
+          zIndex: 1,
+          flexGrow: 1,
         }}
       >
-        <Box
-          sx={{ borderTop: "1px solid rgba(255,255,255,0.08)", mb: 2, mx: 4.5 }}
-        />
-
-        {navItems.map((item) => {
+        {navItems.map((item, index) => {
           const isMainActive = item.path
             ? location.pathname === item.path
             : false;
@@ -211,34 +208,32 @@ export default function Navbar() {
 
           return (
             <React.Fragment key={item.label}>
+              {/* Opciones Mayores */}
               <ListItemButton
-                onClick={() => {
-                  if (item.subItems) {
-                    handleSubMenuToggle(item.label);
-                  } else {
-                    handleMobileNavigation(item.path);
-                  }
-                }}
+                onClick={() =>
+                  item.subItems
+                    ? handleSubMenuToggle(item.label)
+                    : handleMobileNavigation(item.path)
+                }
                 sx={{
+                  mx: 0,
+                  mb: 0.5,
                   borderRadius: 0,
-                  mb: 0,
-                  width: "100%",
-                  px: 4.5,
                   py: 1.2,
-                  bgcolor: isActive ? "rgb(4, 61, 121)" : "transparent",
-                  color: isActive ? "#3ea6ff" : "#e2e8f0",
-                  boxShadow: isActive
-                    ? "inset 0 0 20px rgb(3, 74, 155)"
-                    : "none",
-                  transform: "none",
-                  transition: "all 0.2s ease",
-                  "&:hover": { bgcolor: "rgba(4, 61, 121, 0.86)" },
+                  px: 4,
+                  bgcolor: isActive ? "rgba(0, 123, 255, 0.08)" : "transparent",
+                  color: isActive ? "#007BFF" : "#1e293b",
+                  borderLeft: isActive
+                    ? "4px solid #007BFF"
+                    : "4px solid transparent",
+                  transition: "all 0.3s ease",
+                  "&:hover": { bgcolor: "rgba(0, 123, 255, 0.05)" },
                 }}
               >
                 <ListItemText
                   primary={item.label}
                   primaryTypographyProps={{
-                    fontWeight: isActive ? 700 : 500,
+                    fontWeight: isActive ? 700 : 600,
                     fontSize: "1.05rem",
                   }}
                 />
@@ -247,10 +242,11 @@ export default function Navbar() {
                     sx={{
                       display: "flex",
                       alignItems: "center",
-                      transition: "transform 0.3s ease",
+                      transition: "transform 0.3s",
                       transform: openSubMenus[item.label]
                         ? "rotate(180deg)"
                         : "rotate(0deg)",
+                      color: isActive ? "#007BFF" : "#64748b",
                     }}
                   >
                     <ExpandMore />
@@ -258,20 +254,17 @@ export default function Navbar() {
                 )}
               </ListItemButton>
 
+              {/* Opciones Hijas */}
               {item.subItems && (
                 <Collapse
                   in={openSubMenus[item.label]}
-                  timeout={350}
-                  easing={{
-                    enter: "cubic-bezier(0.4, 0, 0.2, 1)",
-                    exit: "cubic-bezier(0.4, 0, 1, 1)",
-                  }}
+                  timeout="auto"
                   unmountOnExit
                 >
                   <List
                     component="div"
                     disablePadding
-                    sx={{ mb: 1, paddingLeft: 4, paddingTop: 2 }}
+                    sx={{ mb: 1, pl: 4, pr: 3 }}
                   >
                     {item.subItems.map((sub) => {
                       const isSubItemActive = location.pathname === sub.path;
@@ -280,27 +273,19 @@ export default function Navbar() {
                           key={sub.label}
                           onClick={() => handleMobileNavigation(sub.path)}
                           sx={{
-                            pl: 4,
+                            pl: 2,
                             pr: 2,
-                            py: 1.4,
+                            py: 1,
                             borderRadius: "10px",
-                            mb: 0.6,
-                            width: "90%",
+                            mb: 0.5,
                             bgcolor: isSubItemActive
-                              ? "rgb(3, 65, 131)"
+                              ? "rgba(0, 123, 255, 0.06)"
                               : "transparent",
-                            color: isSubItemActive ? "#3ea6ff" : "#94a3b8",
-                            boxShadow: isSubItemActive
-                              ? "-2px -2px 2px rgb(10, 105, 206)"
-                              : "none",
-                            transform: isSubItemActive
-                              ? "scale(1.01)"
-                              : "scale(1)",
-                            transition: "all 0.25s ease",
+                            color: isSubItemActive ? "#007BFF" : "#475569",
+                            transition: "all 0.2s ease",
                             "&:hover": {
-                              bgcolor: "rgba(255, 255, 255, 0.64)",
-                              color: "#ffffff",
-                              transform: "translateX(4px)",
+                              bgcolor: "rgba(0, 123, 255, 0.1)",
+                              color: "#007BFF",
                             },
                           }}
                         >
@@ -308,19 +293,19 @@ export default function Navbar() {
                             component="img"
                             src={sub.icon}
                             sx={{
-                              width: 22,
-                              height: 22,
+                              width: 20,
+                              height: 20,
                               mr: 2,
                               filter: isSubItemActive
                                 ? "invert(36%) sepia(82%) saturate(2853%) hue-rotate(195deg) brightness(103%) contrast(105%)"
-                                : "invert(60%) sepia(12%) saturate(400%) hue-rotate(180deg) brightness(95%) contrast(85%)",
+                                : "grayscale(100%) opacity(60%)",
                             }}
                           />
                           <ListItemText
                             primary={sub.label}
                             primaryTypographyProps={{
                               fontSize: "0.95rem",
-                              fontWeight: isSubItemActive ? 600 : 400,
+                              fontWeight: isSubItemActive ? 600 : 500,
                             }}
                           />
                         </ListItemButton>
@@ -329,9 +314,93 @@ export default function Navbar() {
                   </List>
                 </Collapse>
               )}
+
+              {/* Separadores entre grupos */}
+              {(index === 2 || index === 5) && (
+                <Box
+                  sx={{
+                    mx: 4,
+                    my: 1.5,
+                    borderTop: "1px dashed rgba(0, 123, 255, 0.2)",
+                  }}
+                />
+              )}
             </React.Fragment>
           );
         })}
+
+        {/* Separador y Redes Sociales Funcionales */}
+        <Box
+          sx={{
+            mx: 4,
+            mt: 0,
+            pt: 2,
+            borderTop: "2px solid rgba(0, 123, 255, 0.1)",
+            display: "flex",
+            justifyContent: "center",
+            gap: 2.5,
+          }}
+        >
+          <IconButton
+            component="a"
+            href="https://www.facebook.com/pedagogicoarcoiris/?locale=es_LA"
+            target="_blank"
+            sx={{
+              width: "46px",
+              height: "46px",
+              backgroundColor: "#007BFF",
+              color: "#fff",
+              transition: "all 0.3s ease",
+              "&:hover": {
+                backgroundColor: "#003366",
+                color: "#fff",
+                transform: "translateY(-3px)",
+              },
+            }}
+          >
+            <FacebookIcon sx={{ fontSize: 26 }} />
+          </IconButton>
+
+          <IconButton
+            component="a"
+            href="https://wa.me/51986249212"
+            target="_blank"
+            sx={{
+              width: "46px",
+              height: "46px",
+              backgroundColor: "#007BFF",
+              color: "#fff",
+              transition: "all 0.3s ease",
+              "&:hover": {
+                backgroundColor: "#003366",
+                color: "#fff",
+                transform: "translateY(-3px)",
+              },
+            }}
+          >
+            <WhatsAppIcon sx={{ fontSize: 26 }} />
+          </IconButton>
+
+          <IconButton
+            component="a"
+            href="mailto:informes@arcoiris.edu.pe"
+            target="_blank"
+            sx={{
+              width: "46px",
+              height: "46px",
+              backgroundColor: "#007BFF",
+              color: "#fff",
+              transition: "all 0.3s ease",
+              "&:hover": {
+                backgroundColor: "#003366",
+                color: "#fff",
+                transform: "translateY(-3px)",
+              },
+            }}
+          >
+            <EmailIcon sx={{ fontSize: 26 }} />
+          </IconButton>
+        </Box>
       </List>
     </Box>
   );
@@ -358,8 +427,11 @@ export default function Navbar() {
                 ? "#0A192F"
                 : "#ffffff",
           transition: "all 0.4s cubic-bezier(0.4, 0, 0.2, 1)",
-          borderBottom:
-            trigger && !mobileOpen ? "1px solid rgba(0,0,0,0.05)" : "none",
+          borderBottom: mobileOpen
+            ? "3px solid #007BFF"
+            : trigger && !mobileOpen
+              ? "1px solid rgba(0,0,0,0.05)"
+              : "none",
         }}
       >
         <Container maxWidth="xl">
@@ -367,7 +439,7 @@ export default function Navbar() {
             disableGutters
             sx={{
               justifyContent: "space-between",
-              minHeight: mobileOpen ? "120px" : trigger ? "70px" : "90px",
+              minHeight: trigger ? "70px" : "90px",
               transition: "minHeight 0.4s ease",
               alignItems: "center",
             }}
@@ -394,9 +466,9 @@ export default function Navbar() {
                   onClick={() => handleNavigation("/")}
                   src={mobileOpen ? logo2 : trigger ? logo1 : logo2}
                   sx={{
-                    height: mobileOpen ? 85 : 60,
+                    height: trigger && !mobileOpen ? 60 : 75,
                     cursor: "pointer",
-                    transition: "height 0.5s ease, filter 0.3s ease",
+                    transition: "height 0.4s ease",
                     filter:
                       !trigger && !mobileOpen && isLight
                         ? "brightness(0) saturate(100%)"
@@ -438,9 +510,8 @@ export default function Navbar() {
                     >
                       <Button
                         onClick={() => {
-                          if (!item.subItems && item.path) {
+                          if (!item.subItems && item.path)
                             handleNavigation(item.path);
-                          }
                         }}
                         disableRipple={!!item.subItems}
                         endIcon={
@@ -574,7 +645,7 @@ export default function Navbar() {
                                     sx={{
                                       display: "flex",
                                       alignItems: "center",
-                                      justifyContent: "flex-start",
+                                      justifyContent: "center",
                                       width: 45,
                                       height: 45,
                                       flexShrink: 0,
@@ -591,8 +662,8 @@ export default function Navbar() {
                                       src={subItem.icon}
                                       className="flaticon-icon"
                                       sx={{
-                                        width: "80%",
-                                        height: "80%",
+                                        width: "60%",
+                                        height: "60%",
                                         filter: isSubItemActive
                                           ? "brightness(0) invert(1)"
                                           : "invert(36%) sepia(82%) saturate(2853%) hue-rotate(195deg) brightness(103%) contrast(105%)",
@@ -698,13 +769,7 @@ export default function Navbar() {
         open={mobileOpen}
         onClose={handleDrawerToggle}
         ModalProps={{ keepMounted: true }}
-        PaperProps={{
-          sx: {
-            width: { xs: "100%", sm: "380px" },
-            bgcolor: "#0A192F",
-            color: "#ffffff",
-          },
-        }}
+        PaperProps={{ sx: { width: { xs: "100%", sm: "380px" } } }}
       >
         {drawerContent}
       </Drawer>
