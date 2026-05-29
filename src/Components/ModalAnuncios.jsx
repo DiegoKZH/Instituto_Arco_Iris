@@ -90,7 +90,13 @@ export default function ModalAnuncios({
           borderRadius: { xs: "16px", md: "24px" },
           bgcolor: "#000",
           maxWidth: "750px",
-          width: { xs: "90vw", sm: "100%" },
+  width: "90vw",
+  "@media (min-width:1024px)": {
+    width: "500px",
+  },
+  "@media (min-width:1440px)": {
+    width: "900px",
+  },
           height: { xs: "auto", md: "80vh" },
           aspectRatio: { xs: "1 / 1", md: "auto" },
           maxHeight: { xs: "80vh", md: "90vh" },

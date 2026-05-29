@@ -138,7 +138,7 @@ export default function Plataformas() {
       <Box
         sx={{
           position: "relative",
-          height: { xs: "60vh", md: "65vh" },
+          height: { xs: "60vh", md: "80vh" },
           display: "flex",
           alignItems: "center",
           bgcolor: "#003366",
@@ -255,7 +255,7 @@ export default function Plataformas() {
               key={plat.id}
               sx={{
                 bgcolor: bgSection,
-                py: { xs: 8, md: 16 },
+                py: { xs: 8, md: 6 },
                 position: "relative",
                 overflow: "hidden",
                 borderBottom: "1px solid rgba(0,0,0,0.03)",

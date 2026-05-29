@@ -12,14 +12,12 @@ import {
   Snackbar,
   Alert,
 } from "@mui/material";
+import { motion } from "framer-motion";
 import AOS from "aos";
 import "aos/dist/aos.css";
 
 // Íconos
 import CloseIcon from "@mui/icons-material/Close";
-import PhoneIcon from "@mui/icons-material/Phone";
-import WhatsAppIcon from "@mui/icons-material/Email";
-import WorkspacePremiumIcon from "@mui/icons-material/WorkspacePremium";
 import PersonIcon from "@mui/icons-material/Person";
 import KeyboardDoubleArrowRightIcon from "@mui/icons-material/KeyboardDoubleArrowRight";
 import AccountTreeIcon from "@mui/icons-material/AccountTree";
@@ -27,9 +25,11 @@ import AssignmentIndIcon from "@mui/icons-material/AssignmentInd";
 import ImageIcon from "@mui/icons-material/Image";
 
 import FondoDirectorio from "../assets/Imagenes/InicioClases1.jpg";
+import Organigrama from "../assets/Organigrama.png";
 
-// --- FUNCIÓN PARA ASIGNAR COLORES---
+// --- FUNCIÓN ASIGNAR COLORES VARIADAZOS---
 const getColorBySpecialty = (specialty) => {
+  if (!specialty) return "#003366";
   const spec = specialty.toUpperCase();
   if (spec.includes("INICIAL")) return "#880E4F";
   if (spec.includes("FISICA")) return "#BF360C";
@@ -38,7 +38,7 @@ const getColorBySpecialty = (specialty) => {
     spec.includes("HISTORIA") ||
     spec.includes("ANTROPOLOGIA")
   )
-    return "#004D40"; // Verdeoscuro
+    return "#004D40";
   if (
     spec.includes("COMUNICACIÓN") ||
     spec.includes("INGLES") ||
@@ -57,15 +57,19 @@ const getColorBySpecialty = (specialty) => {
 };
 
 // =====================================================================
-// COMPONENTE ESTÁTICO Y OPTIMIZADO PARA LA TARJETA DEL DOCENTE (React.memo)
+// COMPONENTE ESTÁTICO Y OPTIMIZADO PARA LA TARJETA DEL DOCENTE
 // =====================================================================
-const DocenteCard = memo(({ docente, onOpenCV, onCopyPhone }) => {
+const DocenteCard = memo(({ docente, onOpenCV, onCopyEmail }) => {
   const themeColor = getColorBySpecialty(docente.especialidad);
 
   // Verificamos si tiene una imagen real
   const hasRealImage = !!docente.image;
   const defaultSilhouette =
     "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png";
+
+  // Enlaces de Flaticon como placeholder
+  const IconCopy = "https://cdn-icons-png.flaticon.com/128/1621/1621635.png";
+  const IconMail = "https://cdn-icons-png.flaticon.com/128/732/732200.png";
 
   return (
     <Paper
@@ -74,7 +78,7 @@ const DocenteCard = memo(({ docente, onOpenCV, onCopyPhone }) => {
         borderRadius: "24px",
         position: "relative",
         bgcolor: "#ffffff",
-        boxShadow: "0 10px 30px rgba(0,0,0,0.04)",
+        boxShadow: "0 10px 30px rgba(0, 0, 0, 0.19)",
         border: "1px solid #eaeaea",
         display: "flex",
         flexDirection: "column",
@@ -82,7 +86,7 @@ const DocenteCard = memo(({ docente, onOpenCV, onCopyPhone }) => {
         transition: "transform 0.3s ease, box-shadow 0.3s ease",
         "&:hover": {
           transform: "translateY(-6px)",
-          boxShadow: "0 20px 40px rgba(0, 51, 102, 0.08)",
+          boxShadow: "0 20px 40px rgba(0, 51, 102, 0.25)",
         },
       }}
     >
@@ -116,7 +120,7 @@ const DocenteCard = memo(({ docente, onOpenCV, onCopyPhone }) => {
           sx={{
             position: "absolute",
             inset: 0,
-            bgcolor: "#003366",
+            bgcolor: "#0054a783",
             opacity: 0.15,
             borderTopLeftRadius: "24px",
             borderTopRightRadius: "24px",
@@ -145,20 +149,23 @@ const DocenteCard = memo(({ docente, onOpenCV, onCopyPhone }) => {
             backgroundColor: themeColor,
             width: 40,
             height: 40,
-            webkitMask:
+            WebkitMask:
               "url('https://cdn-icons-png.flaticon.com/128/1378/1378526.png') no-repeat center",
             mask: "url('https://cdn-icons-png.flaticon.com/128/1378/1378526.png') no-repeat center",
+            WebkitMaskRepeat: "no-repeat",
             maskRepeat: "no-repeat",
+            WebkitMaskSize: "contain",
             maskSize: "contain",
           }}
+          alt="Especialidad"
         />
       </Box>
 
       {/* Contenido de la Tarjeta */}
       <Box
         sx={{
-          p: 4,
-          pt: 4,
+          p: { xs: 3, sm: 4 },
+          pt: { xs: 4, sm: 4 },
           flexGrow: 1,
           display: "flex",
           flexDirection: "column",
@@ -174,7 +181,11 @@ const DocenteCard = memo(({ docente, onOpenCV, onCopyPhone }) => {
           color={themeColor}
           textTransform="uppercase"
           mb={2}
-          sx={{ minHeight: "40px", letterSpacing: 0.5 }}
+          sx={{
+            minHeight: "40px",
+            letterSpacing: 0.5,
+            fontSize: "clamp(0.75rem, 1.2vw, 0.875rem)",
+          }}
         >
           {docente.especialidad}
         </Typography>
@@ -195,13 +206,14 @@ const DocenteCard = memo(({ docente, onOpenCV, onCopyPhone }) => {
               fontWeight="800"
               color="#003366"
               lineHeight={1.2}
+              sx={{ fontSize: "clamp(0.95rem, 1.5vw, 1.1rem)" }}
             >
               {docente.grado} <br /> {docente.nombre}
             </Typography>
           </Box>
 
           <Box
-            onClick={() => onCopyPhone(docente.phone)}
+            onClick={() => onCopyEmail(docente.correo)}
             sx={{
               display: "flex",
               alignItems: "center",
@@ -211,25 +223,43 @@ const DocenteCard = memo(({ docente, onOpenCV, onCopyPhone }) => {
               borderRadius: "8px",
               ml: -0.5,
               "&:hover": { bgcolor: "#f0f6ff" },
-              "&:hover .phone-text": { color: "#007BFF" },
+              "&:hover .email-text": { color: "#007BFF" },
+              "&:hover .copy-icon": {
+                opacity: 1,
+                // Filtro para pintar azulazo
+                filter:
+                  "brightness(0) saturate(100%) invert(35%) sepia(85%) saturate(3190%) hue-rotate(200deg) brightness(98%) contrast(106%)",
+              },
             }}
           >
-            <PhoneIcon sx={{ color: "#666", fontSize: 18 }} />
+            <Box
+              component="img"
+              src={IconCopy}
+              className="copy-icon"
+              alt="Copiar"
+              sx={{
+                width: 18,
+                height: 18,
+                opacity: 0.6,
+                transition: "all 0.2s",
+              }}
+            />
             <Typography
-              className="phone-text"
+              className="email-text"
               variant="body2"
               fontWeight="600"
               color="#666"
-              sx={{ transition: "color 0.2s" }}
+              sx={{
+                transition: "color 0.2s",
+                fontSize: "clamp(0.8rem, 1.2vw, 0.875rem)",
+              }}
             >
-              Contactar Teléfono
+              Copiar Correo
             </Typography>
           </Box>
 
           <Box
-            onClick={() =>
-              window.open(`https://wa.me/51${docente.phone}`, "_blank")
-            }
+            onClick={() => window.open(`mailto:${docente.correo}`, "_blank")}
             sx={{
               display: "flex",
               alignItems: "center",
@@ -239,22 +269,35 @@ const DocenteCard = memo(({ docente, onOpenCV, onCopyPhone }) => {
               borderRadius: "8px",
               ml: -0.5,
               "&:hover": { bgcolor: "#e8f5e9" },
-              "&:hover .wa-text": { color: "#2E7D32" },
-              "&:hover .wa-icon": { color: "#2E7D32" },
+              "&:hover .mail-text": { color: "#bb4444c4" },
+              "&:hover .mail-icon": {
+                opacity: 1,
+                },
             }}
           >
-            <WhatsAppIcon
-              className="wa-icon"
-              sx={{ color: "#666", fontSize: 18, transition: "color 0.2s" }}
+            <Box
+              component="img"
+              src={IconMail}
+              className="mail-icon"
+              alt="Enviar"
+              sx={{
+                width: 18,
+                height: 18,
+                opacity: 0.6,
+                transition: "all 0.2s",
+              }}
             />
             <Typography
-              className="wa-text"
+              className="mail-text"
               variant="body2"
               fontWeight="600"
               color="#666"
-              sx={{ transition: "color 0.2s" }}
+              sx={{
+                transition: "color 0.2s",
+                fontSize: "clamp(0.8rem, 1.2vw, 0.875rem)",
+              }}
             >
-              Enviar Mensaje
+              Enviar Correo
             </Typography>
           </Box>
         </Box>
@@ -267,26 +310,29 @@ const DocenteCard = memo(({ docente, onOpenCV, onCopyPhone }) => {
             mt: "auto",
           }}
         >
-          <Box sx={{ display: "flex", color: "#003366", pb: 1, opacity: 0.4 }}>
+          <Box sx={{ display: "flex", color: "#003366", pb: 1, opacity: 0.4, "& svg": {
+            fontSize: 35} 
+          }}>
             <KeyboardDoubleArrowRightIcon />
-            <KeyboardDoubleArrowRightIcon sx={{ ml: -1.5 }} />
+            <KeyboardDoubleArrowRightIcon sx={{ ml: -2 }} />
           </Box>
 
           <Button
             variant="contained"
             onClick={() => onOpenCV(docente.nombre, docente.cvUrl)}
             sx={{
-              bgcolor: "#C59B27",
+              bgcolor: "#003869",
               color: "#ffffff",
               borderRadius: "20px",
-              px: 3,
+              px: { xs: 2.5, md: 3 },
               py: 0.8,
               fontWeight: "bold",
               textTransform: "none",
               boxShadow: "none",
+              fontSize: "clamp(0.85rem, 1.5vw, 0.95rem)",
               "&:hover": {
-                bgcolor: "#a88421",
-                boxShadow: "0 4px 10px rgba(197, 155, 39, 0.3)",
+                bgcolor: "#006ecf",
+                boxShadow: "0 4px 10px rgba(0, 123, 255, 0.3)",
               },
             }}
           >
@@ -322,10 +368,20 @@ export default function Directorio() {
     setOpenPdf(true);
   }, []);
 
-  const handleCopyPhone = useCallback((phone) => {
-    navigator.clipboard.writeText(phone);
+  const handleCopyEmail = useCallback((email) => {
+    navigator.clipboard.writeText(email);
     setSnackbarOpen(true);
   }, []);
+
+  // Formas animadas para el fondo de la sección de docentes
+  const backgroundShapes = [
+    { top: "10%", left: "5%", size: 120, color: "rgba(0,123,255,0.04)", rounded: "50%", duration: 15 },
+    { top: "40%", left: "85%", size: 180, color: "rgba(197,155,39,0.04)", rounded: "30%", duration: 20 },
+    { top: "75%", left: "15%", size: 150, color: "rgba(0,51,102,0.04)", rounded: "50%", duration: 18 },
+    { top: "20%", left: "60%", size: 100, color: "rgba(0,123,255,0.04)", rounded: "20%", duration: 12 },
+    { top: "80%", left: "70%", size: 200, color: "rgba(197,155,39,0.04)", rounded: "50%", duration: 22 },
+    { top: "50%", left: "30%", size: 140, color: "rgba(0,51,102,0.04)", rounded: "40%", duration: 16 },
+  ];
 
   // --- DATOS DEL DIRECTORIO ---
   const directivo = [
@@ -392,14 +448,14 @@ export default function Directorio() {
       grado: "Lic.",
       nombre: "ABARCA OCHOA, JUDITH",
       especialidad: "MATEMÁTICA",
-      phone: "987654321",
+      correo: "docente@arcoiris.edu.pe",
       cvUrl: "https://drive.google.com/file/d/ID_DEL_ARCHIVO/preview",
     },
     {
       grado: "Prof.",
       nombre: "ALTAMIRANO QUISPE, NOEMI",
       especialidad: "EDUCACION INICIAL",
-      phone: "987654322",
+      correo: "docente@arcoiris.edu.pe",
       image:
         "https://arcoiris.edu.pe/assets/Img/Fotos_Docentes/ALTAMIRANO%20QUISPE%20NOEMI.jpg",
     },
@@ -407,7 +463,7 @@ export default function Directorio() {
       grado: "Mag.",
       nombre: "APAZA ROJAS, PATRICIA",
       especialidad: "EDUCACION INICIAL",
-      phone: "987654323",
+      correo: "docente@arcoiris.edu.pe",
       image:
         "https://arcoiris.edu.pe/assets/Img/Fotos_Docentes/APAZA%20PATRICIA%20ROJAS.jpg",
     },
@@ -415,13 +471,13 @@ export default function Directorio() {
       grado: "Mag.",
       nombre: "AQUINO LARICO, JENNIFER",
       especialidad: "INVESTIGACIÓN",
-      phone: "987654324",
+      correo: "docente@arcoiris.edu.pe",
     },
     {
       grado: "Prof.",
       nombre: "ARIZACA MACEDO, SERAFIN",
       especialidad: "QUECHUA",
-      phone: "987654325",
+      correo: "docente@arcoiris.edu.pe",
       image:
         "https://arcoiris.edu.pe/assets/Img/Fotos_Docentes/ARIZACA%20MACEDO%20SERAFIN.jpg",
     },
@@ -429,19 +485,19 @@ export default function Directorio() {
       grado: "Prof.",
       nombre: "ARMUTO TAYRO, EDGAR",
       especialidad: "EDUCACION FISICA",
-      phone: "987654326",
+      correo: "docente@arcoiris.edu.pe",
     },
     {
       grado: "Lic.",
       nombre: "AUCCAISE UÑAPILLCO, DOROTEA",
       especialidad: "EDUCACION INICIAL",
-      phone: "987654327",
+      correo: "docente@arcoiris.edu.pe",
     },
     {
       grado: "Prof.",
       nombre: "AVILES DALGUERRE, FELIX",
       especialidad: "HISTORIA Y GEOGRAFIA",
-      phone: "987654328",
+      correo: "docente@arcoiris.edu.pe",
       image:
         "https://arcoiris.edu.pe/assets/Img/Fotos_Docentes/AVILES%20DALGUERRE%20FELIX.jpg",
     },
@@ -449,7 +505,7 @@ export default function Directorio() {
       grado: "Prof.",
       nombre: "AYBAR BUSTAMANTE, EUNICE LUCERO",
       especialidad: "EDUCACION FISICA",
-      phone: "987654329",
+      correo: "docente@arcoiris.edu.pe",
       image:
         "https://arcoiris.edu.pe/assets/Img/Fotos_Docentes/AYBAR%20BUSTAMANTE%20EUNICE%20LUCERO.jpg",
     },
@@ -457,7 +513,7 @@ export default function Directorio() {
       grado: "Mag.",
       nombre: "AZURIN QUILLILLI, EYELIT",
       especialidad: "EDUCACION INICIAL",
-      phone: "987654330",
+      correo: "docente@arcoiris.edu.pe",
       image:
         "https://arcoiris.edu.pe/assets/Img/Fotos_Docentes/AZURIN%20QUILLILLI%20EYELIT.jpg",
     },
@@ -465,19 +521,19 @@ export default function Directorio() {
       grado: "Dra.",
       nombre: "BAÑARES JAQUE, MIRIAN",
       especialidad: "INVESTIGACIÓN",
-      phone: "987654331",
+      correo: "docente@arcoiris.edu.pe",
     },
     {
       grado: "Mgt.",
       nombre: "BEDOYA MENDOZA, JAIME",
       especialidad: "CIENCIAS SOCIALES",
-      phone: "987654332",
+      correo: "docente@arcoiris.edu.pe",
     },
     {
       grado: "Prof.",
       nombre: "BEJAR GARCIA, EDISSON",
       especialidad: "COMUNICACION COMPUTACION E INFORMATICA",
-      phone: "987654333",
+      correo: "docente@arcoiris.edu.pe",
       image:
         "https://arcoiris.edu.pe/assets/Img/Fotos_Docentes/BEJAR%20GARCIA%20EDISSON.jpg",
     },
@@ -485,25 +541,25 @@ export default function Directorio() {
       grado: "Mgt.",
       nombre: "CAMA JARA, MANUEL NICANOR",
       especialidad: "INGLES",
-      phone: "987654334",
+      correo: "docente@arcoiris.edu.pe",
     },
     {
       grado: "Lic.",
       nombre: "CARDENAS ROZAS, NARCISO",
       especialidad: "EDUCACION FISICA",
-      phone: "987654335",
+      correo: "docente@arcoiris.edu.pe",
     },
     {
       grado: "Dr.",
       nombre: "CARREON SUTEC, ALAIN GUNNAR",
       especialidad: "INVESTIGACIÓN",
-      phone: "987654336",
+      correo: "docente@arcoiris.edu.pe",
     },
     {
       grado: "Lic.",
       nombre: "CHALLANCA HUILLCA, FANY ODALIZ",
       especialidad: "COMUNICACIÓN",
-      phone: "987654337",
+      correo: "docente@arcoiris.edu.pe",
       image:
         "https://arcoiris.edu.pe/assets/Img/Fotos_Docentes/CHALLANCA%20HUILLCA%20FANY%20ODALIZ.jpg",
     },
@@ -511,7 +567,7 @@ export default function Directorio() {
       grado: "Dra.",
       nombre: "CHAVEZ MEZA, ABIGAIL",
       especialidad: "INVESTIGACIÓN",
-      phone: "987654338",
+      correo: "docente@arcoiris.edu.pe",
       image:
         "https://arcoiris.edu.pe/assets/Img/Fotos_Docentes/CHAVEZ%20MEZA%20ABIGAIL.jpg",
     },
@@ -519,7 +575,7 @@ export default function Directorio() {
       grado: "Mat.",
       nombre: "CONCHA MARTINEZ, NELLY ROXANA",
       especialidad: "EDUCACION INICIAL",
-      phone: "987654339",
+      correo: "docente@arcoiris.edu.pe",
       image:
         "https://arcoiris.edu.pe/assets/Img/Fotos_Docentes/CONCHA%20MARTINEZ%20NELLY%20ROXANA.jpg",
     },
@@ -527,7 +583,7 @@ export default function Directorio() {
       grado: "Mgt.",
       nombre: "CORRALES VISA, WILBERT",
       especialidad: "MATEMATICA",
-      phone: "987654340",
+      correo: "docente@arcoiris.edu.pe",
       image:
         "https://arcoiris.edu.pe/assets/Img/Fotos_Docentes/CORRALES%20VISA%20WILBERT.jpg",
     },
@@ -535,7 +591,7 @@ export default function Directorio() {
       grado: "Prof.",
       nombre: "ESPINOZA BACA, OSCAR",
       especialidad: "EDUCACIÓN PRIMARIA",
-      phone: "987654341",
+      correo: "docente@arcoiris.edu.pe",
       image:
         "https://arcoiris.edu.pe/assets/Img/Fotos_Docentes/ESPINOZA%20BACA%20OSCAR.jpg",
     },
@@ -543,7 +599,7 @@ export default function Directorio() {
       grado: "Mgt.",
       nombre: "ESPINOZA CHALLCO, DANILO",
       especialidad: "CIENCIAS SOCIALES",
-      phone: "987654342",
+      correo: "docente@arcoiris.edu.pe",
       image:
         "https://arcoiris.edu.pe/assets/Img/Fotos_Docentes/ESPINOZA%20CHALLCO%20DANILO.jpg",
     },
@@ -551,7 +607,7 @@ export default function Directorio() {
       grado: "Prof.",
       nombre: "FERNANDEZ BACA ARENAS, FRANCISCO",
       especialidad: "EDUCACION FISICA",
-      phone: "987654343",
+      correo: "docente@arcoiris.edu.pe",
       image:
         "https://arcoiris.edu.pe/assets/Img/Fotos_Docentes/FERNANDEZ%20BACA%20ARENAS%20FRANCISCO.jpg",
     },
@@ -559,7 +615,7 @@ export default function Directorio() {
       grado: "Dr.",
       nombre: "GARCIA HUAMAN, SANTOS",
       especialidad: "HISTORIA Y GEOGRAFIA",
-      phone: "987654344",
+      correo: "docente@arcoiris.edu.pe",
       image:
         "https://arcoiris.edu.pe/assets/Img/Fotos_Docentes/GARCIA%20HUAMAN%20SANTOS.jpg",
     },
@@ -567,25 +623,25 @@ export default function Directorio() {
       grado: "Lic.",
       nombre: "GARCIA JARA, JESSICA ANGELA",
       especialidad: "EDUCACION INICIAL",
-      phone: "987654345",
+      correo: "docente@arcoiris.edu.pe",
     },
     {
       grado: "Lic.",
       nombre: "GARCIA MOSCOSO, YARITNA",
       especialidad: "HISTORIA Y GEOGRAFIA",
-      phone: "987654346",
+      correo: "docente@arcoiris.edu.pe",
     },
     {
       grado: "Mat.",
       nombre: "GUTIERREZ DELGADO, ADAUS",
       especialidad: "EDUCACION FISICA",
-      phone: "987654347",
+      correo: "docente@arcoiris.edu.pe",
     },
     {
       grado: "Prof.",
       nombre: "GUTIERREZ DIAZ, EPIFANIO MARTIN",
       especialidad: "EDUCACION FISICA",
-      phone: "987654348",
+      correo: "docente@arcoiris.edu.pe",
       image:
         "https://arcoiris.edu.pe/assets/Img/Fotos_Docentes/GUTIERREZ%20DIAZ%20EPIFANIO%20MARTIN.jpg",
     },
@@ -593,7 +649,7 @@ export default function Directorio() {
       grado: "Lic.",
       nombre: "HOLDER TAMAYO, ALEXEY",
       especialidad: "EDUCACION FISICA",
-      phone: "987654349",
+      correo: "docente@arcoiris.edu.pe",
       image:
         "https://arcoiris.edu.pe/assets/Img/Fotos_Docentes/HOLDER%20TAMAYO%20ALEXEY.jpg",
     },
@@ -601,7 +657,7 @@ export default function Directorio() {
       grado: "Mat.",
       nombre: "HUAMAN CORDOVA, ALEXANDER",
       especialidad: "EDUCACION FISICA",
-      phone: "987654350",
+      correo: "docente@arcoiris.edu.pe",
       image:
         "https://arcoiris.edu.pe/assets/Img/Fotos_Docentes/HUAMAN%20CORDOVA%20ALEXANDER.jpg",
     },
@@ -609,7 +665,7 @@ export default function Directorio() {
       grado: "Dra.",
       nombre: "HUANACO BUSTINZA, MERY ZULEMA",
       especialidad: "EDUCACION INICIAL",
-      phone: "987654351",
+      correo: "docente@arcoiris.edu.pe",
       image:
         "https://arcoiris.edu.pe/assets/Img/Fotos_Docentes/HUANACO%20BUSTINZA%20MERY%20ZULEMA.jpg",
     },
@@ -617,7 +673,7 @@ export default function Directorio() {
       grado: "Prof.",
       nombre: "HUILLCA CCUNO, ROCDY",
       especialidad: "EDUCACIÓN FISICA",
-      phone: "987654352",
+      correo: "docente@arcoiris.edu.pe",
       image:
         "https://arcoiris.edu.pe/assets/Img/Fotos_Docentes/HUILLCA%20CCUNO%20ROCDY.jpg",
     },
@@ -625,19 +681,19 @@ export default function Directorio() {
       grado: "Prof.",
       nombre: "INCARROCA QUISPE, WILBER",
       especialidad: "EDUCACIÓN FISICA",
-      phone: "987654353",
+      correo: "docente@arcoiris.edu.pe",
     },
     {
       grado: "Ing.",
       nombre: "LOPE DAZA, LUZ KATIA",
       especialidad: "ESTADISTICO",
-      phone: "987654354",
+      correo: "docente@arcoiris.edu.pe",
     },
     {
       grado: "Dra.",
       nombre: "MOSQUEIRA SOTOMAYOR, IDA ANTONIA",
       especialidad: "EDUCACION INICIAL",
-      phone: "987654355",
+      correo: "docente@arcoiris.edu.pe",
       image:
         "https://arcoiris.edu.pe/assets/Img/Fotos_Docentes/MOSQUEIRA%20SOTOMAYOR%20IDA%20ANTONIA.jpg",
     },
@@ -645,151 +701,151 @@ export default function Directorio() {
       grado: "Bch.",
       nombre: "MUÑOZ HUAMANCARI, MARIA ANTONIETA",
       especialidad: "HISTORIA",
-      phone: "987654356",
+      correo: "docente@arcoiris.edu.pe",
     },
     {
       grado: "Lic.",
       nombre: "OLIVERA LEZAMA, JULIO EDMUNDO",
       especialidad: "ANTROPOLOGIA",
-      phone: "987654357",
+      correo: "docente@arcoiris.edu.pe",
     },
     {
       grado: "Mat.",
       nombre: "OVALLE ARAPA, HUGO",
       especialidad: "ARTE",
-      phone: "987654358",
+      correo: "docente@arcoiris.edu.pe",
     },
     {
       grado: "Mgt.",
       nombre: "PEÑA PACHECO, YENNY",
       especialidad: "EDUCACION FISICA",
-      phone: "987654359",
+      correo: "docente@arcoiris.edu.pe",
     },
     {
       grado: "Prof.",
       nombre: "PEREZ OPORTO, GLORIA MARY LUZ",
       especialidad: "EDUCACION INICIAL, EDUCACION FISICA",
-      phone: "987654360",
+      correo: "docente@arcoiris.edu.pe",
     },
     {
       grado: "Prof.",
       nombre: "QUIÑONES FERNANDEZ, ADOLFO",
       especialidad: "N/A",
-      phone: "987654361",
+      correo: "docente@arcoiris.edu.pe",
     },
     {
       grado: "Lic.",
       nombre: "QUISIYUPANQUI CATALAN, MARTHA",
       especialidad: "EDUCACIÓN FISICA",
-      phone: "987654362",
+      correo: "docente@arcoiris.edu.pe",
     },
     {
       grado: "Prof.",
       nombre: "QUISPE ARROYO, FELIX",
       especialidad: "EDUCACION FISICA",
-      phone: "987654363",
+      correo: "docente@arcoiris.edu.pe",
     },
     {
       grado: "Md.",
       nombre: "QUISPE SUPANTA, ERICK WAGNER",
       especialidad: "MEDICO",
-      phone: "987654364",
+      correo: "docente@arcoiris.edu.pe",
     },
     {
       grado: "Lic.",
       nombre: "RAMIREZ PEZO, ABEL",
       especialidad: "TURISMO",
-      phone: "987654365",
+      correo: "docente@arcoiris.edu.pe",
     },
     {
       grado: "Mgt.",
       nombre: "RODRIGUEZ SOTO, VICTOR",
       especialidad: "EDUCACION PRIMARIA",
-      phone: "987654366",
+      correo: "docente@arcoiris.edu.pe",
     },
     {
       grado: "Prof.",
       nombre: "ROSAS GOMEZ, RENZO GUILLERMO",
       especialidad: "EDUCACION FISICA",
-      phone: "987654367",
+      correo: "docente@arcoiris.edu.pe",
     },
     {
       grado: "Prof.",
       nombre: "SALAZAR VALENCIA, LUCIA CEFERINA",
       especialidad: "EDUCACION INICIAL",
-      phone: "987654368",
+      correo: "docente@arcoiris.edu.pe",
     },
     {
       grado: "Prof.",
       nombre: "SALCEDO QUISPE, JULIO CESAR",
       especialidad: "EDUCACIÓN FISICA",
-      phone: "987654369",
+      correo: "docente@arcoiris.edu.pe",
     },
     {
       grado: "Mgt.",
       nombre: "SARAVIA PEÑA, CELINDA",
       especialidad: "COMUNICACIÓN",
-      phone: "987654370",
+      correo: "docente@arcoiris.edu.pe",
     },
     {
       grado: "Lic.",
       nombre: "SERRANO FLOREZ, OSCAR",
       especialidad: "EDUCACION FISICA",
-      phone: "987654371",
+      correo: "docente@arcoiris.edu.pe",
     },
     {
       grado: "Lic.",
       nombre: "SORIA MENDOZA, YULI YASMINA",
       especialidad: "INVESTIGACIÓN",
-      phone: "987654372",
+      correo: "docente@arcoiris.edu.pe",
     },
     {
       grado: "Mat.",
       nombre: "TAPIA ALOSILLA, ROGER TEOFILO",
       especialidad: "MATEMATICA E INFORMATICA",
-      phone: "987654373",
+      correo: "docente@arcoiris.edu.pe",
     },
     {
       grado: "Mgt.",
       nombre: "TAPIA MELENDEZ, DAVID ARTURO",
       especialidad: "CIENCIAS SOCIALES",
-      phone: "987654374",
+      correo: "docente@arcoiris.edu.pe",
     },
     {
       grado: "Prof.",
       nombre: "TORRES HUAMAN, JANIA KARIN",
       especialidad: "BIOLOGIA Y QUIMICA",
-      phone: "987654375",
+      correo: "docente@arcoiris.edu.pe",
     },
     {
       grado: "Prof.",
       nombre: "VALENZUELA BARRETO, ELOY",
       especialidad: "EDUCACION FISICA",
-      phone: "987654376",
+      correo: "docente@arcoiris.edu.pe",
     },
     {
       grado: "Lic.",
       nombre: "VICTORIA CABALLERO, YANIRA",
       especialidad: "EDUCACIÓN PRIMARIA",
-      phone: "987654377",
+      correo: "docente@arcoiris.edu.pe",
     },
     {
       grado: "Prof.",
       nombre: "VICTORIO MOSCOSO, ANGIE MICHELLE",
       especialidad: "EDUCACIÓN INICIAL",
-      phone: "987654378",
+      correo: "docente@arcoiris.edu.pe",
     },
     {
       grado: "Lic.",
       nombre: "YANA MOSQUEIRA, KALINKA KRUSKAYA",
       especialidad: "PSICOLOGA",
-      phone: "987654379",
+      correo: "docente@arcoiris.edu.pe",
     },
     {
       grado: "Mgt.",
       nombre: "ZARATE CASTRO, FRANCISCO PEPE",
       especialidad: "CIENCIAS SOCIALES",
-      phone: "987654380",
+      correo: "docente@arcoiris.edu.pe",
     },
   ];
 
@@ -799,10 +855,17 @@ export default function Directorio() {
       <Box
         sx={{
           position: "relative",
-          height: { xs: "50vh", md: "60vh" },
+          height: { xs: "50vh", md: "100vh", lg:"100vh" },
           display: "flex",
           alignItems: "center",
           bgcolor: "#003366d2",
+          pt: { 
+            xs: "60px",  // Fonos
+            sm: "80px",  // Tabletas
+            md: "100px", // LaptoS
+            lg: "120px"  // Pantallas PC
+          },
+          paddingBottom: {xs:0,md:6},
           "&::before": {
             content: '""',
             position: "absolute",
@@ -822,8 +885,8 @@ export default function Directorio() {
               sx={{
                 color: "#007BFF",
                 fontWeight: 900,
-                letterSpacing: 3,
-                fontSize: "1.2rem",
+                letterSpacing: { xs: 2, md: 3 },
+                fontSize: "clamp(0.9rem, 2vw, 1.2rem)",
               }}
             >
               NUESTRO EQUIPO
@@ -834,9 +897,10 @@ export default function Directorio() {
               sx={{
                 color: "#ffffff",
                 textTransform: "uppercase",
-                fontSize: { xs: "3rem", md: "5rem" },
+                fontSize: "clamp(2.5rem, 6vw, 5rem)",
                 lineHeight: 1.1,
                 mb: 2,
+                px: { xs: 2, md: 0 },
               }}
             >
               Directorio Institucional
@@ -848,6 +912,8 @@ export default function Directorio() {
                 maxWidth: "600px",
                 mx: "auto",
                 fontWeight: 400,
+                fontSize: "clamp(0.95rem, 2vw, 1.25rem)",
+                px: { xs: 2, md: 0 },
               }}
             >
               Conoce a los líderes y profesionales que impulsan nuestra misión
@@ -858,18 +924,19 @@ export default function Directorio() {
       </Box>
 
       {/* 2. ORGANIGRAMA INSTITUCIONAL */}
-      <Container maxWidth="xl" sx={{ py: 10 }}>
-        <Box data-aos="zoom-in" sx={{ textAlign: "center", mb: 6 }}>
-          <AccountTreeIcon sx={{ fontSize: 50, color: "#007BFF", mb: 2 }} />
+      <Container maxWidth="xl" sx={{ py: { xs: 8, md: 10 } }}>
+        <Box data-aos="zoom-in" sx={{ textAlign: "center", mb: { xs: 4, md: 6 } }}>
+          <AccountTreeIcon sx={{ fontSize: { xs: 40, md: 50 }, color: "#007BFF", mb: 2 }} />
           <Typography
             variant="h3"
             fontWeight="900"
             color="#003366"
             textTransform="uppercase"
+            sx={{ fontSize: "clamp(1.8rem, 4vw, 3rem)" }}
           >
             Organigrama Institucional
           </Typography>
-          <Typography variant="body1" color="#333333" mt={1}>
+          <Typography variant="body1" color="#333333" mt={1} sx={{ fontSize: "clamp(0.95rem, 2vw, 1.1rem)" }}>
             Nuestra estructura organizativa para una gestión eficiente y
             transparente.
             <br />
@@ -882,69 +949,80 @@ export default function Directorio() {
           <Paper
             elevation={0}
             sx={{
-              p: 4,
+              p: { xs: 2, sm: 3, md: 4 },
               borderRadius: "24px",
-              border: "2px dashed rgba(0, 123, 255, 0.4)",
-              bgcolor: "#ffffff",
-              minHeight: "750px",
+              border: "3px dashed rgba(0, 123, 255, 0.4)",
+              minHeight: { xs: "300px", sm: "400px", md: "500px", lg: "650px" },
               width: "100%",
+              maxWidth: { lg: "950px", xl: "1150px" },
+              mx: "auto",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
               boxShadow: "0 20px 50px rgba(0,0,0,0.05)",
+              backgroundImage: `linear-gradient(rgba(255,255,255,0.9), rgba(255, 255, 255, 0.9)), url("https://previews.123rf.com/images/kolllibri/kolllibri1409/kolllibri140900046/31643279-seamless-texture-with-geometrical-shapes-endless-white-background-use-for-wallpaper-pattern-fills.jpg")`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              backgroundRepeat: "no-repeat",
+              overflow: "hidden",
             }}
           >
             <Box
               component="img"
-              width="75%"
-              height="auto"
               loading="lazy"
-              src="https://arcoiris.edu.pe/assets/Img/organigrama_iespp_arcoiris_cusco.jpg"
-            ></Box>
+              src={Organigrama}
+              sx={{
+                width: { xs: "100%", sm: "90%", md: "85%", lg: "80%" },
+                height: "auto",
+                maxHeight: "80vh",
+                objectFit: "contain",
+              }}
+            />
           </Paper>
         </Box>
       </Container>
 
       {/* 3. PERSONAL DIRECTIVO Y ADMINISTRATIVO */}
       <Box
-        sx={{ bgcolor: "#003366", py: 10, color: "#fff", position: "relative" }}
+        sx={{ bgcolor: "#003366", py: { xs: 8, md: 10 }, color: "#fff", position: "relative" }}
       >
         <Container maxWidth="lg">
           {/* Directivo */}
-          <Box mb={10}>
+          <Box mb={{ xs: 8, md: 10 }}>
             <Box
               data-aos="fade-right"
-              sx={{ mb: 6, borderLeft: "4px solid #007BFF", pl: 3 }}
+              sx={{ mb: { xs: 4, md: 6 }, borderLeft: "4px solid #007BFF", pl: { xs: 2, md: 3 } }}
             >
               <Typography
                 variant="h3"
                 fontWeight="900"
                 textTransform="uppercase"
+                sx={{ fontSize: "clamp(1.8rem, 4vw, 3rem)" }}
               >
                 Personal Directivo
               </Typography>
-              <Typography variant="body1" color="#a0aec0" mt={1}>
+              <Typography variant="body1" color="#a0aec0" mt={1} sx={{ fontSize: "clamp(0.95rem, 2vw, 1.1rem)" }}>
                 Líderes comprometidos con la visión y misión de nuestra
                 institución.
               </Typography>
             </Box>
-            <Grid container spacing={4}>
+            <Grid container spacing={{ xs: 3, md: 4 }}>
               {directivo.map((person, idx) => (
                 <Grid
-                  size={{ xs: 12, md: 6 }}
+                  size={{ xs: 12, lg: 6 }}
                   key={idx}
                   data-aos="fade-up"
                   data-aos-delay={idx * 100}
                 >
                   <Paper
                     sx={{
-                      p: 4,
+                      p: { xs: 3, md: 4 },
                       borderRadius: "16px",
                       bgcolor: "rgba(255,255,255,0.05)",
                       border: "1px solid rgba(255,255,255,0.1)",
                       display: "flex",
                       alignItems: "center",
-                      gap: 3,
+                      gap: { xs: 2, md: 3 },
                       backdropFilter: "blur(10px)",
                       "&:hover": {
                         borderColor: "#007BFF",
@@ -953,7 +1031,7 @@ export default function Directorio() {
                     }}
                   >
                     <AssignmentIndIcon
-                      sx={{ fontSize: 50, color: "#C59B27" }}
+                      sx={{ fontSize: { xs: 40, md: 50 }, color: "#C59B27" }}
                     />
                     <Box>
                       <Typography
@@ -961,10 +1039,11 @@ export default function Directorio() {
                         color="#007BFF"
                         fontWeight="bold"
                         letterSpacing={1}
+                        sx={{ fontSize: "clamp(0.7rem, 1.2vw, 0.875rem)" }}
                       >
                         {person.cargo}
                       </Typography>
-                      <Typography variant="h6" fontWeight="bold" color="#fff">
+                      <Typography variant="h6" fontWeight="bold" color="#fff" sx={{ fontSize: "clamp(1.1rem, 2vw, 1.25rem)" }}>
                         {person.grado} {person.nombre}
                       </Typography>
                     </Box>
@@ -978,41 +1057,40 @@ export default function Directorio() {
           <Box>
             <Box
               data-aos="fade-right"
-              sx={{ mb: 6, borderLeft: "4px solid #C59B27", pl: 3 }}
+              sx={{ mb: { xs: 4, md: 6 }, borderLeft: "4px solid #C59B27", pl: { xs: 2, md: 3 } }}
             >
               <Typography
                 variant="h3"
                 fontWeight="900"
                 textTransform="uppercase"
+                sx={{ fontSize: "clamp(1.8rem, 4vw, 3rem)" }}
               >
                 Personal Administrativo
               </Typography>
-              <Typography variant="body1" color="#a0aec0" mt={1}>
+              <Typography variant="body1" color="#a0aec0" mt={1} sx={{ fontSize: "clamp(0.95rem, 2vw, 1.1rem)" }}>
                 Nuestro equipo que asegura el funcionamiento eficiente y el
                 soporte integral.
               </Typography>
             </Box>
-            <Grid container spacing={3}>
+            <Grid container spacing={{ xs: 2, sm: 3, md: 4 }}>
               {administrativo.map((person, idx) => {
                 const hasImage = !!person.image;
                 return (
                   <Grid
-                    size={{ xs: 12, sm: 6, md: 4 }}
+                    size={{ xs: 12, sm: 6, lg: 4 }}
                     key={idx}
                     data-aos="fade-up"
                     data-aos-delay={idx * 50}
                   >
                     <Paper
                       sx={{
-                        p: 3,
+                        p: { xs: 2.5, md: 3 },
                         borderRadius: "16px",
                         bgcolor: "rgba(255,255,255,0.03)",
                         border: "1px solid rgba(255,255,255,0.05)",
-                        // --- NUEVAS PROPIEDADES PARA EL EFECTO ---
                         position: "relative",
                         overflow: "hidden",
                         height: "120px",
-
                         transition:
                           "height 0.4s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.3s ease",
 
@@ -1031,14 +1109,12 @@ export default function Directorio() {
                               bgcolor: "rgba(197, 155, 39, 0.05)",
                             },
 
-                        // Gatillo para animar la caja de la imagen por dentro
                         "&:hover .admin-img-box": hasImage
                           ? {
                               opacity: 1,
                               transform: "translateY(0)",
                             }
                           : {},
-                        // ----------------------------------------
                       }}
                     >
                       {/* Contenido Texto */}
@@ -1049,6 +1125,7 @@ export default function Directorio() {
                           fontWeight="bold"
                           display="block"
                           mb={0.5}
+                          sx={{ fontSize: "clamp(0.7rem, 1.2vw, 0.8rem)" }}
                         >
                           {person.cargo}
                         </Typography>
@@ -1057,6 +1134,7 @@ export default function Directorio() {
                           fontWeight="bold"
                           color="#fff"
                           lineHeight={1.3}
+                          sx={{ fontSize: "clamp(0.95rem, 1.5vw, 1.15rem)" }}
                         >
                           {person.grado} {person.nombre}
                         </Typography>
@@ -1089,11 +1167,9 @@ export default function Directorio() {
                             left: 0,
                             right: 0,
                             height: "230px",
-                            // --- ESTADOS INICIALES PARA ANIMACIÓN ---
                             opacity: 0,
                             transform: "translateY(50px)",
-                            transition:
-                              "opacity 0.4s ease, transform 0.4s ease",
+                            transition: "opacity 0.4s ease, transform 0.4s ease",
                             zIndex: 1,
                           }}
                         >
@@ -1125,53 +1201,57 @@ export default function Directorio() {
       </Box>
 
       {/* 4. PERSONAL DOCENTE OPTIMIZADO */}
-      <Container maxWidth="lg" sx={{ py: 12 }}>
-        <Box data-aos="zoom-in" sx={{ textAlign: "center", mb: 10 }}>
-          <Typography
-            variant="overline"
-            sx={{ color: "#007BFF", fontWeight: 900, letterSpacing: 2 }}
-          >
-            EXCELENCIA ACADÉMICA
-          </Typography>
-          <Typography
-            variant="h2"
-            fontWeight="900"
-            color="#003366"
-            textTransform="uppercase"
-            mb={2}
-          >
-            Personal Docente
-          </Typography>
-          <Typography
-            variant="h6"
-            color="#333333"
-            fontWeight="400"
-            sx={{ maxWidth: "700px", mx: "auto" }}
-          >
-            Nuestros docentes, el pilar fundamental de la formación académica y
-            profesional.
-          </Typography>
-        </Box>
+      <Box sx={{ position: "relative", py: { xs: 8, md: 12 }, bgcolor: "#ffffff", overflow: "hidden" }}>
 
-        <Grid container spacing={4}>
-          {docentes.map((docente, index) => (
-            <Grid
-              size={{ xs: 12, sm: 6, md: 4 }}
-              key={index}
-              data-aos="fade-up"
-              data-aos-offset="100"
+        <Container maxWidth="lg" sx={{ position: "relative", zIndex: 1 }}>
+          <Box data-aos="zoom-in" sx={{ textAlign: "center", mb: { xs: 6, md: 10 } }}>
+            <Typography
+              variant="overline"
+              sx={{ color: "#007BFF", fontWeight: 900, letterSpacing: 2, fontSize: "clamp(0.8rem, 1.5vw, 1rem)" }}
             >
-              <DocenteCard
-                docente={docente}
-                onOpenCV={handleOpenCV}
-                onCopyPhone={handleCopyPhone}
-              />
-            </Grid>
-          ))}
-        </Grid>
-      </Container>
+              EXCELENCIA ACADÉMICA
+            </Typography>
+            <Typography
+              variant="h2"
+              fontWeight="900"
+              color="#003366"
+              textTransform="uppercase"
+              mb={2}
+              sx={{ fontSize: "clamp(2rem, 5vw, 3.5rem)" }}
+            >
+              Personal Docente
+            </Typography>
+            <Typography
+              variant="h6"
+              color="#333333"
+              fontWeight="400"
+              sx={{ maxWidth: "700px", mx: "auto", fontSize: "clamp(0.95rem, 2vw, 1.15rem)", px: { xs: 2, md: 0 } }}
+            >
+              Nuestros docentes, el pilar fundamental de la formación académica y
+              profesional.
+            </Typography>
+          </Box>
 
-      {/* SNACKBAR PARA AVISO DE NÚMERO COPIADO */}
+          <Grid container spacing={{ xs: 3, sm: 4 }}>
+            {docentes.map((docente, index) => (
+              <Grid
+                size={{ xs: 12, sm: 6, lg: 4 }}
+                key={index}
+                data-aos="fade-up"
+                data-aos-offset="100"
+              >
+                <DocenteCard
+                  docente={docente}
+                  onOpenCV={handleOpenCV}
+                  onCopyEmail={handleCopyEmail}
+                />
+              </Grid>
+            ))}
+          </Grid>
+        </Container>
+      </Box>
+
+      {/* SNACKBAR PARA AVISO DE CORREO COPIADO */}
       <Snackbar
         open={snackbarOpen}
         autoHideDuration={3000}
@@ -1184,7 +1264,7 @@ export default function Directorio() {
           variant="filled"
           sx={{ width: "100%", bgcolor: "#003366", color: "#fff" }}
         >
-          ¡Número copiado al portapapeles exitosamente!
+          ¡Correo copiado al portapapeles exitosamente!
         </Alert>
       </Snackbar>
 
@@ -1194,18 +1274,19 @@ export default function Directorio() {
         onClose={() => setOpenPdf(false)}
         maxWidth="lg"
         fullWidth
+        PaperProps={{ sx: { borderRadius: "16px", m: { xs: 2, md: 4 } } }}
       >
         <Box
           sx={{
             display: "flex",
             justifyContent: "space-between",
             alignItems: "center",
-            p: 2,
+            p: { xs: 2, md: 3 },
             bgcolor: "#003366",
             color: "#ffffff",
           }}
         >
-          <Typography variant="h6" fontWeight="bold">
+          <Typography variant="h6" fontWeight="bold" sx={{ fontSize: "clamp(1rem, 2vw, 1.25rem)" }}>
             Curriculum Vitae - {selectedDocente}
           </Typography>
           <IconButton
@@ -1215,7 +1296,7 @@ export default function Directorio() {
             <CloseIcon />
           </IconButton>
         </Box>
-        <DialogContent sx={{ p: 0, height: "80vh", bgcolor: "#333333" }}>
+        <DialogContent sx={{ p: 0, height: { xs: "70vh", md: "80vh" }, bgcolor: "#333333" }}>
           {selectedCvUrl ? (
             <iframe
               src={selectedCvUrl}
@@ -1226,7 +1307,7 @@ export default function Directorio() {
             />
           ) : (
             <Typography color="white" textAlign="center" mt={10}>
-              Cargando documento...
+              El documento no está disponible en este momento.
             </Typography>
           )}
         </DialogContent>

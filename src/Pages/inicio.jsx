@@ -414,6 +414,7 @@ export default function Inicio() {
                 width: { xs: "100%", md: "135%" },
                 position: "relative",
                 top: "-10px",
+                fontSize:"10px",
               }}
             >
               Nuestra Institución: <br />

@@ -434,7 +434,7 @@ export default function Navbar() {
               : "none",
         }}
       >
-        <Container maxWidth="xl">
+        <Container maxWidth="xl" sx={{px:{xs:0,md:4,lg:5}}}>
           <Toolbar
             disableGutters
             sx={{
