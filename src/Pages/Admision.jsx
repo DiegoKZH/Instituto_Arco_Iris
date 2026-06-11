@@ -16,6 +16,7 @@ import {
   Chip,
 } from "@mui/material";
 import AOS from "aos";
+import { Link } from "react-router-dom";
 import "aos/dist/aos.css";
 
 import UploadFileIcon from "@mui/icons-material/UploadFile";
@@ -29,7 +30,8 @@ import LocationCityIcon from "@mui/icons-material/LocationCity";
 import HandshakeIcon from "@mui/icons-material/Handshake";
 import PublicIcon from "@mui/icons-material/Public";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
-import { Link } from "react-router-dom";
+import Fisica from "../assets/Imagenes/Basquet.jpg";
+import Inicial from "../assets/Imagenes/Inicial1.jpg";
 
 function CustomTabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -47,8 +49,26 @@ function CustomTabPanel(props) {
 }
 
 export default function Admision() {
-  const [tabValue, setTabValue] = useState(0);
+  const [tabValue, setTabValue] = useState(1);
   const { periodo } = useGlobalData();
+  const { inicioClases } = useGlobalData();
+
+  const tarifas = {
+    derechoAdmision: "150.00",
+    simulacro: "5.00",
+    preArcoIris: {
+      enero: "300.00",
+      eneroFebrero: "400.00",
+    },
+    inicial: {
+      matricula: "250.00",
+      cuotaMensual: "290.00",
+    },
+    fisica: {
+      matricula: "300.00",
+      cuotaMensual: "350.00",
+    },
+  };
 
   useEffect(() => {
     AOS.init({
@@ -90,7 +110,7 @@ export default function Admision() {
             <Typography
               variant="overline"
               sx={{
-                color: "#007BFF",
+                color: "#0078f9",
                 fontWeight: 900,
                 letterSpacing: { xs: 2, md: 3 },
                 fontSize: "clamp(1rem, 2vw, 1.2rem)",
@@ -117,7 +137,7 @@ export default function Admision() {
                 color: "#F0F2F5",
                 maxWidth: "600px",
                 fontWeight: 400,
-                borderLeft: "4px solid #C59B27",
+                borderLeft: "4px solid #c59b27",
                 pl: { xs: 2, md: 3 },
                 fontSize: "clamp(1rem, 2vw, 1.25rem)",
               }}
@@ -145,7 +165,7 @@ export default function Admision() {
           </Typography>
           <Typography
             variant="h6"
-            color="#666"
+            color="#003366"
             mt={2}
             sx={{ fontSize: "clamp(1rem, 2vw, 1.25rem)" }}
           >
@@ -235,11 +255,11 @@ export default function Admision() {
                   borderRadius: "24px",
                   textAlign: "center",
                   height: "100%",
-                  borderTop: "8px solid #007BFF",
+                  borderTop: "8px solid #0078f9",
                   transition: "transform 0.3s",
                   "&:hover": {
                     transform: "translateY(-10px)",
-                    boxShadow: "0 20px 40px rgba(0,0,0,0.1)",
+                    boxShadow: "0 20px 40px rgba(0,51,102,0.1)",
                   },
                 }}
               >
@@ -248,7 +268,7 @@ export default function Admision() {
                     width: 80,
                     height: 80,
                     mx: "auto",
-                    border: "3px solid #026ee1",
+                    border: "3px solid #0078f9",
                     bgcolor: "#ffffff",
                     color: "#fff",
                     borderRadius: "50%",
@@ -272,7 +292,7 @@ export default function Admision() {
                 </Typography>
                 <Typography
                   variant="body1"
-                  color="#555"
+                  color="#003366"
                   sx={{ fontSize: "clamp(0.95rem, 2vw, 1.1rem)" }}
                 >
                   {item.desc}
@@ -305,7 +325,7 @@ export default function Admision() {
             </Typography>
             <Typography
               variant="h6"
-              color="#666"
+              color="#003366"
               mt={1}
               textAlign="center"
               sx={{ fontSize: "clamp(1rem, 2vw, 1.25rem)" }}
@@ -341,7 +361,7 @@ export default function Admision() {
                   px: { xs: 3, md: 4 },
                   fontSize: "clamp(1rem, 2vw, 1.1rem)",
                   fontWeight: "bold",
-                  color: "#0e3a8b",
+                  color: "#003366",
                   justifyContent: "flex-start",
                   textAlign: "left",
                   minHeight: { xs: "60px", md: "80px" },
@@ -349,7 +369,7 @@ export default function Admision() {
                 },
                 "& .Mui-selected": {
                   color: "#003366 !important",
-                  bgcolor: "#fff",
+                  bgcolor: "#77addb36",
                 },
                 "& .MuiTabs-indicator": {
                   left: 0,
@@ -357,7 +377,7 @@ export default function Admision() {
                   height: { xs: "4px", md: "100%" },
                   top: { xs: "auto", md: 0 },
                   bottom: 0,
-                  bgcolor: "#1d4e96",
+                  bgcolor: "#0078f9",
                 },
               }}
             >
@@ -402,7 +422,7 @@ export default function Admision() {
                     <Typography
                       variant="body1"
                       paragraph
-                      color="#444"
+                      color="#003366"
                       textAlign="justify"
                       sx={{ fontSize: "clamp(0.95rem, 2vw, 1.1rem)" }}
                     >
@@ -412,11 +432,11 @@ export default function Admision() {
                     </Typography>
                     <Box
                       sx={{
-                        bgcolor: "rgba(117, 176, 242, 0.1)",
+                        bgcolor: "rgba(97, 172, 252, 0.1)",
                         p: { xs: 2.5, md: 3 },
                         borderRadius: "16px",
                         mb: 4,
-                        borderLeft: "4px solid #007bff",
+                        borderLeft: "4px solid #0078f9",
                       }}
                     >
                       <Typography
@@ -430,7 +450,7 @@ export default function Admision() {
                       </Typography>
                       <Typography
                         variant="body2"
-                        color="#292929"
+                        color="#003366"
                         textAlign="justify"
                         mt={1}
                         sx={{ fontSize: "clamp(0.85rem, 1.5vw, 0.9rem)" }}
@@ -466,12 +486,16 @@ export default function Admision() {
                       ].map((text, i) => (
                         <ListItem key={i}>
                           <ListItemIcon sx={{ minWidth: 36 }}>
-                            <CheckCircleIcon color="primary" fontSize="small" />
+                            <CheckCircleIcon
+                              sx={{ color: "#0078f9" }}
+                              fontSize="small"
+                            />
                           </ListItemIcon>
                           <ListItemText
                             primary={text}
                             primaryTypographyProps={{
                               sx: {
+                                color: "#003366",
                                 fontSize: "clamp(0.85rem, 1.5vw, 0.95rem)",
                               },
                             }}
@@ -501,7 +525,7 @@ export default function Admision() {
                     <Typography
                       variant="body1"
                       paragraph
-                      color="#444"
+                      color="#003366"
                       textAlign="justify"
                       sx={{ fontSize: "clamp(0.95rem, 2vw, 1.1rem)" }}
                     >
@@ -525,10 +549,10 @@ export default function Admision() {
                     </Typography>
                     <Box
                       sx={{
-                        bgcolor: "rgba(0, 123, 255, 0.05)",
+                        bgcolor: "rgba(0, 120, 249, 0.05)",
                         p: { xs: 2.5, md: 3 },
                         borderRadius: "16px",
-                        borderLeft: "4px solid #007BFF",
+                        borderLeft: "4px solid #0078f9",
                       }}
                     >
                       <Typography
@@ -578,7 +602,7 @@ export default function Admision() {
                         </Typography>
                         <Typography
                           variant="body2"
-                          color="#555"
+                          color="#003366"
                           sx={{ fontSize: "clamp(0.85rem, 1.5vw, 0.9rem)" }}
                         >
                           Evalúa competencias fundamentales para la Formación
@@ -605,7 +629,7 @@ export default function Admision() {
                         </Typography>
                         <Typography
                           variant="body2"
-                          color="#555"
+                          color="#003366"
                           sx={{ fontSize: "clamp(0.85rem, 1.5vw, 0.9rem)" }}
                         >
                           A través de entrevista y dinámica grupal, se evalúan
@@ -638,7 +662,7 @@ export default function Admision() {
           </Typography>
           <Typography
             variant="h6"
-            color="#666"
+            color="#003366"
             mt={2}
             sx={{ fontSize: "clamp(1rem, 2vw, 1.25rem)" }}
           >
@@ -749,7 +773,7 @@ export default function Admision() {
                 />
               ),
               title: "Recibo de Pago",
-              desc: "Comprobante de pago por Derecho de Admisión (S/ 120.00).",
+              desc: `Comprobante de pago por Derecho de Admisión (S/ ${tarifas.derechoAdmision}).`,
             },
           ].map((doc, idx) => (
             <Grid
@@ -767,14 +791,14 @@ export default function Admision() {
                   gap: { xs: 1.5, md: 2 },
                   border: "1px solid #eaeaea",
                   "&:hover": {
-                    borderColor: "#007BFF",
-                    boxShadow: "0 10px 30px rgba(0,123,255,0.08)",
+                    borderColor: "#0078f9",
+                    boxShadow: "0 10px 30px rgba(0,120,249,0.08)",
                   },
                 }}
               >
                 <Box
                   sx={{
-                    color: "#C59B27",
+                    color: "#61acfc",
                     "& svg": { fontSize: { xs: 30, md: 40 } },
                   }}
                 >
@@ -793,7 +817,7 @@ export default function Admision() {
                   </Typography>
                   <Typography
                     variant="body2"
-                    color="#666"
+                    color="#003366"
                     sx={{ fontSize: "clamp(0.85rem, 1.5vw, 0.95rem)" }}
                   >
                     {doc.desc}
@@ -820,7 +844,7 @@ export default function Admision() {
             right: 0,
             width: "30%",
             height: "100%",
-            bgcolor: "#002244",
+            bgcolor: "#003366",
             clipPath: "polygon(100% 0, 100% 100%, 0 100%, 30% 0)",
             zIndex: 0,
             display: { xs: "none", md: "block" },
@@ -839,7 +863,7 @@ export default function Admision() {
             </Typography>
             <Typography
               variant="h6"
-              color="#a0aec0"
+              color="#61acfc"
               mt={1}
               sx={{ fontSize: "clamp(1rem, 2vw, 1.25rem)" }}
             >
@@ -893,7 +917,7 @@ export default function Admision() {
                 </Typography>
                 <Typography
                   variant="body2"
-                  color="#e2e8f0"
+                  color="#ffffff"
                   mb={3}
                   sx={{ fontSize: "clamp(0.85rem, 1.5vw, 0.95rem)" }}
                 >
@@ -913,7 +937,7 @@ export default function Admision() {
                     <ListItemText
                       primary="Comunicación en su Lengua Materna: 20 preguntas (20 ptos)"
                       primaryTypographyProps={{
-                        color: "#e2e8f0",
+                        color: "#ffffff",
                         fontSize: "clamp(0.85rem, 1.5vw, 0.9rem)",
                       }}
                     />
@@ -927,7 +951,7 @@ export default function Admision() {
                     <ListItemText
                       primary="Resolución de Problemas Matemáticos: 20 preguntas (20 ptos)"
                       primaryTypographyProps={{
-                        color: "#e2e8f0",
+                        color: "#ffffff",
                         fontSize: "clamp(0.85rem, 1.5vw, 0.9rem)",
                       }}
                     />
@@ -941,7 +965,7 @@ export default function Admision() {
                     <ListItemText
                       primary="Convivencia y Participación Democrática: 10 preguntas (10 ptos)"
                       primaryTypographyProps={{
-                        color: "#e2e8f0",
+                        color: "#ffffff",
                         fontSize: "clamp(0.85rem, 1.5vw, 0.9rem)",
                       }}
                     />
@@ -998,7 +1022,7 @@ export default function Admision() {
                 </Typography>
                 <Typography
                   variant="body2"
-                  color="#e2e8f0"
+                  color="#ffffff"
                   mb={3}
                   sx={{ fontSize: "clamp(0.85rem, 1.5vw, 0.95rem)" }}
                 >
@@ -1020,7 +1044,7 @@ export default function Admision() {
                     <ListItemText
                       primary="Pensamiento Crítico y Creativo: 20 puntos"
                       primaryTypographyProps={{
-                        color: "#e2e8f0",
+                        color: "#ffffff",
                         fontSize: "clamp(0.85rem, 1.5vw, 0.9rem)",
                       }}
                     />
@@ -1034,7 +1058,7 @@ export default function Admision() {
                     <ListItemText
                       primary="Trabajo Colaborativo: 20 puntos"
                       primaryTypographyProps={{
-                        color: "#e2e8f0",
+                        color: "#ffffff",
                         fontSize: "clamp(0.85rem, 1.5vw, 0.9rem)",
                       }}
                     />
@@ -1048,7 +1072,7 @@ export default function Admision() {
                     <ListItemText
                       primary="TICs: 10 puntos"
                       primaryTypographyProps={{
-                        color: "#e2e8f0",
+                        color: "#ffffff",
                         fontSize: "clamp(0.85rem, 1.5vw, 0.9rem)",
                       }}
                     />
@@ -1071,13 +1095,12 @@ export default function Admision() {
           <Box mt={{ xs: 5, md: 6 }} textAlign="center" data-aos="zoom-in">
             <Chip
               label="Nota mínima de aprobación: 12"
-              color="primary"
               sx={{
                 fontSize: "clamp(0.95rem, 2vw, 1.1rem)",
                 py: { xs: 2, md: 2.5 },
                 px: { xs: 1, md: 2 },
                 fontWeight: "bold",
-                bgcolor: "#c59b27",
+                bgcolor: "#61acfc",
                 color: "#003366",
                 height: "auto",
                 "& .MuiChip-label": { whiteSpace: "normal" },
@@ -1085,7 +1108,7 @@ export default function Admision() {
             />
             <Typography
               variant="body2"
-              color="#a0aec0"
+              color="#ffffff"
               mt={2}
               sx={{ fontSize: "clamp(0.85rem, 1.5vw, 0.95rem)" }}
             >
@@ -1112,7 +1135,7 @@ export default function Admision() {
           </Typography>
           <Typography
             variant="h6"
-            color="#666"
+            color="#003366"
             mt={2}
             sx={{ fontSize: "clamp(1rem, 2vw, 1.25rem)" }}
           >
@@ -1141,7 +1164,7 @@ export default function Admision() {
             >
               <Typography
                 variant="subtitle1"
-                color="#666"
+                color="#003366"
                 fontWeight="bold"
                 textTransform="uppercase"
                 sx={{ fontSize: "clamp(0.95rem, 2vw, 1rem)" }}
@@ -1155,11 +1178,11 @@ export default function Admision() {
                 my={2}
                 sx={{ fontSize: "clamp(2rem, 4vw, 3rem)" }}
               >
-                S/ 120.00
+                S/ {tarifas.derechoAdmision}
               </Typography>
               <Typography
                 variant="body2"
-                color="#555"
+                color="#003366"
                 mb={3}
                 flexGrow={1}
                 sx={{ fontSize: "clamp(0.85rem, 1.5vw, 0.95rem)" }}
@@ -1177,7 +1200,7 @@ export default function Admision() {
               sx={{
                 p: { xs: 3, md: 4 },
                 borderRadius: "24px",
-                border: "2px solid #007BFF",
+                border: "2px solid #0078f9",
                 textAlign: "center",
                 height: "100%",
                 display: "flex",
@@ -1194,19 +1217,19 @@ export default function Admision() {
                   top: -12,
                   left: "50%",
                   transform: "translateX(-50%)",
-                  bgcolor: "#007BFF",
+                  bgcolor: "#0078f9",
                   color: "#fff",
                   fontWeight: "bold",
                 }}
               />
               <Typography
                 variant="subtitle1"
-                color="#007BFF"
+                color="#0078f9"
                 fontWeight="bold"
                 textTransform="uppercase"
                 sx={{ fontSize: "clamp(0.95rem, 2vw, 1rem)" }}
               >
-                Paquetes PRE-ARCO IRIS
+                Costos PRE-ARCO IRIS
               </Typography>
               <Box my={2}>
                 <Typography
@@ -1215,7 +1238,7 @@ export default function Admision() {
                   color="#003366"
                   sx={{ fontSize: "clamp(1.25rem, 2.5vw, 1.5rem)" }}
                 >
-                  Enero: S/ 270.00
+                  1 Mes: S/ {tarifas.preArcoIris.enero}
                 </Typography>
                 <Typography
                   variant="h5"
@@ -1223,12 +1246,12 @@ export default function Admision() {
                   color="#003366"
                   sx={{ fontSize: "clamp(1.25rem, 2.5vw, 1.5rem)" }}
                 >
-                  Ene y Feb: S/ 370.00
+                  2 Meses: S/ {tarifas.preArcoIris.eneroFebrero}
                 </Typography>
               </Box>
               <Typography
                 variant="body2"
-                color="#555"
+                color="#003366"
                 mb={3}
                 flexGrow={1}
                 sx={{ fontSize: "clamp(0.85rem, 1.5vw, 0.95rem)" }}
@@ -1256,7 +1279,7 @@ export default function Admision() {
             >
               <Typography
                 variant="subtitle1"
-                color="#666"
+                color="#003366"
                 fontWeight="bold"
                 textTransform="uppercase"
                 sx={{ fontSize: "clamp(0.95rem, 2vw, 1rem)" }}
@@ -1270,17 +1293,16 @@ export default function Admision() {
                 my={2}
                 sx={{ fontSize: "clamp(2rem, 4vw, 3rem)" }}
               >
-                S/ 5.00
+                S/ {tarifas.simulacro}
               </Typography>
               <Typography
                 variant="body2"
-                color="#555"
+                color="#003366"
                 mb={3}
                 flexGrow={1}
                 sx={{ fontSize: "clamp(0.85rem, 1.5vw, 0.95rem)" }}
               >
-                Costo por participar en el examen simulacro (miércoles 25 de
-                marzo).
+                Costo por participar en el examen simulacro.
               </Typography>
             </Paper>
           </Grid>
@@ -1292,7 +1314,7 @@ export default function Admision() {
               borderRadius: "24px",
               overflow: "hidden",
               border: "1px solid #e0e0e0",
-              boxShadow: "0 20px 40px rgba(0,0,0,0.05)",
+              boxShadow: "0 20px 40px rgba(0,51,102,0.05)",
             }}
           >
             <Box
@@ -1353,7 +1375,7 @@ export default function Admision() {
                 >
                   <Typography
                     variant="body1"
-                    color="#555"
+                    color="#003366"
                     sx={{ fontSize: "clamp(0.95rem, 2vw, 1.1rem)" }}
                   >
                     Matrícula
@@ -1361,16 +1383,16 @@ export default function Admision() {
                   <Typography
                     variant="h6"
                     fontWeight="bold"
-                    color="#333"
+                    color="#003366"
                     sx={{ fontSize: "clamp(1.1rem, 2vw, 1.25rem)" }}
                   >
-                    S/ 240.00
+                    S/ {tarifas.inicial.matricula}
                   </Typography>
                 </Box>
                 <Box sx={{ display: "flex", justifyContent: "space-between" }}>
                   <Typography
                     variant="body1"
-                    color="#555"
+                    color="#003366"
                     sx={{ fontSize: "clamp(0.95rem, 2vw, 1.1rem)" }}
                   >
                     Cuotas Mensuales
@@ -1378,10 +1400,10 @@ export default function Admision() {
                   <Typography
                     variant="h6"
                     fontWeight="bold"
-                    color="#333"
+                    color="#003366"
                     sx={{ fontSize: "clamp(1.1rem, 2vw, 1.25rem)" }}
                   >
-                    S/ 280.00
+                    S/ {tarifas.inicial.cuotaMensual}
                   </Typography>
                 </Box>
               </Grid>
@@ -1398,8 +1420,8 @@ export default function Admision() {
                     style={{
                       width: 50,
                       height: 50,
-                      filter: `brightness(0) saturate(100%) invert(25%) sepia(90%)
-                        saturate(2000%) hue-rotate(170deg) brightness(145%) contrast(65%)`,
+                      filter: `brightness(0) saturate(100%) invert(25%) sepia(30%)
+                        saturate(2000%) hue-rotate(170deg) brightness(185%) contrast(95%)`,
                     }}
                   />
                   <Typography
@@ -1422,7 +1444,7 @@ export default function Admision() {
                 >
                   <Typography
                     variant="body1"
-                    color="#555"
+                    color="#003366"
                     sx={{ fontSize: "clamp(0.95rem, 2vw, 1.1rem)" }}
                   >
                     Matrícula
@@ -1430,16 +1452,16 @@ export default function Admision() {
                   <Typography
                     variant="h6"
                     fontWeight="bold"
-                    color="#333"
+                    color="#003366"
                     sx={{ fontSize: "clamp(1.1rem, 2vw, 1.25rem)" }}
                   >
-                    S/ 280.00
+                    S/ {tarifas.fisica.matricula}
                   </Typography>
                 </Box>
                 <Box sx={{ display: "flex", justifyContent: "space-between" }}>
                   <Typography
                     variant="body1"
-                    color="#555"
+                    color="#003366"
                     sx={{ fontSize: "clamp(0.95rem, 2vw, 1.1rem)" }}
                   >
                     Cuotas Mensuales
@@ -1447,10 +1469,10 @@ export default function Admision() {
                   <Typography
                     variant="h6"
                     fontWeight="bold"
-                    color="#333"
+                    color="#003366"
                     sx={{ fontSize: "clamp(1.1rem, 2vw, 1.25rem)" }}
                   >
-                    S/ 320.00
+                    S/ {tarifas.fisica.cuotaMensual}
                   </Typography>
                 </Box>
               </Grid>
@@ -1468,7 +1490,7 @@ export default function Admision() {
                 fontWeight="bold"
                 sx={{ fontSize: "clamp(0.8rem, 1.5vw, 0.95rem)" }}
               >
-                INICIO DE CLASES: LUNES 06 DE ABRIL
+                INICIO DE CLASES: {inicioClases}
               </Typography>
             </Box>
           </Paper>
@@ -1495,7 +1517,7 @@ export default function Admision() {
             </Typography>
             <Typography
               variant="h6"
-              color="#666"
+              color="#003366"
               mt={1}
               sx={{ fontSize: "clamp(1rem, 2vw, 1.25rem)" }}
             >
@@ -1517,7 +1539,7 @@ export default function Admision() {
                   transition: "transform 0.3s",
                   "&:hover": {
                     transform: "translateY(-10px)",
-                    boxShadow: "0 20px 40px rgba(0,0,0,0.08)",
+                    boxShadow: "0 20px 40px rgba(0,51,102,0.08)",
                   },
                 }}
               >
@@ -1525,8 +1547,7 @@ export default function Admision() {
                   sx={{
                     height: { xs: 180, md: 200 },
                     bgcolor: "#f0f0f0",
-                    backgroundImage:
-                      "url('https://plus.unsplash.com/premium_photo-1663047589329-e340c9234b61?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nzd8fGRvY2VudGUlMjBlZHVjYWNpb24lMjBpbmljaWFsfGVufDB8fDB8fHww')",
+                    backgroundImage: `url(${Inicial})`,
                     backgroundSize: "cover",
                     backgroundPosition: "center",
                   }}
@@ -1550,7 +1571,7 @@ export default function Admision() {
                   </Typography>
                   <Typography
                     variant="body1"
-                    color="#555"
+                    color="#003366"
                     mb={3}
                     textAlign="justify"
                     sx={{ fontSize: "clamp(0.95rem, 2vw, 1.1rem)" }}
@@ -1562,14 +1583,14 @@ export default function Admision() {
                   <Box sx={{ mt: "auto", mb: { xs: 4, md: 3 } }}>
                     <Typography
                       variant="body2"
-                      color="#333"
+                      color="#003366"
                       sx={{ fontSize: "clamp(0.85rem, 1.5vw, 0.95rem)" }}
                     >
                       <strong>Duración:</strong> 5 años (10 ciclos académicos)
                     </Typography>
                     <Typography
                       variant="body2"
-                      color="#333"
+                      color="#003366"
                       mt={1}
                       sx={{ fontSize: "clamp(0.85rem, 1.5vw, 0.95rem)" }}
                     >
@@ -1586,16 +1607,17 @@ export default function Admision() {
                     variant="outlined"
                     sx={{
                       color: "#ffffff",
+                      fontWeight: "bold",
                       borderColor: "#ffffff",
                       backgroundColor: "#003366",
                       borderRadius: "35px",
                       p: { xs: 1.5, md: 2 },
                       alignSelf: { xs: "stretch", sm: "flex-start" },
                       fontSize: "clamp(0.85rem, 1.5vw, 1rem)",
-                      "&:hover": { bgcolor: "#045bb3" },
+                      "&:hover": { bgcolor: "#0078f9" },
                     }}
                   >
-                    Ver Detalles del Programa
+                    Detalles del Programa
                   </Button>
                 </Box>
               </Paper>
@@ -1617,7 +1639,7 @@ export default function Admision() {
                   transition: "transform 0.3s",
                   "&:hover": {
                     transform: "translateY(-10px)",
-                    boxShadow: "0 20px 40px rgba(0,0,0,0.08)",
+                    boxShadow: "0 20px 40px rgba(0,51,102,0.08)",
                   },
                 }}
               >
@@ -1625,8 +1647,7 @@ export default function Admision() {
                   sx={{
                     height: { xs: 180, md: 200 },
                     bgcolor: "#f0f0f0",
-                    backgroundImage:
-                      "url('https://images.unsplash.com/photo-1717689410645-62564f0a9acd?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MzF8fGRvY2VudGUlMjBlZHVjYWNpb24lMjBmaXNpY2F8ZW58MHx8MHx8fDA%3D')",
+                    backgroundImage: `url(${Fisica})`,
                     backgroundSize: "cover",
                     backgroundPosition: "center",
                   }}
@@ -1650,7 +1671,7 @@ export default function Admision() {
                   </Typography>
                   <Typography
                     variant="body1"
-                    color="#555"
+                    color="#003366"
                     mb={3}
                     textAlign="justify"
                     sx={{ fontSize: "clamp(0.95rem, 2vw, 1.1rem)" }}
@@ -1663,14 +1684,14 @@ export default function Admision() {
                   <Box sx={{ mt: "auto", mb: { xs: 4, md: 3 } }}>
                     <Typography
                       variant="body2"
-                      color="#333"
+                      color="#003366"
                       sx={{ fontSize: "clamp(0.85rem, 1.5vw, 0.95rem)" }}
                     >
                       <strong>Duración:</strong> 5 años (10 ciclos académicos)
                     </Typography>
                     <Typography
                       variant="body2"
-                      color="#333"
+                      color="#003366"
                       mt={1}
                       sx={{ fontSize: "clamp(0.85rem, 1.5vw, 0.95rem)" }}
                     >
@@ -1687,16 +1708,17 @@ export default function Admision() {
                     onClick={() => window.scrollTo(0, 0)}
                     sx={{
                       color: "#ffffff",
+                      fontWeight: "bold",
                       borderColor: "#ffffff",
                       backgroundColor: "#003366",
                       borderRadius: "35px",
                       p: { xs: 1.5, md: 2 },
                       alignSelf: { xs: "stretch", sm: "flex-start" },
                       fontSize: "clamp(0.85rem, 1.5vw, 1rem)",
-                      "&:hover": { bgcolor: "#044d96" },
+                      "&:hover": { bgcolor: "#0078f9" },
                     }}
                   >
-                    Ver Detalles del Programa
+                    Detalles del Programa
                   </Button>
                 </Box>
               </Paper>
@@ -1721,7 +1743,7 @@ export default function Admision() {
           </Typography>
           <Typography
             variant="h6"
-            color="#666"
+            color="#003366"
             mt={2}
             sx={{ fontSize: "clamp(1rem, 2vw, 1.25rem)" }}
           >
@@ -1850,7 +1872,7 @@ export default function Admision() {
                   border: "1px solid transparent",
                   transition: "all 0.3s",
                   "&:hover": {
-                    borderColor: "#007BFF",
+                    borderColor: "#0078f9",
                     transform: "translateY(-5px)",
                     boxShadow: "0 15px 30px rgba(0,51,102,0.08)",
                   },
@@ -1861,8 +1883,8 @@ export default function Admision() {
                     width: { xs: 60, md: 70 },
                     height: { xs: 60, md: 70 },
                     mx: "auto",
-                    bgcolor: "rgba(0, 123, 255, 0.1)",
-                    color: "#007BFF",
+                    bgcolor: "rgba(0, 120, 249, 0.1)",
+                    color: "#0078f9",
                     borderRadius: "50%",
                     display: "flex",
                     alignItems: "center",
@@ -1883,7 +1905,7 @@ export default function Admision() {
                 </Typography>
                 <Typography
                   variant="body2"
-                  color="#666"
+                  color="#003366"
                   sx={{ fontSize: "clamp(0.85rem, 1.5vw, 0.95rem)" }}
                 >
                   {item.desc}

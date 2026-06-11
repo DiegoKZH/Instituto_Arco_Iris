@@ -57,7 +57,7 @@ export default function Contacto() {
       telefono || "No proporcionado"
     }\n*Asunto:* ${asunto}\n*Mensaje:*\n${mensaje}`;
 
-    const numeroWhatsApp = "51986249212";
+    const numeroWhatsApp = "51966425975";
     const url = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(
       textoMensaje,
     )}`;
@@ -266,7 +266,7 @@ export default function Contacto() {
                       fontWeight="500"
                       sx={{ fontSize: "clamp(0.9rem, 1.5vw, 1rem)" }}
                     >
-                      +51 986 249 212{" "}
+                      +51 966 425 975{" "}
                       <Typography
                         component="span"
                         variant="body2"
@@ -275,6 +275,7 @@ export default function Contacto() {
                         (Informes)
                       </Typography>
                     </Typography>
+                    {/*
                     <Typography
                       variant="body1"
                       fontWeight="500"
@@ -289,6 +290,7 @@ export default function Contacto() {
                         (Mesa de Partes)
                       </Typography>
                     </Typography>
+                    */}
                   </Box>
                 </Box>
 

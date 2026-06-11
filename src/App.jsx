@@ -15,6 +15,7 @@ import Estudiantes from "./Pages/Estudiantes";
 import Egresados from "./Pages/Egresados";
 import Unidades from "./Pages/Unidades";
 import Contacto from "./Pages/Contacto";
+import ReservaComp from "./Pages/ReservaComp";
 import Plataformas from "./Pages/Plataformas";
 import Servicios from "./Pages/Servicios";
 import NotFound from "./Components/NotFound";
@@ -43,6 +44,7 @@ export default function App() {
           <Route path="Contacto" element={<Contacto />} />
           <Route path="Plataformas" element={<Plataformas />} />
           <Route path="Servicios" element={<Servicios />} />
+          <Route path="ReservaComp" element={<ReservaComp />} />
           <Route
             path="Documentos_gestion"
             element={

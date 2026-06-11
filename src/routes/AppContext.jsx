@@ -5,12 +5,11 @@ import { obtenerPeriodoActual } from "./Utils";
 const AppContext = createContext();
 
 export const AppProvider = ({ children }) => {
-  const periodo = obtenerPeriodoActual();
+  const { periodoActual, inicioClases } = obtenerPeriodoActual();
 
   const dataGlobal = {
-    periodo,
-    //usuario: "diegozh",
-    //ciudad: "Cusco"
+    periodo: periodoActual,
+    inicioClases,
   };
 
   return (
